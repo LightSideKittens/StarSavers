@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "com.onesignal.unity.android": "2.14.6",
+    "com.onesignal.unity.core": "2.14.6",
+    "com.onesignal.unity.ios": "2.14.6",
     "com.unity.2d.animation": "5.1.0",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.psdimporter": "4.2.0",
@@ -47,5 +50,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "npmjs",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.onesignal"
+      ]
+    }
+  ]
 }
