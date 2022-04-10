@@ -4,13 +4,21 @@
     <package>com.android.support:customtabs:[26.0.0, 27.2.0[</package>
     <package>com.android.support:support-v4:[26.0.0, 27.2.0[</package>
     <package>com.google.android.gms:play-services-base:[10.2.1, 12.1.0[</package>
+    <package>com.google.android.gms:play-services-base:18.0.1</package>
     <package>com.google.android.gms:play-services-location:[10.2.1, 12.1.0[</package>
+    <package>com.google.firebase:firebase-analytics:20.1.2</package>
+    <package>com.google.firebase:firebase-app-unity:8.9.0</package>
+    <package>com.google.firebase:firebase-auth:21.0.3</package>
+    <package>com.google.firebase:firebase-auth-unity:8.9.0</package>
+    <package>com.google.firebase:firebase-common:20.1.0</package>
     <package>com.google.firebase:firebase-messaging:[10.2.1, 12.1.0[</package>
+    <package>com.google.firebase:firebase-storage:20.0.1</package>
+    <package>com.google.firebase:firebase-storage-unity:8.9.0</package>
   </packages>
   <files />
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
-    <setting name="bundleId" value="com.DefaultCompany.com.unity.template.mobile2D" />
+    <setting name="bundleId" value="com.lightgames.beatmaster" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="False" />
@@ -20,7 +28,7 @@
     <setting name="packageDir" value="Assets/Plugins/Android" />
     <setting name="patchAndroidManifest" value="True" />
     <setting name="patchMainTemplateGradle" value="True" />
-    <setting name="projectExportEnabled" value="False" />
-    <setting name="useJetifier" value="False" />
+    <setting name="projectExportEnabled" value="True" />
+    <setting name="useJetifier" value="True" />
   </settings>
 </dependencies>
