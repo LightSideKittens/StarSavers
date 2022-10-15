@@ -1,29 +1,12 @@
 {
   "dependencies": {
-    "com.onesignal.unity.android": {
-      "version": "2.14.6",
+    "com.lightgames.core": {
+      "version": "file:Core",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
-        "com.onesignal.unity.core": "2.14.6"
-      },
-      "url": "https://registry.npmjs.org"
-    },
-    "com.onesignal.unity.core": {
-      "version": "2.14.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://registry.npmjs.org"
-    },
-    "com.onesignal.unity.ios": {
-      "version": "2.14.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.onesignal.unity.core": "2.14.6"
-      },
-      "url": "https://registry.npmjs.org"
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      }
     },
     "com.unity.2d.animation": {
       "version": "5.1.0",
@@ -140,6 +123,13 @@
     },
     "com.unity.mobile.android-logcat": {
       "version": "1.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.0.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
