@@ -11,7 +11,7 @@ public class BassCastle : Castle
         sine.SetTarget(soundType, enemy.transform);
         sine.NoteEnded += () =>
         {
-            Instantiate(explosiomPrefab, enemy.transform.position, Quaternion.identity);
+            Instantiate(GetFX(soundType), enemy.transform.position, Quaternion.identity);
             Destroy(enemy.gameObject);
         };
     }

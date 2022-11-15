@@ -18,6 +18,7 @@ public class Sinewave : MonoBehaviour
     public event Action NoteEnded;
     private Transform target;
     [SerializeField] private float enemyScaleMultiplier = 2;
+    [SerializeField] private ParticleSystem startFx;
 
     private void Awake()
     {
@@ -45,8 +46,10 @@ public class Sinewave : MonoBehaviour
         
         attackTimer.Stopped += () =>
         {
+            DOTween.Kill("CameraShake");
             target.DOScale(target.localScale * enemyScaleMultiplier, noteDurarion);
-            Camera.main.DOShakeRotation(noteDurarion, shakeStrength, shakeVibrato);
+            Camera.main.DOShakeRotation(noteDurarion, shakeStrength, shakeVibrato).SetId("CameraShake");
+            Instantiate(startFx, target.position, Quaternion.identity, target);
             enabled = true;
         };
 

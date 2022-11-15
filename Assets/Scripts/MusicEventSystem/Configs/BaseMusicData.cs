@@ -25,6 +25,7 @@ public abstract class BaseMusicData<T> : JsonBaseConfigData<T> where T : BaseMus
     }
     
     [JsonProperty] private readonly Dictionary<string, TrackData> tracks = new Dictionary<string, TrackData>();
+    [JsonProperty] public int BPM { get; private set; }
     private Dictionary<string, TrackData> tempTracks;
     private Action remover;
 

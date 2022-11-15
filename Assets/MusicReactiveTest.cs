@@ -37,14 +37,27 @@ public class MusicReactiveTest : MonoBehaviour
 
     private void Start()
     {
-        MainMusicData.GetTrack("Kick").Started += () =>
+        MainMusicData.GetTrack(SoundTypes.Kick).Started += () =>
         {
+            Time.timeScale = 1;
+            Debug.Log($"[Malvis] {SoundTypes.Kick}");
+            
             new CountDownTimer(0.1f, true).Stopped += () =>
             {
+                DOTween.Kill("CameraShake");
                 DOTween.Kill(this);
                 Camera.main.backgroundColor = Color.white;
                 Camera.main.DOColor(Color.black, 0.4f).SetId(this);
-                Camera.main.DOShakeRotation(duration, shakeStrength, shakeVibrato);
+                Camera.main.DOShakeRotation(duration, shakeStrength, shakeVibrato).SetId("CameraShake");
+            };
+        };
+
+        MainMusicData.GetTrack(SoundTypes.ClapSnare).Started += () =>
+        {
+                Time.timeScale = 1;
+            new CountUpTimer(0.2f, true, useUnscaleDeltaTime: true).NormalizeUpdated += value =>
+            {
+                Time.timeScale = 1 - 0.8f * value;
             };
         };
         
@@ -70,13 +83,13 @@ public class MusicReactiveTest : MonoBehaviour
         
         if (isMainMusicStarted)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             MainMusicData.Update(time);
         }
         
         if (isEnemyMusicStarted)
         {
-            enemyTime += Time.deltaTime;
+            enemyTime += Time.unscaledDeltaTime;
             EnemyMusicData.Update(enemyTime);
         }
     }

@@ -73,7 +73,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 7.92, z: 1}
@@ -85,7 +85,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.2853489
+        value: 0.38425636
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -147,10 +147,11 @@ MonoBehaviour:
   myLineRenderer: {fileID: 656619819}
   points: 50
   amplitude: 0.15
-  frequency: 0.79
+  frequency: 0.2
   xLimits: {x: 0, y: 2.36}
   shakeStrength: 1
   shakeVibrato: 30
   movementSpeed: 30
   attackFlyDuration: 0.1
   enemyScaleMultiplier: 2
+  startFx: {fileID: 19890388, guid: 8d2980ba5e59f33419a0275c1ec29e38, type: 3}

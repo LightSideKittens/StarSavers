@@ -13,8 +13,9 @@ namespace DefaultNamespace
     public class Castle : MonoBehaviour
     {
         private Queue<GameObject> enemies = new ();
-        [SerializeField] protected ParticleSystem explosiomPrefab;
-        
+        [SerializeField] protected ParticleSystem firstSoundTypeFX;
+        [SerializeField] protected ParticleSystem secondSoundTypeFX;
+
         [SerializeField] private float enemyMoveDuration = 2f;
         [SerializeField] private float bulletFlyDuration = 0.1f;
 
@@ -69,10 +70,15 @@ namespace DefaultNamespace
             var bullet = Instantiate(EnemyBulletPairs.Pairs[soundType].bullet, transform.position, Quaternion.identity);
             bullet.transform.DOMove(enemy.transform.position, bulletFlyDuration).OnComplete(() =>
             {
-                Instantiate(explosiomPrefab, enemy.transform.position, Quaternion.identity);
+                Instantiate(GetFX(soundType), enemy.transform.position, Quaternion.identity);
                 Destroy(bullet);
                 Destroy(enemy.gameObject);
             });
+        }
+
+        protected ParticleSystem GetFX(string soundType)
+        {
+            return soundType == firstSoundType ? firstSoundTypeFX : secondSoundTypeFX;
         }
     }
 }
