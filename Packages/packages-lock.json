@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "com.lightgames.core": {
-      "version": "https://unity-core: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@github.com/LightGamesInc/unity-core.git",
+      "version": "https://unity-mobile-core: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@github.com/LightGamesInc/unity-mobile-core.git",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.0.2"
       },
-      "hash": "d488f233738ca546db1e9bc89796c589268874e6"
+      "hash": "f67cc6904676d3fd8e055531b878218d757065bf"
     },
     "com.unity.2d.animation": {
       "version": "7.0.4",
@@ -82,6 +82,20 @@
       "source": "builtin",
       "dependencies": {}
     },
+    "com.unity.addressables": {
+      "version": "1.21.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "1.21.0",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.burst": {
       "version": "1.6.5",
       "depth": 2,
@@ -142,6 +156,13 @@
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.21.0",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
