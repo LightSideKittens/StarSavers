@@ -1,10 +1,9 @@
-﻿using System;
-using GameCore.Attributes;
+﻿using GameCore.Attributes;
 using UnityEngine;
 
 namespace BeatRoyale.Windows
 {
-    public partial class ControlPanel : BaseWindow<ControlPanel>
+    internal partial class ControlPanel : BaseWindow<ControlPanel>
     {
         [ColoredField, SerializeField] private Tabs tabs;
 

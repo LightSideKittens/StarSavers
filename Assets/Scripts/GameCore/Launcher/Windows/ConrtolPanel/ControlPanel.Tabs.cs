@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace BeatRoyale.Windows
 {
-    public partial class ControlPanel
+    internal partial class ControlPanel
     {
         [Serializable]
-        private class Tabs
+        private struct Tabs
         {
             [SerializeField] private Tab shopTab;
             [SerializeField] private Tab workshopTab;

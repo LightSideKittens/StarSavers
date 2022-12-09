@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace BeatRoyale.Windows
 {
-    public partial class ControlPanel
+    internal partial class ControlPanel
     {
         [Serializable] 
-        private class Tab
+        private struct Tab
         {
             [SerializeField] private Toggle toggle;
 
@@ -55,26 +55,28 @@ namespace BeatRoyale.Windows
             {
                 if (isActive)
                 {
-                    showWindow?.Invoke();
                     Select();
                 }
                 else
                 {
-                    hideWindow?.Invoke();
                     Deselect();
                 }
             }
 
             private void Select()
             {
+                showWindow?.Invoke();
+                var layoutElement = this.layoutElement;
                 DOTween.To(value => { layoutElement.preferredWidth = value;}, layoutElement.preferredWidth, targetWidth, duration).SetEase(Ease.InOutCubic);
                 var endValue = transform.sizeDelta;
                 endValue.y = targetHeight;
-                transform.DOSizeDelta(endValue, duration).SetEase(Ease.InOutCubic);;
+                transform.DOSizeDelta(endValue, duration).SetEase(Ease.InOutCubic);
             }
 
             private void Deselect()
             {
+                hideWindow?.Invoke();
+                var layoutElement = this.layoutElement;
                 DOTween.To(value => { layoutElement.preferredWidth = value;}, layoutElement.preferredWidth, defaultWidth, duration).SetEase(Ease.InOutCubic);
                 var endValue = transform.sizeDelta;
                 endValue.y = defaultHeight;
