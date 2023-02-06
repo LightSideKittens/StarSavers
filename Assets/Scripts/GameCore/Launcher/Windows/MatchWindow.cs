@@ -15,7 +15,7 @@ namespace BeatRoyale.Windows
             matchButton.AddListener(Match);
         }
 
-        private void Match()
+        private static void Match()
         {
             SceneManager.LoadScene(1);
         }
