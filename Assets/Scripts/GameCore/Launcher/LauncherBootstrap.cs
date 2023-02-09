@@ -25,6 +25,7 @@ namespace BeatRoyale.Launcher
         protected override void Awake()
         {
             base.Awake();
+            Application.targetFrameRate = 60;
             ControlPanel.Show();
         }
 
