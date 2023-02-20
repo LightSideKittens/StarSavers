@@ -8,8 +8,8 @@ namespace Battle.Data
     {
         public Dictionary<string, int> Levels { get; set; } = new Dictionary<string, int>()
         {
-            {GameScopes.Raccoon, 3},
-            {GameScopes.Dumbledore, 5},
+            {GameScopes.Raccoon, 1},
+            {GameScopes.Dumbledore, 1},
         };
     }
 }

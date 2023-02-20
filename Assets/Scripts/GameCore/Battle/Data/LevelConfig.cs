@@ -11,8 +11,9 @@ namespace Battle.Data
     public class LevelConfig : SerializedScriptableObject
     {
         [InfoBox("First level should contains entity scope with fixed value at all properties", InfoMessageType.Error, "$" + nameof(isError))]
-        [OdinSerialize, TableList] public List<GamePropertiesByScope> UpgradesByScope { get; set; }
-        [OdinSerialize] public List<BaseWallet> Price { get; set; }
+        [OdinSerialize, TableList] public List<GamePropertiesByScope> UpgradesByScope { get; set; } = new List<GamePropertiesByScope>();
+
+        [OdinSerialize] public List<BaseWallet> Price { get; set; } = new List<BaseWallet>();
 
         public static Dictionary<Type, List<BaseGameProperty>> Properties { get; } = new();
         private bool isError;
@@ -46,26 +47,29 @@ namespace Battle.Data
             var scopeHashSet = new HashSet<string>();
             var splitedName = name.Split('_');
 
-            if (splitedName[^1] == "1")
+            if (UpgradesByScope.Count > 0)
             {
-                var upgrade = UpgradesByScope[0];
-                isError = !upgrade.Scope.Contains(splitedName[0]);
-
-                if (!isError)
+                if (splitedName[^1] == "1")
                 {
-                    for (int j = 0; j < upgrade.Properties.Count; j++)
-                    {
-                        var prop = upgrade.Properties[j];
+                    var upgrade = UpgradesByScope[0];
+                    isError = !upgrade.Scope.Contains(splitedName[0]);
 
-                        if (prop.Fixed == 0)
+                    if (!isError)
+                    {
+                        for (int j = 0; j < upgrade.Properties.Count; j++)
                         {
-                            isError = true;
-                            break;
+                            var prop = upgrade.Properties[j];
+
+                            if (prop.Fixed == 0)
+                            {
+                                isError = true;
+                                break;
+                            }
                         }
                     }
                 }
             }
-    
+            
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
                 var step = UpgradesByScope[i];

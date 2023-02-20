@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Battle.Data;
 using BeatRoyale.Windows;
 using Core.SingleService;
-using Firebase.Auth;
-using Firebase.Storage;
 using GameCore.Attributes;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace BeatRoyale.Launcher
 {
