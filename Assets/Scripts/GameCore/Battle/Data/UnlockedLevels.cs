@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Core.ConfigModule;
 
 namespace Battle.Data
 {
     public class UnlockedLevels : JsonBaseConfigData<UnlockedLevels>
     {
-        public Dictionary<string, int> Levels { get; set; } = new Dictionary<string, int>()
+        public Dictionary<string, int> Levels { get; } = new()
         {
-            {GameScopes.Raccoon, 1},
-            {GameScopes.Dumbledore, 1},
+            {"Dumbledore", 1}
         };
     }
 }

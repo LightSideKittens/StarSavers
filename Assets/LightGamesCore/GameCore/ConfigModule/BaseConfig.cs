@@ -5,7 +5,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using Core.ConfigModule.Server.BaseRemoteConfig;
 using Newtonsoft.Json;
 using UnityEngine;
 using static Core.ConfigModule.FolderNames;
@@ -16,15 +15,14 @@ namespace Core.ConfigModule
     [Serializable]
     public abstract class BaseConfig<T> where T : BaseConfig<T>, new()
     {
-        protected static JsonSerializerSettings Settings { get; } = new JsonSerializerSettings
+        protected internal virtual JsonSerializerSettings Settings { get; } = new JsonSerializerSettings
         {
             ContractResolver = UnityJsonContractResolver.Instance
         };
 
         public static bool IsNull => instance == null;
         public static bool IsLoaded { get; private set; }
-        private static bool needLoadFromInstance;
-        
+
         protected static T instance;
         
         private static Func<T> getter;
@@ -32,12 +30,10 @@ namespace Core.ConfigModule
         static BaseConfig()
         {
             getter = StaticConstructor;
-            BaseRemoteConfig<T>.Fetching += OnFetching;
         }
         
-        protected static void LoadOnNextAccess(bool fromInstance = true)
+        public static void LoadOnNextAccess()
         {
-            needLoadFromInstance = fromInstance;
             getter = ResetGetter;
         }
 
@@ -61,10 +57,10 @@ namespace Core.ConfigModule
 
         protected abstract string FolderPath { get; }
 
-        protected abstract string Ext { get; }
+        protected internal abstract string Ext { get; }
         public static T Config => getter();
 
-        protected abstract string FileName { get; set; }
+        protected internal abstract string FileName { get; set; }
         protected virtual string FolderName => GetType().Name;
         
         protected virtual void SetDefault(){}
@@ -89,19 +85,15 @@ namespace Core.ConfigModule
             
             var fullFileName = instance.FullFileName;
             string json = string.Empty;
-
-            if (needLoadFromInstance)
+            
+            
+            if (File.Exists(fullFileName))
             {
-                needLoadFromInstance = false;
-                
-                if (File.Exists(fullFileName))
-                {
-                    json = File.ReadAllText(fullFileName);
-                }
-                else
-                {
-                    json = Resources.Load<TextAsset>(Path.Combine(instance.FolderName, instance.FileName))?.text;
-                }
+                json = File.ReadAllText(fullFileName);
+            }
+            else
+            {
+                json = Resources.Load<TextAsset>(Path.Combine(instance.FolderName, instance.FileName))?.text;
             }
 
             if (string.IsNullOrEmpty(json) == false)
@@ -123,7 +115,7 @@ namespace Core.ConfigModule
         public static void Save() => Set(instance);
 
 #if UNITY_EDITOR
-        public static void SaveAsDefault()
+        public static void Editor_SaveAsDefault()
         {
             var folderPath = Path.Combine(Application.dataPath, Configs, DefaultSaveData, instance.FolderName);
             var fullFileName = Path.Combine(folderPath, $"{instance.FileName}.{instance.Ext}");
@@ -180,31 +172,16 @@ namespace Core.ConfigModule
             }
         }
 
-        public static void Fetch(Action callback) => BaseRemoteConfig<T>.Fetch(callback);
-        protected virtual void DefaultFetch(Action callback) => BaseRemoteConfig<T>.DefaultFetch(callback);
-        protected static void SendRequest(string key, Action callback, Action onSuccess = null) => BaseRemoteConfig<T>.SendRequest(key, callback, onSuccess);
-
-        private static void OnFetching()
+        internal static void Deserialize(string json)
         {
-            var remoteConfig = BaseRemoteConfig<T>.instance;
-            remoteConfig.createInstance = CreateInstance;
-            remoteConfig.load = Load;
-            remoteConfig.onLoading = () => instance.OnLoading();
-            remoteConfig.onLoaded = () => instance.OnLoading();
-            remoteConfig.deserialize = Deserialize;
-            remoteConfig.fileNameAction = () => instance.FileName;
-            remoteConfig.defaultFetch = callback => instance.DefaultFetch(callback);
-            BaseRemoteConfig<T>.Fetching -= OnFetching;
-        }
-        
-        private static void Deserialize(string json)
-        {
-            instance = JsonConvert.DeserializeObject<T>(json, Settings);
+            Debug.Log($"[{typeof(T).Name}] Deserialize");
+            instance = JsonConvert.DeserializeObject<T>(json, instance.Settings);
             getter = GetInstance;
         }
 
         private static string Serialize(T config)
         {
+            Debug.Log($"[{typeof(T).Name}] Serialize");
             var json = string.Empty;
             Serialize_Editor(config, ref json);
             Serialize_Runtime(config, ref json);
@@ -215,13 +192,13 @@ namespace Core.ConfigModule
         [Conditional("UNITY_EDITOR")]
         private static void Serialize_Editor(T config, ref string json)
         {
-            json = JsonConvert.SerializeObject(config, Formatting.Indented, Settings);
+            json = JsonConvert.SerializeObject(config, Formatting.Indented, config.Settings);
         }
         
         [Conditional("NOT_EDITOR")]
         private static void Serialize_Runtime(T config, ref string json)
         {
-            json = JsonConvert.SerializeObject(config, Settings);
+            json = JsonConvert.SerializeObject(config, config.Settings);
         }
     }
 }

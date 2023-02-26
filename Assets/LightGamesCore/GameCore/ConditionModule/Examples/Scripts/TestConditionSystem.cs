@@ -33,28 +33,7 @@ public class TestConditionSystem : SingleService<TestConditionSystem>
     {
         base.Init();
         MessageWindow.Show("Wait for downloading config...");
-        
-        RemoteBaseConfigsVersionsData.Fetch(() =>
-        {
-            GameEventConditionsData.Fetch(() =>
-            {
-                MessageWindow.Hide();
-                Instance.gameObject.SetActive(true);
-                timer = new CountDownTimer(1, true, true);
-                timer.Elapsed += Check;
-            });
-            GameEventConditionsData.Fetch(() => Debug.Log("[Malvis] GameEventConditionsData.Fetch1"));
-            GameEventConditionsData.Fetch(() => Debug.Log("[Malvis] GameEventConditionsData.Fetch2"));
-            GameEventConditionsData.Fetch(() => Debug.Log("[Malvis] GameEventConditionsData.Fetch3"));
-            GameEventConditionsData.Fetch(() => Debug.Log("[Malvis] GameEventConditionsData.Fetch4"));
-            GameEventConditionsData.Fetch(() => Debug.Log("[Malvis] GameEventConditionsData.Fetch5"));
-            GameEventConditionsData.Fetch(() => Debug.Log("[Malvis] GameEventConditionsData.Fetch6"));
-        });
-
-        RemoteBaseConfigsVersionsData.Fetch(() =>
-        {
-            Debug.Log($"[Malvis] {RemoteBaseConfigsVersionsData.CompareRemoteToLocal("")}");
-        });
+        Check();
     }
 
     private void Check()

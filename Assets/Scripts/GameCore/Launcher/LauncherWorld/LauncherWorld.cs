@@ -2,84 +2,69 @@
 using System.Collections.Generic;
 using Battle.Data;
 using BeatRoyale.Windows;
+using Core.ConfigModule;
 using Core.SingleService;
+using Firebase.Auth;
+using Firebase.Extensions;
 using GameCore.Attributes;
 using UnityEngine;
+using static Battle.Data.LevelsConfigsManager;
 
 namespace BeatRoyale.Launcher
 {
     public partial class LauncherWorld : ServiceManager
     {
         [ColoredField, SerializeField] private BackgroundAnimationData backgroundData;
-        [SerializeField] private LevelConfig[] dumbledoreLevels;
-        [SerializeField] private LevelConfig[] raccoonLevels;
-        private Dictionary<string, (LevelConfig[], Dictionary<Type, float>)> levels = new Dictionary<string, (LevelConfig[], Dictionary<Type, float>)>();
+        [SerializeField] private LevelsConfigsManager levelsConfigsManager;
+        private readonly Dictionary<string, (LevelConfig[], Dictionary<Type, float>)> levels = new();
+        [SerializeField] private TextAsset textAsset;
 
         protected override void Awake()
         {
             base.Awake();
             Application.targetFrameRate = 60;
             ControlPanel.Show();
-            levels.Add(GameScopes.Dumbledore, (dumbledoreLevels, new Dictionary<Type, float>()));
-            levels.Add(GameScopes.Raccoon, (raccoonLevels, new Dictionary<Type, float>()));
         }
 
         private void Start()
         {
-            LevelConfig.Properties.Clear();
-            InitProperties(GameScopes.Dumbledore);
-            InitProperties(GameScopes.Raccoon);
-            ComputeProperties(GameScopes.Dumbledore);
-            ComputeProperties(GameScopes.Raccoon);
-
-            foreach (var level in levels)
+            FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync().ContinueWithOnMainThread(task =>
             {
-                foreach (var prop in level.Value.Item2)
+                if (task.IsCompletedSuccessfully)
                 {
-                    Debug.Log($"[Malvis] Scope: {level.Key}, Property Type: {prop.Key}, Value: {prop.Value}");
-                }
-            }
-        }
-
-        private void InitProperties(string entityScope)
-        {
-            for (int i = 0; i < UnlockedLevels.Config.Levels[entityScope]; i++)
-            {
-                var level = levels[entityScope].Item1[i];
-                level.InitProperties();
-            }
-        }
-
-        private void ComputeProperties(string entityScope)
-        {
-            var propByType = levels[entityScope].Item2;
-            
-            foreach (var property in LevelConfig.Properties)
-            {
-                if (!propByType.TryGetValue(property.Key, out var value))
-                {
-                    propByType.Add(property.Key, GetValue(value));
+                    StorageRemoteConfig<ChangedLevels>.Fetch(Init);
                 }
                 else
                 {
-                    propByType[property.Key] = GetValue(value);
+                    Debug.Log($"[{nameof(LauncherWorld)}] {task.Exception.Message}");
                 }
+            });
+        }
 
-                float GetValue(float oldValue)
+        private void Init()
+        {
+            levelsConfigsManager.Init();
+            LevelUpgraded += LogAllProperties;
+            UpgradeLevel("Dumbledore", 2);
+            UpgradeLevel("Dumbledore", 3);
+            UpgradeLevel("Raccoon", 1);
+            UpgradeLevel("Raccoon", 2);
+            UpgradeLevel("Raccoon", 3);
+            UpgradeLevel("Witch", 3);
+            UpgradeLevel("Witch", 1);
+            UpgradeLevel("Witch", 2);
+            UpgradeLevel("Witch", 1);
+            UpgradeLevel("WrongEntitiesScope", 1);
+        }
+
+        private void LogAllProperties()
+        {
+            foreach (var level in EntitiesProperties.Config.Properties)
+            {
+                foreach (var prop in level.Value)
                 {
-                    for (int i = 0; i < property.Value.Count; i++)
-                    {
-                        var prop = property.Value[i];
-
-                        if (entityScope.Contains(prop.scope))
-                        {
-                            oldValue += prop.Fixed;
-                            oldValue *= prop.Multiply;
-                            oldValue += oldValue / 100f * prop.Percent;
-                        }
-                    }
-
-                    return oldValue;
+                    Debug.Log($"[Malvis] Scope: {level.Key}, Property Type: {prop.Key}," +
+                        $" Value: {prop.Value.value}, Percent: {prop.Value.percent * 100}%, Total: {prop.Value.value + prop.Value.value * prop.Value.percent}");
                 }
             }
         }

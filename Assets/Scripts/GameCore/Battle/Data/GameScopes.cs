@@ -1,68 +1,108 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Core.ConfigModule;
+using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Battle.Data
 {
-    public static class GameScopes
+    public class GameScopes : JsonBaseConfigData<GameScopes>
     {
-        #region Global
+        protected override JsonSerializerSettings Settings { get; } = new() {ContractResolver = new GameScopesContractResolver()};
 
-        public const string Global = nameof(Global);
-        
-        #region Heroes
-        public const string Heroes = Global + "/" + nameof(Heroes);
-        
-        #region Warriors
-        public const string Warrior = Heroes + "/" + nameof(Warrior);
-        public const string Ogre = Warrior + "/" + nameof(Ogre);
-        #endregion
-        
-        #region Mages
-        public const string Mage = Heroes + "/" + nameof(Mage);
-        public const string Dumbledore = Mage + "/" + nameof(Dumbledore);
-        public const string Witch = Mage + "/" + nameof(Witch);
-        public const string Gerald = Mage + "/" + nameof(Gerald);
-        public const string Prophet = Mage + "/" + nameof(Prophet);
-        #endregion
-        
-        #region Healers
-        public const string Healer = Heroes + "/" + nameof(Healer);
-        public const string Fairy = Healer + "/" + nameof(Fairy);
-        #endregion
-        
-        #region Engineers
-        public const string Engineer = Heroes + "/" + nameof(Engineer);
-        public const string Raccoon = Engineer + "/" + nameof(Raccoon);
-        #endregion
-        
-        #endregion
-        #endregion
-        
-        public static IEnumerable<string> Scopes => new string[]
+        [Serializable]
+        public class Scope
         {
-            Global,
-            Heroes,
-            Warrior,
-            Ogre,
-            Mage,
-            Dumbledore,
-            Healer,
-            Fairy,
-            Engineer,
-            Raccoon,
-            Witch,
-            Gerald,
-            Prophet,
-        };
-        
-        public static IEnumerable<string> EntityScopes => new string[]
+            public string name;
+            public List<Scope> scopes = new();
+
+            public Scope(string name)
+            {
+                this.name = name;
+            }
+
+            public Scope AddChild(Scope child)
+            {
+                scopes.Add(child);
+                return this;
+            }
+        }
+
+        public Scope scopes = new("Global");
+        private readonly List<string> allScopes = new();
+        private readonly List<string> entitiesScopes = new();
+        private readonly Dictionary<string, string> entitiesScopesByEntityName = new();
+
+        public static HashSet<string> EntityScopesSet { get; } = new();
+        public static HashSet<string> ScopesSet { get; } = new();
+
+        public static IEnumerable<string> Scopes => Config.allScopes;
+
+        public static IEnumerable<string> EntityScopes => Config.entitiesScopes;
+
+        public static string GetEntityNameByScopeName(string scopeName)
         {
-            Ogre,
-            Dumbledore,
-            Fairy,
-            Raccoon,
-            Witch,
-            Gerald,
-            Prophet,
-        };
-    };
+            return Config.entitiesScopesByEntityName[scopeName];
+        }
+        
+        public static IEnumerable<string> GetEnitiesNamesByScope(string scope)
+        {
+            var split = scope.Split('/');
+            var currentScope = Config.scopes;
+            
+            for (int i = 1; i < split.Length; i++)
+            {
+                var currentScopes = currentScope.scopes;
+                
+                for (int j = 0; j < currentScopes.Count; j++)
+                {
+                    if (currentScopes[j].name == split[i])
+                    {
+                        currentScope = currentScopes[j];
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < currentScope.scopes.Count; i++)
+            {
+                yield return currentScope.scopes[i].name;
+            }
+        }
+
+        public void Init(TextAsset json)
+        {
+            var newScope = JsonConvert.DeserializeObject<Scope>(json.text, this.Settings);
+        }
+
+        private void RecurScopes(Scope oldScope, string path)
+        {
+            var stringBuilder = new StringBuilder(path);
+            var scopePath = stringBuilder.ToString();
+            allScopes.Add(scopePath);
+            ScopesSet.Add(scopePath);
+            var scopes = oldScope.scopes;
+
+            if (scopes.Count == 0)
+            {
+                entitiesScopesByEntityName.Add(oldScope.name, scopePath);
+                entitiesScopes.Add(scopePath);
+                EntityScopesSet.Add(scopePath);
+            }
+            
+            stringBuilder.Append("/");
+            for (int i = 0; i < scopes.Count; i++)
+            {
+                var scope = scopes[i];
+                RecurScopes(scope, $"{stringBuilder.ToString()}{scope.name}");
+            }
+        }
+        
+        protected override void OnLoaded()
+        {
+            base.OnLoaded();
+            RecurScopes(scopes, scopes.name);
+        }
+    }
 }

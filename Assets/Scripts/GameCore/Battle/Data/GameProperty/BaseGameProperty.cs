@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Battle.Data.GameProperty
@@ -7,8 +8,9 @@ namespace Battle.Data.GameProperty
     public abstract class BaseGameProperty
     {
         [HideInInspector] public string scope;
+        [HideIf("$" + nameof(needHideFixed))]
         public float Fixed;
-        [Range(1, 5)] public float Multiply = 1;
-        [Range(0, 100)] public int Percent;
+        [Range(0, 1)] public float Percent;
+        [HideInInspector] public bool needHideFixed;
     }
 }

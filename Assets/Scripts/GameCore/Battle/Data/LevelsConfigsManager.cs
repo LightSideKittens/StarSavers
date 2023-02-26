@@ -1,0 +1,165 @@
+﻿using System;
+using System.Collections.Generic;
+using Battle.Data.GameProperty;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using UnityEngine;
+
+namespace Battle.Data
+{
+    [CreateAssetMenu(fileName = nameof(LevelsConfigsManager), menuName = "Battle/" + nameof(LevelsConfigsManager), order = 0)]
+    public partial class LevelsConfigsManager : SerializedScriptableObject
+    {
+        [Serializable]
+        private class Levels
+        {
+            [InfoBox("Scope does not exist", InfoMessageType.Error, "$" + nameof(isError))]
+            [ValueDropdown(nameof(Scopes))]
+            public string scope;
+            public List<LevelConfig> levels = new();
+            [HideInInspector] public bool isError;
+            private static IEnumerable<string> Scopes => GameScopes.Scopes;
+        }
+
+        public static event Action LevelUpgraded;
+        private static LevelsConfigsManager Instance { get; set; }
+        
+
+        [InfoBox("Config contains some errors", InfoMessageType.Error, "$" + nameof(hasError))]
+        [ReadOnly] public bool hasError = true;
+
+        [TableList, OdinSerialize, ReadOnly] private List<Levels> levels = new();
+        private readonly Dictionary<string, List<LevelConfig>> levelsByScop = new();
+
+        public void Init()
+        {
+            Instance = this;
+
+            for (int i = 0; i < levels.Count; i++)
+            {
+                var level = levels[i];
+                levelsByScop.Add(level.scope, level.levels);
+            }
+
+            var changedLevels = ChangedLevels.Config.Levels;
+            var unlockedLevels = UnlockedLevels.Config.Levels;
+            
+            foreach (var level in changedLevels)
+            {
+                if (unlockedLevels.TryGetValue(level.Key, out var levelNum))
+                {
+                    if (levelNum >= level.Value)
+                    {
+                        RecomputeAllLevels();
+                        break;
+                    }
+                }
+            }
+        }
+
+        public static void UpgradeLevel(string scope, int level)
+        {
+            Debug.Log($"[{nameof(LevelsConfigsManager)}] UpgradeLevel. Scope: {scope} | Level: {level}");
+            if (GameScopes.EntityScopesSet.Contains(scope))
+            {
+                var unlockedLevels = UnlockedLevels.Config.Levels;
+                unlockedLevels.TryGetValue(scope, out var currentLevel);
+
+                if (level - currentLevel == 1)
+                {
+                    var dict = new Dictionary<string, List<BaseGameProperty>>();
+                    Instance.levelsByScop[scope][level].InitProperties(dict);
+                    
+                    ComputeLevel(dict);
+
+                    UnlockedLevels.Config.Levels[scope] = level;
+                    LevelUpgraded?.Invoke();
+                }
+                else
+                {
+                    var diff = level - currentLevel;
+                    var message = "Cannot upgrade level by more than one at once.";
+                    
+                    if (diff == 0)
+                    {
+                        message = "Cannot upgrade the same level";
+                    }
+                    else if(diff < 0)
+                    {
+                        message = "Cannot downgrade level";
+                    }
+
+                    Debug.LogError($"[{nameof(LevelsConfigsManager)}] {message} Target level: {level}, Current level: {currentLevel}");
+                } 
+            }
+            else
+            {
+                Debug.LogError($"[{nameof(LevelsConfigsManager)}] Scope: {scope} is not Entity Scope");
+            }
+        }
+
+        private static void ComputeLevel(Dictionary<string, List<BaseGameProperty>> dict)
+        {
+            var entitiesProperties = EntitiesProperties.Config.Properties;
+
+            foreach (var propertiesByType in dict)
+            {
+                var props = propertiesByType.Value;
+
+                for (int i = 0; i < props.Count; i++)
+                {
+                    var prop = props[i];
+                    var entitesScopes = GameScopes.GetEnitiesNamesByScope(prop.scope);
+
+                    foreach (var entityScope in entitesScopes)
+                    {
+                        if (!entitiesProperties.TryGetValue(entityScope, out var propByType))
+                        {
+                            propByType = new Dictionary<string, ValuePercent>();
+                            entitiesProperties.Add(entityScope, propByType);
+                        }
+
+                        var type = propertiesByType.Key;
+
+                        if (propByType.TryGetValue(type, out var valuePercent))
+                        {
+                            valuePercent.value += prop.Fixed;
+                            valuePercent.percent += prop.Percent;
+                            propByType[type] = valuePercent;
+                        }
+                        else
+                        {
+                            propByType.Add(type, new ValuePercent
+                            {
+                                value = prop.Fixed,
+                                percent = prop.Percent,
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        private void RecomputeAllLevels()
+        {
+            Debug.Log($"[{nameof(LevelsConfigsManager)}] RecomputeAllLevels");
+            ChangedLevels.Config.Levels.Clear();
+            EntitiesProperties.Config.Properties.Clear();
+
+            for (int i = 0; i < levels.Count; i++)
+            {
+                var level = levels[i];
+
+                if (UnlockedLevels.Config.Levels.TryGetValue(level.scope, out var unlockedLevel))
+                {
+                    var dict = new Dictionary<string, List<BaseGameProperty>>();
+                    for (int j = 0; j < unlockedLevel; j++)
+                    {
+                        level.levels[j].InitProperties(dict);
+                        ComputeLevel(dict);
+                    }
+                }
+            }
+        }
+    }
+}

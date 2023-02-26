@@ -24,11 +24,18 @@ namespace MusicEventSystem.Configs
             get => musicName;
             set
             {
-                LoadOnNextAccess(false);
+                LoadOnNextAccess();
                 musicName = value;
             }
         }
-    
+        
+#if UNITY_EDITOR
+        public static void Editor_SetMusicName(string name)
+        {
+            musicName = name;
+        }
+#endif
+
         protected override void OnLoaded()
         {
             base.OnLoaded();

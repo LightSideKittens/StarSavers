@@ -149,8 +149,8 @@ namespace MusicEventSystem.Editor
                             }
                         }
             
-                        MusicData.MusicName = jsonName;
-                        MusicData.SaveAsDefault();
+                        MusicData.Editor_SetMusicName(jsonName);
+                        MusicData.Editor_SaveAsDefault();
                         MusicData.Clear();
                         AssetDatabase.Refresh();
                     }
