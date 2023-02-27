@@ -4,6 +4,7 @@ using Battle.Data.GameProperty;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Battle.Data
 {
@@ -11,34 +12,35 @@ namespace Battle.Data
     public partial class LevelsConfigsManager : SerializedScriptableObject
     {
         [Serializable]
-        private class Levels
+        private class LevelsContainer
         {
-            [InfoBox("Scope does not exist", InfoMessageType.Error, "$" + nameof(isError))]
-            [ValueDropdown(nameof(Scopes))]
-            public string scope;
+            [InfoBox("Entity does not exist", InfoMessageType.Error, "$" + nameof(isEntityNotExist))]
+            [InfoBox("$" + nameof(MissedLevelMessage), InfoMessageType.Error, "$" + nameof(isMissedLevel))]
+            public string entityName;
             public List<LevelConfig> levels = new();
-            [HideInInspector] public bool isError;
-            private static IEnumerable<string> Scopes => GameScopes.Scopes;
+            [HideInInspector] public bool isEntityNotExist;
+            [HideInInspector] public bool isMissedLevel;
+            [HideInInspector] public int missedLevel;
+            public string MissedLevelMessage => $"Missed level: {missedLevel}";
         }
 
         public static event Action LevelUpgraded;
         private static LevelsConfigsManager Instance { get; set; }
-        
 
-        [InfoBox("Config contains some errors", InfoMessageType.Error, "$" + nameof(hasError))]
+        [InfoBox("Some configs contains errors", InfoMessageType.Error, "$" + nameof(hasError))]
         [ReadOnly] public bool hasError = true;
 
-        [TableList, OdinSerialize, ReadOnly] private List<Levels> levels = new();
-        private readonly Dictionary<string, List<LevelConfig>> levelsByScop = new();
+        [TableList, OdinSerialize, ReadOnly] private List<LevelsContainer> levelsContainers = new();
+        private readonly Dictionary<string, List<LevelConfig>> levelsByEntityName = new();
 
         public void Init()
         {
             Instance = this;
 
-            for (int i = 0; i < levels.Count; i++)
+            for (int i = 0; i < levelsContainers.Count; i++)
             {
-                var level = levels[i];
-                levelsByScop.Add(level.scope, level.levels);
+                var levelContainer = levelsContainers[i];
+                levelsByEntityName.Add(levelContainer.entityName, levelContainer.levels);
             }
 
             var changedLevels = ChangedLevels.Config.Levels;
@@ -57,22 +59,22 @@ namespace Battle.Data
             }
         }
 
-        public static void UpgradeLevel(string scope, int level)
+        public static void UpgradeLevel(string entityName, int level)
         {
-            Debug.Log($"[{nameof(LevelsConfigsManager)}] UpgradeLevel. Scope: {scope} | Level: {level}");
-            if (GameScopes.EntityScopesSet.Contains(scope))
+            Debug.Log($"[{nameof(LevelsConfigsManager)}] UpgradeLevel. Entity: {entityName} | Level: {level}");
+            if (GameScopes.IsEntityName(entityName))
             {
                 var unlockedLevels = UnlockedLevels.Config.Levels;
-                unlockedLevels.TryGetValue(scope, out var currentLevel);
+                unlockedLevels.TryGetValue(entityName, out var currentLevel);
 
                 if (level - currentLevel == 1)
                 {
                     var dict = new Dictionary<string, List<BaseGameProperty>>();
-                    Instance.levelsByScop[scope][level].InitProperties(dict);
+                    Instance.levelsByEntityName[entityName][level].InitProperties(dict);
                     
                     ComputeLevel(dict);
 
-                    UnlockedLevels.Config.Levels[scope] = level;
+                    UnlockedLevels.Config.Levels[entityName] = level;
                     LevelUpgraded?.Invoke();
                 }
                 else
@@ -94,7 +96,7 @@ namespace Battle.Data
             }
             else
             {
-                Debug.LogError($"[{nameof(LevelsConfigsManager)}] Scope: {scope} is not Entity Scope");
+                Debug.LogError($"[{nameof(LevelsConfigsManager)}] Scope: {entityName} is not Entity Scope");
             }
         }
 
@@ -109,14 +111,14 @@ namespace Battle.Data
                 for (int i = 0; i < props.Count; i++)
                 {
                     var prop = props[i];
-                    var entitesScopes = GameScopes.GetEnitiesNamesByScope(prop.scope);
+                    var entitesNames = GameScopes.GetEnitiesNamesByScope(prop.scope);
 
-                    foreach (var entityScope in entitesScopes)
+                    foreach (var entityName in entitesNames)
                     {
-                        if (!entitiesProperties.TryGetValue(entityScope, out var propByType))
+                        if (!entitiesProperties.TryGetValue(entityName, out var propByType))
                         {
                             propByType = new Dictionary<string, ValuePercent>();
-                            entitiesProperties.Add(entityScope, propByType);
+                            entitiesProperties.Add(entityName, propByType);
                         }
 
                         var type = propertiesByType.Key;
@@ -146,11 +148,11 @@ namespace Battle.Data
             ChangedLevels.Config.Levels.Clear();
             EntitiesProperties.Config.Properties.Clear();
 
-            for (int i = 0; i < levels.Count; i++)
+            for (int i = 0; i < levelsContainers.Count; i++)
             {
-                var level = levels[i];
+                var level = levelsContainers[i];
 
-                if (UnlockedLevels.Config.Levels.TryGetValue(level.scope, out var unlockedLevel))
+                if (UnlockedLevels.Config.Levels.TryGetValue(level.entityName, out var unlockedLevel))
                 {
                     var dict = new Dictionary<string, List<BaseGameProperty>>();
                     for (int j = 0; j < unlockedLevel; j++)

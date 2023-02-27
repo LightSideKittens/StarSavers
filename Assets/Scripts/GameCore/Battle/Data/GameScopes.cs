@@ -9,6 +9,7 @@ namespace Battle.Data
 {
     public class GameScopes : JsonBaseConfigData<GameScopes>
     {
+        protected override bool NeedAutoSave => false;
         protected override JsonSerializerSettings Settings { get; } = new() {ContractResolver = new GameScopesContractResolver()};
 
         [Serializable]
@@ -16,82 +17,90 @@ namespace Battle.Data
         {
             public string name;
             public List<Scope> scopes = new();
-
-            public Scope(string name)
-            {
-                this.name = name;
-            }
-
-            public Scope AddChild(Scope child)
-            {
-                scopes.Add(child);
-                return this;
-            }
         }
 
-        public Scope scopes = new("Global");
-        private readonly List<string> allScopes = new();
-        private readonly List<string> entitiesScopes = new();
-        private readonly Dictionary<string, string> entitiesScopesByEntityName = new();
+        [JsonProperty] private readonly Scope scopes = new(){name = "Global"};
+        private readonly Dictionary<string, Scope> allScopes = new();
+        private readonly Dictionary<string, HashSet<string>> scopesByEntityName = new();
+        private readonly Dictionary<string, string> entityNameByEntityScope = new();
 
-        public static HashSet<string> EntityScopesSet { get; } = new();
-        public static HashSet<string> ScopesSet { get; } = new();
+        public static IEnumerable<string> Scopes => Config.allScopes.Keys;
+        public static IEnumerable<string> EntitiesNames => Config.scopesByEntityName.Keys;
+        public static bool IsEntityName(string entityName) => Config.scopesByEntityName.ContainsKey(entityName);
+        public static bool IsEntityScope(string entityScope) => Config.entityNameByEntityScope.ContainsKey(entityScope);
 
-        public static IEnumerable<string> Scopes => Config.allScopes;
-
-        public static IEnumerable<string> EntityScopes => Config.entitiesScopes;
-
-        public static string GetEntityNameByScopeName(string scopeName)
+        public static bool TryGetEntityNameFromScope(string scope, out string entityName)
         {
-            return Config.entitiesScopesByEntityName[scopeName];
+            if (IsEntityScope(scope))
+            {
+                entityName = Config.entityNameByEntityScope[scope];
+                return true;
+            }
+
+            entityName = null;
+            return false;
         }
-        
+        public static bool Contains(string entitesName, string scope) => Config.scopesByEntityName[entitesName].Contains(scope);
+
         public static IEnumerable<string> GetEnitiesNamesByScope(string scope)
         {
-            var split = scope.Split('/');
-            var currentScope = Config.scopes;
-            
-            for (int i = 1; i < split.Length; i++)
+            if (IsEntityScope(scope))
             {
-                var currentScopes = currentScope.scopes;
-                
-                for (int j = 0; j < currentScopes.Count; j++)
+               yield return Config.entityNameByEntityScope[scope];
+            }
+            else
+            {
+                var currentScope = Config.allScopes[scope];
+                var entitesNames = new List<string>();
+                Recur(currentScope);
+
+                for (int i = 0; i < entitesNames.Count; i++)
                 {
-                    if (currentScopes[j].name == split[i])
+                    yield return entitesNames[i];
+                }
+
+                void Recur(Scope curScope)
+                {
+                    var scopes = curScope.scopes;
+
+                    if (scopes.Count == 0)
                     {
-                        currentScope = currentScopes[j];
-                        break;
+                        entitesNames.Add(curScope.name);
+                    }
+                    
+                    for (int i = 0; i < scopes.Count; i++)
+                    {
+                        Recur(scopes[i]);
                     }
                 }
             }
-
-            for (int i = 0; i < currentScope.scopes.Count; i++)
-            {
-                yield return currentScope.scopes[i].name;
-            }
-        }
-
-        public void Init(TextAsset json)
-        {
-            var newScope = JsonConvert.DeserializeObject<Scope>(json.text, this.Settings);
         }
 
         private void RecurScopes(Scope oldScope, string path)
         {
             var stringBuilder = new StringBuilder(path);
             var scopePath = stringBuilder.ToString();
-            allScopes.Add(scopePath);
-            ScopesSet.Add(scopePath);
+            allScopes.Add(scopePath, oldScope);
             var scopes = oldScope.scopes;
 
             if (scopes.Count == 0)
             {
-                entitiesScopesByEntityName.Add(oldScope.name, scopePath);
-                entitiesScopes.Add(scopePath);
-                EntityScopesSet.Add(scopePath);
+                var scopesSet = new HashSet<string>();
+                scopesByEntityName.Add(oldScope.name, scopesSet);
+                entityNameByEntityScope.Add(scopePath, oldScope.name);
+                var split = scopePath.Split('/');
+                var builder = new StringBuilder();
+                
+                for (int i = 0; i < split.Length; i++)
+                {
+                    var scopeName = split[i];
+                    builder.Append(scopeName);
+                    scopesSet.Add(builder.ToString());
+                    builder.Append('/');
+                }
             }
             
-            stringBuilder.Append("/");
+            stringBuilder.Append('/');
             for (int i = 0; i < scopes.Count; i++)
             {
                 var scope = scopes[i];

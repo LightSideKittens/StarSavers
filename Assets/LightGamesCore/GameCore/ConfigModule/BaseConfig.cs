@@ -62,7 +62,8 @@ namespace Core.ConfigModule
 
         protected internal abstract string FileName { get; set; }
         protected virtual string FolderName => GetType().Name;
-        
+        protected virtual bool NeedAutoSave => true;
+
         protected virtual void SetDefault(){}
         protected virtual void OnLoading(){}
         protected virtual void OnLoaded(){}
@@ -76,7 +77,7 @@ namespace Core.ConfigModule
         {
             instance = new T();
             Load();
-            Save();
+            Set(instance);
         }
 
         protected static T Load()
@@ -108,10 +109,19 @@ namespace Core.ConfigModule
             
             IsLoaded = true;
             instance.OnLoaded();
+            ConfigsTypeData.AddLoadOnNextAccessAction(instance.FileName, LoadOnNextAccess);
             
             return instance;
         }
 
+        private static void AutoSave()
+        {
+            if (instance.NeedAutoSave)
+            {
+                Set(instance);
+            }
+        }
+        
         public static void Save() => Set(instance);
 
 #if UNITY_EDITOR
@@ -158,8 +168,8 @@ namespace Core.ConfigModule
         
         private static void CreateInstance()
         {
-            UnityEventWrapper.UnSubscribeFromApplicationPausedEvent(Save);
-            UnityEventWrapper.SubscribeToApplicationPausedEvent(Save);
+            UnityEventWrapper.UnSubscribeFromApplicationPausedEvent(AutoSave);
+            UnityEventWrapper.SubscribeToApplicationPausedEvent(AutoSave);
             instance = new T();
         }
 

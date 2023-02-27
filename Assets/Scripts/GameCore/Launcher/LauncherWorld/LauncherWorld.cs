@@ -17,7 +17,6 @@ namespace BeatRoyale.Launcher
         [ColoredField, SerializeField] private BackgroundAnimationData backgroundData;
         [SerializeField] private LevelsConfigsManager levelsConfigsManager;
         private readonly Dictionary<string, (LevelConfig[], Dictionary<Type, float>)> levels = new();
-        [SerializeField] private TextAsset textAsset;
 
         protected override void Awake()
         {

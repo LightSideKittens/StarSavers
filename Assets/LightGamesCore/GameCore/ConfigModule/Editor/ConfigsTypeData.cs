@@ -1,86 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
-using UnityEditor;
 using UnityEngine;
-using static Core.ConfigModule.FileExtensions;
-using static Core.ConfigModule.FolderNames;
 
 namespace Core.ConfigModule
 {
-    public class ConfigsTypeData : JsonBaseConfigData<ConfigsTypeData>
+    public partial class ConfigsTypeData : JsonBaseConfigData<ConfigsTypeData>
     {
         protected override string FolderName => Path.Combine("EditorConfigs", GetType().Name);
         [JsonProperty] private readonly HashSet<string> paths = new HashSet<string>();
         private static TextAsset selectedTextAsset;
-        
+        private static readonly Dictionary<string, Action> loadOnNextAccessActions = new Dictionary<string, Action>();
+
         public static void Init()
         {
             Initialize();
         }
-        
+
         public new static void Save()
         {
             Set(instance);
         }
-        
+
         [Conditional("UNITY_EDITOR")]
         public static void AddPath(string path)
         {
             Config.paths.Add(path);
         }
 
-#if UNITY_EDITOR
-        
-        [MenuItem("Assets/Core/ConfigModule/Set As Default")] 
-        static void SetAsDefault()
+        [Conditional("UNITY_EDITOR")]
+        public static void AddLoadOnNextAccessAction(string name, Action action)
         {
-            var assetPath = AssetDatabase.GetAssetPath(selectedTextAsset);
-            var path = Regex.Replace(assetPath, SaveData, DefaultSaveData);
-            FileInfo file = new FileInfo(path);
-            file.Directory.Create();
-
-            File.WriteAllText(file.FullName, selectedTextAsset.text);
-
-            AssetDatabase.Refresh();
-        }
-        
-        [MenuItem("Assets/Core/ConfigModule/Set As Default", true)]
-        static bool ValidateSetAsDefault()
-        {
-            selectedTextAsset = null;
-            
-            if (Selection.activeObject is TextAsset textAsset)
+            if (Application.isEditor)
             {
-                selectedTextAsset = textAsset;
-                var path = AssetDatabase.GetAssetPath(selectedTextAsset);
-
-                if (path.EndsWith(".json"))
-                {
-                    return path.Contains("Configs");
-                }
+                loadOnNextAccessActions.TryAdd(name, action);
             }
-            
-            return selectedTextAsset != null && AssetDatabase.GetAssetPath(selectedTextAsset).Contains(".json");
         }
-        
-        [MenuItem("Core/ConfigModule/Clear All Configs Data")]
-        private static void ClearAll()
+
+        [Conditional("UNITY_EDITOR")]
+        public static void CallLoadOnNextAccess(string name)
         {
-            var paths = Config.paths;
-
-            foreach (var path in paths)
+            if (Application.isEditor)
             {
-                if (File.Exists(path))
-                {
-                    File.Delete(path);
-                }
+                loadOnNextAccessActions.TryGetValue(name, out var action);
+                action?.Invoke();
             }
-            
-            AssetDatabase.Refresh();
         }
-#endif
     }
 }

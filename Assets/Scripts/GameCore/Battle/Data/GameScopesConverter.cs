@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 
 namespace Battle.Data
 {
@@ -30,10 +29,9 @@ namespace Battle.Data
         {
             JObject data = JObject.Load(reader);
             
-            var globalScope = new GameScopes.Scope("");
+            var globalScope = new GameScopes.Scope();
             foreach (var prop in data.Properties())
             {
-                Debug.Log($"[Malvis] {prop.Name}");
                 globalScope.name = prop.Name;
                 RecurRead((JObject)prop.Value, globalScope);
             }
@@ -45,8 +43,10 @@ namespace Battle.Data
         {
             foreach (var prop in oldObj.Properties())
             {
-                var scope = new GameScopes.Scope("");
-                scope.name = prop.Name;
+                var scope = new GameScopes.Scope
+                {
+                    name = prop.Name
+                };
                 value.scopes.Add(scope);
                 RecurRead((JObject)prop.Value, scope);
             }

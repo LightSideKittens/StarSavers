@@ -1,20 +1,24 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEditor;
 
-#if UNITY_EDITOR
 namespace Battle.Data
 {
     public partial class LevelConfig
     {
-        [InfoBox("Config is invalid. Check config name.", InfoMessageType.Error, "$" + nameof(IsValid))]
         private bool isInited;
         private bool isSubscribed;
-        private string entityScope;
+        private string entityName;
         private int currentLevel;
         private bool levelParsed;
-        private bool IsValid => !string.IsNullOrEmpty(entityScope) && levelParsed;
+        private bool isError;
+        private bool isChangedLevels;
+        private bool isChangedEditorLevels;
+        public bool IsInvalid => string.IsNullOrEmpty(entityName) || !levelParsed;
+        public int CurrentLevel => currentLevel;
+        public string EntityName => entityName;
 
         private void OnValidate()
         {
@@ -24,7 +28,7 @@ namespace Battle.Data
                 isSubscribed = true;
             }
 
-            if (!IsValid)
+            if (IsInvalid)
             {
                 return;
             }
@@ -46,44 +50,60 @@ namespace Battle.Data
         private void OnInspectorInit()
         {
             var split = name.Split('_');
-            var scopeName = split[0];
-            entityScope = GameScopes.GetEntityNameByScopeName(scopeName);
+            var configEntityName = split[0];
+            entityName = GameScopes.IsEntityName(configEntityName) ? configEntityName : null;
             levelParsed = int.TryParse(split[^1], out currentLevel);
             
-            if (!IsValid)
+            if (IsInvalid)
             {
                 return;
             }
 
             isInited = true;
-            var editorLevels = EditorLevels.Config.LevelsNames;
-            EditorLevels.LoadOnNextAccess();
-            ChangedLevels.LoadOnNextAccess();
-            if (!editorLevels.Contains(name))
-            {
-                editorLevels.Add(name);
-                TryUpdateChangedLevels();
-                EditorLevels.Editor_SaveAsDefault();
-                AssetDatabase.Refresh();
-            }
+            TryUpdateChangedLevels();
         }
 
         private void TryUpdateChangedLevels()
         {
             var changedLevels = ChangedLevels.Config.Levels;
-            if (changedLevels.TryGetValue(entityScope, out var level))
+
+            if (changedLevels.TryGetValue(entityName, out var level))
             {
                 if (level > currentLevel)
                 {
-                    changedLevels[entityScope] = currentLevel;
-                    ChangedLevels.Editor_SaveAsDefault();
-                    AssetDatabase.Refresh();
+                    changedLevels[entityName] = currentLevel;
+                    isChangedLevels = true;
                 }
             }
             else
             {
-                changedLevels.Add(entityScope, currentLevel);
-                ChangedLevels.Editor_SaveAsDefault();
+                changedLevels.Add(entityName, currentLevel);
+                isChangedLevels = true;
+            }
+            
+            if (!EditorLevels.Config.LevelsNames.Contains(name))
+            {
+                EditorLevels.Config.LevelsNames.Add(name);
+                changedLevels.TryAdd(entityName, currentLevel);
+                isChangedLevels = true;
+                isChangedEditorLevels = true;
+            }
+        }
+
+        [OnInspectorDispose]
+        private void OnInspectorDispose()
+        {
+            if (isChangedLevels)
+            {
+                isChangedLevels = false;
+                ChangedLevels.Save();
+                AssetDatabase.Refresh();
+            }
+
+            if (isChangedEditorLevels)
+            {
+                isChangedEditorLevels = false;
+                EditorLevels.Save();
                 AssetDatabase.Refresh();
             }
         }
@@ -91,47 +111,65 @@ namespace Battle.Data
         [OnInspectorGUI]
         private void OnInspectorGUI()
         {
-            if (!IsValid)
+            if (IsInvalid)
             {
                 return;
             }
             
-            var scopeHashSet = new HashSet<string>();
             var splitedName = name.Split('_');
 
-            if (UpgradesByScope.Count > 0)
+            if (splitedName[^1] == "1")
             {
-                if (splitedName[^1] == "1")
+                if (UpgradesByScope.Count > 0)
                 {
                     var upgrade = UpgradesByScope[0];
-                    isError = !upgrade.Scope.Contains(splitedName[0]);
+                    isError = !GameScopes.TryGetEntityNameFromScope(upgrade.Scope, out var entityName) ||
+                        entityName != splitedName[0];
 
                     if (!isError)
                     {
-                        for (int j = 0; j < upgrade.Properties.Count; j++)
-                        {
-                            var prop = upgrade.Properties[j];
+                        var props = upgrade.Properties;
 
-                            if (prop.Fixed == 0)
+                        if (props.Count != 0)
+                        {
+                            for (int j = 0; j < props.Count; j++)
                             {
-                                isError = true;
-                                break;
+                                var prop = props[j];
+
+                                if (prop.Fixed == 0)
+                                {
+                                    isError = true;
+
+                                    break;
+                                }
                             }
+                        }
+                        else
+                        {
+                            isError = true;
                         }
                     }
                 }
+                else
+                {
+                    isError = true;
+                }
             }
             
+            var scopeHashSet = new HashSet<string>();
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
                 var step = UpgradesByScope[i];
-                step.isError = !scopeHashSet.Add(step.Scope);
+                var scope = step.Scope;
+                var isEntity = GameScopes.TryGetEntityNameFromScope(scope, out var entityName);
+                step.isError = !scopeHashSet.Add(scope);
                 var props = step.Properties;
+                step.entityName = entityName;
 
                 for (int j = 0; j < props.Count; j++)
                 {
                     var prop = props[j];
-                    var needHideFixed = !GameScopes.EntityScopesSet.Contains(step.Scope);
+                    var needHideFixed = !isEntity;
 
                     if (needHideFixed)
                     {

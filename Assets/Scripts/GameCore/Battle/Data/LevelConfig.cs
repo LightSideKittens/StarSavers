@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Battle.Data.GameProperty;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -11,10 +10,9 @@ namespace Battle.Data
     public partial class LevelConfig : SerializedScriptableObject
     {
         [InfoBox("First level should contains entity scope with fixed value at all properties", InfoMessageType.Error, "$" + nameof(isError))]
+        [InfoBox("Config is invalid. Check config name.", InfoMessageType.Error, "$" + nameof(IsInvalid))]
         [OdinSerialize, TableList] public List<GamePropertiesByScope> UpgradesByScope { get; set; } = new();
         [OdinSerialize] public List<BaseWallet> Price { get; set; } = new();
-        
-        private bool isError;
 
         public void InitProperties(Dictionary<string, List<BaseGameProperty>> properties)
         {
