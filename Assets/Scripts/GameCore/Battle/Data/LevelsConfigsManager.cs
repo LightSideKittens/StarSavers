@@ -129,16 +129,16 @@ namespace Battle.Data
 
                         if (propByType.TryGetValue(type, out var valuePercent))
                         {
-                            valuePercent.value += prop.Fixed;
-                            valuePercent.percent += prop.Percent;
+                            valuePercent.value += prop.value;
+                            valuePercent.percent += prop.percent;
                             propByType[type] = valuePercent;
                         }
                         else
                         {
                             propByType.Add(type, new ValuePercent
                             {
-                                value = prop.Fixed,
-                                percent = prop.Percent,
+                                value = prop.value,
+                                percent = prop.percent,
                             });
                         }
                     }

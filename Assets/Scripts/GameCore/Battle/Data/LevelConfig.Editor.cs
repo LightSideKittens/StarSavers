@@ -134,7 +134,7 @@ namespace Battle.Data
                             {
                                 var prop = props[j];
 
-                                if (prop.Fixed == 0)
+                                if (prop.value == 0)
                                 {
                                     isFirstLevelError = true;
 
@@ -184,7 +184,7 @@ namespace Battle.Data
 
                     if (needHideFixed)
                     {
-                        prop.Fixed = 0;
+                        prop.value = 0;
                     }
                     
                     prop.needHideFixed = needHideFixed;

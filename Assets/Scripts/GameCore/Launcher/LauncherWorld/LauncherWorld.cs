@@ -63,7 +63,7 @@ namespace BeatRoyale.Launcher
                 foreach (var prop in level.Value)
                 {
                     Debug.Log($"[Malvis] Scope: {level.Key}, Property Type: {prop.Key}," +
-                        $" Value: {prop.Value.value}, Percent: {prop.Value.percent * 100}%, Total: {prop.Value.value + prop.Value.value * prop.Value.percent}");
+                        $" Value: {prop.Value.value}, Percent: {prop.Value.percent}%, Total: {prop.Value.value + prop.Value.value * (prop.Value.percent / 100)}");
                 }
             }
         }

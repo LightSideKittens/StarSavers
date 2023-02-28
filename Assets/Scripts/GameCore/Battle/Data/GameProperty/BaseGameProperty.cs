@@ -1,36 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using LightGamesCore.GameCore.Editor;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
+using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+using LightGamesCore.GameCore.Editor;
+using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
-using UnityEngine;
+using UnityEditor;
 using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
 
 namespace Battle.Data.GameProperty
 {
     [Serializable]
     public abstract class BaseGameProperty
     {
-        [FormerlySerializedAs("heartIcon")]
         [InfoBox("Cannot use multiple identical properties", InfoMessageType.Error, nameof(isError))]
-        [CustomValueDrawer(nameof(HeartIconDrawer))]
+        [CustomValueDrawer("IconDrawer")]
         public Texture2D icon;
         
-        [HideInInspector] public string scope;
-        [HideIf("$" + nameof(needHideFixed))]
-        public float Fixed;
-        [Range(0, 1)] public float Percent;
-
-        [HideInInspector] public bool needHideFixed;
-        [HideInInspector] public bool isError;
-        private Texture2D oddTexture;
-        private Texture2D evenTexture;
+        [NonSerialized] public string scope;
         
-        private int index;
+        [HideIf("$" + nameof(needHideFixed))]
+        [CustomValueDrawer("FixedDrawer")]
+        public float value;
+        
+        [HideIf("$" + nameof(NeedHidePercent))]
+        [PropertyRange(0, 100)]
+        public int percent;
+
+        [HideInInspector] public bool isError;
+        private bool IsRadius => GetType() == typeof(RadiusGP);
+        private bool IsMoveSpeed => GetType() == typeof(MoveSpeedGP);
+        private bool NeedHidePercent => IsMoveSpeed || IsRadius;
+        
+        
+#if UNITY_EDITOR
+        [HideInInspector] public string moveSpeed;
+        [HideInInspector] public bool needHideFixed;
+        [HideInInspector] public int index;
+        private static Texture2D oddTexture;
+        private static Texture2D evenTexture;
+        
         private static int currentIndex;
         private static HashSet<Type> types = new();
         private static Dictionary<Type, string> iconsByType = new()
@@ -74,11 +85,50 @@ namespace Battle.Data.GameProperty
                 icon = LightGamesIcons.Get(tex);
             }
 
-            oddTexture = EditorUtils.GetTextureByColor(new Color(0.24f, 0.24f, 0.24f));
-            evenTexture = EditorUtils.GetTextureByColor(new Color(0.2f, 0.2f, 0.2f));
+            oddTexture ??= EditorUtils.GetTextureByColor(new Color(0.24f, 0.24f, 0.24f));
+            evenTexture ??= EditorUtils.GetTextureByColor(new Color(0.2f, 0.2f, 0.2f));
+            moveSpeed ??= "Slow";
         }
 
-        private Texture2D HeartIconDrawer(Texture2D value, GUIContent label, Func<GUIContent, bool> callNextDrawer)
+        private float FixedDrawer(float val, GUIContent label, Func<GUIContent, bool> callNextDrawer)
+        {
+            if (IsRadius)
+            {
+                var newValue = EditorGUILayout.Slider(label, val, 1, 20);
+                var roundValue = Mathf.Round(newValue * 2);
+                roundValue /= 2;
+                value = roundValue;
+            }
+            else if(IsMoveSpeed)
+            {
+                EditorGUILayout.BeginHorizontal();
+                
+                EditorGUILayout.LabelField("Move Speed", GUILayoutOptions.MaxWidth(100));
+                MoveSpeedSelector.SetValue(moveSpeed);
+                
+                if (EditorGUILayout.DropdownButton(new GUIContent(MoveSpeedSelector.Value), FocusType.Passive))
+                {
+                    var newValue = new MoveSpeedSelector();
+                    newValue.ShowInPopup();
+                    newValue.SelectionConfirmed += x =>
+                    {
+                        newValue.GetValue();
+                        moveSpeed = MoveSpeedSelector.Value;
+                        value = MoveSpeedSelector.Speed;
+                    };
+                }
+                
+                EditorGUILayout.EndHorizontal();
+            }
+            else
+            {
+                value = EditorGUILayout.FloatField(label, val);
+            }
+            
+            return value;
+        }
+
+        private Texture2D IconDrawer(Texture2D value, GUIContent label, Func<GUIContent, bool> callNextDrawer)
         {
             if (isError || icon == null)
             {
@@ -108,4 +158,40 @@ namespace Battle.Data.GameProperty
             return icon;
         }
     }
+
+    public class MoveSpeedSelector : OdinSelector<string>
+    {
+        public static float Speed => Values[Value];
+        public static string Value { get; private set; } = "Slow";
+        public static Dictionary<string, float> Values = new()
+        {
+            {"Slow", 0.75f},
+            {"Normal", 1f},
+            {"Fast", 1.5f},
+            {"Faster", 1.75f},
+        };
+
+        protected override void BuildSelectionTree(OdinMenuTree tree)
+        {
+            tree.Config.DrawSearchToolbar = false;
+            foreach (var value in Values.Keys)
+            {
+                tree.Add(value, value);
+            }
+        }
+        
+        public static void SetValue(string value)
+        {
+            if (Values.ContainsKey(value))
+            {
+                Value = value;
+            }
+        }
+        
+        public void GetValue()
+        {
+            Value = GetCurrentSelection().FirstOrDefault();
+        }
+    }
 }
+#endif
