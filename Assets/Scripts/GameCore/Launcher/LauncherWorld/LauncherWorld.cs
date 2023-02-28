@@ -14,7 +14,7 @@ namespace BeatRoyale.Launcher
 {
     public partial class LauncherWorld : ServiceManager
     {
-        [ColoredField, SerializeField] private BackgroundAnimationData backgroundData;
+        [SerializeField] private BackgroundAnimationData backgroundData;
         [SerializeField] private LevelsConfigsManager levelsConfigsManager;
 
         protected override void Awake()

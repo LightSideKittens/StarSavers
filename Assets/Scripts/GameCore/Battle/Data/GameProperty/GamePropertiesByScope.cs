@@ -11,7 +11,6 @@ namespace Battle.Data.GameProperty
     [Serializable]
     public class GamePropertiesByScope
     {
-        public event Action ScopeChanged;
         private static IEnumerable<string> Scopes => GameScopes.Scopes;
         private static List<Type> notEntityPropertyType = new()
         {
@@ -28,13 +27,16 @@ namespace Battle.Data.GameProperty
         [field: TypeFilter("GetFilteredTypeList")]
         [field: OnValueChanged(nameof(OnScopeChanged))]
         [field: OdinSerialize] public List<BaseGameProperty> Properties = new List<BaseGameProperty>();
-        
+
+#if UNITY_EDITOR
+        public event Action ScopeChanged;
         private HashSet<int> propsHashCodes;
         private HashSet<Type> addedTypes = new ();
 
         [ShowIf("$" + nameof(NeedShowEntityName)), VerticalGroup(nameof(Scopes))]
         [ReadOnly] public string entityName;
 
+        [HideInInspector] public int level;
         [HideInInspector] public bool isMultipleIdenticalScopeError;
         [HideInInspector] public bool isEmptyScopeError;
 
@@ -45,7 +47,7 @@ namespace Battle.Data.GameProperty
             InitAddedTypes();
             var isEntity = GameScopes.IsEntityScope(Scope);
 
-            if (isEntity)
+            if (isEntity && level == 1)
             {
                 foreach (var type in BaseGameProperty.IconsByType.Keys)
                 {
@@ -105,5 +107,6 @@ namespace Battle.Data.GameProperty
         {
             ScopeChanged?.Invoke();
         }
+#endif
     }
 }

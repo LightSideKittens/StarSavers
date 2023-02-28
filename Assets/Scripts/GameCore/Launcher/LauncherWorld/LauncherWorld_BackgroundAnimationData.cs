@@ -9,11 +9,11 @@ namespace BeatRoyale.Launcher
         private struct BackgroundAnimationData
         {
             [SerializeField, Range(0, 0.5f)] private float backgroundSpeed;
-            [SerializeField] private Material background;
+            [SerializeField] private MeshRenderer background;
 
             public void Update()
             {
-                background.mainTextureOffset += Vector2.up * (Time.deltaTime * backgroundSpeed);
+                background.material.mainTextureOffset += Vector2.up * (Time.deltaTime * backgroundSpeed);
             }
         }
     }

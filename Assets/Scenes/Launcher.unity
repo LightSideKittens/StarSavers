@@ -223,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &246214695
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -302,18 +302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LauncherBootstrap
       objectReference: {fileID: 0}
-    - target: {fileID: 2064972287478390616, guid: cf805e5cf0db08c4b847f4f36bc9a68b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5016002439755863311, guid: cf805e5cf0db08c4b847f4f36bc9a68b, type: 3}
-      propertyPath: textAsset
+      propertyPath: backgroundData.background
       value: 
-      objectReference: {fileID: 4900000, guid: 03c691173d42447195ea7b54899ba364, type: 3}
-    - target: {fileID: 5016002439755863311, guid: cf805e5cf0db08c4b847f4f36bc9a68b, type: 3}
-      propertyPath: levelsConfigsManager
-      value: 
-      objectReference: {fileID: 11400000, guid: 5e66bb9bfd8051542b5b643eec359e2d, type: 2}
+      objectReference: {fileID: 6825929931560771305}
     - target: {fileID: 8035958271501141536, guid: cf805e5cf0db08c4b847f4f36bc9a68b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -489,3 +481,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41ef559bf49dca14d894077bf019592d, type: 3}
+--- !u!23 &6825929931560771305 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6825929933428598076, guid: 41ef559bf49dca14d894077bf019592d, type: 3}
+  m_PrefabInstance: {fileID: 6825929931560771304}
+  m_PrefabAsset: {fileID: 0}

@@ -11,17 +11,17 @@ namespace Battle.Data
 {
     public partial class LevelConfig
     {
-        private bool isInited;
-        private bool isSubscribed;
         private string entityName;
         private int currentLevel;
-        private bool levelParsed;
+        private bool isInited;
+        private bool isSubscribed;
+        private bool isLevelParsed;
         private bool isFirstLevelError;
         private bool hasScopeError;
         private bool hasEmptyScopeError;
         private bool isChangedLevels;
         private string[] splitedName;
-        public bool IsInvalidName => string.IsNullOrEmpty(entityName) || !levelParsed;
+        public bool IsInvalidName => string.IsNullOrEmpty(entityName) || !isLevelParsed;
         public bool IsInvalid => isFirstLevelError || hasScopeError || hasEmptyScopeError || IsInvalidName;
         public int CurrentLevel => currentLevel;
         public string EntityName => entityName;
@@ -58,7 +58,7 @@ namespace Battle.Data
             splitedName = name.Split('_');
             var configEntityName = splitedName[0];
             entityName = GameScopes.IsEntityName(configEntityName) ? configEntityName : null;
-            levelParsed = int.TryParse(splitedName[^1], out currentLevel);
+            isLevelParsed = int.TryParse(splitedName[^1], out currentLevel);
             
             if (IsInvalidName)
             {
@@ -82,6 +82,7 @@ namespace Battle.Data
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
                 UpgradesByScope[i].OnGUI();
+                UpgradesByScope[i].level = currentLevel;
             }
         }
         

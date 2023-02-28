@@ -90,7 +90,7 @@ namespace Battle.Data.GameProperty
         {
             if (IsRadius)
             {
-                var newValue = EditorGUILayout.Slider(label, val, 1, 20);
+                var newValue = EditorGUILayout.Slider(label, val, 0.5f, 20);
                 var roundValue = Mathf.Round(newValue * 2);
                 roundValue /= 2;
                 value = roundValue;
