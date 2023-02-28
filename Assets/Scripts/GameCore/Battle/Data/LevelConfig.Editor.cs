@@ -11,20 +11,17 @@ namespace Battle.Data
 {
     public partial class LevelConfig
     {
-        private string entityName;
-        private int currentLevel;
+        [HideInInspector] public string entityName;
+        [HideInInspector] public int currentLevel;
+        [HideInInspector] public bool isFirstLevelError;
+        [HideInInspector] public bool hasScopeError;
+        [HideInInspector] public bool hasEmptyScopeError;
         private bool isInited;
         private bool isSubscribed;
-        private bool isLevelParsed;
-        private bool isFirstLevelError;
-        private bool hasScopeError;
-        private bool hasEmptyScopeError;
         private bool isChangedLevels;
         private string[] splitedName;
-        public bool IsInvalidName => string.IsNullOrEmpty(entityName) || !isLevelParsed;
+        public bool IsInvalidName => string.IsNullOrEmpty(entityName) || currentLevel == 0;
         public bool IsInvalid => isFirstLevelError || hasScopeError || hasEmptyScopeError || IsInvalidName;
-        public int CurrentLevel => currentLevel;
-        public string EntityName => entityName;
 
         private void OnValidate()
         {
@@ -58,7 +55,7 @@ namespace Battle.Data
             splitedName = name.Split('_');
             var configEntityName = splitedName[0];
             entityName = GameScopes.IsEntityName(configEntityName) ? configEntityName : null;
-            isLevelParsed = int.TryParse(splitedName[^1], out currentLevel);
+            int.TryParse(splitedName[^1], out currentLevel);
             
             if (IsInvalidName)
             {

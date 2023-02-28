@@ -16,210 +16,268 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 102900000, guid: cd0f02ce7ff55d54aaab7634057dd1cb, type: 3}
-    - {fileID: 11400000, guid: bacd3489c13325f45804e0520e408dc4, type: 2}
-    - {fileID: 11400000, guid: 08c8ab496bd2c474fa7eb34add13423f, type: 2}
-    - {fileID: 11400000, guid: 98e11270fa2eefc479f49b64ea40f210, type: 2}
-    - {fileID: 11400000, guid: 98af48b4df592a74fbc722844a5d4ed2, type: 2}
-    - {fileID: 11400000, guid: a93c9845c5595384bb0781a843a33743, type: 2}
-    - {fileID: 11400000, guid: d2f49e115f3435943a74e6fd1c98de0a, type: 2}
-    - {fileID: 11400000, guid: 827fe71522d4a0149b621d010494b711, type: 2}
-    - {fileID: 11400000, guid: 2f86e8c44ed19e74b84a1251c26ea153, type: 2}
-    - {fileID: 11400000, guid: 957cec0b15160674abb0456dc213cf42, type: 2}
-    - {fileID: 11400000, guid: df7110881301300438190dc7cec4f34f, type: 2}
-    - {fileID: 11400000, guid: 49708ed89a7b4ac48a5f6e61c6bd1369, type: 2}
-    - {fileID: 11400000, guid: 3f8775123d6c2634f9ffb72a93a1e353, type: 2}
-    - {fileID: 11400000, guid: 5b3f3e1be33674145bfbf22705d866aa, type: 2}
-    - {fileID: 11400000, guid: 58f4990ac39880b4ebfafc167957a9f9, type: 2}
-    - {fileID: 11400000, guid: 6fe01e7b708a9554e8f11008045dcc67, type: 2}
-    - {fileID: 11400000, guid: 6dc15d49608d6824c978d34355bd2d1e, type: 2}
-    - {fileID: 11400000, guid: 118556cd8340f6f448a7433727fed12d, type: 2}
-    - {fileID: 11400000, guid: 3b3abd678aed37645a89670f76f4a51f, type: 2}
-    - {fileID: 11400000, guid: 7a0772456eaed3b459e860256a89eff7, type: 2}
-    - {fileID: 11400000, guid: 5040ffcf99e6c4448a6fb60b396fa655, type: 2}
-    - {fileID: 11400000, guid: 366b81c8dd209754587abec32a1482f8, type: 2}
-    - {fileID: 11400000, guid: a527d291b36a75542b98de1512e69ed6, type: 2}
-    - {fileID: 11400000, guid: fac0e6a6d8f7c784595796e6241ceaeb, type: 2}
+    - {fileID: 11400000, guid: 924fa314f61767e42b24d598f3bcefd7, type: 2}
+    - {fileID: 11400000, guid: 916187b654ebc6a4c9ad53c287091d11, type: 2}
+    - {fileID: 11400000, guid: f07ced59d0533ff40900b36319b4ee70, type: 2}
+    - {fileID: 11400000, guid: 16904984eac58234ea25a9008e5545ab, type: 2}
+    - {fileID: 11400000, guid: 041e412617b68bd41995e484f504bdb5, type: 2}
+    - {fileID: 11400000, guid: 49a80f11d4f44984b8fce6d0df28e654, type: 2}
+    - {fileID: 11400000, guid: 13e6c4b6af3774940bade5a1a774af85, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: levelsFolder
-      Entry: 10
-      Data: 0
-    - Name: levels
+    - Name: levelsContainers
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Battle.Data.LevelsConfigsManager+Levels,
+      Data: 0|System.Collections.Generic.List`1[[Battle.Data.LevelsConfigsManager+LevelsContainer,
         GameCore.Battle]], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 6
     - Name: 
       Entry: 7
-      Data: 1|Battle.Data.LevelsConfigsManager+Levels, GameCore.Battle
-    - Name: scope
+      Data: 1|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+    - Name: entityName
       Entry: 1
-      Data: Global/Heroes/Engineers/Raccoon
+      Data: Cloudy
     - Name: levels
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 10
       Data: 2
     - Name: 
       Entry: 10
-      Data: 3
+      Data: 0
     - Name: 
       Entry: 10
-      Data: 4
+      Data: 1
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: isError
+    - Name: isEntityNotExist
       Entry: 5
       Data: false
+    - Name: isMissedLevel
+      Entry: 5
+      Data: false
+    - Name: missedLevel
+      Entry: 3
+      Data: 0
+    - Name: isLevelError
+      Entry: 5
+      Data: false
+    - Name: levelErrorName
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|Battle.Data.LevelsConfigsManager+Levels, GameCore.Battle
-    - Name: scope
+      Data: 3|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+    - Name: entityName
       Entry: 1
-      Data: Global/Heroes/Mages/Dumbledore
+      Data: Knight
     - Name: levels
       Entry: 7
       Data: 4|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 13
+      Data: 1
     - Name: 
       Entry: 10
-      Data: 5
-    - Name: 
-      Entry: 10
-      Data: 6
-    - Name: 
-      Entry: 10
-      Data: 7
-    - Name: 
-      Entry: 10
-      Data: 8
-    - Name: 
-      Entry: 10
-      Data: 9
-    - Name: 
-      Entry: 10
-      Data: 10
-    - Name: 
-      Entry: 10
-      Data: 11
-    - Name: 
-      Entry: 10
-      Data: 12
-    - Name: 
-      Entry: 10
-      Data: 13
-    - Name: 
-      Entry: 10
-      Data: 14
-    - Name: 
-      Entry: 10
-      Data: 15
-    - Name: 
-      Entry: 10
-      Data: 16
-    - Name: 
-      Entry: 10
-      Data: 17
+      Data: 2
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: isError
+    - Name: isEntityNotExist
       Entry: 5
       Data: false
+    - Name: isMissedLevel
+      Entry: 5
+      Data: false
+    - Name: missedLevel
+      Entry: 3
+      Data: 0
+    - Name: isLevelError
+      Entry: 5
+      Data: false
+    - Name: levelErrorName
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 5|Battle.Data.LevelsConfigsManager+Levels, GameCore.Battle
-    - Name: scope
+      Data: 5|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+    - Name: entityName
       Entry: 1
-      Data: Global/Heroes/Mages/Witch
+      Data: Raccoon
     - Name: levels
       Entry: 7
       Data: 6|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 1
     - Name: 
       Entry: 10
-      Data: 18
-    - Name: 
-      Entry: 10
-      Data: 19
-    - Name: 
-      Entry: 10
-      Data: 20
-    - Name: 
-      Entry: 10
-      Data: 21
-    - Name: 
-      Entry: 10
-      Data: 22
-    - Name: 
-      Entry: 10
-      Data: 23
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: isError
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: paths
-      Entry: 7
-      Data: 7|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
       Data: 3
     - Name: 
-      Entry: 1
-      Data: Assets/Configs/ScriptableObjects/LevelsData/Heroes/Engineers/Raccoon
+      Entry: 13
+      Data: 
     - Name: 
-      Entry: 1
-      Data: Assets/Configs/ScriptableObjects/LevelsData/Heroes/Mages/Dumbledore
+      Entry: 8
+      Data: 
+    - Name: isEntityNotExist
+      Entry: 5
+      Data: false
+    - Name: isMissedLevel
+      Entry: 5
+      Data: false
+    - Name: missedLevel
+      Entry: 3
+      Data: 0
+    - Name: isLevelError
+      Entry: 5
+      Data: false
+    - Name: levelErrorName
+      Entry: 6
+      Data: 
     - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+    - Name: entityName
       Entry: 1
-      Data: Assets/Configs/ScriptableObjects/LevelsData/Heroes/Mages/Witch
+      Data: Madina
+    - Name: levels
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isEntityNotExist
+      Entry: 5
+      Data: false
+    - Name: isMissedLevel
+      Entry: 5
+      Data: false
+    - Name: missedLevel
+      Entry: 3
+      Data: 0
+    - Name: isLevelError
+      Entry: 5
+      Data: false
+    - Name: levelErrorName
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+    - Name: entityName
+      Entry: 1
+      Data: Dumbledore
+    - Name: levels
+      Entry: 7
+      Data: 10|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isEntityNotExist
+      Entry: 5
+      Data: false
+    - Name: isMissedLevel
+      Entry: 5
+      Data: false
+    - Name: missedLevel
+      Entry: 3
+      Data: 0
+    - Name: isLevelError
+      Entry: 5
+      Data: false
+    - Name: levelErrorName
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+    - Name: entityName
+      Entry: 1
+      Data: Valkyrie
+    - Name: levels
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isEntityNotExist
+      Entry: 5
+      Data: false
+    - Name: isMissedLevel
+      Entry: 5
+      Data: false
+    - Name: missedLevel
+      Entry: 3
+      Data: 0
+    - Name: isLevelError
+      Entry: 5
+      Data: false
+    - Name: levelErrorName
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 

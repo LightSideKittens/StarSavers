@@ -9,8 +9,8 @@ namespace Battle.Data
 {
     public partial class LevelsConfigsManager
     {
-        [OdinSerialize] private Object levelsFolder;
-        [OdinSerialize, ReadOnly] private List<string> paths = new();
+        [ShowInInspector] private Object levelsFolder;
+        [ShowInInspector] private List<string> paths = new();
         private string levelsFolderPath;
         private bool isInited;
         
@@ -64,8 +64,8 @@ namespace Battle.Data
                         hasError |= levelConfig.IsInvalid;
                         hasError |= levelsContainer.isMissedLevel;
                     
-                        levelsContainer.entityName = levelConfig.EntityName;
-                        var currentLevel = levelConfig.CurrentLevel;
+                        levelsContainer.entityName = levelConfig.entityName;
+                        var currentLevel = levelConfig.currentLevel;
 
                         if (currentLevel - lastLevel > 1)
                         {
