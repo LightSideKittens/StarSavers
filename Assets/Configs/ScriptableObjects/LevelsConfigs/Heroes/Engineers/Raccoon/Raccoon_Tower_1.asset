@@ -49,21 +49,21 @@ MonoBehaviour:
     - Name: icon
       Entry: 10
       Data: 0
-    - Name: scope
-      Entry: 6
-      Data: 
     - Name: value
       Entry: 4
       Data: 1800
     - Name: percent
-      Entry: 4
+      Entry: 3
       Data: 0
+    - Name: moveSpeed
+      Entry: 6
+      Data: 
     - Name: needHideFixed
       Entry: 5
       Data: false
-    - Name: isError
-      Entry: 5
-      Data: false
+    - Name: index
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -73,21 +73,21 @@ MonoBehaviour:
     - Name: icon
       Entry: 10
       Data: 1
-    - Name: scope
-      Entry: 6
-      Data: 
     - Name: value
       Entry: 4
       Data: 100
     - Name: percent
-      Entry: 4
+      Entry: 3
       Data: 0
+    - Name: moveSpeed
+      Entry: 6
+      Data: 
     - Name: needHideFixed
       Entry: 5
       Data: false
-    - Name: isError
-      Entry: 5
-      Data: false
+    - Name: index
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -100,7 +100,10 @@ MonoBehaviour:
     - Name: entityName
       Entry: 1
       Data: Raccoon
-    - Name: isError
+    - Name: isMultipleIdenticalScopeError
+      Entry: 5
+      Data: false
+    - Name: isEmptyScopeError
       Entry: 5
       Data: false
     - Name: 

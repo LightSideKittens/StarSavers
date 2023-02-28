@@ -11,7 +11,7 @@ namespace Battle.Data
     {
         [InfoBox("First level should contains entity scope with fixed value at all properties", InfoMessageType.Error, "$" + nameof(isFirstLevelError))]
         [InfoBox("Config is invalid. Check config name.", InfoMessageType.Error, "$" + nameof(IsInvalidName))]
-        [OdinSerialize, TableList] public List<GamePropertiesByScope> UpgradesByScope { get; set; } = new();
+        [OdinSerialize, TableList, OnValueChanged(nameof(OnUpgradeStepsChanged))] public List<GamePropertiesByScope> UpgradesByScope { get; set; } = new();
         [OdinSerialize] public List<BaseWallet> Price { get; set; } = new();
 
         public void InitProperties(Dictionary<string, List<BaseGameProperty>> properties)

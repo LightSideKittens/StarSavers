@@ -8,14 +8,12 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
-using UnityEngine.Serialization;
 
 namespace Battle.Data.GameProperty
 {
     [Serializable]
     public abstract class BaseGameProperty
     {
-        [InfoBox("Cannot use multiple identical properties", InfoMessageType.Error, nameof(isError))]
         [CustomValueDrawer("IconDrawer")]
         public Texture2D icon;
         
@@ -28,23 +26,17 @@ namespace Battle.Data.GameProperty
         [HideIf("$" + nameof(NeedHidePercent))]
         [PropertyRange(0, 100)]
         public int percent;
-
-        [HideInInspector] public bool isError;
+        
         private bool IsRadius => GetType() == typeof(RadiusGP);
         private bool IsMoveSpeed => GetType() == typeof(MoveSpeedGP);
-        private bool NeedHidePercent => IsMoveSpeed || IsRadius;
+        private bool IsAttackSpeed => GetType() == typeof(AttackSpeedGP);
+        private bool NeedHidePercent => IsMoveSpeed || IsRadius || IsAttackSpeed;
         
         
 #if UNITY_EDITOR
-        [HideInInspector] public string moveSpeed;
-        [HideInInspector] public bool needHideFixed;
-        [HideInInspector] public int index;
-        private static Texture2D oddTexture;
+        public static bool isInited;
         private static Texture2D evenTexture;
-        
-        private static int currentIndex;
-        private static HashSet<Type> types = new();
-        private static Dictionary<Type, string> iconsByType = new()
+        public static Dictionary<Type, string> IconsByType { get; } = new()
         {
             {typeof(HealthGP), "health-icon"},
             {typeof(DamageGP), "attack-icon"},
@@ -53,41 +45,45 @@ namespace Battle.Data.GameProperty
             {typeof(RadiusGP), "radius-icon"},
         };
         
+        [HideInInspector] public string moveSpeed = "Slow";
+        [HideInInspector] public bool needHideFixed;
+
         private string Title => GetType().Name.Replace("GP", "Property").SplitPascalCase();
+        
+        protected BaseGameProperty()
+        {
+            if (isInited)
+            {
+                CreateData();
+            }
+        }
 
         [OnInspectorDispose]
         private void OnInspectorDispose()
         {
-            types.Clear();
-            currentIndex = 0;
-            index = 0;
+            isInited = false;
         }
         
         [OnInspectorInit]
         private void CreateData()
         {
-            if (isError)
-            {
-                return;
-            }
-            
-            if (!types.Add(GetType()))
-            {
-                currentIndex = 0;
-                types.Clear();
-            }
-            
-            currentIndex++;
-            index = currentIndex;
+            isInited = true;
 
-            if (iconsByType.TryGetValue(GetType(), out var tex))
+            if (IconsByType.TryGetValue(GetType(), out var tex))
             {
                 icon = LightGamesIcons.Get(tex);
             }
 
-            oddTexture ??= EditorUtils.GetTextureByColor(new Color(0.24f, 0.24f, 0.24f));
-            evenTexture ??= EditorUtils.GetTextureByColor(new Color(0.2f, 0.2f, 0.2f));
-            moveSpeed ??= "Slow";
+            if (evenTexture == null)
+            {
+                evenTexture = EditorUtils.GetTextureByColor(new Color(0.17f, 0.17f, 0.18f));
+            }
+
+            if (IsMoveSpeed)
+            {
+                MoveSpeedSelector.SetValue(moveSpeed);
+                value = MoveSpeedSelector.Speed;
+            }
         }
 
         private float FixedDrawer(float val, GUIContent label, Func<GUIContent, bool> callNextDrawer)
@@ -99,7 +95,7 @@ namespace Battle.Data.GameProperty
                 roundValue /= 2;
                 value = roundValue;
             }
-            else if(IsMoveSpeed)
+            else if(IsMoveSpeed && moveSpeed != null)
             {
                 EditorGUILayout.BeginHorizontal();
                 
@@ -120,28 +116,60 @@ namespace Battle.Data.GameProperty
                 
                 EditorGUILayout.EndHorizontal();
             }
+            else if(IsAttackSpeed)
+            {
+                if (value == 0)
+                {
+                    value = 1;
+                }
+                
+                var binary = Convert.ToString((int)value, 2);
+                var newBinary = string.Empty;
+                
+                EditorGUILayout.BeginHorizontal();
+                foreach (var bit in binary)
+                {
+                    newBinary += EditorGUILayout.Toggle(bit == '1', GUILayoutOptions.ExpandWidth(false)) ? '1' : '0';
+                }
+                EditorGUILayout.EndHorizontal();
+
+                if (GUILayout.Button("Add"))
+                {
+                    if (newBinary.Length < 8)
+                    {
+                        newBinary += '0';
+                    }
+                }
+                
+                value = Convert.ToInt32(newBinary, 2);
+            }
             else
             {
                 value = EditorGUILayout.FloatField(label, val);
             }
-            
+
             return value;
         }
 
         private Texture2D IconDrawer(Texture2D value, GUIContent label, Func<GUIContent, bool> callNextDrawer)
         {
-            if (isError || icon == null)
+            if (icon == null)
             {
                 return icon;
             }
 
             var rect = GUIHelper.GetCurrentLayoutRect();
 
+            rect.xMax -= 20;
             rect.xMin += 40;
             rect.yMax = rect.yMin + 30;
             var texRect = rect;
+            var center = texRect.center;
+            texRect.height -= 8;
+            texRect.width -= 8;
+            texRect.center = center;
             
-            GUI.DrawTexture(texRect, index % 2 == 0 ? evenTexture : oddTexture, ScaleMode.StretchToFill, false);
+            GUI.DrawTexture(texRect, evenTexture, ScaleMode.StretchToFill, false);
             
             var textStyle = new GUIStyle() {alignment = TextAnchor.MiddleCenter};
             textStyle.normal.textColor = Color.white;
@@ -149,9 +177,9 @@ namespace Battle.Data.GameProperty
             GUI.Label(rect, $"<b>{Title}</b>", textStyle);
             
             var lastPosition = rect.position;
-            rect.position = lastPosition + new Vector2(rect.height - 10, 0);
+            rect.position = lastPosition;
             GUI.Box(rect, icon, GUIStyle.none);
-            rect.position = lastPosition + new Vector2(rect.width - rect.height - 20, 0);
+            rect.position = lastPosition + new Vector2(rect.width - rect.height, 0);
             GUI.Box(rect, icon, GUIStyle.none);
             GUILayout.Space(10);
 

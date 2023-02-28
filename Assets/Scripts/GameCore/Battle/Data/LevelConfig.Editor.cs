@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Data.GameProperty;
 using Sirenix.OdinInspector;
 using UnityEditor;
+using UnityEngine;
 
 namespace Battle.Data
 {
@@ -16,11 +18,11 @@ namespace Battle.Data
         private bool levelParsed;
         private bool isFirstLevelError;
         private bool hasScopeError;
-        private bool hasPropTypeError;
+        private bool hasEmptyScopeError;
         private bool isChangedLevels;
         private string[] splitedName;
         public bool IsInvalidName => string.IsNullOrEmpty(entityName) || !levelParsed;
-        public bool IsInvalid => isFirstLevelError || hasScopeError || hasPropTypeError || IsInvalidName;
+        public bool IsInvalid => isFirstLevelError || hasScopeError || hasEmptyScopeError || IsInvalidName;
         public int CurrentLevel => currentLevel;
         public string EntityName => entityName;
 
@@ -63,12 +65,40 @@ namespace Battle.Data
                 return;
             }
 
-            for (int i = 0; i < UpgradesByScope.Count; i++)
+            OnUpgradeStepsChanged();
+            isInited = true;
+        }
+        
+        [OnInspectorGUI]
+        private void OnInspectorGUI()
+        {
+            if (IsInvalidName)
             {
-                UpgradesByScope[i].ScopeChanged += OnScopeChanged;
+                return;
             }
 
-            isInited = true;
+            OnFirstLevel();
+            
+            for (int i = 0; i < UpgradesByScope.Count; i++)
+            {
+                UpgradesByScope[i].OnGUI();
+            }
+        }
+        
+        [OnInspectorDispose]
+        private void OnInspectorDispose()
+        {
+            if (isChangedLevels)
+            {
+                isChangedLevels = false;
+                ChangedLevels.Save();
+                AssetDatabase.Refresh();
+            }
+            
+            for (int i = 0; i < UpgradesByScope.Count; i++)
+            {
+                UpgradesByScope[i].ScopeChanged -= OnScopeChanged;
+            }
         }
 
         private void TryUpdateChangedLevels()
@@ -90,32 +120,8 @@ namespace Battle.Data
             }
         }
 
-        [OnInspectorDispose]
-        private void OnInspectorDispose()
+        private void OnFirstLevel()
         {
-            if (isChangedLevels)
-            {
-                isChangedLevels = false;
-                ChangedLevels.Save();
-                AssetDatabase.Refresh();
-            }
-            
-            OnScopeChanged();
-
-            for (int i = 0; i < UpgradesByScope.Count; i++)
-            {
-                UpgradesByScope[i].ScopeChanged -= OnScopeChanged;
-            }
-        }
-
-        [OnInspectorGUI]
-        private void OnInspectorGUI()
-        {
-            if (IsInvalidName)
-            {
-                return;
-            }
-
             if (currentLevel == 1)
             {
                 if (UpgradesByScope.Count > 0)
@@ -155,40 +161,54 @@ namespace Battle.Data
             }
         }
 
+        private void OnUpgradeStepsChanged()
+        {
+            for (int i = 0; i < UpgradesByScope.Count; i++)
+            {
+                UpgradesByScope[i].ScopeChanged -= OnScopeChanged;
+                UpgradesByScope[i].ScopeChanged += OnScopeChanged;
+            }
+
+            OnScopeChanged();
+        }
+
+        public static void ReanalyzeScope(GamePropertiesByScope step)
+        {
+            var props = step.Properties;
+            var isEntity = GameScopes.TryGetEntityNameFromScope(step.Scope, out var entityName);
+            step.entityName = entityName;
+            
+            for (int j = 0; j < props.Count; j++)
+            {
+                var prop = props[j];
+                var needHideFixed = !isEntity;
+
+                if (needHideFixed)
+                {
+                    prop.value = 0;
+                }
+                    
+                prop.needHideFixed = needHideFixed;
+            }
+        }
+        
         private void OnScopeChanged()
         {
             hasScopeError = false;
-            hasPropTypeError = false;
+            hasEmptyScopeError = false;
             var scopeHashSet = new HashSet<string>();
-            var propTypeHashSet = new HashSet<Type>();
-            
+
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
                 var step = UpgradesByScope[i];
-                propTypeHashSet.Clear();
                 var scope = step.Scope;
-                var isEntity = GameScopes.TryGetEntityNameFromScope(scope, out var entityName);
                 var error = !scopeHashSet.Add(scope);
-                step.isError = error;
+                step.isMultipleIdenticalScopeError = error;
                 hasScopeError |= error;
                 var props = step.Properties;
-                step.entityName = entityName;
-
-                for (int j = 0; j < props.Count; j++)
-                {
-                    var prop = props[j];
-                    var propError = !propTypeHashSet.Add(prop.GetType());
-                    prop.isError = propError;
-                    hasPropTypeError |= propError;
-                    var needHideFixed = !isEntity;
-
-                    if (needHideFixed)
-                    {
-                        prop.value = 0;
-                    }
-                    
-                    prop.needHideFixed = needHideFixed;
-                }
+                hasEmptyScopeError |= props.Count == 0;
+                step.isEmptyScopeError = props.Count == 0;
+                ReanalyzeScope(step);
             }
             
             if (UpgradesByScope.Count > 1)

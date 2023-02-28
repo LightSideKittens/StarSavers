@@ -2,44 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60335087-5ee3-4481-bded-8fe263508188" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/AttackSpeedGP.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/AttackSpeedGP.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/DamageGP.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/DamageGP.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/HealthGP.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/HealthGP.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/MoveSpeedGP.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/MoveSpeedGP.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/RadiusGP.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BeatRoyale/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BeatRoyale/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Remote/changedLevels.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Remote/changedLevels.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Allies/Light/Melee/Knight_Unit_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Allies/Light/Melee/Knight_Unit_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon_Tower_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon_Tower_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon_Tower_2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon_Tower_2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon_Tower_3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon_Tower_3.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina_Tower_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina_Tower_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina_Tower_2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina_Tower_2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina_Tower_3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina_Tower_3.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_3.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_4.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_4.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_5.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore_Tower_5.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie_Tower_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie_Tower_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie_Tower_2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie_Tower_2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie_Tower_3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie_Tower_3.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Logo/black-logo.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Logo/black-logo.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/DefaultSaveData/Resources/unlockedLevels.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/DefaultSaveData/Resources/unlockedLevels.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Allies/Light/Melee/Cloudy/Cloudy_Unit_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Allies/Light/Melee/Cloudy/Cloudy_Unit_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Allies/Light/Melee/Knight/Knight_Unit_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Allies/Light/Melee/Knight/Knight_Unit_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon/Raccoon_Tower_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Engineers/Raccoon/Raccoon_Tower_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina/Madina_Tower_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Healers/Madina/Madina_Tower_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore/Dumbledore_Tower_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Mages/Dumbledore/Dumbledore_Tower_1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie/Valkyrie_Tower_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/ScriptableObjects/LevelsConfigs/Heroes/Warriors/Valkyrie/Valkyrie_Tower_1.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/FR2_Cache.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FR2_Cache.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/LightGamesCore/Editor/Plugins/RainbowAssets/RainbowFolders/Editor/Data/RainbowFoldersRuleset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LightGamesCore/Editor/Plugins/RainbowAssets/RainbowFolders/Editor/Data/RainbowFoldersRuleset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/LightGamesCore/GameCore/Attributes/Editor/Drawers/Resources/LightGamesIcons/attack-speed-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LightGamesCore/GameCore/Attributes/Editor/Drawers/Resources/LightGamesIcons/attack-speed-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Launcher.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Launcher.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/BaseGameProperty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/BaseGameProperty.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/GameProperties.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/GameProperties.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/RadiusGP.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/GamePropertiesByScope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/GameProperty/GamePropertiesByScope.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/LevelConfig.Editor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/LevelConfig.Editor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/LevelsConfigsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/LevelsConfigsManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Launcher/LauncherWorld/LauncherWorld.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Launcher/LauncherWorld/LauncherWorld.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/LevelConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameCore/Battle/Data/LevelConfig.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +83,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1dea47080084408f91f2a9a39b9b41ba15a00/bc/a38436e9/InfoBoxAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1dea47080084408f91f2a9a39b9b41ba15a00/e4/6c41da33/TitleAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1dea47080084408f91f2a9a39b9b41ba15a00/e6/6f5384af/PreviewFieldAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1dea47080084408f91f2a9a39b9b41ba15a00/ea/b4092aec/ListDrawerSettingsAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/34ec56fc58ec4b3597ef877c03bd11d117ab30/1a/15a6aa57/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3eb17ad1b1ca496fb8c17fd74f372d7629400/05/ac758a4f/GUILayoutEntry.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3eb17ad1b1ca496fb8c17fd74f372d7629400/15/83e42c98/GUIStyle.cs" root0="SKIP_HIGHLIGHTING" />
@@ -106,6 +96,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/52905e17e95b4ac5a2ea81e17255a1e47800/28/9488bfdc/Dispatcher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5980a88ae5314d4b9811fcde1734d236568bc0/1b/46d5b909/Single.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5980a88ae5314d4b9811fcde1734d236568bc0/90/ca609240/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5980a88ae5314d4b9811fcde1734d236568bc0/aa/c51fdce6/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6a5b55f2e18b419e9faedac06ac6af94817600/7b/39a005d4/EditorWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6a5b55f2e18b419e9faedac06ac6af94817600/97/831dd105/EditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6a5b55f2e18b419e9faedac06ac6af94817600/d8/2843eca4/EditorGUILayout.cs" root0="SKIP_HIGHLIGHTING" />
@@ -117,6 +108,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b2f70687fc4f409296114bd2f510cf09d3800/93/fb167c72/GUIHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b2f70687fc4f409296114bd2f510cf09d3800/c6/8f19a8d0/SirenixEditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bae255e3e08e46f7bc2fbd23dde96338158800/04/0a8eb62d/Rect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bae255e3e08e46f7bc2fbd23dde96338158800/28/b912dc45/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bae255e3e08e46f7bc2fbd23dde96338158800/6d/87865470/ILogHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bae255e3e08e46f7bc2fbd23dde96338158800/c4/2641b839/Debug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d6232873609549b8a045fa15811a5bd346a800/12/86ff2eff/Exception.cs" root0="SKIP_HIGHLIGHTING" />
@@ -142,7 +134,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "XThreadsFramesViewSplitterKey": "0.39427128",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -200,7 +192,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677501422695</updated>
       <workItem from="1677501425310" duration="2340000" />
-      <workItem from="1677503908206" duration="50288000" />
+      <workItem from="1677503908206" duration="69807000" />
     </task>
     <servers />
   </component>
