@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEditor;
 
@@ -13,10 +14,13 @@ namespace Battle.Data
         private string entityName;
         private int currentLevel;
         private bool levelParsed;
-        private bool isError;
+        private bool isFirstLevelError;
+        private bool hasScopeError;
+        private bool hasPropTypeError;
         private bool isChangedLevels;
-        private bool isChangedEditorLevels;
-        public bool IsInvalid => string.IsNullOrEmpty(entityName) || !levelParsed;
+        private string[] splitedName;
+        public bool IsInvalidName => string.IsNullOrEmpty(entityName) || !levelParsed;
+        public bool IsInvalid => isFirstLevelError || hasScopeError || hasPropTypeError || IsInvalidName;
         public int CurrentLevel => currentLevel;
         public string EntityName => entityName;
 
@@ -28,7 +32,7 @@ namespace Battle.Data
                 isSubscribed = true;
             }
 
-            if (IsInvalid)
+            if (IsInvalidName)
             {
                 return;
             }
@@ -49,18 +53,22 @@ namespace Battle.Data
         [OnInspectorInit]
         private void OnInspectorInit()
         {
-            var split = name.Split('_');
-            var configEntityName = split[0];
+            splitedName = name.Split('_');
+            var configEntityName = splitedName[0];
             entityName = GameScopes.IsEntityName(configEntityName) ? configEntityName : null;
-            levelParsed = int.TryParse(split[^1], out currentLevel);
+            levelParsed = int.TryParse(splitedName[^1], out currentLevel);
             
-            if (IsInvalid)
+            if (IsInvalidName)
             {
                 return;
             }
 
+            for (int i = 0; i < UpgradesByScope.Count; i++)
+            {
+                UpgradesByScope[i].ScopeChanged += OnScopeChanged;
+            }
+
             isInited = true;
-            TryUpdateChangedLevels();
         }
 
         private void TryUpdateChangedLevels()
@@ -80,14 +88,6 @@ namespace Battle.Data
                 changedLevels.Add(entityName, currentLevel);
                 isChangedLevels = true;
             }
-            
-            if (!EditorLevels.Config.LevelsNames.Contains(name))
-            {
-                EditorLevels.Config.LevelsNames.Add(name);
-                changedLevels.TryAdd(entityName, currentLevel);
-                isChangedLevels = true;
-                isChangedEditorLevels = true;
-            }
         }
 
         [OnInspectorDispose]
@@ -99,34 +99,32 @@ namespace Battle.Data
                 ChangedLevels.Save();
                 AssetDatabase.Refresh();
             }
+            
+            OnScopeChanged();
 
-            if (isChangedEditorLevels)
+            for (int i = 0; i < UpgradesByScope.Count; i++)
             {
-                isChangedEditorLevels = false;
-                EditorLevels.Save();
-                AssetDatabase.Refresh();
+                UpgradesByScope[i].ScopeChanged -= OnScopeChanged;
             }
         }
 
         [OnInspectorGUI]
         private void OnInspectorGUI()
         {
-            if (IsInvalid)
+            if (IsInvalidName)
             {
                 return;
             }
-            
-            var splitedName = name.Split('_');
 
-            if (splitedName[^1] == "1")
+            if (currentLevel == 1)
             {
                 if (UpgradesByScope.Count > 0)
                 {
                     var upgrade = UpgradesByScope[0];
-                    isError = !GameScopes.TryGetEntityNameFromScope(upgrade.Scope, out var entityName) ||
+                    isFirstLevelError = !GameScopes.TryGetEntityNameFromScope(upgrade.Scope, out var entityName) ||
                         entityName != splitedName[0];
 
-                    if (!isError)
+                    if (!isFirstLevelError)
                     {
                         var props = upgrade.Properties;
 
@@ -138,7 +136,7 @@ namespace Battle.Data
 
                                 if (prop.Fixed == 0)
                                 {
-                                    isError = true;
+                                    isFirstLevelError = true;
 
                                     break;
                                 }
@@ -146,29 +144,42 @@ namespace Battle.Data
                         }
                         else
                         {
-                            isError = true;
+                            isFirstLevelError = true;
                         }
                     }
                 }
                 else
                 {
-                    isError = true;
+                    isFirstLevelError = true;
                 }
             }
-            
+        }
+
+        private void OnScopeChanged()
+        {
+            hasScopeError = false;
+            hasPropTypeError = false;
             var scopeHashSet = new HashSet<string>();
+            var propTypeHashSet = new HashSet<Type>();
+            
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
                 var step = UpgradesByScope[i];
+                propTypeHashSet.Clear();
                 var scope = step.Scope;
                 var isEntity = GameScopes.TryGetEntityNameFromScope(scope, out var entityName);
-                step.isError = !scopeHashSet.Add(scope);
+                var error = !scopeHashSet.Add(scope);
+                step.isError = error;
+                hasScopeError |= error;
                 var props = step.Properties;
                 step.entityName = entityName;
 
                 for (int j = 0; j < props.Count; j++)
                 {
                     var prop = props[j];
+                    var propError = !propTypeHashSet.Add(prop.GetType());
+                    prop.isError = propError;
+                    hasPropTypeError |= propError;
                     var needHideFixed = !isEntity;
 
                     if (needHideFixed)
@@ -179,13 +190,13 @@ namespace Battle.Data
                     prop.needHideFixed = needHideFixed;
                 }
             }
-
+            
             if (UpgradesByScope.Count > 1)
             {
                 UpgradesByScope.Sort((a, b) =>
                 {
-                    var bLength = b.Scope.Split('/').Length;
-                    var aLength = a.Scope.Split('/').Length;
+                    var bLength = b.Scope.Count(t=> t == '/');
+                    var aLength = a.Scope.Count(t=> t == '/');
                     return Math.Sign(bLength - aLength);
                 });
             }

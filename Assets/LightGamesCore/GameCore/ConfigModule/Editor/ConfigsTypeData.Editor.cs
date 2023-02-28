@@ -61,13 +61,21 @@ namespace Core.ConfigModule
         static void SetAsDefault()
         {
             var assetPath = AssetDatabase.GetAssetPath(selectedTextAsset);
-            var path = Regex.Replace(assetPath, SaveData, DefaultSaveData);
-            FileInfo file = new FileInfo(path);
-            file.Directory.Create();
 
-            File.WriteAllText(file.FullName, selectedTextAsset.text);
+            if (!assetPath.Contains("/Resources/"))
+            {
+                var path = Regex.Replace(assetPath, SaveData, DefaultSaveData);
+                FileInfo file = new FileInfo(path);
+                file.Directory.Create();
 
-            AssetDatabase.Refresh();
+                File.WriteAllText(file.FullName, selectedTextAsset.text);
+
+                AssetDatabase.Refresh();
+            }
+            else
+            {
+                Debug.Log($"Config {selectedTextAsset.name} is already in Resources folder");
+            }
         }
         
         [MenuItem("Assets/Core/ConfigModule/Set As Default", true)]

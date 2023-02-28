@@ -1,6 +1,5 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
-using System.IO;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEditor;
@@ -43,9 +42,6 @@ namespace Battle.Data
         {
             isInited = true;
             levelsFolderPath = AssetDatabase.GetAssetPath(levelsFolder);
-            var editorLevels = EditorLevels.Config.LevelsNames;
-            
-            editorLevels.Clear();
             levelsContainers.Clear();
             paths.Clear();
             
@@ -55,36 +51,41 @@ namespace Battle.Data
             for (int i = 0; i < paths.Count; i++)
             {
                 var path = paths[i];
-                var guids = AssetDatabase.FindAssets(string.Empty, new[] {path});
-                var levelsContainer = new LevelsContainer();
+                var guids = AssetDatabase.FindAssets("t: LevelConfig", new[] {path});
 
-                var lastLevel = 0;
-                
-                for (int j = 0; j < guids.Length; j++)
+                if (guids.Length > 0)
                 {
-                    var levelConfig = AssetDatabase.LoadAssetAtPath<LevelConfig>(AssetDatabase.GUIDToAssetPath(guids[j]));
-                    hasError |= levelConfig.IsInvalid;
-                    hasError |= levelsContainer.isMissedLevel;
+                    var levelsContainer = new LevelsContainer();
+                    var lastLevel = 0;
 
-                    if (!hasError)
+                    for (int j = 0; j < guids.Length; j++)
                     {
-                        var currentLevel = levelConfig.CurrentLevel;
+                        var levelConfig = AssetDatabase.LoadAssetAtPath<LevelConfig>(AssetDatabase.GUIDToAssetPath(guids[j]));
+                        hasError |= levelConfig.IsInvalid;
+                        hasError |= levelsContainer.isMissedLevel;
+                    
                         levelsContainer.entityName = levelConfig.EntityName;
-                        levelsContainer.isMissedLevel = currentLevel - lastLevel > 1;
-                        levelsContainer.missedLevel = currentLevel - 1;
+                        var currentLevel = levelConfig.CurrentLevel;
+
+                        if (currentLevel - lastLevel > 1)
+                        {
+                            levelsContainer.isMissedLevel = currentLevel - lastLevel > 1;
+                            levelsContainer.missedLevel = currentLevel - 1;
+                        }
+
+                        if (levelConfig.IsInvalid)
+                        {
+                            levelsContainer.isLevelError |= levelConfig.IsInvalid;
+                            levelsContainer.levelErrorName = levelConfig.name;
+                        }
+
                         lastLevel = currentLevel;
 
                         levelsContainer.levels.Add(levelConfig);
-                        editorLevels.Add(levelConfig.name);
-                        levelsContainers.Add(levelsContainer);
                     }
+                
+                    levelsContainers.Add(levelsContainer);
                 }
-            }
-
-            if (!hasError)
-            {
-                EditorLevels.Save();
-                AssetDatabase.Refresh();
             }
         }
 

@@ -9,8 +9,8 @@ namespace Battle.Data
     [CreateAssetMenu(fileName = nameof(LevelConfig), menuName = "Battle/" + nameof(LevelConfig), order = 0)]
     public partial class LevelConfig : SerializedScriptableObject
     {
-        [InfoBox("First level should contains entity scope with fixed value at all properties", InfoMessageType.Error, "$" + nameof(isError))]
-        [InfoBox("Config is invalid. Check config name.", InfoMessageType.Error, "$" + nameof(IsInvalid))]
+        [InfoBox("First level should contains entity scope with fixed value at all properties", InfoMessageType.Error, "$" + nameof(isFirstLevelError))]
+        [InfoBox("Config is invalid. Check config name.", InfoMessageType.Error, "$" + nameof(IsInvalidName))]
         [OdinSerialize, TableList] public List<GamePropertiesByScope> UpgradesByScope { get; set; } = new();
         [OdinSerialize] public List<BaseWallet> Price { get; set; } = new();
 

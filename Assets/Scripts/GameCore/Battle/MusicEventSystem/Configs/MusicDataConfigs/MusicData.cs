@@ -17,7 +17,6 @@ namespace MusicEventSystem.Configs
         public static NoteMusicData<ShortNoteTrackData>.TracksData ShortTrackData => Config.shortNoteTrack.tracksData;
 
         protected override string FileName => musicName;
-        protected override string FolderName => "MusicData";
 
         public static string MusicName
         {

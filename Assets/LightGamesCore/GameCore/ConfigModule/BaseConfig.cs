@@ -61,7 +61,8 @@ namespace Core.ConfigModule
         public static T Config => getter();
 
         protected internal abstract string FileName { get; set; }
-        protected virtual string FolderName => GetType().Name;
+        protected virtual string DefaultFolderName => SaveData;
+        protected virtual string FolderName => string.Empty;
         protected virtual bool NeedAutoSave => true;
 
         protected virtual void SetDefault(){}
@@ -86,8 +87,7 @@ namespace Core.ConfigModule
             
             var fullFileName = instance.FullFileName;
             string json = string.Empty;
-            
-            
+
             if (File.Exists(fullFileName))
             {
                 json = File.ReadAllText(fullFileName);
@@ -132,7 +132,7 @@ namespace Core.ConfigModule
             Internal_Set(instance, folderPath, fullFileName);
         }
 #endif
-
+    
         public static void Set(T config)
         {
             Internal_Set(config, config.FolderPath, config.FullFileName);
@@ -184,14 +184,14 @@ namespace Core.ConfigModule
 
         internal static void Deserialize(string json)
         {
-            Debug.Log($"[{typeof(T).Name}] Deserialize");
+            Debug.Log($"[{typeof(T).Name}] Deserialize (Load)");
             instance = JsonConvert.DeserializeObject<T>(json, instance.Settings);
             getter = GetInstance;
         }
 
         private static string Serialize(T config)
         {
-            Debug.Log($"[{typeof(T).Name}] Serialize");
+            Debug.Log($"[{typeof(T).Name}] Serialize (Save)");
             var json = string.Empty;
             Serialize_Editor(config, ref json);
             Serialize_Runtime(config, ref json);

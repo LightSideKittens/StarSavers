@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Firebase.Extensions;
 using Firebase.Storage;
 using Newtonsoft.Json;
@@ -46,13 +47,13 @@ namespace Core.ConfigModule
             {
                 if (task.IsCompleted && task.IsCompletedSuccessfully)
                 {
-                    Debug.Log($"[{typeof(T).Name}] Push onSuccess");
-                    onSuccess?.Invoke();
+                    Debug.Log($"[{typeof(T).Name}] Push Success!"); ;
+                    Invoke(onSuccess);
                 }
                 else if (task.IsFaulted || task.IsCanceled)
                 {
-                    Debug.Log($"[{typeof(T).Name}] Push onError {task.Exception.Message}");
-                    onError?.Invoke();
+                    Debug.LogError($"[{typeof(T).Name}] Push Error: {task.Exception.Message}");
+                    Invoke(onError);
                 }
             });
         }
@@ -83,22 +84,25 @@ namespace Core.ConfigModule
 
                 if (localLevel != remoteVersions[fileName])
                 {
+                    Debug.Log($"[{typeof(T).Name}] Different Versions! Local: {localLevel} | Remote: {remoteVersions[fileName]}");
                     Internal_Fetch<T>(storageRef, () =>
                     {
                         localVersions[fileName] = remoteVersions[fileName];
-                        onSuccess?.Invoke();
+
+                        
                     }, onError);
                 }
                 else
                 {
-                    onSuccess?.Invoke();
+                    Debug.Log($"[{typeof(T).Name}] Versions is identical! Version: {localLevel}");
+                    Invoke(onSuccess);
                 }
             }
         }
 
         private static void Internal_Fetch<T1>(StorageReference storageRef, Action onSuccess = null, Action onError = null) where T1 : BaseConfig<T1>, new()
         {
-            Debug.Log($"[{typeof(T1).Name}] Fetch {storageRef.Path}");
+            Debug.Log($"[{typeof(T1).Name}] Fetch! Path: {storageRef.Path}");
             
             storageRef.GetBytesAsync(MaxAllowedSize).ContinueWithOnMainThread(task =>
             {
@@ -108,21 +112,27 @@ namespace Core.ConfigModule
                     
                     if (bytes == null)
                     {
-                        Debug.Log($"[{typeof(T1).Name}] Fetch onError {task.Exception.Message}");
-                        onError?.Invoke();
+                        Debug.LogError($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
+                        Invoke(onError);
                         return;
                     }
                     
                     BaseConfig<T1>.Deserialize(Encoding.UTF8.GetString(bytes));
-                    Debug.Log($"[{typeof(T1).Name}] Fetch onSuccess");
-                    onSuccess?.Invoke();
+                    Debug.Log($"[{typeof(T1).Name}] Fetch Success!");
+                    Invoke(onSuccess);
                 }
                 else if (task.IsFaulted || task.IsCanceled)
                 {
-                    Debug.Log($"[{typeof(T1).Name}] Fetch onError {task.Exception.Message}");
-                    onError?.Invoke();
+                    Debug.LogError($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
+                    Invoke(onError);
                 }
             });
+        }
+
+        private static void Invoke(Action action)
+        {
+            try { action?.Invoke(); }
+            catch (Exception e) { Debug.LogException(e); }
         }
     }
 }

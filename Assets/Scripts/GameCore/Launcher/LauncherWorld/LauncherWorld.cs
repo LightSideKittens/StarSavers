@@ -16,7 +16,6 @@ namespace BeatRoyale.Launcher
     {
         [ColoredField, SerializeField] private BackgroundAnimationData backgroundData;
         [SerializeField] private LevelsConfigsManager levelsConfigsManager;
-        private readonly Dictionary<string, (LevelConfig[], Dictionary<Type, float>)> levels = new();
 
         protected override void Awake()
         {
@@ -44,15 +43,16 @@ namespace BeatRoyale.Launcher
         {
             levelsConfigsManager.Init();
             LevelUpgraded += LogAllProperties;
+            UpgradeLevel("Dumbledore", 1);
             UpgradeLevel("Dumbledore", 2);
             UpgradeLevel("Dumbledore", 3);
             UpgradeLevel("Raccoon", 1);
             UpgradeLevel("Raccoon", 2);
             UpgradeLevel("Raccoon", 3);
-            UpgradeLevel("Witch", 3);
-            UpgradeLevel("Witch", 1);
-            UpgradeLevel("Witch", 2);
-            UpgradeLevel("Witch", 1);
+            UpgradeLevel("Valkyrie", 3);
+            UpgradeLevel("Valkyrie", 1);
+            UpgradeLevel("Valkyrie", 2);
+            UpgradeLevel("Madina", 1);
             UpgradeLevel("WrongEntitiesScope", 1);
         }
 

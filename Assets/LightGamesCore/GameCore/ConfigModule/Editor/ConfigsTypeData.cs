@@ -9,7 +9,7 @@ namespace Core.ConfigModule
 {
     public partial class ConfigsTypeData : JsonBaseConfigData<ConfigsTypeData>
     {
-        protected override string FolderName => Path.Combine("EditorConfigs", GetType().Name);
+        protected override string DefaultFolderName => Path.Combine("EditorConfigs", GetType().Name);
         [JsonProperty] private readonly HashSet<string> paths = new HashSet<string>();
         private static TextAsset selectedTextAsset;
         private static readonly Dictionary<string, Action> loadOnNextAccessActions = new Dictionary<string, Action>();

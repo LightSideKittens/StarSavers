@@ -42,7 +42,7 @@ namespace Core.ConfigModule
         
         private string GetFolderPath(string dataPath)
         {
-            return Path.Combine(dataPath, Configs, SaveData, FolderName);
+            return Path.Combine(dataPath, Configs, DefaultFolderName, FolderName);
         }
     }
 }
