@@ -16,11 +16,11 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 2800000, guid: 97e053703dd49684889d5a1e4fd1af82, type: 3}
-    - {fileID: 2800000, guid: cdfdd92b1dad42c419bf5e322f93c9c8, type: 3}
     - {fileID: 2800000, guid: dee58a0f3e984a746b57098fe901de39, type: 3}
+    - {fileID: 2800000, guid: cdfdd92b1dad42c419bf5e322f93c9c8, type: 3}
     - {fileID: 2800000, guid: c292da2c4d83bdf45b0a3542a0453ce6, type: 3}
     - {fileID: 2800000, guid: 180f0df1cba597941879224dd724fe64, type: 3}
+    - {fileID: 2800000, guid: 97e053703dd49684889d5a1e4fd1af82, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -38,7 +38,7 @@ MonoBehaviour:
       Data: 1|Battle.Data.GameProperty.GamePropertiesByScope, GameCore.Battle
     - Name: <Scope>k__BackingField
       Entry: 1
-      Data: Global/Allies/Light/Melee/Knight
+      Data: Global/Allies/Light/Melee/Cloudy
     - Name: Properties
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[Battle.Data.GameProperty.BaseGameProperty,
@@ -48,25 +48,28 @@ MonoBehaviour:
       Data: 5
     - Name: 
       Entry: 7
-      Data: 3|Battle.Data.GameProperty.AttackSpeedGP, GameCore.Battle
+      Data: 3|Battle.Data.GameProperty.HealthGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 0
-    - Name: scope
-      Entry: 6
-      Data: 
     - Name: value
       Entry: 4
-      Data: 1
+      Data: 190.36
     - Name: percent
-      Entry: 4
-      Data: 0
-    - Name: needHideFixed
-      Entry: 5
-      Data: false
+      Entry: 3
+      Data: 63
     - Name: isError
       Entry: 5
       Data: false
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: index
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -76,93 +79,105 @@ MonoBehaviour:
     - Name: icon
       Entry: 10
       Data: 1
-    - Name: scope
-      Entry: 6
-      Data: 
     - Name: value
       Entry: 4
-      Data: 1
+      Data: 123
     - Name: percent
-      Entry: 4
-      Data: 0
-    - Name: needHideFixed
-      Entry: 5
-      Data: false
+      Entry: 3
+      Data: 24
     - Name: isError
       Entry: 5
       Data: false
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: index
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 5|Battle.Data.GameProperty.HealthGP, GameCore.Battle
+      Data: 5|Battle.Data.GameProperty.RadiusGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 2
-    - Name: scope
-      Entry: 6
-      Data: 
     - Name: value
       Entry: 4
-      Data: 1
+      Data: 17
     - Name: percent
-      Entry: 4
+      Entry: 3
       Data: 0
-    - Name: needHideFixed
-      Entry: 5
-      Data: false
     - Name: isError
       Entry: 5
       Data: false
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: index
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 6|Battle.Data.GameProperty.RadiusGP, GameCore.Battle
+      Data: 6|Battle.Data.GameProperty.MoveSpeedGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 3
-    - Name: scope
-      Entry: 6
-      Data: 
     - Name: value
       Entry: 4
-      Data: 1
+      Data: 1.5
     - Name: percent
-      Entry: 4
+      Entry: 3
       Data: 0
-    - Name: needHideFixed
-      Entry: 5
-      Data: false
     - Name: isError
       Entry: 5
       Data: false
+    - Name: moveSpeed
+      Entry: 1
+      Data: Fast
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: index
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 7|Battle.Data.GameProperty.MoveSpeedGP, GameCore.Battle
+      Data: 7|Battle.Data.GameProperty.AttackSpeedGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 4
-    - Name: scope
-      Entry: 6
-      Data: 
     - Name: value
       Entry: 4
       Data: 1
     - Name: percent
-      Entry: 4
-      Data: 0
-    - Name: needHideFixed
-      Entry: 5
-      Data: false
+      Entry: 3
+      Data: 79
     - Name: isError
       Entry: 5
       Data: false
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: index
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -174,7 +189,7 @@ MonoBehaviour:
       Data: 
     - Name: entityName
       Entry: 1
-      Data: Knight
+      Data: Cloudy
     - Name: isError
       Entry: 5
       Data: false
@@ -193,7 +208,16 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 9|BaseCurrency`1+Wallet[[Coins, GameCore.Common]], GameCore.CurrencySystem
+    - Name: value
+      Entry: 3
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
