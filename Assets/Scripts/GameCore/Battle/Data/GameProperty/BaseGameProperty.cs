@@ -41,7 +41,9 @@ namespace Battle.Data.GameProperty
         private bool IsRadius => GetType() == typeof(RadiusGP) || GetType() == typeof(AreaDamageGP);
         private bool IsMoveSpeed => GetType() == typeof(MoveSpeedGP);
         private bool IsAttackSpeed => GetType() == typeof(AttackSpeedGP);
-        private bool NeedHidePercent => IsMoveSpeed || IsRadius || IsAttackSpeed || IsRicochet;
+        private bool IsHealth => GetType() == typeof(HealthGP);
+        private bool IsEffector => string.IsNullOrEmpty(scope) || scope.Contains("Effectors");
+        private bool NeedHidePercent => (IsMoveSpeed && !IsEffector) || IsRadius || IsAttackSpeed || IsRicochet;
         
         
 #if UNITY_EDITOR
@@ -92,7 +94,7 @@ namespace Battle.Data.GameProperty
                 evenTexture = EditorUtils.GetTextureByColor(new Color(0.17f, 0.17f, 0.18f));
             }
 
-            if (IsMoveSpeed)
+            if (IsMoveSpeed && !IsEffector)
             {
                 MoveSpeedSelector.SetValue(moveSpeed);
                 value = (decimal)MoveSpeedSelector.Speed;
@@ -117,24 +119,31 @@ namespace Battle.Data.GameProperty
             }
             else if(IsMoveSpeed && moveSpeed != null)
             {
-                EditorGUILayout.BeginHorizontal();
-                
-                EditorGUILayout.LabelField("Move Speed", GUILayoutOptions.MaxWidth(100));
-                MoveSpeedSelector.SetValue(moveSpeed);
-                
-                if (EditorGUILayout.DropdownButton(new GUIContent(MoveSpeedSelector.Value), FocusType.Passive))
+                if (IsEffector)
                 {
-                    var newValue = new MoveSpeedSelector();
-                    newValue.ShowInPopup();
-                    newValue.SelectionConfirmed += x =>
-                    {
-                        newValue.GetValue();
-                        moveSpeed = MoveSpeedSelector.Value;
-                        value = (decimal)MoveSpeedSelector.Speed;
-                    };
+                    value = EditorGUILayout.IntSlider(new GUIContent("Buff %"), (int)val, 0, 100);
                 }
+                else
+                {
+                    EditorGUILayout.BeginHorizontal();
                 
-                EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.LabelField("Move Speed", GUILayoutOptions.MaxWidth(100));
+                    MoveSpeedSelector.SetValue(moveSpeed);
+                
+                    if (EditorGUILayout.DropdownButton(new GUIContent(MoveSpeedSelector.Value), FocusType.Passive))
+                    {
+                        var newValue = new MoveSpeedSelector();
+                        newValue.ShowInPopup();
+                        newValue.SelectionConfirmed += x =>
+                        {
+                            newValue.GetValue();
+                            moveSpeed = MoveSpeedSelector.Value;
+                            value = (decimal)MoveSpeedSelector.Speed;
+                        };
+                    }
+                
+                    EditorGUILayout.EndHorizontal();
+                }
             }
             else if(IsAttackSpeed)
             {
@@ -191,8 +200,23 @@ namespace Battle.Data.GameProperty
             }
             else
             {
-                label.text = GetType().Name.Replace("GP", string.Empty);
-                value = (decimal)EditorGUILayout.FloatField(label, (float)val);
+                if (IsEffector && !IsHealth)
+                {
+                    value = EditorGUILayout.IntSlider(new GUIContent(scope.Contains("Potion") ? "Damage/Sec" : "Buff %"), (int)val, 0, 100);
+                }
+                else
+                {
+                    if (IsEffector)
+                    {
+                        label.text = "Duration";
+                    }
+                    else
+                    {
+                        label.text = GetType().Name.Replace("GP", string.Empty);
+                    }
+                    
+                    value = (decimal)EditorGUILayout.FloatField(label, (float)val);
+                }
             }
 
             return value;

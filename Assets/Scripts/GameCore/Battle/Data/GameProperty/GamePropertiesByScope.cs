@@ -21,6 +21,14 @@ namespace Battle.Data.GameProperty
         {
             typeof(RicochetGP),
         };
+        
+        private static HashSet<Type> effectorPropertyTypes = new()
+        {
+            typeof(HealthGP),
+            typeof(DamageGP),
+            typeof(RadiusGP),
+            typeof(MoveSpeedGP),
+        };
 
         [field: OnValueChanged(nameof(OnScopeChanged))]
         [field: SerializeField, VerticalGroup(nameof(Scopes)), ValueDropdown(nameof(Scopes))]
@@ -51,8 +59,12 @@ namespace Battle.Data.GameProperty
             InitAddedTypes();
             var isEntity = GameScopes.IsEntityScope(Scope);
             var notAddedTypes = Enumerable.Empty<Type>();
-            
-            if (isEntity && level == 1)
+
+            if (Scope.Contains("Effectors"))
+            {
+                notAddedTypes = notAddedTypes.Concat(GetNotAddedTypes(effectorPropertyTypes));
+            }
+            else if (isEntity && level == 1)
             {
                 notAddedTypes = notAddedTypes.Concat(GetNotAddedTypes(BaseGameProperty.IconsByType.Keys));
             }
@@ -87,6 +99,7 @@ namespace Battle.Data.GameProperty
             for (int i = 0; i < Properties.Count; i++)
             {
                 var prop = Properties[i];
+                prop.scope = Scope;
                 var type = prop.GetType();
                 var wasRemoved = false;
                 
@@ -129,7 +142,6 @@ namespace Battle.Data.GameProperty
                 for (int i = 0; i < Properties.Count; i++)
                 {
                     propsHashCodes.Add(Properties[i].GetHashCode());
-                    
                 }
             }
 
@@ -158,6 +170,7 @@ namespace Battle.Data.GameProperty
 
         private void ResolveDependencies(BaseGameProperty property)
         {
+            property.scope = Scope;
             if (property.GetType() == typeof(RicochetGP) && !addedTypes.Contains(typeof(DamageGP)))
             {
                 Properties.Add(new DamageGP());
