@@ -3,6 +3,6 @@
 [Serializable]
 public struct ValuePercent
 {
-    public float value;
+    public decimal value;
     public float percent;
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Battle.Data.GameProperty
 {
@@ -12,10 +11,15 @@ namespace Battle.Data.GameProperty
     public class GamePropertiesByScope
     {
         private static IEnumerable<string> Scopes => GameScopes.Scopes;
-        private static HashSet<Type> notEntityPropertyType = new()
+        private static HashSet<Type> notEntityPropertyTypes = new()
         {
             typeof(HealthGP),
             typeof(DamageGP),
+        };
+        
+        private static HashSet<Type> updatablePropertyTypes = new()
+        {
+            typeof(RicochetGP),
         };
 
         [field: OnValueChanged(nameof(OnScopeChanged))]
@@ -39,27 +43,34 @@ namespace Battle.Data.GameProperty
         [HideInInspector] public int level;
         [HideInInspector] public bool isMultipleIdenticalScopeError;
         [HideInInspector] public bool isEmptyScopeError;
-
+        private int previousCount;
         private bool NeedShowEntityName => !string.IsNullOrEmpty(entityName);
 
         public IEnumerable<Type> GetFilteredTypeList()
         {
             InitAddedTypes();
             var isEntity = GameScopes.IsEntityScope(Scope);
-
+            var notAddedTypes = Enumerable.Empty<Type>();
+            
             if (isEntity && level == 1)
             {
-                foreach (var type in BaseGameProperty.IconsByType.Keys)
-                {
-                    if (!addedTypes.Contains(type))
-                    {
-                        yield return type;
-                    }
-                }
+                notAddedTypes = notAddedTypes.Concat(GetNotAddedTypes(BaseGameProperty.IconsByType.Keys));
             }
             else
             {
-                foreach(var type in notEntityPropertyType)
+                notAddedTypes = notAddedTypes.Concat(GetNotAddedTypes(notEntityPropertyTypes));
+
+                if (isEntity)
+                {
+                    notAddedTypes = notAddedTypes.Concat(GetNotAddedTypes(updatablePropertyTypes));
+                }
+            }
+
+            return notAddedTypes;
+
+            IEnumerable<Type> GetNotAddedTypes(IEnumerable<Type> types)
+            {
+                foreach(var type in types)
                 {
                     if (!addedTypes.Contains(type))
                     {
@@ -81,7 +92,7 @@ namespace Battle.Data.GameProperty
                 
                 if (BaseGameProperty.IconsByType.ContainsKey(type) && level != 1)
                 {
-                    if (!notEntityPropertyType.Contains(type))
+                    if (!notEntityPropertyTypes.Contains(type))
                     {
                         Properties.Remove(prop);
                         i--;
@@ -95,18 +106,61 @@ namespace Battle.Data.GameProperty
                 }
             }
         }
-        
-        public void OnGUI()
+
+        private void GetRecentlyChangedProperty()
         {
+            var wasReanalyzed = false;
             if (propsHashCodes != null)
             {
                 for (int i = 0; i < Properties.Count; i++)
                 {
-                    if (!propsHashCodes.Contains(Properties[i].GetHashCode()))
+                    var prop = Properties[i];
+                    
+                    if (!propsHashCodes.Contains(prop.GetHashCode()))
                     {
-                        LevelConfig.ReanalyzeScope(this);
+                        wasReanalyzed = true;
+                        break;
                     }
                 }
+            }
+            else
+            {
+                propsHashCodes = new HashSet<int>();
+                for (int i = 0; i < Properties.Count; i++)
+                {
+                    propsHashCodes.Add(Properties[i].GetHashCode());
+                    
+                }
+            }
+
+            if (wasReanalyzed)
+            {
+                if (Properties.Count == previousCount)
+                {
+                    LevelConfig.ReanalyzeScope(this);
+                }
+
+                propsHashCodes.Clear();
+                for (int i = 0; i < Properties.Count; i++)
+                {
+                    propsHashCodes.Add(Properties[i].GetHashCode());
+                    ResolveDependencies(Properties[i]);
+                }
+            }
+
+            previousCount = Properties.Count;
+        }
+        
+        public void OnGUI()
+        {
+            GetRecentlyChangedProperty();
+        }
+
+        private void ResolveDependencies(BaseGameProperty property)
+        {
+            if (property.GetType() == typeof(RicochetGP) && !addedTypes.Contains(typeof(DamageGP)))
+            {
+                Properties.Add(new DamageGP());
             }
         }
 
@@ -121,6 +175,12 @@ namespace Battle.Data.GameProperty
         
         private void OnScopeChanged()
         {
+            InitAddedTypes();
+            for (int i = 0; i < Properties.Count; i++)
+            {
+                ResolveDependencies(Properties[i]);
+            }
+            
             ScopeChanged?.Invoke();
         }
 #endif

@@ -129,7 +129,7 @@ namespace Battle.Data
 
                         if (propByType.TryGetValue(type, out var valuePercent))
                         {
-                            valuePercent.value += prop.value;
+                            valuePercent.value += prop;
                             valuePercent.percent += prop.percent;
                             propByType[type] = valuePercent;
                         }

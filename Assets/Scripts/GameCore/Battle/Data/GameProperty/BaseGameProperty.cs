@@ -21,16 +21,27 @@ namespace Battle.Data.GameProperty
         
         [HideIf("$" + nameof(needHideFixed))]
         [CustomValueDrawer("FixedDrawer")]
-        public float value;
+        public decimal value;
         
         [HideIf("$" + nameof(NeedHidePercent))]
         [PropertyRange(0, 100)]
         public int percent;
+
+        public static decimal operator +(decimal a, BaseGameProperty b)
+        {
+            return b.ComputeValue(a);
+        }
         
+        public virtual decimal ComputeValue(decimal val)
+        {
+            return value + val;
+        }
+        
+        private bool IsRicochet => GetType() == typeof(RicochetGP);
         private bool IsRadius => GetType() == typeof(RadiusGP) || GetType() == typeof(AreaDamageGP);
         private bool IsMoveSpeed => GetType() == typeof(MoveSpeedGP);
         private bool IsAttackSpeed => GetType() == typeof(AttackSpeedGP);
-        private bool NeedHidePercent => IsMoveSpeed || IsRadius || IsAttackSpeed;
+        private bool NeedHidePercent => IsMoveSpeed || IsRadius || IsAttackSpeed || IsRicochet;
         
         
 #if UNITY_EDITOR
@@ -44,6 +55,7 @@ namespace Battle.Data.GameProperty
             {typeof(MoveSpeedGP), "speed-icon"},
             {typeof(RadiusGP), "radius-icon"},
             {typeof(AreaDamageGP), "area-damage-icon"},
+            {typeof(RicochetGP), "ricochet-icon"},
         };
         
         [HideInInspector] public string moveSpeed = "Slow";
@@ -83,19 +95,25 @@ namespace Battle.Data.GameProperty
             if (IsMoveSpeed)
             {
                 MoveSpeedSelector.SetValue(moveSpeed);
-                value = MoveSpeedSelector.Speed;
+                value = (decimal)MoveSpeedSelector.Speed;
             }
         }
 
-        private float FixedDrawer(float val, GUIContent label, Func<GUIContent, bool> callNextDrawer)
+        private decimal DrawRadiusSlider(decimal val, GUIContent label)
+        {
+            var newValue = EditorGUILayout.Slider(label, (float)val, 0.5f, 16);
+            var roundValue = Mathf.Round(newValue * 2);
+            roundValue /= 2;
+
+            return (decimal)roundValue;
+        }
+
+        private decimal FixedDrawer(decimal val, GUIContent label, Func<GUIContent, bool> callNextDrawer)
         {
             if (IsRadius)
             {
                 label.text = "Radius";
-                var newValue = EditorGUILayout.Slider(label, val, 0.5f, 16);
-                var roundValue = Mathf.Round(newValue * 2);
-                roundValue /= 2;
-                value = roundValue;
+                value = DrawRadiusSlider(val, label);
             }
             else if(IsMoveSpeed && moveSpeed != null)
             {
@@ -112,7 +130,7 @@ namespace Battle.Data.GameProperty
                     {
                         newValue.GetValue();
                         moveSpeed = MoveSpeedSelector.Value;
-                        value = MoveSpeedSelector.Speed;
+                        value = (decimal)MoveSpeedSelector.Speed;
                     };
                 }
                 
@@ -145,10 +163,36 @@ namespace Battle.Data.GameProperty
                 
                 value = Convert.ToInt32(newBinary, 2);
             }
+            else if(IsRicochet)
+            {
+                if (value < 1_000_000_00)
+                {
+                    value = 1_000_000_00;
+                }
+                
+                var binary = (int)value;
+                var percentValue = binary / 100000 % 1000;
+                var radius = (binary / 100 % 1000) / 10m;
+                var ricochet = binary % 100;
+
+                EditorGUILayout.BeginVertical();
+
+                percentValue = EditorGUILayout.IntSlider(new GUIContent("Decrease %"), percentValue, 0, 100);
+                radius = DrawRadiusSlider(radius, new GUIContent("Radius"));
+                ricochet = EditorGUILayout.IntSlider(new GUIContent("Ricochet"), ricochet, 1, 10);
+                
+                EditorGUILayout.EndVertical();
+
+                var newBinary = 1_000_000_00;
+                newBinary += percentValue * 100000;
+                newBinary += ((int)(radius * 10)) * 100;
+                newBinary += ricochet;
+                value = newBinary;
+            }
             else
             {
                 label.text = GetType().Name.Replace("GP", string.Empty);
-                value = EditorGUILayout.FloatField(label, val);
+                value = (decimal)EditorGUILayout.FloatField(label, (float)val);
             }
 
             return value;
