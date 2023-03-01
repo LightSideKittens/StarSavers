@@ -27,7 +27,7 @@ namespace Battle.Data.GameProperty
         [PropertyRange(0, 100)]
         public int percent;
         
-        private bool IsRadius => GetType() == typeof(RadiusGP);
+        private bool IsRadius => GetType() == typeof(RadiusGP) || GetType() == typeof(AreaDamageGP);
         private bool IsMoveSpeed => GetType() == typeof(MoveSpeedGP);
         private bool IsAttackSpeed => GetType() == typeof(AttackSpeedGP);
         private bool NeedHidePercent => IsMoveSpeed || IsRadius || IsAttackSpeed;
@@ -43,6 +43,7 @@ namespace Battle.Data.GameProperty
             {typeof(AttackSpeedGP), "attack-speed-icon"},
             {typeof(MoveSpeedGP), "speed-icon"},
             {typeof(RadiusGP), "radius-icon"},
+            {typeof(AreaDamageGP), "area-damage-icon"},
         };
         
         [HideInInspector] public string moveSpeed = "Slow";
@@ -90,7 +91,8 @@ namespace Battle.Data.GameProperty
         {
             if (IsRadius)
             {
-                var newValue = EditorGUILayout.Slider(label, val, 0.5f, 20);
+                label.text = "Radius";
+                var newValue = EditorGUILayout.Slider(label, val, 0.5f, 16);
                 var roundValue = Mathf.Round(newValue * 2);
                 roundValue /= 2;
                 value = roundValue;
@@ -133,7 +135,7 @@ namespace Battle.Data.GameProperty
                 }
                 EditorGUILayout.EndHorizontal();
 
-                if (GUILayout.Button("Add"))
+                if (GUILayout.Button($"Add | ({value})"))
                 {
                     if (newBinary.Length < 8)
                     {
@@ -145,6 +147,7 @@ namespace Battle.Data.GameProperty
             }
             else
             {
+                label.text = GetType().Name.Replace("GP", string.Empty);
                 value = EditorGUILayout.FloatField(label, val);
             }
 

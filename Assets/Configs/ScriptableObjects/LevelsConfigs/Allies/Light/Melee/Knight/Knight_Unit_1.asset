@@ -16,11 +16,11 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 2800000, guid: cdfdd92b1dad42c419bf5e322f93c9c8, type: 3}
     - {fileID: 2800000, guid: dee58a0f3e984a746b57098fe901de39, type: 3}
+    - {fileID: 2800000, guid: cdfdd92b1dad42c419bf5e322f93c9c8, type: 3}
+    - {fileID: 2800000, guid: 97e053703dd49684889d5a1e4fd1af82, type: 3}
     - {fileID: 2800000, guid: c292da2c4d83bdf45b0a3542a0453ce6, type: 3}
     - {fileID: 2800000, guid: 180f0df1cba597941879224dd724fe64, type: 3}
-    - {fileID: 2800000, guid: 97e053703dd49684889d5a1e4fd1af82, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -48,19 +48,19 @@ MonoBehaviour:
       Data: 5
     - Name: 
       Entry: 7
-      Data: 3|Battle.Data.GameProperty.DamageGP, GameCore.Battle
+      Data: 3|Battle.Data.GameProperty.HealthGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 0
     - Name: value
       Entry: 4
-      Data: 1.6
+      Data: 690
     - Name: percent
       Entry: 3
       Data: 0
     - Name: moveSpeed
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Slow
     - Name: needHideFixed
       Entry: 5
       Data: false
@@ -69,19 +69,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|Battle.Data.GameProperty.HealthGP, GameCore.Battle
+      Data: 4|Battle.Data.GameProperty.DamageGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 1
     - Name: value
       Entry: 4
-      Data: 0.33
+      Data: 79
     - Name: percent
       Entry: 3
       Data: 0
     - Name: moveSpeed
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Slow
     - Name: needHideFixed
       Entry: 5
       Data: false
@@ -90,19 +90,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 5|Battle.Data.GameProperty.RadiusGP, GameCore.Battle
+      Data: 5|Battle.Data.GameProperty.AttackSpeedGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 2
     - Name: value
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: percent
       Entry: 3
       Data: 0
     - Name: moveSpeed
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Slow
     - Name: needHideFixed
       Entry: 5
       Data: false
@@ -111,10 +111,31 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 6|Battle.Data.GameProperty.MoveSpeedGP, GameCore.Battle
+      Data: 6|Battle.Data.GameProperty.RadiusGP, GameCore.Battle
     - Name: icon
       Entry: 10
       Data: 3
+    - Name: value
+      Entry: 4
+      Data: 4.5
+    - Name: percent
+      Entry: 3
+      Data: 0
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|Battle.Data.GameProperty.MoveSpeedGP, GameCore.Battle
+    - Name: icon
+      Entry: 10
+      Data: 4
     - Name: value
       Entry: 4
       Data: 1
@@ -124,27 +145,6 @@ MonoBehaviour:
     - Name: moveSpeed
       Entry: 1
       Data: Normal
-    - Name: needHideFixed
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|Battle.Data.GameProperty.AttackSpeedGP, GameCore.Battle
-    - Name: icon
-      Entry: 10
-      Data: 4
-    - Name: value
-      Entry: 4
-      Data: 160
-    - Name: percent
-      Entry: 3
-      Data: 0
-    - Name: moveSpeed
-      Entry: 1
-      Data: Slow
     - Name: needHideFixed
       Entry: 5
       Data: false

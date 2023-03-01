@@ -9,9 +9,9 @@ namespace Battle.Data
 {
     public partial class LevelsConfigsManager
     {
-        [ShowInInspector] private Object levelsFolder;
-        [ShowInInspector] private List<string> paths = new();
+        private readonly List<string> paths = new();
         private string levelsFolderPath;
+        private string assetPath;
         private bool isInited;
         
         [OnInspectorInit]
@@ -31,9 +31,10 @@ namespace Battle.Data
         {
             if (hasError)
             {
-                if (levelsFolder != null && !isInited)
+                if (!isInited)
                 {
                     Editor_Init();
+                    Save();
                 }
             }
         }
@@ -41,7 +42,8 @@ namespace Battle.Data
         private void Editor_Init()
         {
             isInited = true;
-            levelsFolderPath = AssetDatabase.GetAssetPath(levelsFolder);
+            assetPath = AssetDatabase.GetAssetPath(this);
+            levelsFolderPath = assetPath.Replace($"/{name}.asset", string.Empty);
             levelsContainers.Clear();
             paths.Clear();
             
@@ -87,6 +89,11 @@ namespace Battle.Data
                     levelsContainers.Add(levelsContainer);
                 }
             }
+        }
+
+        private void Save()
+        {
+            AssetDatabase.ForceReserializeAssets(new []{assetPath});
         }
 
         private void InitFolders()

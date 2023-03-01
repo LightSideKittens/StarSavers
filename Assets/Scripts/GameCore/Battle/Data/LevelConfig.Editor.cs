@@ -20,11 +20,14 @@ namespace Battle.Data
         private bool isSubscribed;
         private bool isChangedLevels;
         private string[] splitedName;
+        private string configName;
         public bool IsInvalidName => string.IsNullOrEmpty(entityName) || currentLevel == 0;
         public bool IsInvalid => isFirstLevelError || hasScopeError || hasEmptyScopeError || IsInvalidName;
 
         private void OnValidate()
         {
+            TryInit();
+            
             if (!isSubscribed)
             {
                 AssemblyReloadEvents.beforeAssemblyReload += OnBeforeAssemblyReload;
@@ -49,13 +52,27 @@ namespace Battle.Data
             isSubscribed = false;
         }
 
-        [OnInspectorInit]
-        private void OnInspectorInit()
+        private void TryInit()
+        {
+            if (splitedName == null || configName != name)
+            {
+                OnInspectorInit();
+            }
+        }
+
+        private void Init()
         {
             splitedName = name.Split('_');
+            configName = name;
             var configEntityName = splitedName[0];
             entityName = GameScopes.IsEntityName(configEntityName) ? configEntityName : null;
             int.TryParse(splitedName[^1], out currentLevel);
+        }
+
+        [OnInspectorInit]
+        private void OnInspectorInit()
+        {
+            Init();
             
             if (IsInvalidName)
             {
@@ -79,7 +96,6 @@ namespace Battle.Data
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
                 UpgradesByScope[i].OnGUI();
-                UpgradesByScope[i].level = currentLevel;
             }
         }
         
@@ -163,6 +179,7 @@ namespace Battle.Data
         {
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
+                UpgradesByScope[i].level = currentLevel;
                 UpgradesByScope[i].ScopeChanged -= OnScopeChanged;
                 UpgradesByScope[i].ScopeChanged += OnScopeChanged;
             }

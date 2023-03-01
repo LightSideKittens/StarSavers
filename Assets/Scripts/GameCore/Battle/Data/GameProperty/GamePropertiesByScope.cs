@@ -12,7 +12,7 @@ namespace Battle.Data.GameProperty
     public class GamePropertiesByScope
     {
         private static IEnumerable<string> Scopes => GameScopes.Scopes;
-        private static List<Type> notEntityPropertyType = new()
+        private static HashSet<Type> notEntityPropertyType = new()
         {
             typeof(HealthGP),
             typeof(DamageGP),
@@ -59,9 +59,8 @@ namespace Battle.Data.GameProperty
             }
             else
             {
-                for (int i = 0; i < notEntityPropertyType.Count; i++)
+                foreach(var type in notEntityPropertyType)
                 {
-                    var type = notEntityPropertyType[i];
                     if (!addedTypes.Contains(type))
                     {
                         yield return type;
@@ -76,7 +75,24 @@ namespace Battle.Data.GameProperty
             propsHashCodes = new HashSet<int>();
             for (int i = 0; i < Properties.Count; i++)
             {
-                propsHashCodes.Add(Properties[i].GetHashCode());
+                var prop = Properties[i];
+                var type = prop.GetType();
+                var wasRemoved = false;
+                
+                if (BaseGameProperty.IconsByType.ContainsKey(type) && level != 1)
+                {
+                    if (!notEntityPropertyType.Contains(type))
+                    {
+                        Properties.Remove(prop);
+                        i--;
+                        wasRemoved = true;
+                    }
+                }
+
+                if (!wasRemoved)
+                {
+                    propsHashCodes.Add(Properties[i].GetHashCode());
+                }
             }
         }
         
