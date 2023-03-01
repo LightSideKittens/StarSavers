@@ -21,6 +21,7 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 97e053703dd49684889d5a1e4fd1af82, type: 3}
     - {fileID: 2800000, guid: c292da2c4d83bdf45b0a3542a0453ce6, type: 3}
     - {fileID: 2800000, guid: 180f0df1cba597941879224dd724fe64, type: 3}
+    - {fileID: 2800000, guid: 354c258cca2631540a230078587a51e2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -45,7 +46,7 @@ MonoBehaviour:
         GameCore.Battle]], mscorlib
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 3|Battle.Data.GameProperty.HealthGP, GameCore.Battle
@@ -54,7 +55,7 @@ MonoBehaviour:
       Data: 0
     - Name: value
       Entry: 4
-      Data: 690
+      Data: 32
     - Name: percent
       Entry: 3
       Data: 0
@@ -75,7 +76,7 @@ MonoBehaviour:
       Data: 1
     - Name: value
       Entry: 4
-      Data: 79
+      Data: 90
     - Name: percent
       Entry: 3
       Data: 0
@@ -117,7 +118,7 @@ MonoBehaviour:
       Data: 3
     - Name: value
       Entry: 4
-      Data: 4.5
+      Data: 2.5
     - Name: percent
       Entry: 3
       Data: 0
@@ -138,13 +139,34 @@ MonoBehaviour:
       Data: 4
     - Name: value
       Entry: 4
-      Data: 1
+      Data: 1.75
     - Name: percent
       Entry: 3
       Data: 0
     - Name: moveSpeed
       Entry: 1
-      Data: Normal
+      Data: Faster
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|Battle.Data.GameProperty.AreaDamageGP, GameCore.Battle
+    - Name: icon
+      Entry: 10
+      Data: 5
+    - Name: value
+      Entry: 4
+      Data: 1.5
+    - Name: percent
+      Entry: 3
+      Data: 0
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
     - Name: needHideFixed
       Entry: 5
       Data: false
@@ -180,14 +202,14 @@ MonoBehaviour:
       Data: 
     - Name: Price
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[BaseWallet, GameCore.CurrencySystem]],
+      Data: 9|System.Collections.Generic.List`1[[BaseWallet, GameCore.CurrencySystem]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 9|BaseCurrency`1+Wallet[[Coins, GameCore.Common]], GameCore.CurrencySystem
+      Data: 10|BaseCurrency`1+Wallet[[Coins, GameCore.Common]], GameCore.CurrencySystem
     - Name: value
       Entry: 3
       Data: 0

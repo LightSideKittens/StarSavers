@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dae9a2401549a5a51f532a2df277f1, type: 3}
+  m_Name: Archer_Unit_1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 2800000, guid: dee58a0f3e984a746b57098fe901de39, type: 3}
+    - {fileID: 2800000, guid: cdfdd92b1dad42c419bf5e322f93c9c8, type: 3}
+    - {fileID: 2800000, guid: 97e053703dd49684889d5a1e4fd1af82, type: 3}
+    - {fileID: 2800000, guid: c292da2c4d83bdf45b0a3542a0453ce6, type: 3}
+    - {fileID: 2800000, guid: 180f0df1cba597941879224dd724fe64, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: UpgradesByScope
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Battle.Data.GameProperty.GamePropertiesByScope,
+        GameCore.Battle]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|Battle.Data.GameProperty.GamePropertiesByScope, GameCore.Battle
+    - Name: <Scope>k__BackingField
+      Entry: 1
+      Data: Global/Allies/Light/Shooting/Elsa
+    - Name: Properties
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[Battle.Data.GameProperty.BaseGameProperty,
+        GameCore.Battle]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 3|Battle.Data.GameProperty.HealthGP, GameCore.Battle
+    - Name: icon
+      Entry: 10
+      Data: 0
+    - Name: value
+      Entry: 4
+      Data: 32
+    - Name: percent
+      Entry: 3
+      Data: 0
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Battle.Data.GameProperty.DamageGP, GameCore.Battle
+    - Name: icon
+      Entry: 10
+      Data: 1
+    - Name: value
+      Entry: 4
+      Data: 90
+    - Name: percent
+      Entry: 3
+      Data: 0
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|Battle.Data.GameProperty.AttackSpeedGP, GameCore.Battle
+    - Name: icon
+      Entry: 10
+      Data: 2
+    - Name: value
+      Entry: 4
+      Data: 2
+    - Name: percent
+      Entry: 3
+      Data: 0
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|Battle.Data.GameProperty.RadiusGP, GameCore.Battle
+    - Name: icon
+      Entry: 10
+      Data: 3
+    - Name: value
+      Entry: 4
+      Data: 2.5
+    - Name: percent
+      Entry: 3
+      Data: 0
+    - Name: moveSpeed
+      Entry: 1
+      Data: Slow
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|Battle.Data.GameProperty.MoveSpeedGP, GameCore.Battle
+    - Name: icon
+      Entry: 10
+      Data: 4
+    - Name: value
+      Entry: 4
+      Data: 1.75
+    - Name: percent
+      Entry: 3
+      Data: 0
+    - Name: moveSpeed
+      Entry: 1
+      Data: Faster
+    - Name: needHideFixed
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: entityName
+      Entry: 1
+      Data: Elsa
+    - Name: level
+      Entry: 3
+      Data: 1
+    - Name: isMultipleIdenticalScopeError
+      Entry: 5
+      Data: false
+    - Name: isEmptyScopeError
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Price
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[BaseWallet, GameCore.CurrencySystem]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 9|BaseCurrency`1+Wallet[[Coins, GameCore.Common]], GameCore.CurrencySystem
+    - Name: value
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  entityName: Elsa
+  currentLevel: 1
+  isFirstLevelError: 0
+  hasScopeError: 0
+  hasEmptyScopeError: 0
