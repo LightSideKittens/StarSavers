@@ -2,38 +2,52 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Sirenix.OdinInspector.Editor;
+using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEngine;
 using Assembly = UnityEditor.Compilation.Assembly;
 
 public abstract class BaseWalletSerializationHelper<T> : OdinEditor where T : ScriptableObject
 {
-    protected static List<string> matchedTypesNames = new List<string>();
-    protected static List<Type> matchedTypes = new List<Type>();
+    public static List<string> MatchedTypesNames { get; } = new List<string>();
+    public static List<Type> MatchedTypes { get; } = new List<Type>();
     protected T config;
 
     protected abstract void OnInit();
     protected abstract void OnButtonClicked(Type type);
+    protected abstract void OnDrawButton(Type type);
 
+    
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
         Init();
 
-        for (int i = 0; i < matchedTypes.Count; i++)
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        for (int i = 0; i < MatchedTypes.Count; i++)
         {
-            if (GUILayout.Button($"Add {matchedTypesNames[i]} Price"))
+            EditorGUILayout.BeginVertical();
+            var type = MatchedTypes[i];
+            
+            if (GUILayout.Button($"{MatchedTypesNames[i]}", GUILayout.Width(100), GUILayout.Height(100)))
             {
-                OnButtonClicked(matchedTypes[i]);
+                OnButtonClicked(type);
             }
-        }
 
+            OnDrawButton(type);
+            
+            EditorGUILayout.EndVertical();
+        }
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();
     }
 
     protected void Init()
     {
-        if (matchedTypes.Count == 0)
+        config = (T) target;
+        if (MatchedTypes.Count == 0)
         {
             var targetAssembly = System.Reflection.Assembly.GetAssembly(typeof(BaseWallet));
             var playerAssemblies = CompilationPipeline.GetAssemblies(AssembliesType.PlayerWithoutTestAssemblies);
@@ -53,7 +67,6 @@ public abstract class BaseWalletSerializationHelper<T> : OdinEditor where T : Sc
                 }
             }
             
-            config = (T) target;
             OnInit();
 
             for (int i = 0; i < matchedAssemblies.Count; i++)
@@ -76,8 +89,8 @@ public abstract class BaseWalletSerializationHelper<T> : OdinEditor where T : Sc
 
                         if (typeof(BaseWallet).IsAssignableFrom(nestedType))
                         {
-                            matchedTypesNames.Add(type.Name);
-                            matchedTypes.Add(nestedType);
+                            MatchedTypesNames.Add(type.Name);
+                            MatchedTypes.Add(nestedType);
                         }
                     }
                 }

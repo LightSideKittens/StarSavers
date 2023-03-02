@@ -66,8 +66,8 @@ namespace Battle.Data
                         hasError |= levelConfig.IsInvalid;
                         hasError |= levelsContainer.isMissedLevel;
                     
-                        levelsContainer.entityName = levelConfig.entityName;
-                        var currentLevel = levelConfig.currentLevel;
+                        levelsContainer.entityName = levelConfig.EntityName;
+                        var currentLevel = levelConfig.CurrentLevel;
 
                         if (currentLevel - lastLevel > 1)
                         {

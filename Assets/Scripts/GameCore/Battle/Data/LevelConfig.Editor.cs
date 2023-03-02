@@ -11,11 +11,11 @@ namespace Battle.Data
 {
     public partial class LevelConfig
     {
-        [HideInInspector] public string entityName;
-        [HideInInspector] public int currentLevel;
-        [HideInInspector] public bool isFirstLevelError;
-        [HideInInspector] public bool hasScopeError;
-        [HideInInspector] public bool hasEmptyScopeError;
+        private string entityName;
+        private int currentLevel;
+        private bool isFirstLevelError;
+        private bool hasScopeError;
+        private bool hasEmptyScopeError;
         private bool isInited;
         private bool isSubscribed;
         private bool isChangedLevels;
@@ -23,8 +23,11 @@ namespace Battle.Data
         private string configName;
         public bool IsInvalidName => string.IsNullOrEmpty(entityName) || currentLevel == 0;
         public bool IsInvalid => isFirstLevelError || hasScopeError || hasEmptyScopeError || IsInvalidName;
+        public Dictionary<Type, BaseWallet> AddedPrices { get; set; } = new();
+        public string EntityName => entityName;
+        public int CurrentLevel => currentLevel;
 
-        private void OnValidate()
+        public void OnValidate()
         {
             TryInit();
             
@@ -92,8 +95,8 @@ namespace Battle.Data
             }
 
             OnFirstLevel();
-            
-            for (int i = 0; i < UpgradesByScope.Count; i++)
+
+            for (int i = 0; i < UpgradesByScope.Count(); i++)
             {
                 UpgradesByScope[i].OnGUI();
             }
@@ -187,26 +190,6 @@ namespace Battle.Data
             OnScopeChanged();
         }
 
-        public static void ReanalyzeScope(GamePropertiesByScope step)
-        {
-            var props = step.Properties;
-            var isEntity = GameScopes.TryGetEntityNameFromScope(step.Scope, out var entityName);
-            step.entityName = entityName;
-            
-            for (int j = 0; j < props.Count; j++)
-            {
-                var prop = props[j];
-                var needHideFixed = !isEntity;
-
-                if (needHideFixed)
-                {
-                    prop.value = 0;
-                }
-                    
-                prop.needHideFixed = needHideFixed;
-            }
-        }
-        
         private void OnScopeChanged()
         {
             hasScopeError = false;
@@ -223,7 +206,22 @@ namespace Battle.Data
                 var props = step.Properties;
                 hasEmptyScopeError |= props.Count == 0;
                 step.isEmptyScopeError = props.Count == 0;
-                ReanalyzeScope(step);
+                
+                var isEntity = GameScopes.TryGetEntityNameFromScope(step.Scope, out var entityName);
+                step.entityName = entityName;
+            
+                for (int j = 0; j < props.Count; j++)
+                {
+                    var prop = props[j];
+                    var needHideFixed = !isEntity;
+
+                    if (needHideFixed)
+                    {
+                        prop.value = 0;
+                    }
+                    
+                    prop.needHideFixed = needHideFixed;
+                }
             }
             
             if (UpgradesByScope.Count > 1)
@@ -235,6 +233,13 @@ namespace Battle.Data
                     return Math.Sign(bLength - aLength);
                 });
             }
+        }
+        
+        [Button("Add Scope")]
+        [PropertyOrder(-1)]
+        private void AddScope()
+        {
+            UpgradesByScope.Add(new GamePropertiesByScope());
         }
     }
 }

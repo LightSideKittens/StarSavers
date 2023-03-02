@@ -15,8 +15,8 @@ namespace Battle.Data.GameProperty
     public abstract class BaseGameProperty
     {
         [CustomValueDrawer("IconDrawer")]
-        public Texture2D icon;
-        
+        [ShowInInspector] private int iconDrawer;
+
         [NonSerialized] public string scope;
         
         [HideIf("$" + nameof(needHideFixed))]
@@ -42,7 +42,8 @@ namespace Battle.Data.GameProperty
         private bool IsMoveSpeed => GetType() == typeof(MoveSpeedGP);
         private bool IsAttackSpeed => GetType() == typeof(AttackSpeedGP);
         private bool IsHealth => GetType() == typeof(HealthGP);
-        private bool IsEffector => string.IsNullOrEmpty(scope) || scope.Contains("Effectors");
+
+        private bool IsEffector => Scope.Contains("Effectors");
         private bool NeedHidePercent => (IsMoveSpeed && !IsEffector) || IsRadius || IsAttackSpeed || IsRicochet;
         
         
@@ -60,10 +61,19 @@ namespace Battle.Data.GameProperty
             {typeof(RicochetGP), "ricochet-icon"},
         };
         
-        [HideInInspector] public string moveSpeed = "Slow";
+        private Texture2D icon;
         [HideInInspector] public bool needHideFixed;
 
         private string Title => GetType().Name.Replace("GP", "Property").SplitPascalCase();
+        private string Scope
+        {
+            get
+            {
+                scope ??= string.Empty;
+                return scope;
+            }
+        }
+
         
         protected BaseGameProperty()
         {
@@ -83,21 +93,19 @@ namespace Battle.Data.GameProperty
         private void CreateData()
         {
             isInited = true;
-
-            if (IconsByType.TryGetValue(GetType(), out var tex))
-            {
-                icon = LightGamesIcons.Get(tex);
-            }
+            InitIcon();
 
             if (evenTexture == null)
             {
                 evenTexture = EditorUtils.GetTextureByColor(new Color(0.17f, 0.17f, 0.18f));
             }
+        }
 
-            if (IsMoveSpeed && !IsEffector)
+        private void InitIcon()
+        {
+            if (IconsByType.TryGetValue(GetType(), out var tex))
             {
-                MoveSpeedSelector.SetValue(moveSpeed);
-                value = (decimal)MoveSpeedSelector.Speed;
+                icon = LightGamesIcons.Get(tex);
             }
         }
 
@@ -117,7 +125,7 @@ namespace Battle.Data.GameProperty
                 label.text = "Radius";
                 value = DrawRadiusSlider(val, label);
             }
-            else if(IsMoveSpeed && moveSpeed != null)
+            else if(IsMoveSpeed)
             {
                 if (IsEffector)
                 {
@@ -128,17 +136,14 @@ namespace Battle.Data.GameProperty
                     EditorGUILayout.BeginHorizontal();
                 
                     EditorGUILayout.LabelField("Move Speed", GUILayoutOptions.MaxWidth(100));
-                    MoveSpeedSelector.SetValue(moveSpeed);
-                
-                    if (EditorGUILayout.DropdownButton(new GUIContent(MoveSpeedSelector.Value), FocusType.Passive))
+
+                    if (EditorGUILayout.DropdownButton(new GUIContent($"{MoveSpeedSelector.GetKey(val)} | ({val})"), FocusType.Passive))
                     {
                         var newValue = new MoveSpeedSelector();
                         newValue.ShowInPopup();
                         newValue.SelectionConfirmed += x =>
                         {
-                            newValue.GetValue();
-                            moveSpeed = MoveSpeedSelector.Value;
-                            value = (decimal)MoveSpeedSelector.Speed;
+                            value = newValue.GetValue();
                         };
                     }
                 
@@ -162,7 +167,7 @@ namespace Battle.Data.GameProperty
                 }
                 EditorGUILayout.EndHorizontal();
 
-                if (GUILayout.Button($"Add | ({value})"))
+                if (GUILayout.Button($"Add | ({newBinary.Length})"))
                 {
                     if (newBinary.Length < 8)
                     {
@@ -202,7 +207,7 @@ namespace Battle.Data.GameProperty
             {
                 if (IsEffector && !IsHealth)
                 {
-                    value = EditorGUILayout.IntSlider(new GUIContent(scope.Contains("Potion") ? "Damage/Sec" : "Buff %"), (int)val, 0, 100);
+                    value = EditorGUILayout.IntSlider(new GUIContent(Scope.Contains("Potion") ? "Damage/Sec" : "Buff %"), (int)val, 0, 100);
                 }
                 else
                 {
@@ -222,11 +227,12 @@ namespace Battle.Data.GameProperty
             return value;
         }
 
-        private Texture2D IconDrawer(Texture2D value, GUIContent label, Func<GUIContent, bool> callNextDrawer)
+        private int IconDrawer(int value, GUIContent label, Func<GUIContent, bool> callNextDrawer)
         {
             if (icon == null)
             {
-                return icon;
+                InitIcon();
+                return 0;
             }
 
             var rect = GUIHelper.GetCurrentLayoutRect();
@@ -254,42 +260,42 @@ namespace Battle.Data.GameProperty
             GUI.Box(rect, icon, GUIStyle.none);
             GUILayout.Space(10);
 
-            return icon;
+            return 0;
         }
     }
 
-    public class MoveSpeedSelector : OdinSelector<string>
+    public class MoveSpeedSelector : OdinSelector<decimal>
     {
-        public static float Speed => Values[Value];
-        public static string Value { get; private set; } = "Slow";
-        public static Dictionary<string, float> Values = new()
+        private static readonly Dictionary<decimal, string> keysByValues = new()
         {
-            {"Slow", 0.75f},
-            {"Normal", 1f},
-            {"Fast", 1.5f},
-            {"Faster", 1.75f},
+            {0.75m, "Slow"},
+            {1m, "Normal"},
+            {1.5m, "Fast"},
+            {1.75m, "Faster"},
         };
 
         protected override void BuildSelectionTree(OdinMenuTree tree)
         {
             tree.Config.DrawSearchToolbar = false;
-            foreach (var value in Values.Keys)
+            foreach (var value in keysByValues)
             {
-                tree.Add(value, value);
+                tree.Add(value.Value, value.Key);
             }
         }
         
-        public static void SetValue(string value)
+        public static string GetKey(decimal value)
         {
-            if (Values.ContainsKey(value))
+            if (keysByValues.TryGetValue(value, out var key))
             {
-                Value = value;
+                return key;
             }
+
+            return "Slow";
         }
         
-        public void GetValue()
+        public decimal GetValue()
         {
-            Value = GetCurrentSelection().FirstOrDefault();
+            return GetCurrentSelection().FirstOrDefault();
         }
     }
 }

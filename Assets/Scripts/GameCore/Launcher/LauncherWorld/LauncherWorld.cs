@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Battle.Data;
+﻿using Battle.Data;
 using BeatRoyale.Windows;
 using Core.ConfigModule;
 using Core.SingleService;
 using Firebase.Auth;
 using Firebase.Extensions;
-using GameCore.Attributes;
 using UnityEngine;
 using static Battle.Data.LevelsConfigsManager;
 
@@ -43,17 +40,7 @@ namespace BeatRoyale.Launcher
         {
             levelsConfigsManager.Init();
             LevelUpgraded += LogAllProperties;
-            UpgradeLevel("Dumbledore", 1);
-            UpgradeLevel("Dumbledore", 2);
-            UpgradeLevel("Dumbledore", 3);
-            UpgradeLevel("Raccoon", 1);
-            UpgradeLevel("Raccoon", 2);
-            UpgradeLevel("Raccoon", 3);
-            UpgradeLevel("Valkyrie", 3);
-            UpgradeLevel("Valkyrie", 1);
-            UpgradeLevel("Valkyrie", 2);
-            UpgradeLevel("Madina", 1);
-            UpgradeLevel("WrongEntitiesScope", 1);
+            LogAllProperties();
         }
 
         private void LogAllProperties()
