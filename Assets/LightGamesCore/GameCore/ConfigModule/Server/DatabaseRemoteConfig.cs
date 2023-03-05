@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Newtonsoft.Json;
@@ -9,79 +10,85 @@ namespace Core.ConfigModule
 {
     public abstract class DatabaseRemoteConfig<T, T1> where T : DatabaseRemoteConfig<T, T1>, new() where T1 : BaseConfig<T1>, new()
     {
-        private const int MaxAttemption = 1;
-        private static DocumentReference reference;
         private static Func<DocumentReference> getter;
-        private static bool isOnRemote;
-        private static int attemption;
-        private static T instance;
+        protected static T instance;
+        public static string UserId { get; private set; }
 
         static DatabaseRemoteConfig()
         {
             instance = new T();
             getter = GetReference;
-            UnityEventWrapper.SubscribeToApplicationPausedEvent(OnApplicationPause);
         }
 
         private static DocumentReference GetReference()
         {
+            UserId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
             getter = GetCreatedReference;
-            reference = instance.Reference;
 
-            return reference;
+            return instance.Reference;
         }
-
+        
         protected abstract DocumentReference Reference { get; }
-        private static DocumentReference GetCreatedReference() => reference;
+        private static DocumentReference GetCreatedReference() => instance.Reference;
 
         public static void Push(Action onSuccess = null, Action onError = null)
         {
-            if (!isOnRemote)
-            {
-                if (attemption < MaxAttemption)
-                {
-                    attemption++;
-                    CheckIsOnRemote(onComplete: () => Push(onSuccess, onError));
-                    return;
-                }
-            }
-
-            Debug.Log($"[{typeof(T).Name}<{typeof(T1).Name}>] Push {isOnRemote}");
-            attemption = 0;
+            Debug.Log($"[{typeof(T1).Name}] Push");
             var docRef = getter();
             var config = BaseConfig<T1>.Config;
             var json = JsonConvert.SerializeObject(config, config.Settings);
-            var dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(json, config.Settings);
-            var pushTask = isOnRemote ? docRef.UpdateAsync(dict) : docRef.SetAsync(dict);
+            var dict = new Dictionary<string, object>()
+            {
+                {BaseConfig<T1>.Config.FileName, json}
+            };
+            var pushTask = docRef.SetAsync(dict);
             
             pushTask.ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted && task.IsCompletedSuccessfully)
                 {
-                    isOnRemote = true;
-                    Debug.Log($"[{typeof(T).Name}<{typeof(T1).Name}>] Push onSuccess {isOnRemote}");
-                    onSuccess?.Invoke();
+                    Debug.Log($"[{typeof(T1).Name}] Success Push");
+                    Invoke(onSuccess);
                 }
                 else if (task.IsFaulted || task.IsCanceled)
                 {
-                    Debug.Log($"[{typeof(T).Name}<{typeof(T1).Name}>] Push onError {isOnRemote}");
-                    onError?.Invoke();
+                    Debug.LogError($"[{typeof(T1).Name}] Failure Push: {task.Exception.Message}");
+                    Invoke(onError);
                 }
             });
+        }
+        
+        public static void Fetch(string userId, Action<T1> onSuccess, Action onError = null, Action onComplete = null)
+        {
+            UserId = userId;
+            Internal_Fetch(onSuccess: dict =>
+            {
+                var config = BaseConfig<T1>.Config;
+                var json = (string) dict[config.FileName];
+                config = JsonConvert.DeserializeObject<T1>(json, config.Settings);
+                Invoke(() => onSuccess?.Invoke(config));
+            }, onError, onComplete);
         }
 
         public static void Fetch(Action onSuccess = null, Action onError = null, Action onComplete = null)
         {
-            CheckIsOnRemote(onSuccess: dict =>
+            OnAppPause.UnSubscribe(OnApplicationPause);
+            OnAppPause.Subscribe(OnApplicationPause);
+            Internal_Fetch(onSuccess: dict =>
             {
-                var json = JsonConvert.SerializeObject(dict, BaseConfig<T1>.Config.Settings);
+                var config = BaseConfig<T1>.Config;
+                var json = (string) dict[config.FileName];
                 BaseConfig<T1>.Deserialize(json);
-                onSuccess?.Invoke();
-            }, onError, onComplete);
+                Invoke(onSuccess);
+            }, () =>
+            {
+                Push(onSuccess, onError);
+            }, onComplete);
         }
 
-        private static void CheckIsOnRemote(Action<Dictionary<string, object>> onSuccess = null, Action onError = null, Action onComplete = null)
+        private static void Internal_Fetch(Action<Dictionary<string, object>> onSuccess = null, Action onError = null, Action onComplete = null)
         {
+            Debug.Log($"[{typeof(T1).Name}] Fetch");
             var docRef = getter();
 
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -92,24 +99,21 @@ namespace Core.ConfigModule
 
                     if (dict == null)
                     {
-                        isOnRemote = false;
-                        Debug.Log($"[{typeof(T).Name}<{typeof(T1).Name}>] CheckIsOnRemote onError {isOnRemote} {attemption}");
-                        onError?.Invoke();
-                        onComplete?.Invoke();
+                        Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty");
+                        Invoke(onError);
+                        Invoke(onComplete);
                         return;
                     }
                     
-                    isOnRemote = true;
-                    Debug.Log($"[{typeof(T).Name}<{typeof(T1).Name}>] CheckIsOnRemote onSuccess {isOnRemote} {attemption}");
-                    onSuccess?.Invoke(dict);
-                    onComplete?.Invoke();
+                    Debug.Log($"[{typeof(T1).Name}] Success Fetch");
+                    Invoke(() => onSuccess?.Invoke(dict));
+                    Invoke(onComplete);
                 }
                 else if (task.IsFaulted || task.IsCanceled)
                 {
-                    isOnRemote = false;
-                    Debug.Log($"[{typeof(T).Name}<{typeof(T1).Name}>] CheckIsOnRemote onError {isOnRemote} {attemption}");
-                    onError?.Invoke();
-                    onComplete?.Invoke();
+                    Debug.LogError($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}");
+                    Invoke(onError);
+                    Invoke(onComplete);
                 }
             });
         }
@@ -117,6 +121,12 @@ namespace Core.ConfigModule
         private static void OnApplicationPause()
         {
             Push();
+        }
+        
+        private static void Invoke(Action action)
+        {
+            try { action?.Invoke(); }
+            catch (Exception e) { Debug.LogException(e); }
         }
     }
 }

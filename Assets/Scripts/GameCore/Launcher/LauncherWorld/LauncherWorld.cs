@@ -4,43 +4,50 @@ using Core.ConfigModule;
 using Core.SingleService;
 using Firebase.Auth;
 using Firebase.Extensions;
+using GameCore.Attributes;
+using GameCore.Battle.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static Battle.Data.LevelsConfigsManager;
 
 namespace BeatRoyale.Launcher
 {
-    public partial class LauncherWorld : ServiceManager
+    public class LauncherWorld : ServiceManager
     {
-        [SerializeField] private BackgroundAnimationData backgroundData;
+        [ColoredField, SerializeField] private CastleBackAnimator animator;
         [SerializeField] private LevelsConfigsManager levelsConfigsManager;
 
         protected override void Awake()
         {
             base.Awake();
             Application.targetFrameRate = 60;
-            ControlPanel.Show();
         }
 
         private void Start()
         {
-            FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync().ContinueWithOnMainThread(task =>
+            Auth.SignIn(() =>
             {
-                if (task.IsCompletedSuccessfully)
+                StorageRemoteConfig<ChangedLevels>.Fetch(() =>
                 {
-                    StorageRemoteConfig<ChangedLevels>.Fetch(Init);
-                }
-                else
-                {
-                    Debug.Log($"[{nameof(LauncherWorld)}] {task.Exception.Message}");
-                }
+                    Debug.Log($"[Malvis] RemotePlayerData<UnlockedLevels>.Fetch");
+                    RemotePlayerData<UnlockedLevels>.Fetch(() =>
+                    {
+                        levelsConfigsManager.Init();
+                        LevelUpgraded += LogAllProperties;
+                        LogAllProperties();
+                        RemotePlayerData<EntitiesProperties>.Fetch(() =>
+                        {
+                            RemotePlayerData<CardDecks>.Fetch(Init);
+                        });
+                    });
+                });
             });
         }
 
         private void Init()
         {
-            levelsConfigsManager.Init();
-            LevelUpgraded += LogAllProperties;
-            LogAllProperties();
+            animator.Init();
+            ControlPanel.Show();
         }
 
         private void LogAllProperties()
@@ -58,7 +65,7 @@ namespace BeatRoyale.Launcher
 
         private void Update()
         {
-            backgroundData.Update();
+            animator.Update();
         }
     }
 }

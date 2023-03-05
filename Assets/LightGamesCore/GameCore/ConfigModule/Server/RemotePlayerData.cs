@@ -11,10 +11,9 @@ namespace Core.ConfigModule
             {
                 var name = BaseConfig<T>.Config.FileName;
                 var storage = FirebaseFirestore.DefaultInstance;
-                var userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
                 
                 return storage.Collection("PlayersData")
-                    .Document(userId)
+                    .Document(UserId)
                     .Collection("Data")
                     .Document(name);
             }

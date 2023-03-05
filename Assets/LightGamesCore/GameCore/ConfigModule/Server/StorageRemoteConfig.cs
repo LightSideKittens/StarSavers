@@ -88,8 +88,7 @@ namespace Core.ConfigModule
                     Internal_Fetch<T>(storageRef, () =>
                     {
                         localVersions[fileName] = remoteVersions[fileName];
-
-                        
+                        Invoke(onSuccess);
                     }, onError);
                 }
                 else

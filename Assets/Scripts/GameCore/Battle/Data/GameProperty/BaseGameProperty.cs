@@ -32,7 +32,7 @@ namespace Battle.Data.GameProperty
             return b.ComputeValue(a);
         }
         
-        public virtual decimal ComputeValue(decimal val)
+        protected virtual decimal ComputeValue(decimal val)
         {
             return value + val;
         }

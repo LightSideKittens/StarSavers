@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 2223f491c3cec3a4bae720893015e275, type: 3}
   m_ValidKeywords:
   - _SHADERSPACE_UV
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _DIRECTIONALDISTORTIONINVERT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -36,12 +37,12 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _DirectionalDistortionFade: 0
-    - _DirectionalDistortionInvert: 0
+    - _DirectionalDistortionFade: -16
+    - _DirectionalDistortionInvert: 1
     - _DirectionalDistortionNoiseFactor: 0.2
     - _DirectionalDistortionRandomDirection: 0.1
-    - _DirectionalDistortionRotation: 0
-    - _DirectionalDistortionWidth: 0.5
+    - _DirectionalDistortionRotation: 179
+    - _DirectionalDistortionWidth: 13.3
     - _PixelsPerUnit: 100
     - _RectHeight: 100
     - _RectWidth: 100

@@ -1,20 +1,37 @@
-﻿using Battle.MusicEventSystem.Soundvent;
+﻿using System.Collections.Generic;
 
 public static class SoundventTypes
 {
-    [Soundvent(true, "Sound")] public const string ShortIV = nameof(ShortIV);
-    [Soundvent(true, "Sound")] public const string ShortIII = nameof(ShortIII);
-    [Soundvent(true, "Sound")] public const string ShortII = nameof(ShortII);
-    [Soundvent(true, "Sound")] public const string ShortI = nameof(ShortI);
-    
-    [Soundvent(false, "Sound")] public const string LongII = nameof(LongII);
-    [Soundvent(false, "Sound")] public const string LongI = nameof(LongI);
-    
-    [Soundvent(true, "Enemy")] public const string EnemyIV = nameof(EnemyIV);
-    [Soundvent(true, "Enemy")] public const string EnemyIII = nameof(EnemyIII);
-    [Soundvent(true, "Enemy")] public const string EnemyII = nameof(EnemyII);
-    [Soundvent(true, "Enemy")] public const string EnemyI = nameof(EnemyI);
-    [Soundvent(true, "Boss")] public const string Boss = nameof(Boss);
+    public const string ShortIV = nameof(ShortIV);
+    public const string ShortIII = nameof(ShortIII);
+    public const string ShortII = nameof(ShortII);
+    public const string ShortI = nameof(ShortI);
+
+    public const string LongII = nameof(LongII);
+    public const string LongI = nameof(LongI);
+
+    public const string EnemyIV = nameof(EnemyIV);
+    public const string EnemyIII = nameof(EnemyIII);
+    public const string EnemyII = nameof(EnemyII);
+    public const string EnemyI = nameof(EnemyI);
+    public const string Boss = nameof(Boss);
+
+    public static Dictionary<string, (bool, string)> GroupByName = new()
+    {
+        {ShortIV, (true, "Sounds")},
+        {ShortIII, (true, "Sounds")},
+        {ShortII, (true, "Sounds")},
+        {ShortI, (true, "Sounds")},
+        
+        {LongII, (false, "Sounds")},
+        {LongI, (false, "Sounds")},
+        
+        {EnemyIV, (true, "Enemies")},
+        {EnemyIII, (true, "Enemies")},
+        {EnemyII, (true, "Enemies")},
+        {EnemyI, (true, "Enemies")},
+        {Boss, (true, "Enemies")},
+    };
 
     public static string[] Sounds { get; } =
     {
@@ -22,11 +39,11 @@ public static class SoundventTypes
         ShortIII,
         ShortII,
         ShortI,
-        
+
         LongII,
         LongI,
     };
-    
+
     public static string[] Enemies { get; } =
     {
         EnemyIV,

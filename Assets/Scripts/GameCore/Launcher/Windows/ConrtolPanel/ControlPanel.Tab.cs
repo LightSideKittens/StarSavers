@@ -9,9 +9,10 @@ namespace BeatRoyale.Windows
     internal partial class ControlPanel
     {
         [Serializable] 
-        private struct Tab
+        private class Tab
         {
-            [SerializeField] private Toggle toggle;
+            private static Tab lastActiveTab;
+            [SerializeField] private Button button;
 
             private LayoutElement layoutElement;
             private RectTransform transform;
@@ -35,52 +36,57 @@ namespace BeatRoyale.Windows
                 showWindow = BaseWindow<T>.Show;
                 hideWindow = BaseWindow<T>.Hide;
                 
-                layoutElement = toggle.GetComponent<LayoutElement>();
-                transform = toggle.transform as RectTransform;
+                layoutElement = button.GetComponent<LayoutElement>();
+                transform = button.transform as RectTransform;
 
                 defaultWidth = layoutElement.preferredWidth;
                 targetWidth = defaultWidth + animationData.widthOffset;
                 
                 defaultHeight = transform.sizeDelta.y;
                 targetHeight = defaultHeight + animationData.heightOffset;
-                toggle.AddListener(OnToggleValueChanged);
+                button.AddListener(OnTabClicked);
+            }
 
-                if (toggle.isOn)
-                {
-                    Select();
-                }
+            public void SetActive()
+            {
+                lastActiveTab = this;
+                Select();
             }
             
-            private void OnToggleValueChanged(bool isActive)
+            private void OnTabClicked()
             {
-                if (isActive)
+                if (lastActiveTab != this)
                 {
                     Select();
-                }
-                else
-                {
-                    Deselect();
+                    lastActiveTab.Deselect();
+                    lastActiveTab = this;
                 }
             }
 
             private void Select()
             {
-                showWindow?.Invoke();
-                var layoutElement = this.layoutElement;
+                showWindow();
+                button.interactable = false;
                 DOTween.To(value => { layoutElement.preferredWidth = value;}, layoutElement.preferredWidth, targetWidth, duration).SetEase(Ease.InOutCubic);
-                var endValue = transform.sizeDelta;
-                endValue.y = targetHeight;
-                transform.DOSizeDelta(endValue, duration).SetEase(Ease.InOutCubic);
+                DOTween.To(value =>
+                {
+                    var size = transform.sizeDelta;
+                    size.y = value;
+                    transform.sizeDelta = size;
+                }, transform.sizeDelta.y, targetHeight, duration).SetEase(Ease.InOutCubic).OnComplete(() => button.interactable = true);
             }
 
             private void Deselect()
             {
-                hideWindow?.Invoke();
-                var layoutElement = this.layoutElement;
+                hideWindow();
+                button.interactable = false;
                 DOTween.To(value => { layoutElement.preferredWidth = value;}, layoutElement.preferredWidth, defaultWidth, duration).SetEase(Ease.InOutCubic);
-                var endValue = transform.sizeDelta;
-                endValue.y = defaultHeight;
-                transform.DOSizeDelta(endValue, duration).SetEase(Ease.InOutCubic);
+                DOTween.To(value =>
+                {
+                    var size = transform.sizeDelta;
+                    size.y = value;
+                    transform.sizeDelta = size;
+                }, transform.sizeDelta.y, defaultHeight, duration).SetEase(Ease.InOutCubic).OnComplete(() => button.interactable = true);;
             }
         }
     }

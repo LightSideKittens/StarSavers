@@ -22,12 +22,17 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
     private Tween showTween;
     private Tween hideTween;
 
+    protected virtual Transform Parent => null;
+    public RectTransform RectTransform { get; private set; }
+
     protected override void Init()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
 
         gameObject.SetActive(false);
+        transform.SetParent(Parent);
+        RectTransform = (RectTransform)transform;
     }
 
     private void InternalShow()
@@ -81,13 +86,23 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
     protected virtual void AnimateOnShowing(Action onComplete)
     {
         hideTween?.Kill();
-        showTween = canvasGroup.DOFade(1, fadeSpeed).OnComplete(new TweenCallback(onComplete));
+        showTween = GetShowAnimation().OnComplete(new TweenCallback(onComplete));
     }
     
     protected virtual void AnimateOnHiding(Action onComplete)
     {
         showTween?.Kill();
-        hideTween = canvasGroup.DOFade(0, fadeSpeed).OnComplete(new TweenCallback(onComplete));
+        hideTween = GetHideAnimation().OnComplete(new TweenCallback(onComplete));
+    }
+
+    protected virtual Tween GetShowAnimation()
+    {
+        return canvasGroup.DOFade(1, fadeSpeed);
+    }
+    
+    protected virtual Tween GetHideAnimation()
+    {
+        return canvasGroup.DOFade(0, fadeSpeed);
     }
 
     public static void Show() => Instance.InternalShow();

@@ -49,7 +49,6 @@ public class BassBullet : MonoBehaviour
         attackTimer.Stopped += OnFlyComplete; 
 
         DOTween.Kill("CameraShake");
-        //target.DOScale(target.localScale * enemyScaleMultiplier, noteDurarion).SetId("TargetScale");
         Camera.main.DOShakeRotation(noteDurarion, shakeStrength, shakeVibrato).OnComplete(MusicReactiveTest.ResetCameraPosition).SetId("CameraShake");
 
         void OnFlyComplete()

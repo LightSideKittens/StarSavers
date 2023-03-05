@@ -1,23 +1,48 @@
-﻿using Core.Extensions.Unity;
+﻿using Battle.Data;
+using Core.ConfigModule;
+using Core.Extensions.Unity;
+using GameCore.Battle.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace BeatRoyale.Windows
 {
-    public class MatchWindow : BaseWindow<MatchWindow>
+    public class MatchWindow : BaseLauncherWindow<MatchWindow>
     {
+        [SerializeField] private string opponentUserId;
         [SerializeField] private Button matchButton;
-        
+        protected override int Internal_Index => 2;
+
         protected override void Init()
         {
             base.Init();
             matchButton.AddListener(Match);
         }
 
-        private static void Match()
+        private void Match()
         {
-            SceneManager.LoadScene(1);
+            MatchData.Clear();
+            
+            var opponentPlayerData = new MatchData.PlayerData();
+            var selfPlayerData = new MatchData.PlayerData
+            {
+                decks = CardDecks.Config,
+                properties = EntitiesProperties.Config,
+            };
+            
+            MatchData.PlayerDataByUserId.Add(CommonPlayerData.UserId, selfPlayerData);
+            
+            RemotePlayerData<CardDecks>.Fetch(opponentUserId, decks =>
+            {
+                opponentPlayerData.decks = decks;
+                RemotePlayerData<EntitiesProperties>.Fetch(opponentUserId, properties =>
+                {
+                    opponentPlayerData.properties = properties;
+                    MatchData.PlayerDataByUserId.Add(opponentUserId, opponentPlayerData);
+                    SceneManager.LoadScene(1);
+                });
+            });
         }
     }
 }

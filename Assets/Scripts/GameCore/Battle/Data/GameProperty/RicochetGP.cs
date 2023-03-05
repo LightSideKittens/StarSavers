@@ -43,7 +43,7 @@ namespace Battle.Data.GameProperty
     [Serializable]
     public class RicochetGP : BaseGameProperty
     {
-        public override decimal ComputeValue(decimal val)
+        protected override decimal ComputeValue(decimal val)
         {
             var data = RicochetData.Get(val);
             var valData = RicochetData.Get(value);

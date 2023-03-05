@@ -168,8 +168,8 @@ namespace Core.ConfigModule
         
         private static void CreateInstance()
         {
-            UnityEventWrapper.UnSubscribeFromApplicationPausedEvent(AutoSave);
-            UnityEventWrapper.SubscribeToApplicationPausedEvent(AutoSave);
+            OnAppPause.UnSubscribe(AutoSave);
+            OnAppPause.Subscribe(AutoSave);
             instance = new T();
         }
 
@@ -202,7 +202,7 @@ namespace Core.ConfigModule
         [Conditional("UNITY_EDITOR")]
         private static void Serialize_Editor(T config, ref string json)
         {
-            json = JsonConvert.SerializeObject(config, Formatting.Indented, config.Settings);
+            json = JsonConvert.SerializeObject(config, config.Settings);
         }
         
         [Conditional("NOT_EDITOR")]

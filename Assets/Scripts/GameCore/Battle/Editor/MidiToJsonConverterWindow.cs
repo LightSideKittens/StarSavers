@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
-using Battle.MusicEventSystem.Soundvent;
 using Melanchall.DryWetMidi.Common;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
@@ -105,8 +103,8 @@ namespace MusicEventSystem.Editor
                     {
                         selectedNames[track.Key] = EditorGUILayout.Popup($"Track {track.Key}", selectedNames[track.Key], soundvents);
                         var soundventType = soundvents[selectedNames[track.Key]];
-                        var attribute = typeof(SoundventTypes).GetField(soundventType, BindingFlags.Public | BindingFlags.Static).GetCustomAttribute<SoundventAttribute>();
-                        var isShort = attribute.isShort;
+                        var attribute = GroupByName[soundventType];
+                        var isShort = attribute.Item1;
                         tempTracks.Add((track.Key, soundvents[selectedNames[track.Key]], track.Value.Item2, isShort));
                     }
 

@@ -6,7 +6,7 @@ namespace MusicEventSystem.Configs
 {
     public partial class MusicData : JsonBaseConfigData<MusicData>
     {
-        public const float BPMStep = 0.5f;
+        public const float BPMStep = 0.25f;
         private static string musicName;
         private static float lastCurrentTime;
         public static event Action BPMReached;
@@ -17,6 +17,8 @@ namespace MusicEventSystem.Configs
         public static NoteMusicData<ShortNoteTrackData>.TracksData ShortTrackData => Config.shortNoteTrack.tracksData;
 
         protected override string FileName => musicName;
+        protected override bool NeedAutoSave => false;
+        protected override string FolderName => "MusicData";
 
         public static string MusicName
         {

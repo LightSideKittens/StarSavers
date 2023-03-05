@@ -10,9 +10,9 @@ namespace BeatRoyale.Windows
         private struct Tabs
         {
             [SerializeField] private Tab shopTab;
-            [SerializeField] private Tab workshopTab;
+            [SerializeField] private Tab cardGalleryTab;
             [SerializeField] private Tab matchTab;
-            [SerializeField] private Tab ratingTab;
+            [SerializeField] private Tab clanTab;
             [SerializeField] private Tab gameEventsTab;
 
             [ColoredField, SerializeField] private TabAnimationData tabsAnimationData;
@@ -21,10 +21,11 @@ namespace BeatRoyale.Windows
             {
                 Tab.animationData = tabsAnimationData;
                 shopTab.Init<ShopWindow>();
-                workshopTab.Init<WorkshopWindow>();
+                cardGalleryTab.Init<CardGalleryWindow>();
                 matchTab.Init<MatchWindow>();
-                ratingTab.Init<RatingWindow>();
+                clanTab.Init<ClanWindow>();
                 gameEventsTab.Init<GameEventsWindow>();
+                matchTab.SetActive();
             }
         }
     }
