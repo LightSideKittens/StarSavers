@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class MusicReactiveTest : MonoBehaviour
 {
-    public static Transform[] Towers { get; private set; }
     private static readonly int addColorFade = Shader.PropertyToID("_AddColorFade");
     public static event Action Started;
     private int count;
     private float time;
     private bool isMainMusicStarted;
-
-    [SerializeField] private Transform[] towers;
+    
     [SerializeField] private string musicName;
     [SerializeField] private float timeOffset;
     [SerializeField] private AudioSource source;
@@ -29,7 +27,6 @@ public class MusicReactiveTest : MonoBehaviour
         time += timeOffset;
         source.time += timeOffset;
         MusicData.SkipToTime(timeOffset);
-        Towers = towers;
     }
 
     private void Start()

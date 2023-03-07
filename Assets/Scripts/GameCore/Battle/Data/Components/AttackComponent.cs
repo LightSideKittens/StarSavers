@@ -5,28 +5,25 @@ using Common.SingleServices;
 using DG.Tweening;
 using MusicEventSystem.Configs;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace GameCore.Battle.Data.Components
 {
     [Serializable]
     public class AttackComponent
     {
-        private MoveComponent moveComponent;
-        private HealthComponent healthComponent;
+        private FindTargetComponent findTargetComponent;
         private string attackSpeed;
         private float damage;
         private float radius;
         private GameObject gameObject;
         private Transform transform;
-        private bool isInRadius;
         private int currentIndex;
+        public bool IsInRadius { get; private set; }
 
-        public void Init(string entityName, GameObject gameObject, MoveComponent moveComponent, HealthComponent healthComponent)
+        public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
         {
             this.gameObject = gameObject;
-            this.moveComponent = moveComponent;
-            this.healthComponent = healthComponent;
+            this.findTargetComponent = findTargetComponent;
             transform = gameObject.transform;
             var props = EntitiesProperties.Config.Properties[entityName];
             radius = props[nameof(RadiusGP)].Value / 4;
@@ -37,8 +34,7 @@ namespace GameCore.Battle.Data.Components
 
         public void Update()
         {
-            isInRadius = IsInRadius(moveComponent.target);
-            moveComponent.enabled = !isInRadius;
+            IsInRadius = CheckInRadius(findTargetComponent.target);
         }
 
         public void OnDestroy()
@@ -46,30 +42,39 @@ namespace GameCore.Battle.Data.Components
             MusicData.BPMReached -= OnBpmReached;
         }
 
-        private bool IsInRadius(Transform target)
+        public bool CheckInRadius(Transform target)
         {
             if (target != null)
             {
                 var distance = Vector2.Distance(target.position, transform.position);
+                distance -= target.localScale.x;
                 return distance < radius;
             }
 
             return false;
         }
 
+        protected virtual void AttackAnimation(Vector2 targetPosition)
+        {
+            transform.DOMove(targetPosition, 0.1f).SetLoops(2, LoopType.Yoyo);
+        }
+
         private void OnBpmReached()
         {
-            if (isInRadius)
+            if (IsInRadius)
             {
                 var step = attackSpeed[currentIndex % attackSpeed.Length];
 
                 if (step == '1')
                 {
-                    Unit.ByTransform[moveComponent.target].healthComponent.TakeDamage(damage);
-                    moveComponent.GetTarget();
-                    var pos = moveComponent.target.position;
+                    findTargetComponent.Find();
+                    var target = findTargetComponent.target;
+                    HealthComponent.ByTransform[target].TakeDamage(damage);
+                    var pos = target.position;
                     AnimText.Create($"{damage}", pos, fromWorldSpace: true);
-                    transform.DOMove(pos, 0.1f).SetLoops(2, LoopType.Yoyo);
+                    var direction = (pos - transform.position).normalized;
+                    pos -= target.localScale.x * direction;
+                    AttackAnimation(pos);
                 }
             
                 currentIndex++;

@@ -23,9 +23,11 @@ namespace Battle.Data
         private readonly Dictionary<string, Scope> allScopes = new();
         private readonly Dictionary<string, HashSet<string>> scopesByEntityName = new();
         private readonly Dictionary<string, string> entityNameByEntityScope = new();
+        private readonly HashSet<string> heroesNames = new();
 
         public static IEnumerable<string> Scopes => Config.allScopes.Keys;
         public static IEnumerable<string> EntitiesNames => Config.scopesByEntityName.Keys;
+        public static IEnumerable<string> HeroesNames => Config.heroesNames;
         public static bool IsEntityName(string entityName) => Config.scopesByEntityName.ContainsKey(entityName);
         public static bool IsEntityScope(string entityScope) => Config.entityNameByEntityScope.ContainsKey(entityScope);
 
@@ -90,6 +92,11 @@ namespace Battle.Data
                 entityNameByEntityScope.Add(scopePath, oldScope.name);
                 var split = scopePath.Split('/');
                 var builder = new StringBuilder();
+
+                if (split[1] == "Heroes")
+                {
+                    heroesNames.Add(oldScope.name);
+                }
                 
                 for (int i = 0; i < split.Length; i++)
                 {

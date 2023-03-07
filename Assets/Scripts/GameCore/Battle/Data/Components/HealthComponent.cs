@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using GameCore.Common.SingleServices.Windows;
@@ -15,12 +16,19 @@ namespace GameCore.Battle.Data.Components
         private GameObject gameObject;
         private HealthBar healthBar;
         private float health;
-
-        public void Init(string entityName, GameObject gameObject)
+        public static Dictionary<Transform, HealthComponent> ByTransform { get; } = new();
+        
+        public void Init(string entityName, GameObject gameObject, bool isOpponent)
         {
             this.gameObject = gameObject;
             health = EntitiesProperties.Config.Properties[entityName][nameof(HealthGP)].Value;
-            healthBar = HealthBar.Create(health, gameObject.transform, offset, scale);
+            healthBar = HealthBar.Create(health, gameObject.transform, offset, scale, isOpponent);
+            ByTransform.Add(gameObject.transform, this);
+        }
+        
+        public void OnDestroy()
+        {
+            ByTransform.Remove(gameObject.transform);
         }
 
         public void Update()

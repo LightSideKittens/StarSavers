@@ -3,6 +3,7 @@ using Common.SingleServices.Windows;
 using Core.ReferenceFrom.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.UI;
+using static Common.SingleServices.Windows.AnimatableWindow;
 using Object = UnityEngine.Object;
 
 namespace GameCore.Common.SingleServices.Windows
@@ -15,10 +16,10 @@ namespace GameCore.Common.SingleServices.Windows
         private Camera camera;
         private Vector3 offset;
 
-        public static HealthBar Create(float maxValue, Transform target, Vector2 offset, Vector2 scale)
+        public static HealthBar Create(float maxValue, Transform target, Vector2 offset, Vector2 scale, bool isOpponent)
         {
-            var spawnPoint = AnimatableWindow.SpawnPoint;
-            var healthBar = AnimatableWindow.HealthBar;
+            var spawnPoint = SpawnPoint;
+            var healthBar = isOpponent ? OpponentHealthBar : AnimatableWindow.HealthBar;
             Vector2 position = target.position;
             position += offset;
             var camera = Camera.main;

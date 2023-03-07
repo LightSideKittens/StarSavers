@@ -11,40 +11,40 @@ namespace Battle
         {
             get
             {
-                var towers = MusicReactiveTest.Towers;
-                for (int i = 0; i < towers.Length; i++)
+                foreach (var tower in Tower.Towers)
                 {
-                    yield return towers[i];
+                    yield return tower;
                 }
             }
         }
 
         protected override bool IsOpponent => true;
 
-        [SerializeField] private Transform[] portals;
+        [SerializeField] private Transform portal;
         [SerializeField] private Unit[] unitPrefabs;
 
         private void Start()
         {
             var shortTrack = MusicData.ShortTrackData;
+            var spawnPosition = portal.position;
             shortTrack.GetTrack(SoundventTypes.EnemyI).Started += () =>
             {
-                Internal_Spawn(unitPrefabs[0], portals[Random.Range(0, portals.Length)].position);
+                Internal_Spawn(unitPrefabs[0], spawnPosition);
             };
             
             shortTrack.GetTrack(SoundventTypes.EnemyII).Started += () =>
             {
-                Internal_Spawn(unitPrefabs[1], portals[Random.Range(0, portals.Length)].position);
+                Internal_Spawn(unitPrefabs[1], spawnPosition);
             };
             
             shortTrack.GetTrack(SoundventTypes.EnemyIII).Started += () =>
             {
-                Internal_Spawn(unitPrefabs[2], portals[Random.Range(0, portals.Length)].position);
+                Internal_Spawn(unitPrefabs[2], spawnPosition);
             };
             
             shortTrack.GetTrack(SoundventTypes.EnemyIV).Started += () =>
             {
-                Internal_Spawn(unitPrefabs[3], portals[Random.Range(0, portals.Length)].position);
+                Internal_Spawn(unitPrefabs[3], spawnPosition);
             };
         }
     }

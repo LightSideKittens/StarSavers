@@ -9,9 +9,11 @@ namespace Common.SingleServices.Windows
         [SerializeField] private Transform spawnPoint;
         [ColoredField, SerializeField] private AnimText animText;
         [ColoredField, SerializeField] private HealthBar healthBar;
+        [ColoredField, SerializeField] private HealthBar opponentHealthBar;
         public static Transform SpawnPoint => Instance.spawnPoint;
         internal static AnimText AnimText => Instance.animText;
         internal static HealthBar HealthBar => Instance.healthBar;
+        internal static HealthBar OpponentHealthBar => Instance.opponentHealthBar;
         protected override bool ShowByDefault => true;
         public override int SortingOrder => 5;
 
