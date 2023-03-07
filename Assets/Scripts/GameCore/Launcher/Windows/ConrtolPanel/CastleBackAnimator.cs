@@ -17,14 +17,14 @@ namespace BeatRoyale.Windows
         [SerializeField] private SpriteRenderer castleBack;
         [SerializeField] private SpriteRenderer castle;
         [SerializeField] private float speed = 0.2f;
-        private Material instanceCastleMaterial;
+        private Material defaultMaterial;
+        private Material effectMaterial;
         private float time;
 
         public void Init()
         {
-            instanceCastleMaterial = new Material(castleMaterial);
-            castleBack.material = instanceCastleMaterial;
-            castle.material = instanceCastleMaterial;
+            /*defaultMaterial = castleBack.material;
+            effectMaterial = new Material(castleMaterial);*/
             MatchWindow.Showing += OnShowing;
             MatchWindow.Hiding += OnHiding;
         }
@@ -38,58 +38,87 @@ namespace BeatRoyale.Windows
 
         private void OnShowing()
         {
+            castleBack.gameObject.SetActive(true);
+            castle.gameObject.SetActive(true);
+            /*castleBack.material = effectMaterial;
+            castle.material = effectMaterial;*/
+            
             var index = ControlPanel.CurrentShowedWindowIndex - MatchWindow.Index;
 
             if (index > 0)
             {
-                ShowLeft();
+                ShowLeft(OnShowComplete);
             }
             else
             {
-                ShowRight();
+                ShowRight(OnShowComplete);
+            }
+            
+            void OnShowComplete()
+            {
+                background.transform.parent.gameObject.SetActive(false);
+                /*castleBack.material = defaultMaterial;
+                castle.material = defaultMaterial;*/
             }
         }
         
         private void OnHiding()
         {
+            background.transform.parent.gameObject.SetActive(true);
+            /*castleBack.material = effectMaterial;
+            castle.material = effectMaterial;*/
             var index = ControlPanel.CurrentShowingWindowIndex - MatchWindow.Index;
 
             if (index > 0)
             {
-                HideLeft();
+                HideLeft(OnHideComplete);
             }
             else
             {
-                HideRight();
+                HideRight(OnHideComplete);
+            }
+
+            void OnHideComplete()
+            {
+                castleBack.gameObject.SetActive(false);
+                castle.gameObject.SetActive(false);
             }
         }
         
-        private void HideLeft()
+        private void HideLeft(TweenCallback onComplete)
         {
-            instanceCastleMaterial.SetFloat(directionalDistortionInvert, 1);
-            instanceCastleMaterial.SetFloat(directionalDistortionFade, -16);
-            instanceCastleMaterial.DOFloat(16, directionalDistortionFade, speed);
+            /*effectMaterial.SetFloat(directionalDistortionInvert, 1);
+            effectMaterial.SetFloat(directionalDistortionFade, -16);
+            effectMaterial.DOFloat(16, directionalDistortionFade, speed).OnComplete(onComplete);*/
+            castleBack.DOFade(0, speed).OnComplete(onComplete);
+            castle.DOFade(0, speed).OnComplete(onComplete);
         }
         
-        private void HideRight()
+        private void HideRight(TweenCallback onComplete)
         {
-            instanceCastleMaterial.SetFloat(directionalDistortionInvert, 0);
-            instanceCastleMaterial.SetFloat(directionalDistortionFade, 16);
-            instanceCastleMaterial.DOFloat(-16, directionalDistortionFade, speed);
+            /*effectMaterial.SetFloat(directionalDistortionInvert, 0);
+            effectMaterial.SetFloat(directionalDistortionFade, 16);
+            effectMaterial.DOFloat(-16, directionalDistortionFade, speed).OnComplete(onComplete);*/
+            castleBack.DOFade(0, speed).OnComplete(onComplete);
+            castle.DOFade(0, speed).OnComplete(onComplete);
         }
         
-        private void ShowLeft()
+        private void ShowLeft(TweenCallback onComplete)
         {
-            instanceCastleMaterial.SetFloat(directionalDistortionInvert, 1);
-            instanceCastleMaterial.SetFloat(directionalDistortionFade, 16);
-            instanceCastleMaterial.DOFloat(-16, directionalDistortionFade, speed);
+            /*effectMaterial.SetFloat(directionalDistortionInvert, 1);
+            effectMaterial.SetFloat(directionalDistortionFade, 16);
+            effectMaterial.DOFloat(-16, directionalDistortionFade, speed).OnComplete(onComplete);*/
+            castleBack.DOFade(1, speed).OnComplete(onComplete);
+            castle.DOFade(1, speed).OnComplete(onComplete);
         }
         
-        private void ShowRight()
+        private void ShowRight(TweenCallback onComplete)
         {
-            instanceCastleMaterial.SetFloat(directionalDistortionInvert, 0);
-            instanceCastleMaterial.SetFloat(directionalDistortionFade, -16);
-            instanceCastleMaterial.DOFloat(16, directionalDistortionFade, speed);
+            /*effectMaterial.SetFloat(directionalDistortionInvert, 0);
+            effectMaterial.SetFloat(directionalDistortionFade, -16);
+            effectMaterial.DOFloat(16, directionalDistortionFade, speed).OnComplete(onComplete);*/
+            castleBack.DOFade(1, speed).OnComplete(onComplete);
+            castle.DOFade(1, speed).OnComplete(onComplete);
         }
         
     }

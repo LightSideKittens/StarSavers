@@ -16,9 +16,9 @@ namespace GameCore.Battle.Data
         private class CardByName
         {
             [ReadOnly]
-            [InfoBox("Not entity name", InfoMessageType.Error, "$" + nameof(isNotEntityError))]
-            [InfoBox("Entity name does not exist", InfoMessageType.Error, "$" + nameof(isNotExistEntity))]
-            [InfoBox("Card is already added", InfoMessageType.Error, "$" + nameof(isAlreadyAdded))]
+            [InfoBox("Not entity name", InfoMessageType.Error, "$isNotEntityError")]
+            [InfoBox("Entity name does not exist", InfoMessageType.Error, "$isNotExistEntity")]
+            [InfoBox("Card is already added", InfoMessageType.Error, "$isAlreadyAdded")]
             public string name;
             [OnValueChanged("OnValueChanged")]
             public T obj;

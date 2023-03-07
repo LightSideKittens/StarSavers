@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 
 namespace LightGamesCore.GameCore.Editor
 {
@@ -10,3 +11,4 @@ namespace LightGamesCore.GameCore.Editor
         }
     }
 }
+#endif

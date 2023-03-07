@@ -3,11 +3,15 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.Utilities;
+using UnityEditor;
+
+#if UNITY_EDITOR
 using LightGamesCore.GameCore.Editor;
 using Sirenix.OdinInspector.Editor;
-using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
-using UnityEditor;
+#endif
+
 
 namespace Battle.Data.GameProperty
 {
@@ -19,11 +23,11 @@ namespace Battle.Data.GameProperty
 
         [NonSerialized] public string scope;
         
-        [HideIf("$" + nameof(needHideFixed))]
+        [HideIf("$needHideFixed")]
         [CustomValueDrawer("FixedDrawer")]
         public decimal value;
         
-        [HideIf("$" + nameof(NeedHidePercent))]
+        [HideIf("$NeedHidePercent")]
         [PropertyRange(0, 100)]
         public int percent;
 
@@ -36,7 +40,8 @@ namespace Battle.Data.GameProperty
         {
             return value + val;
         }
-        
+
+#if UNITY_EDITOR
         private bool IsRicochet => GetType() == typeof(RicochetGP);
         private bool IsRadius => GetType() == typeof(RadiusGP) || GetType() == typeof(AreaDamageGP);
         private bool IsMoveSpeed => GetType() == typeof(MoveSpeedGP);
@@ -46,8 +51,6 @@ namespace Battle.Data.GameProperty
         private bool IsEffector => Scope.Contains("Effectors");
         private bool NeedHidePercent => (IsMoveSpeed && !IsEffector) || IsRadius || IsAttackSpeed || IsRicochet;
         
-        
-#if UNITY_EDITOR
         public static bool isInited;
         private static Texture2D evenTexture;
         public static Dictionary<Type, string> IconsByType { get; } = new()
@@ -262,8 +265,10 @@ namespace Battle.Data.GameProperty
 
             return 0;
         }
+#endif
     }
 
+#if UNITY_EDITOR
     public class MoveSpeedSelector : OdinSelector<decimal>
     {
         private static readonly Dictionary<decimal, string> keysByValues = new()
@@ -298,5 +303,5 @@ namespace Battle.Data.GameProperty
             return GetCurrentSelection().FirstOrDefault();
         }
     }
-}
 #endif
+}

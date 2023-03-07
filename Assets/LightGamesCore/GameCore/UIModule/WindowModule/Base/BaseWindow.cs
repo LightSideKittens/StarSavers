@@ -16,6 +16,7 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
     public static event Action<BaseWindow<T>> HiddenWindow;
     public static event Action Showed;
     public static event Action Hidden;
+    public static bool isStaticCalled;
 
     [SerializeField] protected float fadeSpeed = 0.2f;
     private CanvasGroup canvasGroup;
@@ -26,18 +27,23 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
     public RectTransform RectTransform { get; private set; }
     protected virtual bool ShowByDefault => false;
     public virtual int SortingOrder => 0;
+    public virtual float DefaultAlpha => 0;
 
     protected override void Init()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
+        canvasGroup.alpha = DefaultAlpha;
         GetComponent<Canvas>().sortingOrder = SortingOrder;
 
         gameObject.SetActive(false);
         transform.SetParent(Parent);
         RectTransform = (RectTransform)transform;
-        if (ShowByDefault) { Show(); }
-        else { Hide(); }
+
+        if (!isStaticCalled)
+        {
+            if (ShowByDefault) { Show(); }
+            else if(!ShowByDefault) { Hide(); }
+        }
     }
 
     private void InternalShow()
@@ -88,16 +94,16 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
         gameObject.SetActive(false);
     }
 
-    protected virtual void AnimateOnShowing(Action onComplete)
+    private void AnimateOnShowing(TweenCallback onComplete)
     {
         hideTween?.Kill();
-        showTween = GetShowAnimation().OnComplete(new TweenCallback(onComplete));
+        showTween = GetShowAnimation().OnComplete(onComplete).OnKill(onComplete);
     }
     
-    protected virtual void AnimateOnHiding(Action onComplete)
+    private void AnimateOnHiding(TweenCallback onComplete)
     {
         showTween?.Kill();
-        hideTween = GetHideAnimation().OnComplete(new TweenCallback(onComplete));
+        hideTween = GetHideAnimation().OnComplete(onComplete).OnKill(onComplete);;
     }
 
     protected virtual Tween GetShowAnimation()
@@ -110,7 +116,15 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
         return canvasGroup.DOFade(0, fadeSpeed);
     }
 
-    public static void Show() => Instance.InternalShow();
+    public static void Show()
+    {
+        isStaticCalled = true;
+        Instance.InternalShow();
+    }
 
-    public static void Hide() => Instance.InternalHide();
+    public static void Hide()
+    {
+        isStaticCalled = true;
+        Instance.InternalHide();
+    }
 }

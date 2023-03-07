@@ -11,6 +11,7 @@ namespace BeatRoyale.Windows
         protected virtual int Internal_Index { get; }
         private float XShow => ControlPanel.CurrentShowedWindowIndex > Internal_Index ? ControlPanel.LeftX : ControlPanel.RightX;
         private float XHide => ControlPanel.CurrentShowingWindowIndex > Internal_Index ? ControlPanel.LeftX : ControlPanel.RightX;
+        public override float DefaultAlpha => 1;
 
         protected override void Init()
         {
@@ -36,7 +37,7 @@ namespace BeatRoyale.Windows
         {
             RectTransform.anchoredPosition = new Vector2(XShow, 0);
             var sequence = DOTween.Sequence()
-                .Insert(0, base.GetShowAnimation())
+                /*.Insert(0, base.GetShowAnimation())*/
                 .Insert(0, RectTransform.DOAnchorPos(Vector2.zero, fadeSpeed));
             return sequence;
         }
@@ -44,7 +45,7 @@ namespace BeatRoyale.Windows
         protected override Tween GetHideAnimation()
         {
             var sequence = DOTween.Sequence()
-                .Insert(0, base.GetHideAnimation())
+                /*.Insert(0, base.GetHideAnimation())*/
                 .Insert(0, RectTransform.DOAnchorPos(new Vector2(XHide, 0), fadeSpeed));
             
             return sequence;

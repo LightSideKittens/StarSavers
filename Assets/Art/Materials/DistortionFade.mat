@@ -10,7 +10,7 @@ Material:
   m_Name: DistortionFade
   m_Shader: {fileID: 4800000, guid: 2223f491c3cec3a4bae720893015e275, type: 3}
   m_ValidKeywords:
-  - _SHADERSPACE_UV
+  - _SHADERSPACE_WORLD
   m_InvalidKeywords:
   - _DIRECTIONALDISTORTIONINVERT_ON
   m_LightmapFlags: 4
@@ -40,17 +40,17 @@ Material:
     - _DirectionalDistortionFade: -16
     - _DirectionalDistortionInvert: 1
     - _DirectionalDistortionNoiseFactor: 0.2
-    - _DirectionalDistortionRandomDirection: 0.1
-    - _DirectionalDistortionRotation: 179
+    - _DirectionalDistortionRandomDirection: 0.117
+    - _DirectionalDistortionRotation: 180
     - _DirectionalDistortionWidth: 13.3
     - _PixelsPerUnit: 100
     - _RectHeight: 100
     - _RectWidth: 100
     - _ScreenWidthUnits: 10
-    - _ShaderSpace: 0
+    - _ShaderSpace: 4
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DirectionalDistortionDistortion: {r: 0, g: 0.1, b: 0, a: 0}
+    - _DirectionalDistortionDistortion: {r: 0, g: 0.05, b: 0, a: 0}
     - _DirectionalDistortionDistortionScale: {r: 1, g: 1, b: 0, a: 0}
     - _DirectionalDistortionNoiseScale: {r: 0.4, g: 0.4, b: 0, a: 0}
   m_BuildTextureStacks: []

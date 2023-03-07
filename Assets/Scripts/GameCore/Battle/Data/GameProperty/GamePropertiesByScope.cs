@@ -11,14 +11,14 @@ namespace Battle.Data.GameProperty
     [Serializable]
     public class GamePropertiesByScope
     {
-        [field: OnValueChanged(nameof(OnScopeChanged))]
-        [field: SerializeField, VerticalGroup(nameof(Scopes)), ValueDropdown(nameof(Scopes))]
-        [field: InfoBox("Cannot use multiple identical scopes", InfoMessageType.Error, nameof(isMultipleIdenticalScopeError))]
-        [field: InfoBox("Scope properties is empty!", InfoMessageType.Error, nameof(isEmptyScopeError))]
+        [field: OnValueChanged("OnScopeChanged")]
+        [field: SerializeField, VerticalGroup("Scopes"), ValueDropdown("Scopes")]
+        [field: InfoBox("Cannot use multiple identical scopes", InfoMessageType.Error, "isMultipleIdenticalScopeError")]
+        [field: InfoBox("Scope properties is empty!", InfoMessageType.Error, "isEmptyScopeError")]
         public string Scope { get; private set; } = "Global";
         
-        [field: TypeFilter(nameof(FilteredTypeList))]
-        [field: OnValueChanged(nameof(OnScopeChanged))]
+        [field: TypeFilter("FilteredTypeList")]
+        [field: OnValueChanged("OnScopeChanged")]
         [field: OdinSerialize] public List<BaseGameProperty> Properties { get; } = new();
 
 #if UNITY_EDITOR

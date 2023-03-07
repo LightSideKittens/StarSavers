@@ -2,13 +2,10 @@
 using BeatRoyale.Windows;
 using Core.ConfigModule;
 using Core.SingleService;
-using Firebase.Auth;
-using Firebase.Extensions;
 using GameCore.Attributes;
 using GameCore.Battle.Data;
+using Newtonsoft.Json.Utilities;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Battle.Data.LevelsConfigsManager;
 
 namespace BeatRoyale.Launcher
 {
@@ -20,7 +17,13 @@ namespace BeatRoyale.Launcher
         protected override void Awake()
         {
             base.Awake();
+            AotHelper.EnsureList<LongNoteData>();
+            AotHelper.EnsureList<ShortNoteData>();
+#if !UNITY_EDITOR
             Application.targetFrameRate = 60;
+#else
+            Application.targetFrameRate = 1000;
+#endif
         }
 
         private void Start()
@@ -29,12 +32,9 @@ namespace BeatRoyale.Launcher
             {
                 StorageRemoteConfig<ChangedLevels>.Fetch(() =>
                 {
-                    Debug.Log($"[Malvis] RemotePlayerData<UnlockedLevels>.Fetch");
                     RemotePlayerData<UnlockedLevels>.Fetch(() =>
                     {
                         levelsConfigsManager.Init();
-                        LevelUpgraded += LogAllProperties;
-                        LogAllProperties();
                         RemotePlayerData<EntitiesProperties>.Fetch(() =>
                         {
                             RemotePlayerData<CardDecks>.Fetch(Init);
@@ -49,20 +49,7 @@ namespace BeatRoyale.Launcher
             animator.Init();
             ControlPanel.Show();
         }
-
-        private void LogAllProperties()
-        {
-            foreach (var level in EntitiesProperties.Config.Properties)
-            {
-                foreach (var prop in level.Value)
-                {
-                    var value = ((float) prop.Value.value); 
-                    Debug.Log($"[Malvis] Scope: {level.Key}, Property Type: {prop.Key}," +
-                        $" Value: {prop.Value.value}, Percent: {prop.Value.percent}%, Total: {value + value * (prop.Value.percent / 100)}");
-                }
-            }
-        }
-
+        
         private void Update()
         {
             animator.Update();
