@@ -23,15 +23,8 @@ namespace BeatRoyale.Windows
         private void Match()
         {
             MatchData.Clear();
-            
             var opponentPlayerData = new MatchData.PlayerData();
-            var selfPlayerData = new MatchData.PlayerData
-            {
-                decks = CardDecks.Config,
-                properties = EntitiesProperties.Config,
-            };
-            
-            MatchData.PlayerDataByUserId.Add(CommonPlayerData.UserId, selfPlayerData);
+
             
             RemotePlayerData<CardDecks>.Fetch(opponentUserId, decks =>
             {

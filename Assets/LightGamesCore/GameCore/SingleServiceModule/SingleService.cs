@@ -62,6 +62,7 @@ namespace Core.SingleService
 
         protected virtual void Awake()
         {
+            instance = (T)this;
             Debug.Log($"[{GetType().Name}] Awake");
         }
 

@@ -17,6 +17,7 @@ namespace BeatRoyale
                     if (task.IsCompletedSuccessfully)
                     {
                         CommonPlayerData.UserId = task.Result.UserId;
+                        Debug.Log($"[{nameof(Auth)}] Created New Account. UserId: {CommonPlayerData.UserId}");
                         SignInByEmail(true, onSuccess, onError);
                     }
                     else
@@ -38,6 +39,7 @@ namespace BeatRoyale
             {
                 if (task.IsCompletedSuccessfully)
                 {
+                    Debug.Log($"[{nameof(Auth)}] Sign In. UserId: {CommonPlayerData.UserId}");
                     onSuccess?.Invoke();
                 }
                 else

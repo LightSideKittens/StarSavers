@@ -9,11 +9,25 @@ namespace Battle.Data
 {
     public partial class LevelsConfigsManager
     {
+        private readonly HashSet<string> entitesNames = new();
+
+        public HashSet<string> EntitesNames
+        {
+            get
+            {
+                for (int i = 0; i < levelsContainers.Count; i++)
+                {
+                    entitesNames.Add(levelsContainers[i].entityName);
+                }
+
+                return entitesNames;
+            }
+        }
         private readonly List<string> paths = new();
         private string levelsFolderPath;
         private string assetPath;
         private bool isInited;
-        
+
         [OnInspectorInit]
         private void OnInspectorInit()
         {

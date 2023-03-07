@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BeatRoyale;
 using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
@@ -22,7 +23,7 @@ namespace Core.ConfigModule
 
         private static DocumentReference GetReference()
         {
-            UserId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+            UserId = CommonPlayerData.UserId;
             getter = GetCreatedReference;
 
             return instance.Reference;

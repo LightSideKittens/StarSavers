@@ -46,10 +46,7 @@ public class BassBullet : MonoBehaviour
 
         DOTween.To(() => 0f, OnFly, 1f, attackFlyDuration).SetEase(Ease.InCubic).SetId(enemy);
         var attackTimer = new CountDownTimer(attackFlyDuration, true).SetId(enemy);
-        attackTimer.Stopped += OnFlyComplete; 
-
-        DOTween.Kill("CameraShake");
-        Camera.main.DOShakeRotation(noteDurarion, shakeStrength, shakeVibrato).OnComplete(MusicReactiveTest.ResetCameraPosition).SetId("CameraShake");
+        attackTimer.Stopped += OnFlyComplete;
 
         void OnFlyComplete()
         {
@@ -81,8 +78,6 @@ public class BassBullet : MonoBehaviour
         TimerExtensions.Kill(enemy);
         DOTween.Kill(enemy);
         DOTween.Kill("TargetScale");
-        DOTween.Kill("CameraShake");
-        MusicReactiveTest.ResetCameraPosition();
     }
     
     private void Draw()

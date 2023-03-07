@@ -24,15 +24,20 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
 
     protected virtual Transform Parent => null;
     public RectTransform RectTransform { get; private set; }
+    protected virtual bool ShowByDefault => false;
+    public virtual int SortingOrder => 0;
 
     protected override void Init()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
+        GetComponent<Canvas>().sortingOrder = SortingOrder;
 
         gameObject.SetActive(false);
         transform.SetParent(Parent);
         RectTransform = (RectTransform)transform;
+        if (ShowByDefault) { Show(); }
+        else { Hide(); }
     }
 
     private void InternalShow()

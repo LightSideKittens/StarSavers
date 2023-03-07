@@ -1,31 +1,23 @@
 using System;
-using Battle.Data;
 using DG.Tweening;
 using MusicEventSystem.Configs;
 using UnityEngine;
 
 public class MusicReactiveTest : MonoBehaviour
 {
-    private static Quaternion defaultCameraRot;
+    public static Transform[] Towers { get; private set; }
+    private static readonly int addColorFade = Shader.PropertyToID("_AddColorFade");
     public static event Action Started;
     private int count;
     private float time;
     private bool isMainMusicStarted;
 
+    [SerializeField] private Transform[] towers;
     [SerializeField] private string musicName;
     [SerializeField] private float timeOffset;
     [SerializeField] private AudioSource source;
-    
-    [SerializeField] private BossesData bossesData;
-    [SerializeField] private PassiveBulletsData passiveBullets;
-    [SerializeField] private ActiveBulletsData activeBullets;
-    [SerializeField] private EnemiesData enemies;
-    
-    [SerializeField] private Castle[] castles;
-    
-    [SerializeField] private float shakeStrength = 1;
-    [SerializeField] private int shakeVibrato = 30;
-    [SerializeField] private float duration = 0.3f;
+    [SerializeField] private SpriteRenderer map;
+    private float mapExposition;
 
     [SerializeField] private GameObject[] fires;
     [SerializeField] private Vector3 targetScale = new Vector3(5, 5, 5);
@@ -37,7 +29,7 @@ public class MusicReactiveTest : MonoBehaviour
         time += timeOffset;
         source.time += timeOffset;
         MusicData.SkipToTime(timeOffset);
-        defaultCameraRot = Camera.main.transform.rotation;
+        Towers = towers;
     }
 
     private void Start()
@@ -49,10 +41,8 @@ public class MusicReactiveTest : MonoBehaviour
             new CountDownTimer(0.1f, true).Stopped += () =>
             {
                 DOTween.Kill("Scale");
-                DOTween.Kill("CameraShake");
                 DOTween.Kill(this);
-                ResetCameraPosition();
-                Camera.main.DOShakeRotation(duration, shakeStrength, shakeVibrato).OnComplete(ResetCameraPosition).SetId("CameraShake");
+                mapExposition = 0.4f;
 
                 for (int i = 0; i < fires.Length; i++)
                 {
@@ -60,25 +50,23 @@ public class MusicReactiveTest : MonoBehaviour
                 }
             };
         };
-
-        bossesData.Init();
-        passiveBullets.Init();
-        activeBullets.Init();
-        enemies.Init();
-    }
-
-    public static void ResetCameraPosition()
-    {
-        Camera.main.transform.rotation = defaultCameraRot;
     }
 
     public void Update()
     {
+        map.material.SetFloat(addColorFade, mapExposition);
+        mapExposition -= Time.deltaTime * 1.5f;
+
+        if (mapExposition < 0)
+        {
+            mapExposition = 0;
+        }
+        
         for (int i = 0; i < fires.Length; i++)
         {
             if (fires[i].transform.localScale.x > 1)
             {
-                fires[i].transform.localScale -= Vector3.one * Time.deltaTime * targetScaleSpeed;
+                fires[i].transform.localScale -= Vector3.one * (Time.deltaTime * targetScaleSpeed);
             }
         }
         
