@@ -22,17 +22,13 @@ namespace BeatRoyale.Windows
 
         private void Match()
         {
-            MatchData.Clear();
-            var opponentPlayerData = new MatchData.PlayerData();
-
+            MatchPlayersData.Clear();
             
             RemotePlayerData<CardDecks>.Fetch(opponentUserId, decks =>
             {
-                opponentPlayerData.decks = decks;
                 RemotePlayerData<EntitiesProperties>.Fetch(opponentUserId, properties =>
                 {
-                    opponentPlayerData.properties = properties;
-                    MatchData.PlayerDataByUserId.Add(opponentUserId, opponentPlayerData);
+                    MatchPlayersData.Add(opponentUserId, decks, properties);
                     SceneManager.LoadScene(1);
                 });
             });

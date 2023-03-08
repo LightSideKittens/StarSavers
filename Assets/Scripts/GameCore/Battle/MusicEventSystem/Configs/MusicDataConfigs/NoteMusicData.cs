@@ -81,7 +81,7 @@ namespace MusicEventSystem.Configs
 
                 if (currentTime >= lastCurrentTime + BPMStep)
                 {
-                    BPMReached?.Invoke();
+                    TactTicked?.Invoke();
                     lastCurrentTime = currentTime;
                 }
             }

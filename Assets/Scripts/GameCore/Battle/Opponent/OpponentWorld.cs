@@ -1,51 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using BeatRoyale;
 using GameCore.Battle.Data;
-using MusicEventSystem.Configs;
 using UnityEngine;
+using static SoundventTypes;
 
 namespace Battle
 {
     public class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
-        protected override IEnumerable<Transform> Targets
-        {
-            get
-            {
-                foreach (var tower in Tower.Towers)
-                {
-                    yield return tower;
-                }
-            }
-        }
-
         protected override bool IsOpponent => true;
 
-        [SerializeField] private Transform portal;
+        [SerializeField] private Transform[] portals;
         [SerializeField] private Unit[] unitPrefabs;
+        private int portalIndex;
 
         private void Start()
         {
-            var shortTrack = MusicData.ShortTrackData;
-            var spawnPosition = portal.position;
-            shortTrack.GetTrack(SoundventTypes.EnemyI).Started += () =>
-            {
-                Internal_Spawn(unitPrefabs[0], spawnPosition);
-            };
-            
-            shortTrack.GetTrack(SoundventTypes.EnemyII).Started += () =>
-            {
-                Internal_Spawn(unitPrefabs[1], spawnPosition);
-            };
-            
-            shortTrack.GetTrack(SoundventTypes.EnemyIII).Started += () =>
-            {
-                Internal_Spawn(unitPrefabs[2], spawnPosition);
-            };
-            
-            shortTrack.GetTrack(SoundventTypes.EnemyIV).Started += () =>
-            {
-                Internal_Spawn(unitPrefabs[3], spawnPosition);
-            };
+            ShortNoteListener.Listen(EnemyI).Started += () => Spawn(0);
+            ShortNoteListener.Listen(EnemyII).Started += () => Spawn(1);
+            ShortNoteListener.Listen(EnemyIII).Started += () => Spawn(2);
+            ShortNoteListener.Listen(EnemyIV).Started += () => Spawn(3);
+        }
+
+        private void Spawn(int index)
+        {
+            portalIndex++;
+            portalIndex %= portals.Length;
+            Internal_Spawn(unitPrefabs[index], portals[portalIndex].position);
         }
     }
 }

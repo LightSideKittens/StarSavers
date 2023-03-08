@@ -2,6 +2,7 @@
 using Battle.Data;
 using GameCore.Battle.Data.Components;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace GameCore.Battle.Data
@@ -11,18 +12,21 @@ namespace GameCore.Battle.Data
         private static IEnumerable<string> Entities => GameScopes.EntitiesNames;
         
         [SerializeField, ValueDropdown(nameof(Entities))] private string entityName;
-        [SerializeField] private MoveComponent moveComponent;
-        [SerializeField] private FindTargetComponent findTargetComponent;
-        [SerializeField] private AttackComponent attackComponent;
-        [SerializeField] private HealthComponent healthComponent;
+        [field: SerializeField] public int Price { get; private set; }
+        
+        [OdinSerialize] private MoveComponent moveComponent = new();
+        [OdinSerialize] private FindTargetComponent findTargetComponent = new ();
+        [OdinSerialize] private AttackComponent attackComponent = new();
+        [OdinSerialize] internal HealthComponent healthComponent = new();
+        
         public bool IsOpponent { get; private set; }
         public static Dictionary<Transform, Unit> ByTransform { get; } = new();
 
-        public void Init(IEnumerable<Transform> targets, bool isOpponent)
+        public void Init(bool isOpponent)
         {
             IsOpponent = isOpponent;
             ByTransform.Add(transform, this);
-            findTargetComponent.Init(gameObject, targets);
+            findTargetComponent.Init(gameObject, IsOpponent);
             moveComponent.Init(entityName, gameObject, findTargetComponent);
             healthComponent.Init(entityName, gameObject, IsOpponent);
             attackComponent.Init(entityName, gameObject, findTargetComponent);

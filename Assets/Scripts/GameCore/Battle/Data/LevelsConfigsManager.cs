@@ -106,7 +106,7 @@ namespace Battle.Data
 
         private static void ComputeLevel(Dictionary<string, List<BaseGameProperty>> dict)
         {
-            var entitiesProperties = EntitiesProperties.Config.Properties;
+            var entitiesProperties = EntitiesProperties.ByName;
 
             foreach (var propertiesByType in dict)
             {
@@ -150,7 +150,7 @@ namespace Battle.Data
         {
             Debug.Log($"[{nameof(LevelsConfigsManager)}] RecomputeAllLevels");
             ChangedLevels.Config.Levels.Clear();
-            EntitiesProperties.Config.Properties.Clear();
+            EntitiesProperties.ByName.Clear();
 
             for (int i = 0; i < levelsContainers.Count; i++)
             {

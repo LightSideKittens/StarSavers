@@ -7,7 +7,6 @@ namespace Battle
 {
     public abstract class BasePlayerWorld<T> : SingleService<T> where T : BasePlayerWorld<T>
     {
-        protected abstract IEnumerable<Transform> Targets { get; }
         protected abstract bool IsOpponent { get; }
 
         private IEnumerable<Unit> Units
@@ -43,7 +42,7 @@ namespace Battle
         
         private void InitUnit(Unit unit)
         {
-            unit.Init(Targets, IsOpponent);
+            unit.Init(IsOpponent);
         }
 
         private void Update()

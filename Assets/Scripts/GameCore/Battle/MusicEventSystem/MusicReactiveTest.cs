@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MusicReactiveTest : MonoBehaviour
 {
+    public static int MusicOffset { get; } = 1;
     private static readonly int addColorFade = Shader.PropertyToID("_AddColorFade");
     public static event Action Started;
     private int count;
@@ -33,9 +34,7 @@ public class MusicReactiveTest : MonoBehaviour
     {
         MusicData.ShortTrackData.GetTrack(SoundventTypes.ShortIV).Started += () =>
         {
-            Time.timeScale = 1;
-
-            new CountDownTimer(0.1f, true).Stopped += () =>
+            new CountDownTimer(MusicOffset + 0.1f, true).Stopped += () =>
             {
                 DOTween.Kill("Scale");
                 DOTween.Kill(this);
@@ -70,7 +69,10 @@ public class MusicReactiveTest : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isMainMusicStarted)
         {
             isMainMusicStarted = true;
-            source.Play();
+            new CountDownTimer(MusicOffset, true).Stopped += () =>
+            {
+                source.Play();
+            };
             Started?.Invoke();
         }
         

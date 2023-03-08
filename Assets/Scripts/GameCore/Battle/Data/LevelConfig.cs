@@ -18,7 +18,7 @@ namespace Battle.Data
             new GamePropertiesByScope()
         };
 
-        [OdinSerialize] public List<BaseWallet> Prices { get; set; } = new();
+        [OdinSerialize][HideInInspector] public List<BaseWallet> Prices { get; set; } = new();
 
         public void InitProperties(Dictionary<string, List<BaseGameProperty>> properties)
         {

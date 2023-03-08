@@ -13,7 +13,7 @@ namespace GameCore.Battle.Data
     public class ObjectByEntitesNames<T> : SerializedScriptableObject where T : Object
     {
         [Serializable]
-        private class CardByName
+        private class ObjectByName
         {
             [ReadOnly]
             [InfoBox("Not entity name", InfoMessageType.Error, "$isNotEntityError")]
@@ -58,7 +58,7 @@ namespace GameCore.Battle.Data
         private static ObjectByEntitesNames<T> instance;
         private static LevelsConfigsManager levelsConfigsManager;
         public static Dictionary<string, T> ByEntitiesNames { get; } = new(); 
-        [SerializeField] private List<CardByName> cardByNames = new ();
+        [SerializeField] private List<ObjectByName> cardByNames = new ();
 
         public void Init()
         {

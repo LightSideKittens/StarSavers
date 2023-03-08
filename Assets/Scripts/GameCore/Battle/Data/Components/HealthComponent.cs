@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 namespace GameCore.Battle.Data.Components
 {
     [Serializable]
-    public class HealthComponent
+    internal class HealthComponent
     {
         [SerializeField] private Vector2 scale = new Vector2(1, 1);
         [SerializeField] private Vector2 offset;
@@ -21,7 +21,7 @@ namespace GameCore.Battle.Data.Components
         public void Init(string entityName, GameObject gameObject, bool isOpponent)
         {
             this.gameObject = gameObject;
-            health = EntitiesProperties.Config.Properties[entityName][nameof(HealthGP)].Value;
+            health = EntitiesProperties.ByName[entityName][nameof(HealthGP)].Value;
             healthBar = HealthBar.Create(health, gameObject.transform, offset, scale, isOpponent);
             ByTransform.Add(gameObject.transform, this);
         }
@@ -34,6 +34,11 @@ namespace GameCore.Battle.Data.Components
         public void Update()
         {
             healthBar.Update();
+        }
+
+        public void Kill()
+        {
+            TakeDamage(health);
         }
 
         public void TakeDamage(float damage)

@@ -9,6 +9,15 @@ namespace Battle
     {
         [SerializeField] private Units units; 
         [SerializeField] private Cards cards; 
+        [SerializeField] private MeshRenderer spawnArea; 
+        public static MeshRenderer SpawnArea { get; private set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            SpawnArea = spawnArea;
+        }
+
         private void Start()
         {
             units.Init();

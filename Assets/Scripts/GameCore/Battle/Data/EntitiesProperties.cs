@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Core.ConfigModule;
+using Newtonsoft.Json;
 
 namespace Battle.Data
 {
     public class EntitiesProperties : JsonBaseConfigData<EntitiesProperties>
     {
-        public Dictionary<string, Dictionary<string, ValuePercent>> Properties { get; } = new();
+        [JsonProperty("Properties")] 
+        private Dictionary<string, Dictionary<string, ValuePercent>> byName = new();
+
+        [JsonIgnore]
+        public static Dictionary<string, Dictionary<string, ValuePercent>> ByName => Config.byName;
     }
 }

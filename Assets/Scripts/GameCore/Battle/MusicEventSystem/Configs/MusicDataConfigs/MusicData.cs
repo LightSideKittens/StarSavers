@@ -9,7 +9,7 @@ namespace MusicEventSystem.Configs
         public const float BPMStep = 0.25f;
         private static string musicName;
         private static float lastCurrentTime;
-        public static event Action BPMReached;
+        public static event Action TactTicked;
         public static event Action Loaded;
         [JsonProperty(Order = 0)] private NoteMusicData<LongNoteTrackData> longNoteTrack = new();
         [JsonProperty(Order = 1)] private NoteMusicData<ShortNoteTrackData> shortNoteTrack = new();

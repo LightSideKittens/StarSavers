@@ -142,11 +142,85 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: moveComponent
+      Entry: 7
+      Data: 0|GameCore.Battle.Data.Components.MoveComponent, GameCore.Battle
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: findTargetComponent
+      Entry: 7
+      Data: 1|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
+    - Name: providers
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
+        GameCore.Battle]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 3|GameCore.Battle.Data.Components.TargetProviders.AllUnits, GameCore.Battle
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|GameCore.Battle.Data.Components.TargetProviders.AllBuildings, GameCore.Battle
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: attackComponent
+      Entry: 7
+      Data: 5|GameCore.Battle.Data.Components.AttackComponent, GameCore.Battle
+    - Name: duration
+      Entry: 4
+      Data: 0.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: healthComponent
+      Entry: 7
+      Data: 6|GameCore.Battle.Data.Components.HealthComponent, GameCore.Battle
+    - Name: scale
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.8
+    - Name: 
+      Entry: 4
+      Data: 0.8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: offset
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0.35
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   entityName: Drago
-  healthComponent:
-    scale: {x: 0.3, y: 0.3}
-    offset: {x: 0, y: 0.35}
+  <Price>k__BackingField: 5
 --- !u!50 &-8899686809860765106
 Rigidbody2D:
   serializedVersion: 4

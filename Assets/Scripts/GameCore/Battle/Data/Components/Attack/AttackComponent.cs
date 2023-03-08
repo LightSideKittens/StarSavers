@@ -1,6 +1,7 @@
 ﻿using System;
 using Battle.Data;
 using Battle.Data.GameProperty;
+using BeatRoyale;
 using Common.SingleServices;
 using DG.Tweening;
 using MusicEventSystem.Configs;
@@ -9,15 +10,17 @@ using UnityEngine;
 namespace GameCore.Battle.Data.Components
 {
     [Serializable]
-    public class AttackComponent
+    internal class AttackComponent
     {
-        private FindTargetComponent findTargetComponent;
+        [SerializeField] protected float duration = 0.1f;
+        protected FindTargetComponent findTargetComponent;
         private string attackSpeed;
-        private float damage;
-        private float radius;
-        private GameObject gameObject;
-        private Transform transform;
+        [NonSerialized] public float damage;
+        [NonSerialized] public float radius;
+        protected GameObject gameObject;
+        protected Transform transform;
         private int currentIndex;
+        private TactListener listener;
         public bool IsInRadius { get; private set; }
 
         public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
@@ -25,11 +28,11 @@ namespace GameCore.Battle.Data.Components
             this.gameObject = gameObject;
             this.findTargetComponent = findTargetComponent;
             transform = gameObject.transform;
-            var props = EntitiesProperties.Config.Properties[entityName];
+            var props = EntitiesProperties.ByName[entityName];
             radius = props[nameof(RadiusGP)].Value / 4;
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].Value, 2);
-            MusicData.BPMReached += OnBpmReached;
+            listener = TactListener.Listen(-duration).OnTicked(OnTactTicked);
         }
 
         public void Update()
@@ -39,7 +42,8 @@ namespace GameCore.Battle.Data.Components
 
         public void OnDestroy()
         {
-            MusicData.BPMReached -= OnBpmReached;
+            listener.Ticked -= OnTactTicked;
+            listener.Dispose();
         }
 
         public bool CheckInRadius(Transform target)
@@ -54,12 +58,12 @@ namespace GameCore.Battle.Data.Components
             return false;
         }
 
-        protected virtual void AttackAnimation(Vector2 targetPosition)
+        protected virtual Tween AttackAnimation(Vector2 targetPosition)
         {
-            transform.DOMove(targetPosition, 0.1f).SetLoops(2, LoopType.Yoyo);
+            return transform.DOMove(targetPosition, duration).SetLoops(2, LoopType.Yoyo);
         }
 
-        private void OnBpmReached()
+        private void OnTactTicked()
         {
             if (IsInRadius)
             {
@@ -73,7 +77,7 @@ namespace GameCore.Battle.Data.Components
                     var pos = target.position;
                     AnimText.Create($"{damage}", pos, fromWorldSpace: true);
                     var direction = (pos - transform.position).normalized;
-                    pos -= target.localScale.x * direction;
+                    pos -= (target.localScale.x + transform.localScale.x) * direction;
                     AttackAnimation(pos);
                 }
             

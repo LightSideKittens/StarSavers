@@ -274,8 +274,39 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: findTargetComponent
+      Entry: 7
+      Data: 0|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
+    - Name: providers
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
+        GameCore.Battle]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 2|GameCore.Battle.Data.Components.TargetProviders.AllUnitsForTower, GameCore.Battle
+    - Name: yPositionThreshold
+      Entry: 4
+      Data: 3.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   entityName: 
+  bulletFlyDuration: 0.4
+  deathFx: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   healthComponent:
     scale: {x: 1, y: 1}
     offset: {x: 0, y: 0}

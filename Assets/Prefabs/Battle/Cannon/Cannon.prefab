@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7159921653354414345}
   - component: {fileID: 7394052111913344944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6222193654353743559}
   - component: {fileID: 2550720874558630838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 7217969013684383048}
   - component: {fileID: 233045635871357641}
   - component: {fileID: 7684412390614367911}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 4660151251531169275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.56, y: -0.5, z: 0}
-  m_LocalScale: {x: 1.749, y: 1.749, z: 1.749}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6222193654353743559}
@@ -275,9 +275,38 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: findTargetComponent
+      Entry: 7
+      Data: 0|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
+    - Name: providers
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
+        GameCore.Battle]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 2|GameCore.Battle.Data.Components.TargetProviders.AllUnits, GameCore.Battle
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  attackComponent:
+    duration: 0.1
+    bulletPrefab: {fileID: 8003541396490395842, guid: 6c59284b98e765547b0c00181bbd2b05, type: 3}
+    deathFx: {fileID: 5758665396089964515, guid: 218aa04d3ab84304ba613503429b33bf, type: 3}
   healthComponent:
-    scale: {x: 0.3, y: 0.3}
+    scale: {x: 1, y: 1}
     offset: {x: 0, y: 0.6}
 --- !u!58 &7684412390614367911
 CircleCollider2D:
