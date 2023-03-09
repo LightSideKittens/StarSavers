@@ -96,7 +96,12 @@ namespace Battle.Windows
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            var unit = Units.ByEntitiesNames[namesByCard[selected]];
+            if (!Units.ByEntitiesNames.TryGetValue(namesByCard[selected], out var unit))
+            {
+                Reset();
+                return;
+            }
+            
             BattleBootstrap.SpawnArea.gameObject.SetActive(false);
             
             if (IntMana >= unit.Price)
