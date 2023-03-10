@@ -65,7 +65,7 @@ namespace Core.ConfigModule
                         {
                             if (deleteTask.IsCompletedSuccessfully)
                             {
-                                Debug.Log($"Success Deleted: {CommonPlayerData.UserId} Error: {deleteTask.Exception?.Message}");
+                                Debug.Log($"Success Deleted: {names} from User: {CommonPlayerData.UserId}");
                             }
                             else
                             {
