@@ -21,6 +21,7 @@ namespace GameCore.Battle.Data
         
         public bool IsOpponent { get; private set; }
         public static Dictionary<Transform, Unit> ByTransform { get; } = new();
+        private float radius;
 
         public void Init(bool isOpponent)
         {
@@ -30,6 +31,15 @@ namespace GameCore.Battle.Data
             moveComponent?.Init(entityName, gameObject, findTargetComponent);
             healthComponent.Init(entityName, gameObject, IsOpponent);
             attackComponent.Init(entityName, gameObject, findTargetComponent);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            var color = Color.green;
+            color.a = 0.5f;
+            Gizmos.color = color;
+            
+            Gizmos.DrawSphere(transform.position, attackComponent.radius);
         }
 
         public void Run()

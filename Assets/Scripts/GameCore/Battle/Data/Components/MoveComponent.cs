@@ -22,7 +22,7 @@ namespace GameCore.Battle.Data.Components
             this.gameObject = gameObject;
             rigidbody = gameObject.GetComponent<Rigidbody2D>();
             collider = rigidbody.GetComponent<CircleCollider2D>();
-            speed = EntitiesProperties.ByName[entityName][nameof(MoveSpeedGP)].Value / 3;
+            speed = EntitiesProperties.ByName[entityName][nameof(MoveSpeedGP)].Value;
             this.findTargetComponent = findTargetComponent;
 
             if (mask == -1)

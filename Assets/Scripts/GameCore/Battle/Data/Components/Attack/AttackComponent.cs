@@ -16,7 +16,7 @@ namespace GameCore.Battle.Data.Components
         protected FindTargetComponent findTargetComponent;
         private string attackSpeed;
         protected float damage;
-        protected float radius;
+        public float radius;
         protected GameObject gameObject;
         protected Transform transform;
         private int currentIndex;
@@ -29,7 +29,7 @@ namespace GameCore.Battle.Data.Components
             this.findTargetComponent = findTargetComponent;
             transform = gameObject.transform;
             var props = EntitiesProperties.ByName[entityName];
-            radius = props[nameof(RadiusGP)].Value / 4;
+            radius = props[nameof(RadiusGP)].Value;
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].Value, 2);
             listener = TactListener.Listen(-duration).OnTicked(OnTactTicked);
