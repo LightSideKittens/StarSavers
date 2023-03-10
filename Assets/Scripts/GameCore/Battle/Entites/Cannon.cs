@@ -38,6 +38,8 @@ namespace GameCore.Battle.Data
 
         private void OnDestroy()
         {
+            healthComponent.OnDestroy();
+            attackComponent.OnDestroy();
             Cannons.Remove(transform);
         }
     }
