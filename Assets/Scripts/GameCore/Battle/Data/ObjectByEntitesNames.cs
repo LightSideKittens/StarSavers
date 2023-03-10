@@ -17,7 +17,7 @@ namespace GameCore.Battle.Data
         {
             [ReadOnly]
             [InfoBox("Not entity name", InfoMessageType.Error, "$isNotEntityError")]
-            [InfoBox("Entity name does not exist", InfoMessageType.Error, "$isNotExistEntity")]
+            [InfoBox("Entity name does not exist in LevelsConfigsManager", InfoMessageType.Error, "$isNotExistEntity")]
             [InfoBox("Card is already added", InfoMessageType.Error, "$isAlreadyAdded")]
             public string name;
             [OnValueChanged("OnValueChanged")]
