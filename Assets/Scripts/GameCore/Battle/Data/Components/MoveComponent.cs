@@ -15,7 +15,7 @@ namespace GameCore.Battle.Data.Components
         private float speed;
         private static int mask = -1;
 
-        [NonSerialized] public bool enabled = true;
+        private bool enabled = true;
 
         public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
         {
@@ -29,6 +29,11 @@ namespace GameCore.Battle.Data.Components
             {
                 mask = LayerMask.GetMask("Cannon");
             }
+        }
+
+        public void SetEnabled(bool active)
+        {
+            enabled = active;
         }
 
         private void TryByPass(ref Vector2 direction)

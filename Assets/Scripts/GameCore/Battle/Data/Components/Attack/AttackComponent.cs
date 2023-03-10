@@ -15,8 +15,8 @@ namespace GameCore.Battle.Data.Components
         [SerializeField] protected float duration = 0.1f;
         protected FindTargetComponent findTargetComponent;
         private string attackSpeed;
-        [NonSerialized] public float damage;
-        [NonSerialized] public float radius;
+        protected float damage;
+        protected float radius;
         protected GameObject gameObject;
         protected Transform transform;
         private int currentIndex;

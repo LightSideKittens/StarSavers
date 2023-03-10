@@ -28,8 +28,6 @@ namespace GameCore.Battle.Data
             findTargetComponent.Init(gameObject, true);
             healthComponent.Init(entityName, gameObject, true);
             attackComponent.Init(entityName, gameObject, findTargetComponent);
-            attackComponent.damage /= 2;
-            attackComponent.radius *= 2;
         }
 
         public void Update()

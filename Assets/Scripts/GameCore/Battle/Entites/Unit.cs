@@ -27,7 +27,7 @@ namespace GameCore.Battle.Data
             IsOpponent = isOpponent;
             ByTransform.Add(transform, this);
             findTargetComponent.Init(gameObject, IsOpponent);
-            moveComponent.Init(entityName, gameObject, findTargetComponent);
+            moveComponent?.Init(entityName, gameObject, findTargetComponent);
             healthComponent.Init(entityName, gameObject, IsOpponent);
             attackComponent.Init(entityName, gameObject, findTargetComponent);
         }
@@ -35,13 +35,13 @@ namespace GameCore.Battle.Data
         public void Run()
         {
             attackComponent.Update();
-            moveComponent.enabled = !attackComponent.IsInRadius;
+            moveComponent?.SetEnabled(!attackComponent.IsInRadius);
             healthComponent.Update();
         }
 
         public void FixedRun()
         {
-            moveComponent.Update();
+            moveComponent?.Update();
         }
 
         private void OnDestroy()
