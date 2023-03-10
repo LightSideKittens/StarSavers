@@ -19,6 +19,7 @@ namespace BeatRoyale.Windows
             var center = new Vector2(0.5f, 0.5f);
             RectTransform.anchorMin = center;
             RectTransform.anchorMax = center;
+            RectTransform.sizeDelta = ControlPanel.Rect.size;
         }
 
         protected override void OnShowing()

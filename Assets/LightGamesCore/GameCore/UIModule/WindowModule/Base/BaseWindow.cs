@@ -36,7 +36,7 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
         GetComponent<Canvas>().sortingOrder = SortingOrder;
 
         gameObject.SetActive(false);
-        transform.SetParent(Parent);
+        transform.SetParent(Parent, false);
         RectTransform = (RectTransform)transform;
 
         if (!isStaticCalled)
