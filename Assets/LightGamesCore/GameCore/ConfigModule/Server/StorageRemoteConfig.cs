@@ -63,7 +63,7 @@ namespace Core.ConfigModule
             var storageRef = getter();
             if (ConfigVersions.IsVersionsFetched)
             {
-                FetchIfNeed();
+                Invoke(FetchIfNeed);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace Core.ConfigModule
                 void OnSuccess()
                 {
                     ConfigVersions.IsVersionsFetched = true;
-                    FetchIfNeed();
+                    Invoke(FetchIfNeed);
                 }
             }
 

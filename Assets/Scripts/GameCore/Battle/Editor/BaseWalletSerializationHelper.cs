@@ -33,7 +33,7 @@ public abstract class BaseWalletSerializationHelper<T> : OdinEditor where T : Sc
     {
         DrawDefaultInspector();
         Init();
-
+        EditorGUILayout.Space(20);
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
         for (int i = 0; i < MatchedTypes.Count; i++)

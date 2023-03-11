@@ -68,6 +68,7 @@ namespace Battle.Windows
         {
             card.transform.SetParent(parent, false);
             card.transform.SetSiblingIndex(0);
+            card.transform.localScale = Vector3.one;
             
             var price = Units.ByEntitiesNames.TryGetValue(namesByCard[card], out var unit) ? unit.Price : 0;
             var priceTextIndex = enabledCards[card];

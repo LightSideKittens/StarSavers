@@ -74,8 +74,7 @@ namespace GameCore.Battle.Data
         private void OnInspectorInit()
         {
             instance = this;
-            var guid = AssetDatabase.FindAssets("t: LevelsConfigsManager");
-            levelsConfigsManager = AssetDatabase.LoadAssetAtPath<LevelsConfigsManager>(AssetDatabase.GUIDToAssetPath(guid[0]));
+            levelsConfigsManager = LevelsConfigsManager.Editor_GetInstance();
         }
 #endif
     }

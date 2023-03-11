@@ -29,8 +29,10 @@ namespace Common.SingleServices
                 position = camera.WorldToScreenPoint(pos);
             }
 
+            var scale = animText.gameObject.transform.localScale;
             var obj = Object.Instantiate(animText.gameObject, position, Quaternion.identity);
             obj.transform.SetParent(spawnPoint.parent, true);
+            obj.transform.localScale = scale;
             var text = obj.Get(animText.text);
             text.text = message;
             var rect = (RectTransform) obj.transform;

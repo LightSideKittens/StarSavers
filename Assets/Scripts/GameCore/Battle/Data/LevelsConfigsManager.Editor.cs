@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
+using Battle.Data.GameProperty;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEditor;
@@ -133,6 +134,17 @@ namespace Battle.Data
             {
                 paths.Add(folder);
             }
+        }
+
+        public static LevelsConfigsManager Editor_GetInstance()
+        {
+            var guid = AssetDatabase.FindAssets("t: LevelsConfigsManager");
+            return AssetDatabase.LoadAssetAtPath<LevelsConfigsManager>(AssetDatabase.GUIDToAssetPath(guid[0]));
+        }
+        
+        public static void Editor_RecomputeAllLevels()
+        {
+            Editor_GetInstance().RecomputeAllLevels();
         }
     }
 }

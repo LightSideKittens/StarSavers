@@ -81,13 +81,13 @@ namespace Core.ConfigModule
                 var json = (string) dict[config.FileName];
                 BaseConfig<T1>.Deserialize(json);
                 Invoke(onSuccess);
-            }, () =>
-            {
-                Push(onSuccess, onError);
-            }, onComplete);
+            }, onError, onComplete, () => Push(onSuccess, onError));
         }
 
-        private static void Internal_Fetch(Action<Dictionary<string, object>> onSuccess = null, Action onError = null, Action onComplete = null)
+        private static void Internal_Fetch(Action<Dictionary<string, object>> onSuccess = null,
+            Action onError = null,
+            Action onComplete = null,
+            Action onResponseEmpty = null)
         {
             Debug.Log($"[{typeof(T1).Name}] Fetch");
             var docRef = getter();
@@ -100,7 +100,16 @@ namespace Core.ConfigModule
 
                     if (dict == null)
                     {
-                        Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty");
+                        if (onResponseEmpty != null)
+                        {
+                            Debug.Log($"[{typeof(T1).Name}] Failure Fetch: Response is empty");
+                            onResponseEmpty();
+                        }
+                        else
+                        {
+                            Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty");
+                        }
+                        
                         Invoke(onError);
                         Invoke(onComplete);
                         return;

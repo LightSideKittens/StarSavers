@@ -303,12 +303,13 @@ MonoBehaviour:
       Data: 
   entityName: 
   attackComponent:
-    duration: 0.1
+    duration: 0.4
+    radius: 0
     bulletPrefab: {fileID: 8003541396490395842, guid: 6c59284b98e765547b0c00181bbd2b05, type: 3}
     deathFx: {fileID: 5758665396089964515, guid: 218aa04d3ab84304ba613503429b33bf, type: 3}
   healthComponent:
     scale: {x: 1, y: 1}
-    offset: {x: 0, y: 0.6}
+    offset: {x: 0, y: 3}
 --- !u!58 &7684412390614367911
 CircleCollider2D:
   m_ObjectHideFlags: 0
