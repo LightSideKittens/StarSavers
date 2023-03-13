@@ -4,24 +4,24 @@ namespace Battle.Data.GameProperty
 {
     public struct RicochetData
     {
-        private int percentValue;
-        private decimal radius;
-        private int ricochet;
+        public int decreasePercent;
+        public decimal radius;
+        public int ricochetCount;
 
         public static implicit operator decimal(RicochetData data)
         {
             var newBinary = 1_000_000_00;
-            newBinary += data.percentValue * 100000;
+            newBinary += data.decreasePercent * 100000;
             newBinary += ((int)(data.radius * 10)) * 100;
-            newBinary += data.ricochet;
+            newBinary += data.ricochetCount;
             return newBinary;
         }
 
         public static RicochetData operator +(RicochetData a, RicochetData b)
         {
-            a.percentValue = Math.Max(a.percentValue, b.percentValue) - Math.Min(a.percentValue, b.percentValue);
+            a.decreasePercent = Math.Max(a.decreasePercent, b.decreasePercent) - Math.Min(a.decreasePercent, b.decreasePercent);
             a.radius += b.radius;
-            a.ricochet += b.ricochet;
+            a.ricochetCount += b.ricochetCount;
 
             return a;
         }
@@ -31,9 +31,9 @@ namespace Battle.Data.GameProperty
             var val = (int)value;
             var data = new RicochetData()
             {
-                percentValue = val / 100000 % 1000,
+                decreasePercent = val / 100000 % 1000,
                 radius = (val / 100 % 1000) / 10m,
-                ricochet = val % 100
+                ricochetCount = val % 100
             };
 
             return data;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
+using Common.SingleServices;
 using GameCore.Common.SingleServices.Windows;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -14,16 +15,18 @@ namespace GameCore.Battle.Data.Components
         [SerializeField] private Vector2 scale = new Vector2(1, 1);
         [SerializeField] private Vector2 offset;
         private GameObject gameObject;
+        private Transform transform;
         private HealthBar healthBar;
         private float health;
         public static Dictionary<Transform, HealthComponent> ByTransform { get; } = new();
         
         public void Init(string entityName, GameObject gameObject, bool isOpponent)
         {
-            this.gameObject = gameObject;
+            this.gameObject = gameObject; 
+            transform = gameObject.transform;
             health = EntitiesProperties.ByName[entityName][nameof(HealthGP)].Value;
-            healthBar = HealthBar.Create(health, gameObject.transform, offset, scale, isOpponent);
-            ByTransform.Add(gameObject.transform, this);
+            healthBar = HealthBar.Create(health, transform, offset, scale, isOpponent);
+            ByTransform.Add(transform, this);
         }
         
         public void OnDestroy()
@@ -45,6 +48,7 @@ namespace GameCore.Battle.Data.Components
         {
             health -= damage;
             healthBar.SetValue(health);
+            AnimText.Create($"{damage}", transform.position, fromWorldSpace: true);
 
             if (health <= 0)
             {

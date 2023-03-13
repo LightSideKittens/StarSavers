@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
-using Common.SingleServices;
 using DG.Tweening;
-using MusicEventSystem.Configs;
+using GameCore.Battle.Data.Components.HitBox;
 using UnityEngine;
+using static GameCore.Battle.RadiusUtils;
 
 namespace GameCore.Battle.Data.Components
 {
@@ -16,12 +17,15 @@ namespace GameCore.Battle.Data.Components
         protected FindTargetComponent findTargetComponent;
         private string attackSpeed;
         protected float damage;
-        public float radius;
+        protected float radius;
         protected GameObject gameObject;
         protected Transform transform;
         private int currentIndex;
         private TactListener listener;
+        private Vector2 lastHitPoint;
         public bool IsInRadius { get; private set; }
+        public float Radius => radius;
+        public static Dictionary<Transform, AttackComponent> ByTransform { get; } = new();
 
         public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
         {
@@ -33,7 +37,12 @@ namespace GameCore.Battle.Data.Components
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].Value, 2);
             listener = TactListener.Listen(-duration).OnTicked(OnTactTicked);
+            DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
+            ByTransform.Add(transform, this);
+            OnInit(entityName);
         }
+        
+        protected virtual void OnInit(string entityName){}
 
         public void Update()
         {
@@ -44,23 +53,23 @@ namespace GameCore.Battle.Data.Components
         {
             listener.Ticked -= OnTactTicked;
             listener.Dispose();
+            ByTransform.Remove(transform);
         }
 
         public bool CheckInRadius(Transform target)
         {
             if (target != null)
             {
-                var distance = Vector2.Distance(target.position, transform.position);
-                distance -= target.localScale.x;
-                return distance < radius;
+                var hitBox = HitBoxComponent.ByTransform[target];
+                return hitBox.IsIntersected(transform.position, radius, out lastHitPoint);
             }
 
             return false;
         }
 
-        protected virtual Tween AttackAnimation(Vector2 targetPosition)
+        protected virtual Tween AttackAnimation()
         {
-            return transform.DOMove(targetPosition, duration).SetLoops(2, LoopType.Yoyo);
+            return transform.DOMove(lastHitPoint, duration).SetLoops(2, LoopType.Yoyo);
         }
 
         private void OnTactTicked()
@@ -74,13 +83,9 @@ namespace GameCore.Battle.Data.Components
                     findTargetComponent.Find();
                     var target = findTargetComponent.target;
                     HealthComponent.ByTransform[target].TakeDamage(damage);
-                    var pos = target.position;
-                    AnimText.Create($"{damage}", pos, fromWorldSpace: true);
-                    var direction = (pos - transform.position).normalized;
-                    pos -= (target.localScale.x + transform.localScale.x) * direction;
-                    AttackAnimation(pos);
+                    AttackAnimation();
                 }
-            
+                
                 currentIndex++;
             }
         }

@@ -248,8 +248,8 @@ namespace Battle.Data
         }
         
         
-        private Color setColor = new Color(0.33f, 0.78f, 0.28f);
-        private Color unsetColor = new Color(0.77f, 0.34f, 0.28f);
+        private Color setColor = new Color(0.35f, 0.85f, 0.29f);
+        private Color unsetColor = new Color(0.84f, 0.35f, 0.29f);
         private bool canSetLevel;
         private bool cannotSetLevel;
         

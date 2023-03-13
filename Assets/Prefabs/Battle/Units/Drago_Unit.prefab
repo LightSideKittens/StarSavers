@@ -135,7 +135,9 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 8742679449612997154, guid: ee115b9ace0b1e34e9740b4d7fcf6f7b, type: 3}
+    - {fileID: 2543797600890836630, guid: f7dfd7b4e5f860c4f988de182478f707, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -180,13 +182,16 @@ MonoBehaviour:
       Data: 
     - Name: attackComponent
       Entry: 7
-      Data: 5|GameCore.Battle.Data.Components.AttackComponent, GameCore.Battle
+      Data: 5|GameCore.Battle.Data.Components.RicochetAttackComponent, GameCore.Battle
     - Name: duration
       Entry: 4
-      Data: 0.1
-    - Name: radius
-      Entry: 4
+      Data: 0.2
+    - Name: bulletPrefab
+      Entry: 10
       Data: 0
+    - Name: deathFx
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 8
       Data: 

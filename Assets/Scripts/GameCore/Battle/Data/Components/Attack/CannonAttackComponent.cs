@@ -12,7 +12,7 @@ namespace GameCore.Battle.Data.Components
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private ParticleSystem deathFx;
         
-        protected override Tween AttackAnimation(Vector2 targetPosition)
+        protected override Tween AttackAnimation()
         {
             var bullet = Object.Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             var target = findTargetComponent.target;
@@ -20,8 +20,6 @@ namespace GameCore.Battle.Data.Components
             {
                 new CountDownTimer(0.35f, true).Stopped += () => Object.Destroy(bullet);
                 HealthComponent.ByTransform[target].TakeDamage(damage);
-                var pos = target.position;
-                AnimText.Create($"{damage}", pos, fromWorldSpace: true);
                 Object.Instantiate(deathFx, findTargetComponent.target.position, Quaternion.identity);
             });
         }

@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using UnityEngine;
+using static GameCore.Battle.RadiusUtils;
 
 namespace GameCore.Battle.Data.Components
 {
     [Serializable]
     internal class MoveComponent
     {
+        public static Dictionary<Transform, MoveComponent> ByTransform { get; } = new();
+        
         private FindTargetComponent findTargetComponent;
         private GameObject gameObject;
         private Rigidbody2D rigidbody;
         private CircleCollider2D collider;
+        private float defaultSpeed;
         private float speed;
         private static int mask = -1;
-
         private bool enabled = true;
 
         public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
@@ -22,13 +26,26 @@ namespace GameCore.Battle.Data.Components
             this.gameObject = gameObject;
             rigidbody = gameObject.GetComponent<Rigidbody2D>();
             collider = rigidbody.GetComponent<CircleCollider2D>();
-            speed = EntitiesProperties.ByName[entityName][nameof(MoveSpeedGP)].Value;
+            defaultSpeed = EntitiesProperties.ByName[entityName][nameof(MoveSpeedGP)].Value;
+            ResetSpeed();
+            
             this.findTargetComponent = findTargetComponent;
-
+            ByTransform.Add(gameObject.transform, this);
+            
             if (mask == -1)
             {
                 mask = LayerMask.GetMask("Cannon");
             }
+        }
+
+        public void ResetSpeed()
+        {
+            speed = defaultSpeed;
+        }
+        
+        public void IncreaseSpeedByPercent(int percent)
+        {
+            speed += speed * (percent / 100f);
         }
 
         public void SetEnabled(bool active)
@@ -102,11 +119,17 @@ namespace GameCore.Battle.Data.Components
                     var position = rigidbody.position;
                     var direction = (Vector2)target.position - position;
                     TryByPass(ref direction);
-                    
-                    position += direction.normalized * (speed * Time.deltaTime);
+                    direction = direction.normalized;
+                    ToPerspective(ref direction);
+                    position += direction * (speed * Time.deltaTime);
                     rigidbody.position = position;
                 }
             }
+        }
+
+        public void OnDestroy()
+        {
+            ByTransform.Remove(gameObject.transform);
         }
     }
 }

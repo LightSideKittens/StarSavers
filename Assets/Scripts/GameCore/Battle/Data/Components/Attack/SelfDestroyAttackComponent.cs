@@ -1,14 +1,15 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using System;
+using DG.Tweening;
 
 namespace GameCore.Battle.Data.Components
 {
+    [Serializable]
     internal class SelfDestroyAttackComponent : AttackComponent
     {
-        protected override Tween AttackAnimation(Vector2 targetPosition)
+        protected override Tween AttackAnimation()
         {
-            return base.AttackAnimation(targetPosition).SetLoops(1, LoopType.Yoyo)
-                .OnComplete(() => Unit.ByTransform[transform].healthComponent.Kill());
+            return base.AttackAnimation().SetLoops(1, LoopType.Yoyo)
+                .OnComplete(() => HealthComponent.ByTransform[transform].Kill());
         }
     }
 }

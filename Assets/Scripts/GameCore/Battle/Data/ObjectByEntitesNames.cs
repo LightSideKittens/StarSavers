@@ -57,7 +57,7 @@ namespace GameCore.Battle.Data
 
         private static ObjectByEntitesNames<T> instance;
         private static LevelsConfigsManager levelsConfigsManager;
-        public static Dictionary<string, T> ByEntitiesNames { get; } = new(); 
+        public static Dictionary<string, T> ByName { get; } = new(); 
         [SerializeField] private List<ObjectByName> cardByNames = new ();
 
         public void Init()
@@ -65,7 +65,7 @@ namespace GameCore.Battle.Data
             for (int i = 0; i < cardByNames.Count; i++)
             {
                 var data = cardByNames[i];
-                ByEntitiesNames.Add(data.name, data.obj);
+                ByName.Add(data.name, data.obj);
             }
         }
         

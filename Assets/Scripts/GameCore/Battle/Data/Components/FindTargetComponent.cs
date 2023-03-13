@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameCore.Battle.Data.Components.HitBox;
 using GameCore.Battle.Data.Components.TargetProviders;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -27,9 +28,26 @@ namespace GameCore.Battle.Data.Components
             }
         }
 
-        public bool Find()
+        public IEnumerable<Transform> FindAll(Vector2 position, float radius)
         {
-            var distance = float.MaxValue;
+            for (int i = 0; i < providers.Count; i++)
+            {
+                var targets = providers[i].Targets;
+                foreach (var target in targets)
+                {
+                    var hitBox = HitBoxComponent.ByTransform[target];
+
+                    if (hitBox.IsIntersected(position, radius, out var point))
+                    {
+                        yield return target;
+                    }
+                }
+            }
+        }
+
+        public bool Find(Vector2 position, float radius, HashSet<Transform> excepted)
+        {
+            var distance = radius;
             Transform currentTarget = null;
 
             for (int i = 0; i < providers.Count; i++)
@@ -37,12 +55,20 @@ namespace GameCore.Battle.Data.Components
                 var targets = providers[i].Targets;
                 foreach (var target in targets)
                 {
-                    var newDistance = Vector2.Distance(target.position, transform.position);
-
-                    if (distance > newDistance)
+                    if (!excepted.Contains(target))
                     {
-                        currentTarget = target;
-                        distance = newDistance;
+                        var hitBox = HitBoxComponent.ByTransform[target];
+
+                        if (hitBox.IsIntersected(position, distance, out var point))
+                        {
+                            var newDistance = Vector2.Distance(point, position);
+
+                            if (distance > newDistance)
+                            {
+                                currentTarget = target;
+                                distance = newDistance;
+                            }
+                        }
                     }
                 }
             }
@@ -51,5 +77,38 @@ namespace GameCore.Battle.Data.Components
 
             return target != null;
         }
+
+        public bool Find(Vector2 position, float radius)
+        {
+            var distance = radius;
+            Transform currentTarget = null;
+
+            for (int i = 0; i < providers.Count; i++)
+            {
+                var targets = providers[i].Targets;
+                foreach (var target in targets)
+                {
+                    var hitBox = HitBoxComponent.ByTransform[target];
+
+                    if (hitBox.IsIntersected(position, distance, out var point))
+                    {
+                        var newDistance = Vector2.Distance(point, position);
+
+                        if (distance > newDistance)
+                        {
+                            currentTarget = target;
+                            distance = newDistance;
+                        }
+                    }
+                }
+            }
+
+            target = currentTarget;
+
+            return target != null;
+        }
+
+        public bool Find() => Find(transform.position, 1000);
+        public bool Find(HashSet<Transform> excepted) => Find(transform.position, 1000, excepted);
     }
 }

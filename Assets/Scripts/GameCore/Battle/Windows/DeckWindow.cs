@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Battle.Data;
 using GameCore.Battle.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Battle.BattleBootstrap;
 
 namespace Battle.Windows
 {
@@ -18,20 +21,24 @@ namespace Battle.Windows
         private Dictionary<GameObject, int> enabledCards = new();
         private Dictionary<GameObject, string> namesByCard = new();
         private GameObject selected;
+        private Vector2 lastWorldPosition;
         private int currentIndex;
         private float manaFillSpeed = 1;
         private float mana;
+        private BaseEffector currentEffector;
+        private Camera cam;
         private int IntMana => (int)mana;
 
         protected override void Init()
         {
             base.Init();
             var cardsPrefabs = CardDecks.Config.Attack;
+            cam = Camera.main;
             
             for (int i = 0; i < cardsPrefabs.Count; i++)
             {
                 var entityName = cardsPrefabs[i];
-                var card = Instantiate(Cards.ByEntitiesNames[entityName], deckPanel);
+                var card = Instantiate(Cards.ByName[entityName], deckPanel);
                 var cardGameObject = card.gameObject;
                 namesByCard.Add(cardGameObject, entityName);
                 
@@ -69,8 +76,19 @@ namespace Battle.Windows
             card.transform.SetParent(parent, false);
             card.transform.SetSiblingIndex(0);
             card.transform.localScale = Vector3.one;
+
+            var cardName = namesByCard[card];
+            var price = 0;
             
-            var price = Units.ByEntitiesNames.TryGetValue(namesByCard[card], out var unit) ? unit.Price : 0;
+            if (GameScopes.IsEffector(cardName))
+            {
+                price = Effectors.ByName[cardName].Price;
+            }
+            else
+            {
+                price = Units.ByName[cardName].Price;
+            }
+            
             var priceTextIndex = enabledCards[card];
             var priceText = manaPriceTexts[priceTextIndex];
             priceText.text = $"{price}";
@@ -86,50 +104,41 @@ namespace Battle.Windows
         {
             selected = eventData.pointerEnter;
             selected.transform.SetParent(transform);
-            selected.transform.position = eventData.position;
-            BattleBootstrap.SpawnArea.gameObject.SetActive(true);
+            lastWorldPosition = eventData.position;
+            selected.transform.position = lastWorldPosition;
+
+            var cardName = namesByCard[selected];
+            if (GameScopes.IsEffector(cardName))
+            {
+                currentEffector = Effectors.ByName[cardName];
+            }
+            else
+            {
+                SpawnArea.gameObject.SetActive(true);
+            }
         }
         
         public void OnDrag(PointerEventData eventData)
         {
-            selected.transform.position = eventData.position;
+            var position = eventData.position;
+            selected.transform.position = position;
+            lastWorldPosition = cam.ScreenToWorldPoint(position);
+            currentEffector?.DrawRadius(lastWorldPosition, new Color(1f, 1f, 1f, 0.3f));
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            if (!Units.ByEntitiesNames.TryGetValue(namesByCard[selected], out var unit))
-            {
-                Reset();
-                return;
-            }
-            
-            BattleBootstrap.SpawnArea.gameObject.SetActive(false);
-            
-            if (IntMana >= unit.Price)
-            {
-                var bounds = BattleBootstrap.SpawnArea.bounds;
-                var size = bounds.size;
-                size.z = 0;
-                bounds.size = size;
-                Vector2 position = Camera.main.ScreenToWorldPoint(eventData.position);
-                var min = bounds.min;
-                var max = bounds.max;
+            var cardName = namesByCard[selected];
 
-                if (position.x > min.x && position.y > min.y 
-                    && position.x < max.x && position.y < max.y)
+            if (GameScopes.IsEffector(cardName))
+            {
+                var effector = Effectors.ByName[cardName];
+                var price = effector.Price;
+                
+                if (CanSpawn(ArenaBox.bounds, price))
                 {
-                    mana -= unit.Price; 
-                    selected.SetActive(false);
-                    var disabledCardIndex = currentIndex % disabledCards.Length;
-                    var newCard = disabledCards[disabledCardIndex];
-                    disabledCards[disabledCardIndex] = selected;
-                    var placeIndex = enabledCards[selected];
-                    var cardPlace = cardPlaces[placeIndex];
-                    enabledCards.Remove(selected);
-                    newCard.SetActive(true);
-                    enabledCards[newCard] = placeIndex;
-                    ToDeck(newCard, cardPlace);
-                    PlayerWorld.Spawn(unit, position);
+                    Spawn(price);
+                    effector.Apply();
                 }
                 else
                 {
@@ -138,7 +147,49 @@ namespace Battle.Windows
             }
             else
             {
-                Reset();
+                var unit = Units.ByName[cardName];
+                var price = unit.Price;
+                SpawnArea.gameObject.SetActive(false);
+            
+                if (CanSpawn(SpawnArea.bounds, price))
+                {
+                    Spawn(price);
+                    PlayerWorld.Spawn(unit, lastWorldPosition);
+                }
+                else
+                {
+                    Reset();
+                }
+            }
+            
+            currentEffector?.EndDrawRadius();
+
+            void Spawn(int price)
+            {
+                mana -= price; 
+                selected.SetActive(false);
+                var disabledCardIndex = currentIndex % disabledCards.Length;
+                var newCard = disabledCards[disabledCardIndex];
+                disabledCards[disabledCardIndex] = selected;
+                var placeIndex = enabledCards[selected];
+                var cardPlace = cardPlaces[placeIndex];
+                enabledCards.Remove(selected);
+                newCard.SetActive(true);
+                enabledCards[newCard] = placeIndex;
+                ToDeck(newCard, cardPlace);
+            }
+
+            bool CanSpawn(Bounds bounds, int price)
+            {
+                var size = bounds.size;
+                size.z = 0;
+                bounds.size = size;
+                var min = bounds.min;
+                var max = bounds.max;
+
+                return IntMana >= price &&
+                    lastWorldPosition.x > min.x && lastWorldPosition.y > min.y
+                    && lastWorldPosition.x < max.x && lastWorldPosition.y < max.y;
             }
 
             void Reset()

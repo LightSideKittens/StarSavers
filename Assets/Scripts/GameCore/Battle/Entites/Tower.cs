@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
 using Common.SingleServices;
 using DG.Tweening;
 using GameCore.Battle.Data.Components;
+using GameCore.Battle.Data.Components.HitBox;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -14,6 +16,7 @@ namespace GameCore.Battle.Data
 {
     public class Tower : SerializedMonoBehaviour
     {
+        public static event Action<Transform> Destroyed;
         public static HashSet<Transform> Towers { get; } = new();
         private static ShortNoteListener[] listeners;
         private static IEnumerable<string> HeroesNames => GameScopes.HeroesNames;
@@ -22,6 +25,8 @@ namespace GameCore.Battle.Data
         [SerializeField] private float bulletFlyDuration = 0.4f;
         [SerializeField] private ParticleSystem deathFx;
         [SerializeField] private GameObject bulletPrefab;
+        
+        [OdinSerialize] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
         [SerializeField] private HealthComponent healthComponent;
         [OdinSerialize] private FindTargetComponent findTargetComponent;
         private ShortNoteListener currentListener;
@@ -50,6 +55,7 @@ namespace GameCore.Battle.Data
             
             Towers.Add(transform);
             
+            hitBoxComponent.Init(gameObject);
             findTargetComponent.Init(gameObject, false);
             healthComponent.Init(entityName, gameObject, false);
         }
@@ -82,12 +88,15 @@ namespace GameCore.Battle.Data
 
         private void OnDestroy()
         {
+            healthComponent.OnDestroy();
+            hitBoxComponent.OnDestroy();
             Towers.Remove(transform);
             currentListener.Started -= Shoot;
             listeners[3].Started -= OnSoundvent;
             listeners[2].Started -= OnSoundvent;
             listeners[1].Started -= OnSoundvent;
             listeners[0].Started -= OnSoundvent;
+            Destroyed?.Invoke(transform);
         }
     }
 }

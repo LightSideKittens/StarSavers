@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Battle.Data;
 using GameCore.Battle.Data.Components;
+using GameCore.Battle.Data.Components.HitBox;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -9,6 +11,7 @@ namespace GameCore.Battle.Data
 {
     public class Unit : SerializedMonoBehaviour
     {
+        public static event Action<Transform> Destroyed;
         private static IEnumerable<string> Entities => GameScopes.EntitiesNames;
         
         [SerializeField, ValueDropdown(nameof(Entities))] private string entityName;
@@ -17,7 +20,8 @@ namespace GameCore.Battle.Data
         [OdinSerialize] private MoveComponent moveComponent = new();
         [OdinSerialize] private FindTargetComponent findTargetComponent = new ();
         [OdinSerialize] private AttackComponent attackComponent = new();
-        [OdinSerialize] internal HealthComponent healthComponent = new();
+        [OdinSerialize] private HealthComponent healthComponent = new();
+        [OdinSerialize] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
         
         public bool IsOpponent { get; private set; }
         public static Dictionary<Transform, Unit> ByTransform { get; } = new();
@@ -27,6 +31,8 @@ namespace GameCore.Battle.Data
         {
             IsOpponent = isOpponent;
             ByTransform.Add(transform, this);
+
+            hitBoxComponent.Init(gameObject);
             findTargetComponent.Init(gameObject, IsOpponent);
             moveComponent?.Init(entityName, gameObject, findTargetComponent);
             healthComponent.Init(entityName, gameObject, IsOpponent);
@@ -39,7 +45,7 @@ namespace GameCore.Battle.Data
             color.a = 0.5f;
             Gizmos.color = color;
             
-            Gizmos.DrawSphere(transform.position, attackComponent.radius);
+            Gizmos.DrawSphere(transform.position, attackComponent.Radius);
         }
 
         public void Run()
@@ -56,9 +62,12 @@ namespace GameCore.Battle.Data
 
         private void OnDestroy()
         {
+            hitBoxComponent.OnDestroy();
             attackComponent.OnDestroy();
             healthComponent.OnDestroy();
+            moveComponent.OnDestroy();
             ByTransform.Remove(transform);
+            Destroyed?.Invoke(transform);
         }
     }
 }

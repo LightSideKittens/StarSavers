@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 7004024576314205232}
   - component: {fileID: 7217969013684383048}
   - component: {fileID: 3353042104126205033}
+  - component: {fileID: 8519154426060807114}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -275,19 +276,25 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: hitBoxComponent
+      Entry: 7
+      Data: 0|GameCore.Battle.Data.Components.HitBox.ColiderHitBoxComponent, GameCore.Battle
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: findTargetComponent
       Entry: 7
-      Data: 0|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
+      Data: 1|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
     - Name: providers
       Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
+      Data: 2|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
         GameCore.Battle]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 2|GameCore.Battle.Data.Components.TargetProviders.AllUnitsForTower, GameCore.Battle
+      Data: 3|GameCore.Battle.Data.Components.TargetProviders.AllUnitsForTower, GameCore.Battle
     - Name: yPositionThreshold
       Entry: 4
       Data: 3.5
@@ -310,3 +317,19 @@ MonoBehaviour:
   healthComponent:
     scale: {x: 1, y: 1}
     offset: {x: 0, y: 0}
+--- !u!58 &8519154426060807114
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660151251531169275}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.21}
+  serializedVersion: 2
+  m_Radius: 0.77
