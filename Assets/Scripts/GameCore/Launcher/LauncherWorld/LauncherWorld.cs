@@ -30,7 +30,7 @@ namespace BeatRoyale.Launcher
         {
             Auth.SignIn(() =>
             {
-                StorageRemoteConfig<CommonPlayerData>.Fetch(() =>
+                RemotePlayerData<CommonPlayerData>.Fetch(() =>
                 {
                     StorageRemoteConfig<ChangedLevels>.Fetch(() =>
                     {
