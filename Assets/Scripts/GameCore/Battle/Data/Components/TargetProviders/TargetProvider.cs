@@ -6,7 +6,7 @@ namespace GameCore.Battle.Data.Components.TargetProviders
 {
     internal abstract class TargetProvider
     {
-        [NonSerialized] public bool isOpponent;
+        [NonSerialized] public FindTargetComponent findTargetComponent;
         public abstract IEnumerable<Transform> Targets { get; }
     }
 }

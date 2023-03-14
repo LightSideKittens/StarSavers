@@ -12,10 +12,10 @@ namespace GameCore.Battle
     {
         public const float X = 2f;
         public const float Y = 1.42f;
-        public const float X2 = X * X;
-        public const float Y2 = Y * Y;
-        public const float X2Y2 = X2 * Y2;
-        public static Sprite circleSprite = Resources.Load<Sprite>("unit-circle");
+        private const float X2 = X * X;
+        private const float Y2 = Y * Y;
+        private const float X2Y2 = X2 * Y2;
+        private static Sprite circleSprite = Resources.Load<Sprite>("unit-circle");
         private static bool showRadius;
         private static Dictionary<Transform, List<GameObject>> radiuses = new();
 

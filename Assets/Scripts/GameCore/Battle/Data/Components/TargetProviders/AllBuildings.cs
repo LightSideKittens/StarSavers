@@ -11,7 +11,7 @@ namespace GameCore.Battle.Data.Components.TargetProviders
         {
             get
             {
-                if (isOpponent)
+                if (findTargetComponent.isOpponent)
                 {
                     foreach (var tower in Tower.Towers)
                     {

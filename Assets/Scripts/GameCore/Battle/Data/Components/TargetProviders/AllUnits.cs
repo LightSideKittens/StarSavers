@@ -15,7 +15,7 @@ namespace GameCore.Battle.Data.Components.TargetProviders
 
                 foreach (var unit in units)
                 {
-                    if (unit.IsOpponent != isOpponent)
+                    if (unit.IsOpponent != findTargetComponent.isOpponent)
                     {
                         yield return unit.transform;
                     }

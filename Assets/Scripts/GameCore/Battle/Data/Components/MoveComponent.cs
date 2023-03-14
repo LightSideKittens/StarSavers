@@ -16,19 +16,20 @@ namespace GameCore.Battle.Data.Components
         private GameObject gameObject;
         private Rigidbody2D rigidbody;
         private CircleCollider2D collider;
-        private float defaultSpeed;
         private float speed;
+        public float Speed => speed * Buffs;
         private static int mask = -1;
         private bool enabled = true;
+        public Buffs Buffs { get; private set; }
 
         public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
         {
             this.gameObject = gameObject;
             rigidbody = gameObject.GetComponent<Rigidbody2D>();
             collider = rigidbody.GetComponent<CircleCollider2D>();
-            defaultSpeed = EntitiesProperties.ByName[entityName][nameof(MoveSpeedGP)].Value;
-            ResetSpeed();
-            
+            speed = EntitiesProperties.ByName[entityName][nameof(MoveSpeedGP)].Value;
+            Buffs = new Buffs();
+
             this.findTargetComponent = findTargetComponent;
             ByTransform.Add(gameObject.transform, this);
             
@@ -36,16 +37,6 @@ namespace GameCore.Battle.Data.Components
             {
                 mask = LayerMask.GetMask("Cannon");
             }
-        }
-
-        public void ResetSpeed()
-        {
-            speed = defaultSpeed;
-        }
-        
-        public void IncreaseSpeedByPercent(int percent)
-        {
-            speed += speed * (percent / 100f);
         }
 
         public void SetEnabled(bool active)
@@ -112,6 +103,7 @@ namespace GameCore.Battle.Data.Components
         {
             if (enabled)
             {
+                Buffs.Update();
                 findTargetComponent.Find();
                 var target = findTargetComponent.target;
                 if (target != null)
@@ -121,7 +113,7 @@ namespace GameCore.Battle.Data.Components
                     TryByPass(ref direction);
                     direction = direction.normalized;
                     ToPerspective(ref direction);
-                    position += direction * (speed * Time.deltaTime);
+                    position += direction * (Speed * Time.deltaTime);
                     rigidbody.position = position;
                 }
             }

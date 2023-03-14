@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using GameCore.Battle.Data.Components.HitBox;
 using GameCore.Battle.Data.Components.TargetProviders;
 using Sirenix.Serialization;
@@ -12,6 +11,7 @@ namespace GameCore.Battle.Data.Components
     internal class FindTargetComponent
     {
         [NonSerialized] public Transform target;
+        [NonSerialized] public bool isOpponent;
         [OdinSerialize] private List<TargetProvider> providers = new() {new AllUnits(), new AllBuildings()};
         private GameObject gameObject;
         private Transform transform;
@@ -20,13 +20,16 @@ namespace GameCore.Battle.Data.Components
         {
             this.gameObject = gameObject;
             transform = gameObject.transform;
-
+            this.isOpponent = isOpponent;
+            
             for (int i = 0; i < providers.Count; i++)
             {
                 var provider = providers[i];
-                provider.isOpponent = isOpponent;
+                provider.findTargetComponent = this;
             }
         }
+
+        public IEnumerable<Transform> FindAll(float radius) => FindAll(transform.position, radius);
 
         public IEnumerable<Transform> FindAll(Vector2 position, float radius)
         {
@@ -37,7 +40,7 @@ namespace GameCore.Battle.Data.Components
                 {
                     var hitBox = HitBoxComponent.ByTransform[target];
 
-                    if (hitBox.IsIntersected(position, radius, out var point))
+                    if (hitBox.IsIntersected(position, radius, out _))
                     {
                         yield return target;
                     }

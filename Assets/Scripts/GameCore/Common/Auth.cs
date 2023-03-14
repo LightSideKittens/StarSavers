@@ -10,14 +10,16 @@ namespace BeatRoyale
     {
         public static void SignIn(Action onSuccess, Action onError = null)
         {
-            if (string.IsNullOrEmpty(CommonPlayerData.UserId))
+            var userId = CommonPlayerData.UserId;
+            if (string.IsNullOrEmpty(userId))
             {
                 FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync().ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCompletedSuccessfully)
                     {
-                        CommonPlayerData.UserId = task.Result.UserId;
-                        Debug.Log($"[{nameof(Auth)}] Created New Account. UserId: {CommonPlayerData.UserId}");
+                        userId = task.Result.UserId;
+                        CommonPlayerData.UserId = userId;
+                        Debug.Log($"[{nameof(Auth)}] Created New Account. UserId: {userId}");
                         SignInByEmail(true, onSuccess, onError);
                     }
                     else
