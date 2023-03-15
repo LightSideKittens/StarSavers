@@ -2,6 +2,8 @@
 using Core.SingleService;
 using GameCore.Battle.Data;
 using UnityEngine;
+using static GameCore.Battle.Data.Cannon;
+using static GameCore.Battle.Data.Tower;
 
 namespace Battle
 {
@@ -27,7 +29,33 @@ namespace Battle
             units.Init();
             cards.Init();
             effectors.Init();
+            MatchResultWindow.Showing += Unsubscribe;
+            Tower.Destroyed += OnTowerDestroyed;
+            Cannon.Destroyed += OnCannonDestroyed;
             DeckWindow.Show();
+        }
+
+        private void Unsubscribe()
+        {
+            Tower.Destroyed -= OnTowerDestroyed;
+            Cannon.Destroyed -= OnCannonDestroyed;
+            MatchResultWindow.Showing -= Unsubscribe;
+        }
+
+        private void OnTowerDestroyed(Transform _)
+        {
+            if (Towers.Count == 0)
+            {
+                MatchResultWindow.Show(false);
+            }
+        }
+
+        private void OnCannonDestroyed(Transform _)
+        {
+            if (Cannons.Count == 0)
+            {
+                MatchResultWindow.Show(true);
+            }
         }
     }
 }

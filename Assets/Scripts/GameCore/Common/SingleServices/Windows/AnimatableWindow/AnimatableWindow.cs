@@ -22,5 +22,14 @@ namespace Common.SingleServices.Windows
             base.Init();
             DontDestroyOnLoad(this);
         }
+
+        public static void Clean()
+        {
+            var instance = Instance;
+            for (int i = 1; i < instance.transform.childCount; i++)
+            {
+                Destroy(instance.transform.GetChild(i).gameObject);
+            }
+        }
     }
 }

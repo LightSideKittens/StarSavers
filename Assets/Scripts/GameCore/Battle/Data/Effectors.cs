@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace GameCore.Battle.Data
 {
-    [CreateAssetMenu(fileName = nameof(Effectors), menuName = "Battle/" + nameof(Effectors), order = 0)]
     internal class Effectors : SerializedScriptableObject
     {
         [Serializable] 
@@ -29,7 +28,7 @@ namespace GameCore.Battle.Data
                 var pair = byName[i];
                 pair.effector.name = pair.effectorName;
                 pair.effector.Init();
-                ByName.Add(pair.effectorName, pair.effector);
+                ByName.TryAdd(pair.effectorName, pair.effector);
             }
         }
     }

@@ -5,6 +5,7 @@ using Battle.Data.GameProperty;
 using DG.Tweening;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
 {
@@ -23,14 +24,14 @@ namespace GameCore.Battle.Data.Components
         protected override void OnInit(string entityName)
         {
             ricochetData = RicochetData.Get(EntitiesProperties.ByName[entityName][nameof(RicochetGP)].value);
-            tempDamage = damage;
+            tempDamage = Damage;
             hited = new HashSet<Transform>();
         }
 
         protected override Tween AttackAnimation()
         {
             hited.Clear();
-            tempDamage = damage;
+            tempDamage = Damage;
             ricochetCount = 0;
             bullet = Object.Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Attack();
@@ -46,7 +47,7 @@ namespace GameCore.Battle.Data.Components
         private void Ricochet()
         {
             Object.Instantiate(deathFx, lastTarget.position, Quaternion.identity);
-            HealthComponent.ByTransform[lastTarget].TakeDamage(tempDamage);
+            lastTarget.Get<Health>().TakeDamage(tempDamage);
             hited.Add(lastTarget);
             tempDamage -= tempDamage * (ricochetData.decreasePercent / 100f);
             

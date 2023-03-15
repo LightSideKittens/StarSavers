@@ -65,7 +65,7 @@ namespace GameCore.Battle.Data
             for (int i = 0; i < cardByNames.Count; i++)
             {
                 var data = cardByNames[i];
-                ByName.Add(data.name, data.obj);
+                ByName.TryAdd(data.name, data.obj);
             }
         }
         

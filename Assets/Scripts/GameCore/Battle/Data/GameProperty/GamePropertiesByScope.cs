@@ -40,6 +40,7 @@ namespace Battle.Data.GameProperty
             typeof(DamageGP),
             typeof(RadiusGP),
             typeof(MoveSpeedGP),
+            typeof(AttackSpeedGP),
         };
         
         public event Action ScopeChanged;

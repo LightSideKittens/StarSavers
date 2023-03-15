@@ -12,8 +12,8 @@ namespace Core.ConfigModule
     public abstract class DatabaseRemoteConfig<T, T1> where T : DatabaseRemoteConfig<T, T1>, new() where T1 : BaseConfig<T1>, new()
     {
         private static Func<DocumentReference> getter;
-        protected static T instance;
-        public static string UserId { get; private set; }
+        private static readonly T instance;
+        protected static string UserId { get; private set; }
 
         static DatabaseRemoteConfig()
         {
@@ -23,7 +23,6 @@ namespace Core.ConfigModule
 
         private static DocumentReference GetReference()
         {
-            UserId = CommonPlayerData.UserId;
             getter = GetCreatedReference;
 
             return instance.Reference;
@@ -61,8 +60,7 @@ namespace Core.ConfigModule
         
         public static void Fetch(string userId, Action<T1> onSuccess, Action onError = null, Action onComplete = null)
         {
-            UserId = userId;
-            Internal_Fetch(onSuccess: dict =>
+            Internal_Fetch(userId, onSuccess: dict =>
             {
                 var config = BaseConfig<T1>.Config;
                 var json = (string) dict[config.FileName];
@@ -75,7 +73,7 @@ namespace Core.ConfigModule
         {
             OnAppPause.UnSubscribe(OnApplicationPause);
             OnAppPause.Subscribe(OnApplicationPause);
-            Internal_Fetch(onSuccess: dict =>
+            Internal_Fetch(CommonPlayerData.UserId, onSuccess: dict =>
             {
                 var config = BaseConfig<T1>.Config;
                 var json = (string) dict[config.FileName];
@@ -84,12 +82,13 @@ namespace Core.ConfigModule
             }, onError, onComplete, () => Push(onSuccess, onError));
         }
 
-        private static void Internal_Fetch(Action<Dictionary<string, object>> onSuccess = null,
+        private static void Internal_Fetch(string userId, Action<Dictionary<string, object>> onSuccess = null,
             Action onError = null,
             Action onComplete = null,
             Action onResponseEmpty = null)
         {
             Debug.Log($"[{typeof(T1).Name}] Fetch");
+            UserId = userId;
             var docRef = getter();
 
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -102,12 +101,12 @@ namespace Core.ConfigModule
                     {
                         if (onResponseEmpty != null)
                         {
-                            Debug.Log($"[{typeof(T1).Name}] Failure Fetch: Response is empty");
+                            Debug.Log($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
                             onResponseEmpty();
                         }
                         else
                         {
-                            Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty");
+                            Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
                         }
                         
                         Invoke(onError);
@@ -115,13 +114,13 @@ namespace Core.ConfigModule
                         return;
                     }
                     
-                    Debug.Log($"[{typeof(T1).Name}] Success Fetch");
+                    Debug.Log($"[{typeof(T1).Name}] Success Fetch. User: {userId}");
                     Invoke(() => onSuccess?.Invoke(dict));
                     Invoke(onComplete);
                 }
                 else if (task.IsFaulted || task.IsCanceled)
                 {
-                    Debug.LogError($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}");
+                    Debug.LogError($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}. User: {userId}");
                     Invoke(onError);
                     Invoke(onComplete);
                 }

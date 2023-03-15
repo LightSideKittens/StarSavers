@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using UnityEngine;
+using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.MoveComponent>;
 using static GameCore.Battle.RadiusUtils;
 
 namespace GameCore.Battle.Data.Components
@@ -10,8 +10,6 @@ namespace GameCore.Battle.Data.Components
     [Serializable]
     internal class MoveComponent
     {
-        public static Dictionary<Transform, MoveComponent> ByTransform { get; } = new();
-        
         private FindTargetComponent findTargetComponent;
         private GameObject gameObject;
         private Rigidbody2D rigidbody;
@@ -31,7 +29,7 @@ namespace GameCore.Battle.Data.Components
             Buffs = new Buffs();
 
             this.findTargetComponent = findTargetComponent;
-            ByTransform.Add(gameObject.transform, this);
+            Add(gameObject.transform, this);
             
             if (mask == -1)
             {
@@ -121,7 +119,7 @@ namespace GameCore.Battle.Data.Components
 
         public void OnDestroy()
         {
-            ByTransform.Remove(gameObject.transform);
+            Remove(gameObject.transform);
         }
     }
 }

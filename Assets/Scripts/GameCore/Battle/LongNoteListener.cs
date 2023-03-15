@@ -13,7 +13,7 @@ namespace BeatRoyale
         public static LongNoteListener Listen(string key, float offset = 0)
         {
             var listener = new LongNoteListener();
-            listener.offset = MusicReactiveTest.MusicOffset + offset;
+            listener.offset = MusicController.MusicOffset + offset;
             var shortTrack = MusicData.LongTrackData;
             var track = shortTrack.GetTrack(key);
             track.Started += listener.OnStart;

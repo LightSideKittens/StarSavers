@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace GameCore.Battle.Data.Components.TargetProviders
 {
+    using Unit = ObjectsByTransfroms<Unit>;
+    
     [Serializable]
     internal class AllUnitsForTower : TargetProvider
     {
@@ -12,7 +14,7 @@ namespace GameCore.Battle.Data.Components.TargetProviders
         {
             get
             {
-                var units = Unit.ByTransform.Values;
+                var units = Unit.All;
 
                 foreach (var unit in units)
                 {

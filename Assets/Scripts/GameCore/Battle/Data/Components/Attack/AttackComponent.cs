@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
 using DG.Tweening;
 using GameCore.Battle.Data.Components.HitBox;
 using UnityEngine;
+using Health = GameCore.Battle.Data.Components.HealthComponent;
+using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.AttackComponent>;
 using static GameCore.Battle.RadiusUtils;
 
 namespace GameCore.Battle.Data.Components
@@ -23,9 +24,10 @@ namespace GameCore.Battle.Data.Components
         private int currentIndex;
         private TactListener listener;
         private Vector2 lastHitPoint;
+        protected float Damage => damage * Buffs;
         public bool IsInRadius { get; private set; }
         public float Radius => radius;
-        public static Dictionary<Transform, AttackComponent> ByTransform { get; } = new();
+        public Buffs Buffs { get; private set; }
 
         public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
         {
@@ -35,10 +37,11 @@ namespace GameCore.Battle.Data.Components
             var props = EntitiesProperties.ByName[entityName];
             radius = props[nameof(RadiusGP)].Value;
             damage = props[nameof(DamageGP)].Value;
-            attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].Value, 2);
+            attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].value, 2);
             listener = TactListener.Listen(-duration).OnTicked(OnTactTicked);
             DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
-            ByTransform.Add(transform, this);
+            Add(transform, this);
+            Buffs = new Buffs();
             OnInit(entityName);
         }
         
@@ -46,6 +49,7 @@ namespace GameCore.Battle.Data.Components
 
         public void Update()
         {
+            Buffs.Update();
             IsInRadius = CheckInRadius(findTargetComponent.target);
         }
 
@@ -53,7 +57,7 @@ namespace GameCore.Battle.Data.Components
         {
             listener.Ticked -= OnTactTicked;
             listener.Dispose();
-            ByTransform.Remove(transform);
+            Remove(transform);
         }
 
         public bool CheckInRadius(Transform target)
@@ -82,7 +86,7 @@ namespace GameCore.Battle.Data.Components
                 {
                     findTargetComponent.Find();
                     var target = findTargetComponent.target;
-                    HealthComponent.ByTransform[target].TakeDamage(damage);
+                    target.Get<Health>().TakeDamage(Damage);
                     AttackAnimation();
                 }
                 

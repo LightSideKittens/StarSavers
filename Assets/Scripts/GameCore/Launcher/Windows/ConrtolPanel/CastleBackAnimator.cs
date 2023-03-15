@@ -120,6 +120,11 @@ namespace BeatRoyale.Windows
             castleBack.DOFade(1, speed).OnComplete(onComplete);
             castle.DOFade(1, speed).OnComplete(onComplete);
         }
-        
+
+        public void Deinit()
+        {
+            MatchWindow.Showing -= OnShowing;
+            MatchWindow.Hiding -= OnHiding;
+        }
     }
 }

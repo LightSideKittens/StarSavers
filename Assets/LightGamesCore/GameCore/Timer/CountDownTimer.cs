@@ -21,7 +21,7 @@ public class CountDownTimer : Timer.Base
         intTime--;
     }
 
-    public CountDownTimer(float interval, bool needStartImmediately = false, bool isLoop = false, bool useUnscaleDeltaTime = false) : base(interval, needStartImmediately, isLoop, useUnscaleDeltaTime)
+    public CountDownTimer(float interval, bool needStartImmediately = true, bool isLoop = false, bool useUnscaleDeltaTime = false) : base(interval, needStartImmediately, isLoop, useUnscaleDeltaTime)
     {
     }
 }

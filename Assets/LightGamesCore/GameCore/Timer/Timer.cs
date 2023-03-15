@@ -206,6 +206,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         instance = this;
     }
 

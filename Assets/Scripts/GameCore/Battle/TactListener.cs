@@ -12,7 +12,7 @@ namespace BeatRoyale
         public static TactListener Listen(float offset = 0)
         {
             var listener = new TactListener();
-            listener.offset = MusicReactiveTest.MusicOffset + offset;
+            listener.offset = MusicController.MusicOffset + offset;
             MusicData.TactTicked += listener.OnTick;
 
             return listener;

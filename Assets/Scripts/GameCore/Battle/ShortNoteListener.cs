@@ -3,7 +3,7 @@ using MusicEventSystem.Configs;
 
 namespace BeatRoyale
 {
-    public class ShortNoteListener
+    public class ShortNoteListener : IDisposable
     {
         public event Action Started;
         public event Action Completed;
@@ -13,7 +13,7 @@ namespace BeatRoyale
         public static ShortNoteListener Listen(string key, float offset = 0)
         {
             var listener = new ShortNoteListener();
-            listener.offset = MusicReactiveTest.MusicOffset + offset;
+            listener.offset = MusicController.MusicOffset + offset;
             var shortTrack = MusicData.ShortTrackData;
             var track = shortTrack.GetTrack(key);
             track.Started += listener.OnStart;
@@ -52,6 +52,12 @@ namespace BeatRoyale
         private void OnCompleteStoped()
         {
             Completed?.Invoke();
+        }
+
+        public void Dispose()
+        {
+            Started = null;
+            Completed = null;
         }
     }
 }

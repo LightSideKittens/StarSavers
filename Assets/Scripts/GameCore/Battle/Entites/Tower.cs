@@ -77,11 +77,12 @@ namespace GameCore.Battle.Data
                 var target = findTargetComponent.target;
                 bullet.transform.DOMove(target.position, 0.4f).SetEase(Ease.InExpo).OnComplete(() =>
                 {
-                    new CountDownTimer(0.35f, true).Stopped += () => Destroy(bullet);
-                    HealthComponent.ByTransform[target].TakeDamage(damage);
-                    var pos = target.position;
-                    AnimText.Create($"{damage}", pos, fromWorldSpace: true);
-                    Instantiate(deathFx, findTargetComponent.target.position, Quaternion.identity);
+                    if (target.TryGet(out HealthComponent health))
+                    {
+                        new CountDownTimer(0.35f).Stopped += () => Destroy(bullet);
+                        health.TakeDamage(damage);
+                        Instantiate(deathFx, findTargetComponent.target.position, Quaternion.identity);
+                    }
                 });
             }
         }

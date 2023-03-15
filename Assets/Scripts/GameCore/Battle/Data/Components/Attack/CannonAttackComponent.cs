@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.SingleServices;
 using DG.Tweening;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
 {
@@ -19,7 +19,7 @@ namespace GameCore.Battle.Data.Components
             return bullet.transform.DOMove(target.position, duration).SetEase(Ease.InExpo).OnComplete(() =>
             {
                 new CountDownTimer(0.35f, true).Stopped += () => Object.Destroy(bullet);
-                HealthComponent.ByTransform[target].TakeDamage(damage);
+                target.Get<Health>().TakeDamage(Damage);
                 Object.Instantiate(deathFx, findTargetComponent.target.position, Quaternion.identity);
             });
         }

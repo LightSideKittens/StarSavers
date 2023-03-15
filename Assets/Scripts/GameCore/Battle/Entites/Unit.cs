@@ -6,6 +6,7 @@ using GameCore.Battle.Data.Components.HitBox;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
+using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
 
 namespace GameCore.Battle.Data
 {
@@ -24,13 +25,12 @@ namespace GameCore.Battle.Data
         [OdinSerialize] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
         
         public bool IsOpponent { get; private set; }
-        public static Dictionary<Transform, Unit> ByTransform { get; } = new();
         private float radius;
 
         public void Init(bool isOpponent)
         {
             IsOpponent = isOpponent;
-            ByTransform.Add(transform, this);
+            Add(transform, this);
 
             hitBoxComponent.Init(gameObject);
             findTargetComponent.Init(gameObject, IsOpponent);
@@ -66,7 +66,7 @@ namespace GameCore.Battle.Data
             attackComponent.OnDestroy();
             healthComponent.OnDestroy();
             moveComponent.OnDestroy();
-            ByTransform.Remove(transform);
+            Remove(transform);
             Destroyed?.Invoke(transform);
         }
     }

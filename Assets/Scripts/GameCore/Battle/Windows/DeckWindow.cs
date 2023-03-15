@@ -102,6 +102,7 @@ namespace Battle.Windows
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            currentEffector = null;
             selected = eventData.pointerEnter;
             selected.transform.SetParent(transform);
             lastWorldPosition = eventData.position;

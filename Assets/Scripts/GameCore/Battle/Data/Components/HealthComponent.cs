@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using Common.SingleServices;
 using GameCore.Common.SingleServices.Windows;
 using UnityEngine;
+using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.HealthComponent>;
 using Object = UnityEngine.Object;
 
 namespace GameCore.Battle.Data.Components
@@ -18,20 +18,19 @@ namespace GameCore.Battle.Data.Components
         private Transform transform;
         private HealthBar healthBar;
         private float health;
-        public static Dictionary<Transform, HealthComponent> ByTransform { get; } = new();
-        
+
         public void Init(string entityName, GameObject gameObject, bool isOpponent)
         {
             this.gameObject = gameObject; 
             transform = gameObject.transform;
             health = EntitiesProperties.ByName[entityName][nameof(HealthGP)].Value;
             healthBar = HealthBar.Create(health, transform, offset, scale, isOpponent);
-            ByTransform.Add(transform, this);
+            Add(transform, this);
         }
         
         public void OnDestroy()
-        {
-            ByTransform.Remove(gameObject.transform);
+        { 
+            Remove(gameObject.transform);
         }
 
         public void Update()
@@ -48,7 +47,7 @@ namespace GameCore.Battle.Data.Components
         {
             health -= damage;
             healthBar.SetValue(health);
-            AnimText.Create($"{damage}", transform.position, fromWorldSpace: true);
+            AnimText.Create($"{(int)damage}", transform.position, fromWorldSpace: true);
 
             if (health <= 0)
             {

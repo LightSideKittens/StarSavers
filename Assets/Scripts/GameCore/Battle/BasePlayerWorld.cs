@@ -2,6 +2,7 @@
 using Core.SingleService;
 using GameCore.Battle.Data;
 using UnityEngine;
+using UnitsByTransform = GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
 
 namespace Battle
 {
@@ -13,10 +14,8 @@ namespace Battle
         {
             get
             {
-                foreach (var unitByTransform in Unit.ByTransform)
+                foreach (var unit in UnitsByTransform.All)
                 {
-                    var unit = unitByTransform.Value;
-
                     if (unit.IsOpponent == IsOpponent)
                     {
                         yield return unit;
@@ -29,10 +28,18 @@ namespace Battle
         {
             base.Awake();
             enabled = false;
-            MusicReactiveTest.Started += () => enabled = true;
+            MusicController.Started += () => enabled = true;
         }
 
         public static void Spawn(Unit prefab, Vector2 position) => Instance.Internal_Spawn(prefab, position);
+
+        public static void Stop()
+        {
+            Instance.enabled = false;
+            Instance.OnStop();
+        }
+        
+        protected virtual void OnStop(){}
 
         protected void Internal_Spawn(Unit prefab, Vector2 position)
         {
