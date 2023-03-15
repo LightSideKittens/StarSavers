@@ -1,7 +1,4 @@
-﻿using Battle.Data;
-using Core.ConfigModule;
-using Core.Extensions.Unity;
-using GameCore.Battle.Data;
+﻿using Core.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,14 +20,9 @@ namespace BeatRoyale.Windows
         private void Match()
         {
             MatchPlayersData.Clear();
-            
-            RemotePlayerData<CardDecks>.Fetch(opponentUserId, decks =>
+            MatchPlayersData.Add(opponentUserId, () =>
             {
-                RemotePlayerData<EntitiesProperties>.Fetch(opponentUserId, properties =>
-                {
-                    MatchPlayersData.Add(opponentUserId, decks, properties);
-                    SceneManager.LoadScene(1);
-                });
+                SceneManager.LoadScene(1);
             });
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Battle.Windows;
+using BeatRoyale;
 
 public partial class SROptions 
 {
@@ -13,5 +14,12 @@ public partial class SROptions
     public void Lose() 
     {
         MatchResultWindow.Show(false);
+    }
+    
+    [Category("Battle")]
+    public bool ShowRadius
+    {
+        get => DebugData.Config.needShowRadius;
+        set => DebugData.Config.needShowRadius = value;
     }
 }

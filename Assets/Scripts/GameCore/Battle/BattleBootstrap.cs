@@ -1,4 +1,5 @@
 ﻿using Battle.Windows;
+using BeatRoyale;
 using Core.SingleService;
 using GameCore.Battle.Data;
 using UnityEngine;
@@ -9,9 +10,10 @@ namespace Battle
 {
     public class BattleBootstrap : ServiceManager
     {
-        [SerializeField] private Units units; 
-        [SerializeField] private Cards cards; 
-        [SerializeField] private Effectors effectors; 
+        [SerializeField] private string opponentUserId;
+        [SerializeField] private Units units;
+        [SerializeField] private Cards cards;
+        [SerializeField] private Effectors effectors;
         [SerializeField] private MeshRenderer spawnArea;
         [SerializeField] private BoxCollider2D arenaBox;
         public static MeshRenderer SpawnArea { get; private set; }
@@ -26,13 +28,27 @@ namespace Battle
 
         private void Start()
         {
+            if (MatchPlayersData.Count == 0)
+            {
+                MatchPlayersData.Add(opponentUserId, Init);
+            }
+            else
+            {
+                Init();
+            }
+        }
+
+        private void Init()
+        {
             units.Init();
             cards.Init();
             effectors.Init();
+            OpponentWorld.userId = opponentUserId;
             MatchResultWindow.Showing += Unsubscribe;
             Tower.Destroyed += OnTowerDestroyed;
             Cannon.Destroyed += OnCannonDestroyed;
             DeckWindow.Show();
+            MusicController.Begin();
         }
 
         private void Unsubscribe()

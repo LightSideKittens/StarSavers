@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MusicController : SingleService<MusicController>
 {
-    public static int MusicOffset { get; } = 1;
+    public static int MusicOffset => 1;
     private static readonly int addColorFade = Shader.PropertyToID("_AddColorFade");
     public static event Action Started;
     private int count;
@@ -23,10 +23,25 @@ public class MusicController : SingleService<MusicController>
     [SerializeField] private Vector3 targetScale = new Vector3(5, 5, 5);
     [SerializeField] private float targetScaleSpeed = 3f;
 
+    public static void Begin()
+    {
+        Resume();
+    }
+
     public static void Stop()
     {
-        Instance.enabled = false;
+        Pause();
         Started = null;
+    }
+
+    public static void Pause()
+    {
+        Instance.enabled = false;
+    }
+    
+    public static void Resume()
+    {
+        Instance.enabled = true;
     }
     
     protected override void Awake()
@@ -36,6 +51,7 @@ public class MusicController : SingleService<MusicController>
         time += timeOffset;
         source.time += timeOffset;
         MusicData.SkipToTime(timeOffset);
+        Pause();
     }
 
     private void Start()

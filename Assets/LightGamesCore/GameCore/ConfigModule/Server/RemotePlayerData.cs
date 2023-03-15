@@ -1,5 +1,4 @@
-﻿using Firebase.Auth;
-using Firebase.Firestore;
+﻿using Firebase.Firestore;
 
 namespace Core.ConfigModule
 {

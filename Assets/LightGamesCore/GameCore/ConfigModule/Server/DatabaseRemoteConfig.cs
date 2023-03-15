@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using BeatRoyale;
-using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Newtonsoft.Json;
 using UnityEngine;
+#if DEBUG
+using static Core.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+#endif
 
 namespace Core.ConfigModule
 {
@@ -14,6 +16,18 @@ namespace Core.ConfigModule
         private static Func<DocumentReference> getter;
         private static readonly T instance;
         protected static string UserId { get; private set; }
+        
+        private static bool ServerEnabled
+        {
+            get
+            {
+#if DEBUG
+                return Config.serverEnabled;
+#else
+                return true;
+#endif
+            }
+        }
 
         static DatabaseRemoteConfig()
         {
@@ -33,33 +47,53 @@ namespace Core.ConfigModule
 
         public static void Push(Action onSuccess = null, Action onError = null)
         {
-            Debug.Log($"[{typeof(T1).Name}] Push");
-            var docRef = getter();
-            var config = BaseConfig<T1>.Config;
-            var json = JsonConvert.SerializeObject(config, config.Settings);
-            var dict = new Dictionary<string, object>()
-            {
-                {BaseConfig<T1>.Config.FileName, json}
-            };
-            var pushTask = docRef.SetAsync(dict);
+            if (!ServerEnabled)
+            { 
+                onSuccess?.Invoke();
+                return; 
+            }
             
-            pushTask.ContinueWithOnMainThread(task =>
+            Internal_Push(onSuccess, onError);
+        }
+
+        private static void Internal_Push(Action onSuccess, Action onError)
+        {
+            Auth.SignIn(() =>
             {
-                if (task.IsCompleted && task.IsCompletedSuccessfully)
+                Debug.Log($"[{typeof(T1).Name}] Push");
+                var docRef = getter();
+                var config = BaseConfig<T1>.Config;
+                var json = JsonConvert.SerializeObject(config, config.Settings);
+                var dict = new Dictionary<string, object>()
                 {
-                    Debug.Log($"[{typeof(T1).Name}] Success Push");
-                    Invoke(onSuccess);
-                }
-                else if (task.IsFaulted || task.IsCanceled)
+                    {BaseConfig<T1>.Config.FileName, json}
+                };
+                var pushTask = docRef.SetAsync(dict);
+                
+                pushTask.ContinueWithOnMainThread(task =>
                 {
-                    Debug.LogError($"[{typeof(T1).Name}] Failure Push: {task.Exception.Message}");
-                    Invoke(onError);
-                }
-            });
+                    if (task.IsCompleted && task.IsCompletedSuccessfully)
+                    {
+                        Debug.Log($"[{typeof(T1).Name}] Success Push");
+                        Invoke(onSuccess);
+                    }
+                    else if (task.IsFaulted || task.IsCanceled)
+                    {
+                        Debug.LogError($"[{typeof(T1).Name}] Failure Push: {task.Exception.Message}");
+                        Invoke(onError);
+                    }
+                });
+            }, onError);
         }
         
         public static void Fetch(string userId, Action<T1> onSuccess, Action onError = null, Action onComplete = null)
         {
+            if (!ServerEnabled)
+            { 
+                onSuccess?.Invoke(BaseConfig<T1>.Config);
+                return; 
+            }
+            
             Internal_Fetch(userId, onSuccess: dict =>
             {
                 var config = BaseConfig<T1>.Config;
@@ -71,6 +105,12 @@ namespace Core.ConfigModule
 
         public static void Fetch(Action onSuccess = null, Action onError = null, Action onComplete = null)
         {
+            if (!ServerEnabled)
+            { 
+                onSuccess?.Invoke();
+                return; 
+            }
+            
             OnAppPause.UnSubscribe(OnApplicationPause);
             OnAppPause.Subscribe(OnApplicationPause);
             Internal_Fetch(CommonPlayerData.UserId, onSuccess: dict =>
@@ -87,44 +127,47 @@ namespace Core.ConfigModule
             Action onComplete = null,
             Action onResponseEmpty = null)
         {
-            Debug.Log($"[{typeof(T1).Name}] Fetch");
-            UserId = userId;
-            var docRef = getter();
-
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            Auth.SignIn(() =>
             {
-                if (task.IsCompleted && task.IsCompletedSuccessfully)
-                {
-                    var dict = task.Result.ToDictionary();
+                Debug.Log($"[{typeof(T1).Name}] Fetch");
+                UserId = userId;
+                var docRef = getter();
 
-                    if (dict == null)
+                docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+                {
+                    if (task.IsCompleted && task.IsCompletedSuccessfully)
                     {
-                        if (onResponseEmpty != null)
+                        var dict = task.Result.ToDictionary();
+
+                        if (dict == null)
                         {
-                            Debug.Log($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
-                            onResponseEmpty();
-                        }
-                        else
-                        {
-                            Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
+                            if (onResponseEmpty != null)
+                            {
+                                Debug.Log($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
+                                onResponseEmpty();
+                            }
+                            else
+                            {
+                                Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
+                            }
+                            
+                            Invoke(onError);
+                            Invoke(onComplete);
+                            return;
                         }
                         
+                        Debug.Log($"[{typeof(T1).Name}] Success Fetch. User: {userId}");
+                        Invoke(() => onSuccess?.Invoke(dict));
+                        Invoke(onComplete);
+                    }
+                    else if (task.IsFaulted || task.IsCanceled)
+                    {
+                        Debug.LogError($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}. User: {userId}");
                         Invoke(onError);
                         Invoke(onComplete);
-                        return;
                     }
-                    
-                    Debug.Log($"[{typeof(T1).Name}] Success Fetch. User: {userId}");
-                    Invoke(() => onSuccess?.Invoke(dict));
-                    Invoke(onComplete);
-                }
-                else if (task.IsFaulted || task.IsCanceled)
-                {
-                    Debug.LogError($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}. User: {userId}");
-                    Invoke(onError);
-                    Invoke(onComplete);
-                }
-            });
+                });
+            }, onError);
         }
 
         private static void OnApplicationPause()

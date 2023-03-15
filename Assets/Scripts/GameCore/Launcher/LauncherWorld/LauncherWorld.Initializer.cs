@@ -28,19 +28,16 @@ namespace BeatRoyale.Launcher
 #else
             Application.targetFrameRate = 1000;
 #endif
-            Auth.SignIn(() =>
+            RemotePlayerData<CommonPlayerData>.Fetch(() =>
             {
-                RemotePlayerData<CommonPlayerData>.Fetch(() =>
+                StorageRemoteConfig<ChangedLevels>.Fetch(() =>
                 {
-                    StorageRemoteConfig<ChangedLevels>.Fetch(() =>
+                    RemotePlayerData<UnlockedLevels>.Fetch(() =>
                     {
-                        RemotePlayerData<UnlockedLevels>.Fetch(() =>
+                        RemotePlayerData<EntitiesProperties>.Fetch(() =>
                         {
-                            RemotePlayerData<EntitiesProperties>.Fetch(() =>
-                            {
-                                levelsConfigsManager.Init();
-                                RemotePlayerData<CardDecks>.Fetch(onInit);
-                            });
+                            levelsConfigsManager.Init();
+                            RemotePlayerData<CardDecks>.Fetch(onInit);
                         });
                     });
                 });

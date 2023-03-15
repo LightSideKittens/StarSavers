@@ -14,7 +14,7 @@ namespace Core.ConfigModule
             {
                 if (Path.GetExtension(str) == json)
                 {
-                    ConfigsTypeData.CallLoadOnNextAccess(Path.GetFileNameWithoutExtension(str));
+                    ConfigsUtils.CallLoadOnNextAccess(Path.GetFileNameWithoutExtension(str));
                 }
             }
         }

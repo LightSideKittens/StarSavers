@@ -73,14 +73,6 @@ namespace Core.ConfigModule
 
         public static void Initialize() => getter();
 
-        [Conditional("UNITY_EDITOR")]
-        private static void Generate()
-        {
-            instance = new T();
-            Load();
-            Set(instance);
-        }
-
         protected static T Load()
         {
             instance.OnLoading();
@@ -109,7 +101,7 @@ namespace Core.ConfigModule
             
             IsLoaded = true;
             instance.OnLoaded();
-            ConfigsTypeData.AddLoadOnNextAccessAction(instance.FileName, LoadOnNextAccess);
+            ConfigsUtils.AddLoadOnNextAccessAction(instance.FileName, LoadOnNextAccess);
             
             return instance;
         }

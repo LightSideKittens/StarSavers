@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
+using BeatRoyale;
 using Firebase.Extensions;
 using Firebase.Storage;
 using Newtonsoft.Json;
 using UnityEngine;
+#if DEBUG
+using static Core.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+#endif
 
 namespace Core.ConfigModule
 {
@@ -16,6 +19,18 @@ namespace Core.ConfigModule
         private static StorageReference versionsReference;
         private static Func<StorageReference> getter;
         private static Dictionary<string, int> localVersions;
+
+        private static bool ServerEnabled
+        {
+            get
+            {
+#if DEBUG
+                return Config.serverEnabled;
+#else
+                return true;
+#endif
+            }
+        }
         
         static StorageRemoteConfig()
         {
@@ -39,27 +54,47 @@ namespace Core.ConfigModule
 
         public static void Push(Action onSuccess = null, Action onError = null)
         {
-            var storageRef = getter();
-            
-            var config = BaseConfig<T>.Config;
-            var json = JsonConvert.SerializeObject(config, config.Settings);
-            storageRef.PutBytesAsync(Encoding.UTF8.GetBytes(json)).ContinueWithOnMainThread(task =>
+            if (!ServerEnabled)
+            { 
+                onSuccess?.Invoke();
+                return; 
+            }
+
+            Internal_Push(onSuccess, onError);
+        }
+
+        private static void Internal_Push(Action onSuccess, Action onError)
+        {
+            Auth.SignIn(() =>
             {
-                if (task.IsCompleted && task.IsCompletedSuccessfully)
+                var storageRef = getter();
+            
+                var config = BaseConfig<T>.Config;
+                var json = JsonConvert.SerializeObject(config, config.Settings);
+                storageRef.PutBytesAsync(Encoding.UTF8.GetBytes(json)).ContinueWithOnMainThread(task =>
                 {
-                    Debug.Log($"[{typeof(T).Name}] Push Success!"); ;
-                    Invoke(onSuccess);
-                }
-                else if (task.IsFaulted || task.IsCanceled)
-                {
-                    Debug.LogError($"[{typeof(T).Name}] Push Error: {task.Exception.Message}");
-                    Invoke(onError);
-                }
-            });
+                    if (task.IsCompleted && task.IsCompletedSuccessfully)
+                    {
+                        Debug.Log($"[{typeof(T).Name}] Push Success!"); ;
+                        Invoke(onSuccess);
+                    }
+                    else if (task.IsFaulted || task.IsCanceled)
+                    {
+                        Debug.LogError($"[{typeof(T).Name}] Push Error: {task.Exception.Message}");
+                        Invoke(onError);
+                    }
+                });
+            }, onError);
         }
 
         public static void Fetch(Action onSuccess = null, Action onError = null)
         {
+            if (!ServerEnabled)
+            { 
+                onSuccess?.Invoke();
+                return; 
+            }
+            
             var storageRef = getter();
             if (ConfigVersions.IsVersionsFetched)
             {
@@ -101,31 +136,34 @@ namespace Core.ConfigModule
 
         private static void Internal_Fetch<T1>(StorageReference storageRef, Action onSuccess = null, Action onError = null) where T1 : BaseConfig<T1>, new()
         {
-            Debug.Log($"[{typeof(T1).Name}] Fetch! Path: {storageRef.Path}");
-            
-            storageRef.GetBytesAsync(MaxAllowedSize).ContinueWithOnMainThread(task =>
+            Auth.SignIn(() =>
             {
-                if (task.IsCompleted && task.IsCompletedSuccessfully)
+                Debug.Log($"[{typeof(T1).Name}] Fetch! Path: {storageRef.Path}");
+                
+                storageRef.GetBytesAsync(MaxAllowedSize).ContinueWithOnMainThread(task =>
                 {
-                    var bytes = task.Result;
-                    
-                    if (bytes == null)
+                    if (task.IsCompleted && task.IsCompletedSuccessfully)
+                    {
+                        var bytes = task.Result;
+                        
+                        if (bytes == null)
+                        {
+                            Debug.LogError($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
+                            Invoke(onError);
+                            return;
+                        }
+                        
+                        BaseConfig<T1>.Deserialize(Encoding.UTF8.GetString(bytes));
+                        Debug.Log($"[{typeof(T1).Name}] Fetch Success!");
+                        Invoke(onSuccess);
+                    }
+                    else if (task.IsFaulted || task.IsCanceled)
                     {
                         Debug.LogError($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
                         Invoke(onError);
-                        return;
                     }
-                    
-                    BaseConfig<T1>.Deserialize(Encoding.UTF8.GetString(bytes));
-                    Debug.Log($"[{typeof(T1).Name}] Fetch Success!");
-                    Invoke(onSuccess);
-                }
-                else if (task.IsFaulted || task.IsCanceled)
-                {
-                    Debug.LogError($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
-                    Invoke(onError);
-                }
-            });
+                });
+            }, onError);
         }
 
         private static void Invoke(Action action)
