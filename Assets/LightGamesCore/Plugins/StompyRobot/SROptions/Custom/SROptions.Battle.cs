@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using Battle.Windows;
 using BeatRoyale;
+using GameCore.Battle;
 
 public partial class SROptions 
 {
@@ -20,6 +21,10 @@ public partial class SROptions
     public bool ShowRadius
     {
         get => DebugData.Config.needShowRadius;
-        set => DebugData.Config.needShowRadius = value;
+        set
+        {
+            DebugData.Config.needShowRadius = value;
+            RadiusUtils.SetActiveRadiuses(value);
+        }
     }
 }

@@ -38,6 +38,12 @@ namespace Battle.Windows
             for (int i = 0; i < cardsPrefabs.Count; i++)
             {
                 var entityName = cardsPrefabs[i];
+
+                if (GameScopes.IsEffector(entityName))
+                {
+                    Effectors.ByName[entityName].Init();
+                }
+                
                 var card = Instantiate(Cards.ByName[entityName], deckPanel);
                 var cardGameObject = card.gameObject;
                 namesByCard.Add(cardGameObject, entityName);

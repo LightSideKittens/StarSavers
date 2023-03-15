@@ -41,6 +41,7 @@ namespace MusicEventSystem.Configs
         {
             base.OnLoaded();
             Loaded?.Invoke();
+            lastCurrentTime = 0;
         }
 
         public static void Clear()

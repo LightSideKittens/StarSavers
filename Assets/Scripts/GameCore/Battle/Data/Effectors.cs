@@ -27,7 +27,6 @@ namespace GameCore.Battle.Data
             {
                 var pair = byName[i];
                 pair.effector.name = pair.effectorName;
-                pair.effector.Init();
                 ByName.TryAdd(pair.effectorName, pair.effector);
             }
         }

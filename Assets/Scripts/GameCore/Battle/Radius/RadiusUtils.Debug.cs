@@ -26,7 +26,7 @@ namespace GameCore.Battle
 
         static partial void OnTool();
 
-        private static void SetActiveRadiuses(bool active)
+        public static void SetActiveRadiuses(bool active)
         {
             foreach (var radius in radiuses.Values)
             {
