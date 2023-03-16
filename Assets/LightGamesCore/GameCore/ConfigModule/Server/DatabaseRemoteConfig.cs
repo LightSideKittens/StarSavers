@@ -130,12 +130,19 @@ namespace Core.ConfigModule
             Auth.SignIn(() =>
             {
                 Debug.Log($"[{typeof(T1).Name}] Fetch");
+
+                if (string.IsNullOrEmpty(userId))
+                {
+                    Debug.LogWarning($"[{typeof(T1).Name}] UserId is Null or Empty!");
+                    userId = CommonPlayerData.UserId;
+                }
+                
                 UserId = userId;
                 var docRef = getter();
 
                 docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
                 {
-                    if (task.IsCompleted && task.IsCompletedSuccessfully)
+                    if (task.IsCompletedSuccessfully)
                     {
                         var dict = task.Result.ToDictionary();
 
@@ -160,7 +167,7 @@ namespace Core.ConfigModule
                         Invoke(() => onSuccess?.Invoke(dict));
                         Invoke(onComplete);
                     }
-                    else if (task.IsFaulted || task.IsCanceled)
+                    else
                     {
                         Debug.LogError($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}. User: {userId}");
                         Invoke(onError);

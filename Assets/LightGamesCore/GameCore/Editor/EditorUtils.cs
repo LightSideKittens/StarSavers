@@ -1,4 +1,9 @@
 ﻿using Core.Extensions;
+
+#if UNITY_EDITOR
+using Sirenix.Utilities.Editor;
+#endif
+
 using UnityEngine;
 
 public static class EditorUtils
@@ -49,4 +54,26 @@ public static class EditorUtils
         
         return texture;
     }
+
+#if UNITY_EDITOR
+    public static void SetSirenixButtonWhiteColor()
+    {
+        var tex = GetTextureByColor(Color.white);
+        var grayTex = GetTextureByColor(new Color(0.83f, 0.83f, 0.83f));
+        var gray2Tex = GetTextureByColor(new Color(0.71f, 0.71f, 0.71f));
+        var textColor = new Color(0.17f, 0.17f, 0.17f);
+
+        var normal = SirenixGUIStyles.Button.normal;
+        normal.textColor = textColor;
+        normal.background = tex;
+
+        var hover = SirenixGUIStyles.Button.hover;
+        hover.textColor = textColor;
+        hover.background = grayTex;
+
+        var active = SirenixGUIStyles.Button.active;
+        active.textColor = textColor;
+        active.background = gray2Tex;
+    }
+#endif
 }

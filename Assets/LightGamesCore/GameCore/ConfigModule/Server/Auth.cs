@@ -31,7 +31,7 @@ namespace BeatRoyale
                     }
                 });
             }
-            else if(DefaultInstance.CurrentUser != null)
+            else if(DefaultInstance.CurrentUser == null)
             {
                 SignInByEmail(false, onSuccess, onError);
             }

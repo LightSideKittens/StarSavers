@@ -1,5 +1,6 @@
 using System;
 using Battle.Data;
+using Common.SingleServices;
 using Core.ConfigModule;
 using GameCore.Battle.Data;
 using Newtonsoft.Json.Utilities;
@@ -28,6 +29,9 @@ namespace BeatRoyale.Launcher
 #else
             Application.targetFrameRate = 1000;
 #endif
+            var loader = Loader.Create();
+            onInit += loader.Destroy;
+            
             RemotePlayerData<CommonPlayerData>.Fetch(() =>
             {
                 StorageRemoteConfig<ChangedLevels>.Fetch(() =>

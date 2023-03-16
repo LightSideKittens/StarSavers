@@ -1790,11 +1790,6 @@ MonoBehaviour:
   - {fileID: 2014093388}
   - {fileID: 983978595}
   - {fileID: 1990240619}
-  unitPrefabs:
-  - {fileID: 8408513571808267312, guid: fc9c0fb4472873645bf331c0e3a9091c, type: 3}
-  - {fileID: 8408513571808267312, guid: 718daa44ddddba44b9f8471da8723366, type: 3}
-  - {fileID: 8408513571808267312, guid: 9c2f26c9e0fd2854282cefc8331de1c8, type: 3}
-  - {fileID: 8408513571808267312, guid: ef743bf395e8dd94c98b705b8c052559, type: 3}
 --- !u!4 &1009600344
 Transform:
   m_ObjectHideFlags: 0
@@ -3952,60 +3947,80 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7004024576314205232, guid: 369aec21846d03649adeded0f0dbeea3, type: 3}
   m_PrefabInstance: {fileID: 2107611945}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2115908910
-GameObject:
+--- !u!1001 &7979064943346233968
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2115908912}
-  - component: {fileID: 2115908911}
-  m_Layer: 0
-  m_Name: BattleBootstrap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2115908911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115908910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9f44f15b6184bd892cfc7c8ae1f030a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  services:
-  - {fileID: 1009600343}
-  - {fileID: 1733764392}
-  - {fileID: 2128186274167496386, guid: 06f0c09c2e413fc4ba3bce333d9b45c2, type: 3}
-  - {fileID: 6769258614697063956, guid: 0740e19a0f9238b44a0705f036788d06, type: 3}
-  - {fileID: 3530255473193284629, guid: 302dd17178c9f8848a0a78f5b6703dd6, type: 3}
-  - {fileID: 1449142817}
-  opponentUserId: W9KZKTyQFQOdVxm5PHQffWhrzMC3
-  units: {fileID: 11400000, guid: 5ff7c35f7a474c04ea2103129888e0dc, type: 2}
-  cards: {fileID: 11400000, guid: 6b4045e2d9e4ba4429f9d9122b21c971, type: 2}
-  effectors: {fileID: 11400000, guid: 5fbb249a32b59a74d8f6752fa57c6e94, type: 2}
-  spawnArea: {fileID: 1052696830}
-  arenaBox: {fileID: 1203358529}
---- !u!4 &2115908912
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115908910}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436480, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436510, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: m_Name
+      value: BattleBootstrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979064945393436511, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: arenaBox
+      value: 
+      objectReference: {fileID: 1203358529}
+    - target: {fileID: 7979064945393436511, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: spawnArea
+      value: 
+      objectReference: {fileID: 1052696830}
+    - target: {fileID: 7979064945393436511, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: services.Array.data[0]
+      value: 
+      objectReference: {fileID: 1009600343}
+    - target: {fileID: 7979064945393436511, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: services.Array.data[1]
+      value: 
+      objectReference: {fileID: 1733764392}
+    - target: {fileID: 7979064945393436511, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: services.Array.data[5]
+      value: 
+      objectReference: {fileID: 1449142817}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}

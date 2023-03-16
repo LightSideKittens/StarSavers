@@ -64,41 +64,31 @@ namespace Core.ConfigModule
         [MenuItem("Server/Delete Player Data")]
         static void DeletePlayerData()
         {
-            FirebaseApp firebaseApp = FirebaseApp.Create(FirebaseApp.DefaultInstance.Options, "FIREBASE_EDITOR"); 
-            FirebaseAuth.GetAuth(firebaseApp).SignInWithEmailAndPasswordAsync("firebase.admin@beatroyale.com", "firebaseadminbeatroyale")
-                .ContinueWithOnMainThread(task =>
+            Admin.SignIn(() =>
             {
-                if (task.IsCompletedSuccessfully)
-                {
-                    var data =  FirebaseFirestore.GetInstance(firebaseApp)
-                        .Collection("PlayersData")
-                        .Document($"{CommonPlayerData.UserId}")
-                        .Collection("Data");
+                var data =  Admin.Firestore
+                    .Collection("PlayersData")
+                    .Document($"{CommonPlayerData.UserId}")
+                    .Collection("Data");
 
-                    GetAllLocalConfigs();
-                    foreach (var names in localConfigs)
-                    {
-                        var storageRef = data.Document(names);
-                
-                        storageRef.DeleteAsync().ContinueWithOnMainThread(deleteTask =>
-                        {
-                            if (deleteTask.IsCompletedSuccessfully)
-                            {
-                                Debug.Log($"Success Deleted: {names} from User: {CommonPlayerData.UserId}");
-                            }
-                            else
-                            {
-                                Debug.LogError($"Failure Deleted: {CommonPlayerData.UserId}. Error: {deleteTask.Exception.Message}");
-                            }
-                        });
-                    }
-                }
-                else
+                GetAllLocalConfigs();
+                foreach (var names in localConfigs)
                 {
-                    Debug.LogError($"Failure Deleted: {CommonPlayerData.UserId}. Error: {task.Exception.Message}");
+                    var storageRef = data.Document(names);
+                
+                    storageRef.DeleteAsync().ContinueWithOnMainThread(deleteTask =>
+                    {
+                        if (deleteTask.IsCompletedSuccessfully)
+                        {
+                            Debug.Log($"Success Deleted: {names} from User: {CommonPlayerData.UserId}");
+                        }
+                        else
+                        {
+                            Debug.LogError($"Failure Deleted: {CommonPlayerData.UserId}. Error: {deleteTask.Exception.Message}");
+                        }
+                    });
                 }
             });
-
         }
         
         

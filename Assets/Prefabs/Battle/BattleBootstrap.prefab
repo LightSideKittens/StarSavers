@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7979064945393436510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7979064945393436480}
+  - component: {fileID: 7979064945393436511}
+  m_Layer: 0
+  m_Name: BattleBootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7979064945393436480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979064945393436510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7979064945393436511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979064945393436510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f44f15b6184bd892cfc7c8ae1f030a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  services:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 2128186274167496386, guid: 06f0c09c2e413fc4ba3bce333d9b45c2, type: 3}
+  - {fileID: 6769258614697063956, guid: 0740e19a0f9238b44a0705f036788d06, type: 3}
+  - {fileID: 3530255473193284629, guid: 302dd17178c9f8848a0a78f5b6703dd6, type: 3}
+  - {fileID: 0}
+  opponentUserId: GItbx7WNb9f8uCUDA47jRWPGQcX2
+  units: {fileID: 11400000, guid: 5ff7c35f7a474c04ea2103129888e0dc, type: 2}
+  cards: {fileID: 11400000, guid: 6b4045e2d9e4ba4429f9d9122b21c971, type: 2}
+  effectors: {fileID: 11400000, guid: 5fbb249a32b59a74d8f6752fa57c6e94, type: 2}
+  spawnArea: {fileID: 0}
+  arenaBox: {fileID: 0}

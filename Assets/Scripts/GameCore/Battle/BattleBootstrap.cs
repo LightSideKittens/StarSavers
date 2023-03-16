@@ -1,5 +1,7 @@
-﻿using Battle.Windows;
+﻿using System;
+using Battle.Windows;
 using BeatRoyale;
+using Common.SingleServices;
 using Core.SingleService;
 using GameCore.Battle.Data;
 using UnityEngine;
@@ -30,7 +32,11 @@ namespace Battle
         {
             if (MatchPlayersData.Count == 0)
             {
-                MatchPlayersData.Add(opponentUserId, Init);
+                var loader = Loader.Create();
+                Action onSuccess = Init;
+                onSuccess += loader.Destroy;
+                
+                MatchPlayersData.Add(opponentUserId, onSuccess);
             }
             else
             {

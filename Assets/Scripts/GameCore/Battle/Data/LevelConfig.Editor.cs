@@ -76,7 +76,7 @@ namespace Battle.Data
         [OnInspectorInit]
         private void OnInspectorInit()
         {
-            SetEditorColors();
+            EditorUtils.SetSirenixButtonWhiteColor();
             Init();
 
             if (IsInvalidName)
@@ -253,25 +253,6 @@ namespace Battle.Data
         private bool canSetLevel;
         private bool cannotSetLevel;
         
-        private void SetEditorColors()
-        {
-            var tex = EditorUtils.GetTextureByColor(Color.white);
-            var grayTex = EditorUtils.GetTextureByColor(new Color(0.83f, 0.83f, 0.83f));
-            var gray2Tex = EditorUtils.GetTextureByColor(new Color(0.71f, 0.71f, 0.71f));
-            var textColor = new Color(0.17f, 0.17f, 0.17f);
-            
-            var normal = SirenixGUIStyles.Button.normal;
-            normal.textColor = textColor;
-            normal.background = tex;
-            
-            var hover = SirenixGUIStyles.Button.hover;
-            hover.textColor = textColor;
-            hover.background = grayTex;
-            
-            var active = SirenixGUIStyles.Button.active;
-            active.textColor = textColor;
-            active.background = gray2Tex;
-        }
 
         [Button("Set Level", ButtonSizes.Large)]
         [HorizontalGroup("LevelButtons")]

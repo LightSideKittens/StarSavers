@@ -10,10 +10,12 @@ namespace Common.SingleServices.Windows
         [ColoredField, SerializeField] private AnimText animText;
         [ColoredField, SerializeField] private HealthBar healthBar;
         [ColoredField, SerializeField] private HealthBar opponentHealthBar;
+        [ColoredField, SerializeField] private Loader loader;
         public static Transform SpawnPoint => Instance.spawnPoint;
         internal static AnimText AnimText => Instance.animText;
         internal static HealthBar HealthBar => Instance.healthBar;
         internal static HealthBar OpponentHealthBar => Instance.opponentHealthBar;
+        internal static Loader Loader => Instance.loader;
         protected override bool ShowByDefault => true;
         public override int SortingOrder => 5;
 
