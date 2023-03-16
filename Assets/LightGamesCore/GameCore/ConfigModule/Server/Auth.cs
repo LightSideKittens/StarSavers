@@ -15,25 +15,13 @@ namespace BeatRoyale
             var userId = UserId;
             if (string.IsNullOrEmpty(userId))
             {
-                DefaultInstance.SignInAnonymouslyAsync().ContinueWithOnMainThread(task =>
-                {
-                    if (task.IsCompletedSuccessfully)
-                    {
-                        userId = task.Result.UserId;
-                        UserId = userId;
-                        Debug.Log($"[{nameof(Auth)}] Created New Account. UserId: {userId}");
-                        SignInByEmail(true, onSuccess, onError);
-                    }
-                    else
-                    {
-                        onError?.Invoke();
-                        Debug.LogError($"[{nameof(Auth)}] {task.Exception.Message}");
-                    }
-                });
+                var utc = DateTime.UtcNow;
+                UserId = $"Y{utc.Year}M{utc.Month}D{utc.Day}h{utc.Hour}m{utc.Minute}s{utc.Second}ms{utc.Millisecond}";
+                SignInByEmail(true, onSuccess, onError);
             }
             else if(DefaultInstance.CurrentUser == null)
             {
-                SignInByEmail(false, onSuccess, onError);
+                SignInByEmail(false, onSuccess, ()=> { SignInByEmail(true, onSuccess, onError); });
             }
             else
             {
@@ -62,7 +50,7 @@ namespace BeatRoyale
         {
             var email = $"{UserId}@beatroyale.com";
             var password = UserId;
-            
+
             return isNewUser
                 ? DefaultInstance.CreateUserWithEmailAndPasswordAsync(email, password)
                 : DefaultInstance.SignInWithEmailAndPasswordAsync(email, password);
