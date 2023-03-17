@@ -27,4 +27,12 @@ public partial class SROptions
             RadiusUtils.SetActiveRadiuses(value);
         }
     }
+    
+        
+    [Category("Battle")]
+    public bool EnableServer
+    {
+        get => DebugData.Config.serverEnabled;
+        set => DebugData.Config.serverEnabled = value;
+    }
 }

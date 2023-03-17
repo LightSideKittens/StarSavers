@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using Newtonsoft.Json;
-using UnityEngine;
 
 namespace Core.ConfigModule
 {
     public partial class ConfigsTypeData : JsonBaseConfigData<ConfigsTypeData>
     {
-        protected override string FolderName => "EditorConfigs";
+        protected override string FolderName => FolderNames.EditorConfigs;
         [JsonProperty] private readonly HashSet<string> paths = new();
 
         public static void Init()
