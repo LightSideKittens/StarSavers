@@ -1,7 +1,8 @@
-﻿using System.ComponentModel;
+﻿#if DEBUG
+using System.ComponentModel;
 using Battle.Windows;
-using BeatRoyale;
 using GameCore.Battle;
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 
 public partial class SROptions 
 {
@@ -20,10 +21,10 @@ public partial class SROptions
     [Category("Battle")]
     public bool ShowRadius
     {
-        get => DebugData.Config.needShowRadius;
+        get => Config.needShowRadius;
         set
         {
-            DebugData.Config.needShowRadius = value;
+            Config.needShowRadius = value;
             RadiusUtils.SetActiveRadiuses(value);
         }
     }
@@ -32,7 +33,8 @@ public partial class SROptions
     [Category("Battle")]
     public bool EnableServer
     {
-        get => DebugData.Config.serverEnabled;
-        set => DebugData.Config.serverEnabled = value;
+        get => Config.serverEnabled;
+        set => Config.serverEnabled = value;
     }
 }
+#endif

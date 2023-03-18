@@ -10,7 +10,7 @@ namespace Battle.Data
     public class GameScopes : JsonBaseConfigData<GameScopes>
     {
         protected override bool NeedAutoSave => false;
-        protected override JsonSerializerSettings Settings { get; } = new() {ContractResolver = new GameScopesContractResolver()};
+        public override JsonSerializerSettings Settings { get; } = new() {ContractResolver = new GameScopesContractResolver()};
 
         [Serializable]
         public class Scope

@@ -1,7 +1,6 @@
 ﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using Core.ConfigModule;
 using Firebase.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -10,7 +9,7 @@ using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace BeatRoyale
+namespace Core.Server
 {
     public class ServerWindow : OdinEditorWindow
     {

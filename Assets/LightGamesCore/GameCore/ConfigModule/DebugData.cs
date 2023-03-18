@@ -1,7 +1,6 @@
 ﻿#if DEBUG
-using Core.ConfigModule;
 
-namespace BeatRoyale
+namespace Core.ConfigModule
 {
     public class DebugData : JsonBaseConfigData<DebugData>
     {

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityToolbarExtender;
-using static Core.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 
 namespace GameCore.Battle
 {

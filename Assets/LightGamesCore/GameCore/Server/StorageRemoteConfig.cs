@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using BeatRoyale;
 using Firebase.Extensions;
 using Firebase.Storage;
 using Newtonsoft.Json;
 using UnityEngine;
+using static Core.Server.User;
 #if DEBUG
-using static Core.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 #endif
 
 namespace Core.ConfigModule
@@ -39,7 +39,7 @@ namespace Core.ConfigModule
 
         private static StorageReference GetReference()
         {
-            var configsRef = FirebaseStorage.DefaultInstance.RootReference.Child($"{FolderNames.Configs}");
+            var configsRef = Storage.RootReference.Child($"{FolderNames.Configs}");
             getter = GetCreatedReference;
             var config = BaseConfig<T>.Config;
             reference = configsRef.Child($"{config.FileName}.{config.Ext}");
@@ -65,7 +65,7 @@ namespace Core.ConfigModule
 
         private static void Internal_Push(Action onSuccess, Action onError)
         {
-            Auth.SignIn(() =>
+            SignIn(() =>
             {
                 var storageRef = getter();
             
@@ -136,7 +136,7 @@ namespace Core.ConfigModule
 
         private static void Internal_Fetch<T1>(StorageReference storageRef, Action onSuccess = null, Action onError = null) where T1 : BaseConfig<T1>, new()
         {
-            Auth.SignIn(() =>
+            SignIn(() =>
             {
                 Debug.Log($"[{typeof(T1).Name}] Fetch! Path: {storageRef.Path}");
                 

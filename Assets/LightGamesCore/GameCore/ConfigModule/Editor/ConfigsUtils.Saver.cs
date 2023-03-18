@@ -9,12 +9,12 @@ namespace Core.ConfigModule
 {
     public static partial class ConfigsUtils
     {
-        private static TextAsset selectedTextAsset;
+        public static TextAsset SelectedTextAsset { get; private set; }
         
         [MenuItem("Assets/ConfigModule/Set As Default")] 
         static void SetAsDefault()
         {
-            var assetPath = AssetDatabase.GetAssetPath(selectedTextAsset);
+            var assetPath = AssetDatabase.GetAssetPath(SelectedTextAsset);
 
             if (!assetPath.Contains("/Resources/"))
             {
@@ -22,25 +22,25 @@ namespace Core.ConfigModule
                 FileInfo file = new FileInfo(path);
                 file.Directory.Create();
 
-                File.WriteAllText(file.FullName, selectedTextAsset.text);
+                File.WriteAllText(file.FullName, SelectedTextAsset.text);
 
                 AssetDatabase.Refresh();
             }
             else
             {
-                Debug.Log($"Config {selectedTextAsset.name} is already in Resources folder");
+                Debug.Log($"Config {SelectedTextAsset.name} is already in Resources folder");
             }
         }
         
         [MenuItem("Assets/ConfigModule/Set As Default", true)]
-        static bool ValidateSetAsDefault()
+        public static bool ValidateSetAsDefault()
         {
-            selectedTextAsset = null;
+            SelectedTextAsset = null;
             
             if (Selection.activeObject is TextAsset textAsset)
             {
-                selectedTextAsset = textAsset;
-                var path = AssetDatabase.GetAssetPath(selectedTextAsset);
+                SelectedTextAsset = textAsset;
+                var path = AssetDatabase.GetAssetPath(SelectedTextAsset);
 
                 if (path.EndsWith($".{FileExtensions.Json}"))
                 {
@@ -48,7 +48,7 @@ namespace Core.ConfigModule
                 }
             }
             
-            return selectedTextAsset != null && AssetDatabase.GetAssetPath(selectedTextAsset).Contains($".{FileExtensions.Json}");
+            return SelectedTextAsset != null && AssetDatabase.GetAssetPath(SelectedTextAsset).Contains($".{FileExtensions.Json}");
         }
     }
 }

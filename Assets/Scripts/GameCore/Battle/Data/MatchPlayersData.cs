@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Battle.Data;
 using Core.ConfigModule;
+using Core.Server;
 using GameCore.Battle.Data;
 
 namespace BeatRoyale

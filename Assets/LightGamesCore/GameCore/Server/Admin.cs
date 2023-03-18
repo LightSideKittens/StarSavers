@@ -4,14 +4,16 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
+using Firebase.Storage;
 using UnityEditor;
 using UnityEngine;
 
-namespace Core.ConfigModule
+namespace Core.Server
 {
     [InitializeOnLoad]
     public static class Admin
     {
+        public static FirebaseStorage Storage { get; }
         public static FirebaseFirestore Firestore { get; }
         public static FirebaseApp App { get; }
         private static readonly FirebaseAuth auth;
@@ -21,6 +23,7 @@ namespace Core.ConfigModule
         {
             App = FirebaseApp.Create(FirebaseApp.DefaultInstance.Options, "FIREBASE_EDITOR");
             Firestore = FirebaseFirestore.GetInstance(App);
+            Storage = FirebaseStorage.GetInstance(App);
             auth = FirebaseAuth.GetAuth(App);
         }
         
@@ -38,6 +41,7 @@ namespace Core.ConfigModule
                     if (task.IsCompletedSuccessfully)
                     {
                         isSingedIn = true;
+                        Debug.Log("Success Auth as Admin!");
                         onSuccess();
                     }
                     else

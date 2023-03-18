@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using BeatRoyale;
-using Firebase;
-using Firebase.Auth;
+using Core.Server;
 using Firebase.Extensions;
-using Firebase.Firestore;
 using UnityEditor;
 using UnityEngine;
 using UnityToolbarExtender;
-using static Core.ConfigModule.FileExtensions;
 using static Core.ConfigModule.FolderNames;
-using static Core.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
+using static Core.ConfigModule.ConfigsUtils;
 
 namespace Core.ConfigModule
 {
     [InitializeOnLoad]
-    public static partial class ConfigsUtils
+    public static class ServerUtils
     {
         private static readonly List<string> localConfigs = new();
         private static readonly HashSet<string> ignoredConfigs = new()
@@ -28,7 +25,7 @@ namespace Core.ConfigModule
             "changedLevels",
         };
 
-        static ConfigsUtils()
+        static ServerUtils()
         {
             ToolbarExtender.LeftToolbarGUI.Add(OnToolbarLeftGUI);
         }
@@ -95,43 +92,29 @@ namespace Core.ConfigModule
         [MenuItem("Assets/ConfigModule/Update Remote")] 
         static void UpdateRemote()
         {
-            FirebaseApp firebaseApp = FirebaseApp.Create(FirebaseApp.DefaultInstance.Options, "FIREBASE_EDITOR"); 
-            FirebaseAuth.GetAuth(firebaseApp).SignInWithEmailAndPasswordAsync("firebase.admin@beatroyale.com", "firebaseadminbeatroyale").ContinueWithOnMainThread(task =>
+            Admin.SignIn(() =>
             {
-                var fullConfigName = $"{selectedTextAsset.name}{Path.GetExtension(AssetDatabase.GetAssetPath(selectedTextAsset))}";
-                var storageRef = Firebase.Storage.FirebaseStorage.GetInstance(firebaseApp).RootReference.Child($"{Configs}/{fullConfigName}");
-                storageRef.PutBytesAsync(Encoding.UTF8.GetBytes(selectedTextAsset.text)).ContinueWithOnMainThread(task =>
+                var fullConfigName = $"{SelectedTextAsset.name}{Path.GetExtension(AssetDatabase.GetAssetPath(SelectedTextAsset))}";
+                var storageRef = Admin.Storage.RootReference.Child($"{Configs}/{fullConfigName}");
+                storageRef.PutBytesAsync(Encoding.UTF8.GetBytes(SelectedTextAsset.text)).ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCompletedSuccessfully)
                     {
-                        Debug.Log($"Success Update: {selectedTextAsset.name}");
+                        Debug.Log($"Success Update: {SelectedTextAsset.name}");
                     }
                     else
                     {
-                        Debug.LogError($"Failure Update: {selectedTextAsset.name}. Error: {task.Exception.Message}");
+                        Debug.LogError($"Failure Update: {SelectedTextAsset.name}. Error: {task.Exception.Message}");
                     }
                 });
             });
-
         }
         
         [MenuItem("Assets/ConfigModule/Update Remote", true)]
         static bool ValidateUpdateRemote()
         {
-            selectedTextAsset = null;
-            
-            if (Selection.activeObject is TextAsset textAsset)
-            {
-                selectedTextAsset = textAsset;
-                var path = AssetDatabase.GetAssetPath(selectedTextAsset);
-
-                if (path.EndsWith($".{Json}"))
-                {
-                    return path.Contains(Configs);
-                }
-            }
-            
-            return selectedTextAsset != null && AssetDatabase.GetAssetPath(selectedTextAsset).Contains($".{Json}");
+            ValidateSetAsDefault();
+            return SelectedTextAsset != null;
         }
     }
 }

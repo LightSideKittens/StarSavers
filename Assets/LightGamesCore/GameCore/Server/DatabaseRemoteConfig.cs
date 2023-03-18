@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using BeatRoyale;
+using Core.Server;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Newtonsoft.Json;
 using UnityEngine;
 #if DEBUG
-using static Core.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 #endif
 
 namespace Core.ConfigModule
@@ -58,7 +58,7 @@ namespace Core.ConfigModule
 
         private static void Internal_Push(Action onSuccess, Action onError)
         {
-            Auth.SignIn(() =>
+            User.SignIn(() =>
             {
                 Debug.Log($"[{typeof(T1).Name}] Push");
                 var docRef = getter();
@@ -127,7 +127,7 @@ namespace Core.ConfigModule
             Action onComplete = null,
             Action onResponseEmpty = null)
         {
-            Auth.SignIn(() =>
+            User.SignIn(() =>
             {
                 Debug.Log($"[{typeof(T1).Name}] Fetch");
 

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace Core.ConfigModule
+namespace Core.ConfigModule.Converters
 {
     public class Vector4JsonConverter : JsonConverter<Vector4>
     {

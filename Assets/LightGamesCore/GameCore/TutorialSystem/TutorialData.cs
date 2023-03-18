@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 public class TutorialData : JsonBaseConfigData<TutorialData>
 {
-    protected override string FileName { get; set; } = "tutorialData";
+    public override string FileName { get; set; } = "tutorialData";
     [JsonProperty] private readonly HashSet<Type> completedSteps = new HashSet<Type>();
 
     public static void OnStepComplete(Type stepType)

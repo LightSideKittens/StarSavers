@@ -15,7 +15,7 @@ namespace Core.ConfigModule
     [Serializable]
     public abstract class BaseConfig<T> where T : BaseConfig<T>, new()
     {
-        protected internal virtual JsonSerializerSettings Settings { get; } = new JsonSerializerSettings
+        public virtual JsonSerializerSettings Settings { get; } = new JsonSerializerSettings
         {
             ContractResolver = UnityJsonContractResolver.Instance
         };
@@ -57,10 +57,10 @@ namespace Core.ConfigModule
 
         protected abstract string FolderPath { get; }
 
-        protected internal abstract string Ext { get; }
+        public abstract string Ext { get; }
         public static T Config => getter();
 
-        protected internal abstract string FileName { get; set; }
+        public abstract string FileName { get; set; }
         protected virtual string DefaultFolderName => SaveData;
         protected virtual string FolderName => string.Empty;
         protected virtual bool NeedAutoSave => true;
@@ -143,7 +143,6 @@ namespace Core.ConfigModule
             
             CheckFileNameIsNullOrEmpty();
             File.WriteAllText(fullFileName,json);
-            ConfigsTypeData.AddPath(fullFileName);
             instance.OnSaved();
         }
         
@@ -174,7 +173,7 @@ namespace Core.ConfigModule
             }
         }
 
-        internal static void Deserialize(string json)
+        public static void Deserialize(string json)
         {
             Debug.Log($"[{typeof(T).Name}] Deserialize (Load)");
             instance = JsonConvert.DeserializeObject<T>(json, instance.Settings);

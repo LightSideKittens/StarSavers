@@ -26,7 +26,7 @@ namespace Core.ConfigModule
         }
         
         protected override string FullFileName => Path.Combine(FolderPath, $"{FileName}.{Ext}");
-        protected internal override string FileName { get; set; } = $"{char.ToLower(typeof(T).Name[0])}{typeof(T).Name.Substring(1)}";
+        public override string FileName { get; set; } = $"{char.ToLower(typeof(T).Name[0])}{typeof(T).Name.Substring(1)}";
 
         [Conditional("UNITY_EDITOR")]
         private void GetFolderPath_Editor(ref string folderPath)

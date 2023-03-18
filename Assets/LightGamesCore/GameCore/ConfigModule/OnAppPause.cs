@@ -43,19 +43,7 @@ namespace Core.ConfigModule
         {
             ApplicationPaused -= action;
         }
-
-        private void OnDisable()
-        {
-            InitConfigTypeData();
-        }
-
-        [Conditional("UNITY_EDITOR")]
-        private static void InitConfigTypeData()
-        {
-            ConfigsTypeData.Init();
-            ConfigsTypeData.Save();
-        }
-
+        
         private void OnApplicationPause(bool pauseStatus)
         {
             if (pauseStatus)

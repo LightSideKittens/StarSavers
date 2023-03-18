@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace BeatRoyale
+namespace Core.Server
 {
     public class CommonPlayerData : JsonBaseConfigData<CommonPlayerData>
     {

@@ -1,4 +1,5 @@
-﻿using Firebase.Firestore;
+﻿using Core.Server;
+using Firebase.Firestore;
 
 namespace Core.ConfigModule
 {
@@ -9,9 +10,9 @@ namespace Core.ConfigModule
             get
             {
                 var name = BaseConfig<T>.Config.FileName;
-                var storage = FirebaseFirestore.DefaultInstance;
+                var database = User.Database;
                 
-                return storage.Collection("PlayersData")
+                return database.Collection("PlayersData")
                     .Document(UserId)
                     .Collection("Data")
                     .Document(name);

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using UnityEngine;
 
 #if DEBUG
-using static Core.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 #endif
 
 namespace GameCore.Battle
