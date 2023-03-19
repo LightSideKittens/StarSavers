@@ -20,7 +20,7 @@ namespace Core.Server
         
         [JsonProperty] private int rank;
         [JsonProperty] private long position;
-        private static CollectionReference reference;
+        private CollectionReference reference;
         private static bool isUpdating;
         private static TaskCompletionSource<Result> source = new();
 
@@ -44,13 +44,18 @@ namespace Core.Server
         protected override void OnLoading()
         {
             base.OnLoading();
-            reference = User.Database.Collection("Leaderboards");
             var configReference = User.Database
                 .Collection("PlayersData")
                 .Document(User.Id)
                 .Collection("Data")
                 .Document(FileName);
             configReference.Listen(OnChanged);
+        }
+
+        protected override void OnLoaded()
+        {
+            base.OnLoaded();
+            reference = User.Database.Collection("Leaderboards");
         }
 
         private void OnChanged(DocumentSnapshot snapshot)
@@ -121,25 +126,32 @@ namespace Core.Server
             return dict;
         }
 
-        public static void SetPosition()
+        private static void SetPosition()
         {
             Burger.Log($"[{nameof(Leaderboards)}] SetPosition: {Position}");
             
-            var positionRef = reference.Document($"{Position}");
+            var positionRef = Config.reference.Document($"{Position}");
             positionRef.SetAsync(Data.Create(User.Id, Rank));
         }
         
         public static void GetUserId(Action<string> userId, int position = 1)
         {
-            var positionRef = reference.Document($"{position}");
-            positionRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            User.SignIn(() =>
             {
-                if (task.IsCompletedSuccessfully)
+                var positionRef = Config.reference.Document($"{position}");
+                positionRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
                 {
-                    var dict = task.Result.ToDictionary();
-                    var targetPair = dict.ElementAt(0);
-                    userId(targetPair.Key);
-                }
+                    if (task.IsCompletedSuccessfully)
+                    {
+                        var dict = task.Result.ToDictionary();
+                        var targetPair = dict.ElementAt(0);
+                        userId(targetPair.Key);
+                    }
+                    else
+                    {
+                        Burger.Error($"[{nameof(Leaderboards)}] Failure Get UserId: {task.Exception.Message}");
+                    }
+                });
             });
         }
 
@@ -156,6 +168,7 @@ namespace Core.Server
         {
             Burger.Log($"[{nameof(Leaderboards)}] UpdatePosition. Current: {Position}");
             var factor = diff > 0 ? -1 : 1;
+            var reference = Config.reference;
             
             var transactionTask = User.Database.RunTransactionAsync(transaction =>
             {

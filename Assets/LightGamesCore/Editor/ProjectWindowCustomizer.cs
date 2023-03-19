@@ -12,13 +12,14 @@ namespace Fishcoin
     [InitializeOnLoad]
     public static class ProjectWindowCustomizer
     {
-        private static readonly Texture2D overlay = EditorUtils.GetTextureByColor(new Color(0.21f, 0.21f, 0.21f));
+        private static readonly Texture2D overlay;
         private static readonly Dictionary<string, Texture2D> texturesByGuid = new();
 
         static ProjectWindowCustomizer()
         {
             EditorApplication.projectWindowItemOnGUI += DrawAssetDetails;
-
+            overlay = EditorUtils.GetTextureByColor(new Color(0.21f, 0.21f, 0.21f));
+            
             var toRemove = new List<string>();
             var textureGuidByAssetGuid = EditorData.Config.textureGuidByAssetGuid;
             
