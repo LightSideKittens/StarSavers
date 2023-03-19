@@ -26,6 +26,7 @@ namespace Battle.Windows
         private float manaFillSpeed = 1;
         private float mana;
         private bool manaEnabled = true;
+        public static bool IsInited { get; private set; }
         private BaseEffector currentEffector;
         private Camera cam;
         private int IntMana => (int) mana;
@@ -33,6 +34,7 @@ namespace Battle.Windows
         protected override void Init()
         {
             base.Init();
+            IsInited = true;
             var cardsPrefabs = CardDecks.Config.Attack;
             cam = Camera.main;
 

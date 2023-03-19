@@ -7,6 +7,7 @@ namespace Core.ConfigModule
         protected override string FolderName => "DebugConfigs";
         public bool needShowRadius;
         public bool serverEnabled = true;
+        public bool infinityMana;
     }
 }
 #endif

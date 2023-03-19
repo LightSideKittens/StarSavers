@@ -1,22 +1,22 @@
 ﻿#if DEBUG
+using Core.ConfigModule;
 
 namespace Battle.Windows
 {
     public partial class DeckWindow
     {
-        private bool infinityMana;
-        
         public static bool InfinityMana
         {
-            get => Instance.infinityMana;
+            get => DebugData.Config.infinityMana;
             set
             {
-                Instance.infinityMana = value;
+                DebugData.Config.infinityMana = value;
 
                 if (value)
                 {
-                    Instance.mana = int.MaxValue;
+                    Instance.mana = 10;
                     Instance.UpdateManaView();
+                    Instance.mana = 10000;
                 }
                 
                 Instance.manaEnabled = !value;
