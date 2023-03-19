@@ -41,9 +41,9 @@ namespace BeatRoyale.Launcher
                     {
                         RemotePlayerData<UnlockedLevels>.Fetch(() =>
                         {
+                            levelsConfigsManager.Init();
                             RemotePlayerData<EntitiesProperties>.Fetch(() =>
                             {
-                                levelsConfigsManager.Init();
                                 RemotePlayerData<CardDecks>.Fetch(onInit);
                             });
                         });

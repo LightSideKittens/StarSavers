@@ -263,7 +263,7 @@ namespace Battle.Data
         {
             if (IsInvalid)
             {
-                Burger.Log($"[{nameof(LevelConfig)}] Config is invalid! Check errors.");
+                Burger.Error($"[{nameof(LevelConfig)}] Config is invalid! Check errors.");
             }
             else
             {

@@ -38,6 +38,13 @@ public partial class SROptions
         set => Config.serverEnabled = value;
     }
     
+    [Category("Battle")]
+    public bool InfinityMana
+    {
+        get => DeckWindow.InfinityMana;
+        set => DeckWindow.InfinityMana = value;
+    }
+    
     [Category("Leaderboards")]
     public void IncreaseRank()
     {

@@ -20,7 +20,7 @@ namespace Core.Server
         
         [JsonProperty] private int rank;
         [JsonProperty] private long position;
-        private CollectionReference reference;
+        private static CollectionReference reference;
         private static bool isUpdating;
         private static TaskCompletionSource<Result> source = new();
 
@@ -55,7 +55,7 @@ namespace Core.Server
         protected override void OnLoaded()
         {
             base.OnLoaded();
-            reference = User.Database.Collection("Leaderboards");
+            reference ??= User.Database.Collection("Leaderboards");
         }
 
         private void OnChanged(DocumentSnapshot snapshot)
@@ -126,19 +126,23 @@ namespace Core.Server
             return dict;
         }
 
-        private static void SetPosition()
+        private static void SetPosition() => Config.Internal_SetPosition();
+
+        private void Internal_SetPosition()
         {
             Burger.Log($"[{nameof(Leaderboards)}] SetPosition: {Position}");
             
-            var positionRef = Config.reference.Document($"{Position}");
+            var positionRef = reference.Document($"{Position}");
             positionRef.SetAsync(Data.Create(User.Id, Rank));
         }
-        
-        public static void GetUserId(Action<string> userId, int position = 1)
+
+        public static void GetUserId(Action<string> userId, int position = 1) => Config.Internal_GetUserId(userId, position);
+
+        private void Internal_GetUserId(Action<string> userId, int position = 1)
         {
             User.SignIn(() =>
             {
-                var positionRef = Config.reference.Document($"{position}");
+                var positionRef = reference.Document($"{position}");
                 positionRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCompletedSuccessfully)
@@ -168,8 +172,7 @@ namespace Core.Server
         {
             Burger.Log($"[{nameof(Leaderboards)}] UpdatePosition. Current: {Position}");
             var factor = diff > 0 ? -1 : 1;
-            var reference = Config.reference;
-            
+
             var transactionTask = User.Database.RunTransactionAsync(transaction =>
             {
                 source = new TaskCompletionSource<Result>();

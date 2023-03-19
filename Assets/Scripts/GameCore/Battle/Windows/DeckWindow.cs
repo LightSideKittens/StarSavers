@@ -10,7 +10,7 @@ using static Battle.BattleBootstrap;
 
 namespace Battle.Windows
 {
-    public class DeckWindow : BaseWindow<DeckWindow>, IPointerDownHandler, IPointerUpHandler, IDragHandler
+    public partial class DeckWindow : BaseWindow<DeckWindow>, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
         [SerializeField] private Transform[] cardPlaces;
         [SerializeField] private Transform deckPanel;
@@ -25,16 +25,17 @@ namespace Battle.Windows
         private int currentIndex;
         private float manaFillSpeed = 1;
         private float mana;
+        private bool manaEnabled = true;
         private BaseEffector currentEffector;
         private Camera cam;
-        private int IntMana => (int)mana;
+        private int IntMana => (int) mana;
 
         protected override void Init()
         {
             base.Init();
             var cardsPrefabs = CardDecks.Config.Attack;
             cam = Camera.main;
-            
+
             for (int i = 0; i < cardsPrefabs.Count; i++)
             {
                 var entityName = cardsPrefabs[i];
@@ -43,11 +44,11 @@ namespace Battle.Windows
                 {
                     Effectors.ByName[entityName].Init();
                 }
-                
+
                 var card = Instantiate(Cards.ByName[entityName], deckPanel);
                 var cardGameObject = card.gameObject;
                 namesByCard.Add(cardGameObject, entityName);
-                
+
                 if (i < 4)
                 {
                     enabledCards.Add(cardGameObject, i);
@@ -58,23 +59,36 @@ namespace Battle.Windows
                 else
                 {
                     cardGameObject.SetActive(false);
-                    disabledCards[i-4] = cardGameObject;
+                    disabledCards[i - 4] = cardGameObject;
                 }
             }
         }
 
         private void Update()
         {
-            if (mana >= 10)
+            UpdateMana();
+        }
+
+        private void UpdateMana()
+        {
+            if (manaEnabled)
             {
-                mana = 10;
+                if (mana >= 10)
+                {
+                    mana = 10;
+                }
+                else
+                {
+                    UpdateManaView();
+                }
             }
-            else
-            {
-                mana += manaFillSpeed * Time.deltaTime;
-                manaSlider.value = mana;
-                manaCountText.text = $"{IntMana}";
-            }
+        }
+
+        private void UpdateManaView()
+        {
+            mana += manaFillSpeed * Time.deltaTime;
+            manaSlider.value = mana;
+            manaCountText.text = $"{IntMana}";
         }
 
         private void ToDeck(GameObject card, Transform parent)
@@ -85,7 +99,7 @@ namespace Battle.Windows
 
             var cardName = namesByCard[card];
             var price = 0;
-            
+
             if (GameScopes.IsEffector(cardName))
             {
                 price = Effectors.ByName[cardName].Price;
@@ -94,15 +108,15 @@ namespace Battle.Windows
             {
                 price = Units.ByName[cardName].Price;
             }
-            
+
             var priceTextIndex = enabledCards[card];
             var priceText = manaPriceTexts[priceTextIndex];
             priceText.text = $"{price}";
-            
+
             var center = new Vector2(0.5f, 0.5f);
             var rectTransform = ((RectTransform) card.transform);
-            rectTransform.anchorMin = center; 
-            rectTransform.anchorMax = center; 
+            rectTransform.anchorMin = center;
+            rectTransform.anchorMax = center;
             rectTransform.anchoredPosition = Vector2.zero;
         }
 
@@ -115,6 +129,7 @@ namespace Battle.Windows
             selected.transform.position = lastWorldPosition;
 
             var cardName = namesByCard[selected];
+
             if (GameScopes.IsEffector(cardName))
             {
                 currentEffector = Effectors.ByName[cardName];
@@ -124,7 +139,7 @@ namespace Battle.Windows
                 SpawnArea.gameObject.SetActive(true);
             }
         }
-        
+
         public void OnDrag(PointerEventData eventData)
         {
             var position = eventData.position;
@@ -141,7 +156,7 @@ namespace Battle.Windows
             {
                 var effector = Effectors.ByName[cardName];
                 var price = effector.Price;
-                
+
                 if (CanSpawn(ArenaBox.bounds, price))
                 {
                     Spawn(price);
@@ -157,7 +172,7 @@ namespace Battle.Windows
                 var unit = Units.ByName[cardName];
                 var price = unit.Price;
                 SpawnArea.gameObject.SetActive(false);
-            
+
                 if (CanSpawn(SpawnArea.bounds, price))
                 {
                     Spawn(price);
@@ -168,12 +183,12 @@ namespace Battle.Windows
                     Reset();
                 }
             }
-            
+
             currentEffector?.EndDrawRadius();
 
             void Spawn(int price)
             {
-                mana -= price; 
+                mana -= price;
                 selected.SetActive(false);
                 var disabledCardIndex = currentIndex % disabledCards.Length;
                 var newCard = disabledCards[disabledCardIndex];
@@ -205,7 +220,7 @@ namespace Battle.Windows
                 var cardPlace = cardPlaces[placeIndex];
                 ToDeck(selected, cardPlace);
             }
-            
+
             currentIndex++;
         }
     }
