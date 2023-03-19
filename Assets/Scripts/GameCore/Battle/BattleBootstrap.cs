@@ -2,6 +2,7 @@
 using Battle.Windows;
 using BeatRoyale;
 using Common.SingleServices;
+using Core.Server;
 using Core.SingleService;
 using GameCore.Battle.Data;
 using UnityEngine;
@@ -12,7 +13,6 @@ namespace Battle
 {
     public class BattleBootstrap : ServiceManager
     {
-        [SerializeField] private string opponentUserId;
         [SerializeField] private Units units;
         [SerializeField] private Cards cards;
         [SerializeField] private Effectors effectors;
@@ -35,8 +35,10 @@ namespace Battle
                 var loader = Loader.Create();
                 Action onSuccess = Init;
                 onSuccess += loader.Destroy;
-                
-                MatchPlayersData.Add(opponentUserId, onSuccess);
+                Leaderboards.GetUserId(userId =>
+                {
+                    MatchPlayersData.Add(userId, onSuccess);
+                });
             }
             else
             {
@@ -49,7 +51,7 @@ namespace Battle
             units.Init();
             cards.Init();
             effectors.Init();
-            OpponentWorld.userId = opponentUserId;
+            OpponentWorld.userId = MatchPlayersData.OpponentUserId;
             MatchResultWindow.Showing += Unsubscribe;
             Tower.Destroyed += OnTowerDestroyed;
             Cannon.Destroyed += OnCannonDestroyed;

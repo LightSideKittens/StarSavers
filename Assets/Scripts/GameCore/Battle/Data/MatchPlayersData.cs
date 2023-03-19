@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Battle.Data;
 using Core.ConfigModule;
 using Core.Server;
@@ -22,6 +23,7 @@ namespace BeatRoyale
             this.playerData = playerData;
         }
 
+        public static string OpponentUserId => byUserId.ElementAt(0).Key;
         public static CardDecks GetDecks(string userId) => byUserId[userId].decks;
         public static EntitiesProperties GetProperties(string userId) => byUserId[userId].properties;
         public static User GetPlayerData(string userId) => byUserId[userId].playerData;

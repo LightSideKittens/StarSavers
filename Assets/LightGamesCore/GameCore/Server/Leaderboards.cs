@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Core.ConfigModule;
 using Firebase.Extensions;
 using Firebase.Firestore;
@@ -10,17 +11,27 @@ namespace Core.Server
 {
     public class Leaderboards : JsonBaseConfigData<Leaderboards>
     {
+        private enum Result
+        {
+            Swapped,
+            Updated,
+            Error,
+        }
+        
         [JsonProperty] private int rank;
         [JsonProperty] private long position;
         private static CollectionReference reference;
+        private static bool isUpdating;
+        private static TaskCompletionSource<Result> source = new();
 
         public static int Rank
         {
             get => Config.rank;
             set
             {
+                var diff = value - Config.rank;
                 Config.rank = value;
-                OnRankUpdated();
+                OnRankUpdated(diff);
             }
         }
 
@@ -44,6 +55,7 @@ namespace Core.Server
 
         private void OnChanged(DocumentSnapshot snapshot)
         {
+            Burger.Log($"[{nameof(Leaderboards)}] OnChanged");
             var configDict = snapshot.ToDictionary();
 
             if (configDict is {Count: > 0})
@@ -55,128 +67,208 @@ namespace Core.Server
             }
         }
 
-        private static void RunTransaction(DocumentReference reference, Action<DocumentSnapshot> onSuccess, Action onError)
+        private static void GetSnapshot(Transaction transaction, DocumentReference reference, Action<DocumentSnapshot> onSuccess)
         {
-            User.Database.RunTransactionAsync(transaction =>
+            transaction.GetSnapshotAsync(reference).ContinueWithOnMainThread(task =>
             {
-                return transaction.GetSnapshotAsync(reference).ContinueWithOnMainThread(snapshot =>
+                if (task.IsCompletedSuccessfully)
                 {
-                    if (snapshot.IsCompletedSuccessfully)
-                    {
-                        onSuccess.SafeInvoke(snapshot.Result);
-                    }
-                    else
-                    {
-                        onError.SafeInvoke();
-                    }
-                });
+                    onSuccess.SafeInvoke(task.Result);
+                }
+                else
+                {
+                    Burger.Error($"[{nameof(Leaderboards)}] GetSnapshot Error: {task.Exception.Message}");
+                    source.SetResult(Result.Error);
+                }
             });
         }
 
-        private static void OnRankUpdated()
+        private static void OnRankUpdated(int diff)
         {
-            Burger.Log($"[{nameof(Leaderboards)}] OnRankUpdated");
+            Burger.Log($"[{nameof(Leaderboards)}] OnRankUpdated. Rank: {Rank}");
             
             if (Position == 0)
             {
-                User.GetPlayersCount((_, count) =>
+                User.GetPlayersCount(() =>
                 {
-                    Position = count;
-                    SetPosition(count);
+                    Position = User.PlayersCount;
+                    SetPosition();
                 });
             }
             else if (Rank == 0)
             {
-                SetDefaultPosition();
+                SetPosition();
             }
-            else if (Position > 1)
+            else if (!isUpdating && diff != 0)
             {
-                UpdatePosition();
-            }
-            else if (Position == 1)
-            {
-                SetPosition(1);
+                isUpdating = true;
+                User.GetPlayersCount(() =>
+                {
+                    UpdatePosition(diff);
+                }, 0, () => isUpdating = false);
             }
         }
 
-        public static void SetPosition(long position)
+        private static Dictionary<string, object> GetDictFromSnapshot(DocumentSnapshot snapshot, Action<Leaderboards> modify)
         {
-            Burger.Log($"[{nameof(Leaderboards)}] SetPosition: {position}");
+            var dict = snapshot.ToDictionary();
+            var json = (string) dict[Config.FileName];
+            var config = JsonConvert.DeserializeObject<Leaderboards>(json);
+            modify(config);
+            json = JsonConvert.SerializeObject(config, Formatting.None);
+            dict[Config.FileName] = json;
+
+            return dict;
+        }
+
+        public static void SetPosition()
+        {
+            Burger.Log($"[{nameof(Leaderboards)}] SetPosition: {Position}");
             
-            var positionRef = reference.Document($"{position}");
+            var positionRef = reference.Document($"{Position}");
             positionRef.SetAsync(Data.Create(User.Id, Rank));
         }
         
-        private static void SetDefaultPosition()
+        public static void GetUserId(Action<string> userId, int position = 1)
         {
-            SetPosition(Position);
+            var positionRef = reference.Document($"{position}");
+            positionRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompletedSuccessfully)
+                {
+                    var dict = task.Result.ToDictionary();
+                    var targetPair = dict.ElementAt(0);
+                    userId(targetPair.Key);
+                }
+            });
         }
 
-        private static void UpdatePosition()
+        private static DocumentReference GetReference(string userId)
+        {
+            return User.Database
+                .Collection("PlayersData")
+                .Document(userId)
+                .Collection("Data")
+                .Document(Config.FileName);
+        }
+
+        private static void UpdatePosition(int diff)
         {
             Burger.Log($"[{nameof(Leaderboards)}] UpdatePosition. Current: {Position}");
+            var factor = diff > 0 ? -1 : 1;
             
-            var targetPositionRef = reference.Document($"{Position - 1}");
-            var batch = User.Database.StartBatch();
-            
-            RunTransaction(targetPositionRef, snapshot =>
+            var transactionTask = User.Database.RunTransactionAsync(transaction =>
             {
-                var targetDict = snapshot.ToDictionary();
-                var targetPair = targetDict.ElementAt(0);
-                Burger.Log($"[{nameof(Leaderboards)}] Target: UserId: {targetPair.Key} Position: {targetPair.Value}");
-                
-                if(Rank > (long)targetPair.Value)
+                source = new TaskCompletionSource<Result>();
+                var selfConfigRef = GetReference(User.Id);
+                GetSnapshot(transaction, selfConfigRef, selfConfigSnapshot =>
                 {
-                    Burger.Log($"[{nameof(Leaderboards)}] Start Swapping!");
-                    targetDict.Clear();
-                    targetDict[User.Id] = Rank;
-                    var selfPositionRef = reference.Document($"{Position}");
-                    
-                    RunTransaction(selfPositionRef, selfSnapshot =>
+                    var dict = selfConfigSnapshot.ToDictionary();
+                    var json = (string) dict[Config.FileName];
+                    var selfConfig = JsonConvert.DeserializeObject<Leaderboards>(json);
+                    var position = selfConfig.position;
+                    var playersCount = User.PlayersCount;
+
+                    if ((playersCount > position && position > 1) || (playersCount == position && factor == -1) || (position == 1 && factor == 1))
                     {
-                        var selfDict = selfSnapshot.ToDictionary();
-                        var selfPair = selfDict.ElementAt(0);
-                        var leaderboardConfigRef = User.Database
-                            .Collection("PlayersData")
-                            .Document(targetPair.Key)
-                            .Collection("Data")
-                            .Document(Config.FileName);
+                        var targetPositionRef = reference.Document($"{position + factor}");
 
-                        RunTransaction(leaderboardConfigRef, configSnapshot =>
+                        GetSnapshot(transaction, targetPositionRef, targetSnapshot =>
                         {
-                            var configDict = configSnapshot.ToDictionary();
-                            var json = (string)configDict[Config.FileName];
-                            var config = JsonConvert.DeserializeObject<Leaderboards>(json);
-                            config.position++;
-                            json = JsonConvert.SerializeObject(config, Formatting.None);
-                            configDict[Config.FileName] = json;
-                            batch.Set(leaderboardConfigRef, configDict);
-
-                            if (selfPair.Key == User.Id)
-                            {
-                                selfDict.Clear();
-                                selfDict[targetPair.Key] = targetPair.Value;
-                                batch.Set(selfPositionRef, selfDict);
-                            }
+                            var targetDict = targetSnapshot.ToDictionary();
+                            var targetPair = targetDict.ElementAt(0);
+                            var condition = factor == 1 ? Rank < (long)targetPair.Value : Rank > (long)targetPair.Value;
                             
-                            batch.Set(targetPositionRef, targetDict);
-                            batch.CommitAsync().ContinueWithOnMainThread(task =>
-                            {
-                                if (task.IsCompletedSuccessfully)
-                                {
-                                    Position--;
-                                    Burger.Log($"[{nameof(Leaderboards)}] Success Swapped!");
-                                }
-                                else
-                                {
-                                    Burger.Error($"[{nameof(Leaderboards)}] Failure Swapped");
-                                }
-                            });
+                            Burger.Log($"[{nameof(Leaderboards)}] Target: UserId: {targetPair.Key} Position: {position + factor}");
 
-                        }, SetDefaultPosition);
-                    }, SetDefaultPosition);
+                            if (condition)
+                            {
+                                Burger.Log($"[{nameof(Leaderboards)}] Start Swapping!");
+                                targetDict.Clear();
+                                targetDict[User.Id] = Rank;
+                                var targetConfigRef = GetReference(targetPair.Key);
+
+                                GetSnapshot(transaction, targetConfigRef, targetConfigSnapshot =>
+                                {
+                                    var targetConfigDict = GetDictFromSnapshot(targetConfigSnapshot, config =>
+                                    {
+                                        config.position -= factor;
+                                    });
+
+                                    var selfDict = Data.Create(targetPair.Key, targetPair.Value);
+                                    var selfPositionRef = reference.Document($"{position}");
+
+                                    var selfConfigDict = GetDictFromSnapshot(selfConfigSnapshot, config =>
+                                    {
+                                        config.position += factor;
+                                        config.rank = Rank;
+                                    });
+
+                                    transaction.Set(selfPositionRef, selfDict);
+                                    transaction.Set(targetPositionRef, targetDict);
+                                    transaction.Set(targetConfigRef, targetConfigDict);
+                                    transaction.Set(selfConfigRef, selfConfigDict);
+                                    Burger.Log($"[{nameof(Leaderboards)}] Swapping...");
+                                    source.SetResult(Result.Swapped);
+                                });
+                            }
+                            else
+                            {
+                                Update();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Update();
+                    }
+
+                    void Update()
+                    {
+                        Burger.Log($"[{nameof(Leaderboards)}] Start Update!");
+
+                        GetSnapshot(transaction, selfConfigRef, snapshot =>
+                        {
+                            var selfConfigDict = GetDictFromSnapshot(snapshot,
+                                config => { config.rank = Rank; });
+
+                            var selfPositionRef = reference.Document($"{position}");
+                            var selfDict = Data.Create(User.Id, Rank);
+
+                            transaction.Set(selfPositionRef, selfDict);
+                            transaction.Set(selfConfigRef, selfConfigDict);
+                            Burger.Log($"[{nameof(Leaderboards)}] Updating...");
+                            source.SetResult(Result.Updated);
+                        });
+                    }
+                });
+                
+                return source.Task;
+            });
+            
+            transactionTask.ContinueWithOnMainThread(_ =>
+            {
+                isUpdating = false;
+                switch (source.Task.Result)
+                {
+                    case Result.Swapped:
+                        Burger.Log($"[{nameof(Leaderboards)}] Success Swapped!");
+
+                        break;
+                    case Result.Updated:
+                        Burger.Log($"[{nameof(Leaderboards)}] Updated!");
+
+                        break;
+                    case Result.Error:
+                        Burger.Error($"[{nameof(Leaderboards)}] Error!");
+
+                        break;
+                    default:
+                        Burger.Error($"[{nameof(Leaderboards)}] Unknown error!");
+
+                        break;
                 }
-            }, SetDefaultPosition);
+            });
         }
     }
 }

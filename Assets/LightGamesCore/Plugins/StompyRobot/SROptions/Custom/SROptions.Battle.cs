@@ -43,5 +43,11 @@ public partial class SROptions
     {
         Leaderboards.Rank += Random.Range(0, 10);
     }
+    
+    [Category("Leaderboards")]
+    public void DecreaseRank()
+    {
+        Leaderboards.Rank -= Random.Range(0, 10);
+    }
 }
 #endif

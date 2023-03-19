@@ -1,5 +1,6 @@
 ﻿using Common.SingleServices;
 using Core.Extensions.Unity;
+using Core.Server;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +9,6 @@ namespace BeatRoyale.Windows
 {
     public class MatchWindow : BaseLauncherWindow<MatchWindow>
     {
-        [SerializeField] private string opponentUserId;
         [SerializeField] private Button matchButton;
         protected override int Internal_Index => 2;
 
@@ -22,10 +22,13 @@ namespace BeatRoyale.Windows
         {
             MatchPlayersData.Clear();
             var loader = Loader.Create();
-            MatchPlayersData.Add(opponentUserId, () =>
+            Leaderboards.GetUserId(opponentUserId =>
             {
-                loader.Destroy();
-                SceneManager.LoadScene(1);
+                MatchPlayersData.Add(opponentUserId, () =>
+                {
+                    loader.Destroy();
+                    SceneManager.LoadScene(1);
+                });
             });
         }
     }

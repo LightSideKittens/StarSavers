@@ -48,6 +48,8 @@ namespace Core.Server
             set => Config.nickName = value;
         }
         
+        public static long PlayersCount { get; private set; }
+        
         public static FirebaseAuth Auth => FirebaseAuth.DefaultInstance;
         public static FirebaseFirestore Database => FirebaseFirestore.DefaultInstance;
         public static FirebaseStorage Storage => FirebaseStorage.DefaultInstance;
@@ -80,45 +82,49 @@ namespace Core.Server
             }
         }
 
-        public static void GetPlayersCount(Action<Transaction, long> onSuccess, Action onError = null)
-        { 
+        public static void GetPlayersCount(Action onSuccess, int increase = 0, Action onError = null)
+        {
+            long value = 0;
             Database.RunTransactionAsync(transaction =>
             {
+                value = 0;
                 return transaction.GetSnapshotAsync(playersCountRef).ContinueWithOnMainThread(snapshotTask =>
                 {
-                    if (snapshotTask.IsCompletedSuccessfully)
+                    if (snapshotTask.Result.TryGetValue("count", out value))
                     {
-                        if (snapshotTask.Result.TryGetValue<long>("count", out var value))
-                        {
-                            onSuccess.SafeInvoke(transaction, value);
-                        }
-                        else
-                        {
-                            transaction.Set(playersCountRef, Data.Create("count", value));
-                            onSuccess.SafeInvoke(transaction, value);
-                        }
+                        value += increase;
+                        transaction.Update(playersCountRef, Data.Create("count", value));
                     }
                     else
                     {
-                        Burger.Log($"[{nameof(User)}] Failure Get Players Count: {snapshotTask.Exception.Message}");
-                        onError.SafeInvoke();
+                        value += increase;
+                        transaction.Set(playersCountRef, Data.Create("count", value));
                     }
                 });
+            }).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompletedSuccessfully)
+                {
+                    PlayersCount = value;
+                    onSuccess.SafeInvoke();
+                }
+                else
+                {
+                    Burger.Log($"[{nameof(User)}] Failure Get Players Count: {task.Exception.Message}");
+                    onError.SafeInvoke();
+                }
             });
         }
 
         private static void OnCreated(Action onSuccess, Action onError)
         {
-            GetPlayersCount((transaction, count) =>
+            GetPlayersCount(() =>
             {
-                long newValue = count + 1;
-                transaction.Set(playersCountRef, Data.Create("count", newValue));
-                
-                Leaderboards.Position = newValue;
+                Leaderboards.Position = PlayersCount;
                 Leaderboards.Rank = 0;
-                Burger.Log($"[{nameof(User)}] Players Count Updated: {newValue}");
+                Burger.Log($"[{nameof(User)}] Players Count Updated: {PlayersCount}");
                 onSuccess.SafeInvoke();
-            }, onError);
+            }, 1, onError);
         }
 
         private static void SignInByEmail(bool isNewUser, Action onSuccess, Action onError)
