@@ -63,9 +63,9 @@ namespace Core.ConfigModule
         {
             Admin.SignIn(() =>
             {
-                var data =  Admin.Firestore
+                var data =  Admin.Database
                     .Collection("PlayersData")
-                    .Document($"{CommonPlayerData.UserId}")
+                    .Document($"{User.Id}")
                     .Collection("Data");
 
                 GetAllLocalConfigs();
@@ -77,11 +77,11 @@ namespace Core.ConfigModule
                     {
                         if (deleteTask.IsCompletedSuccessfully)
                         {
-                            Debug.Log($"Success Deleted: {names} from User: {CommonPlayerData.UserId}");
+                            Burger.Log($"Success Deleted: {names} from User: {User.Id}");
                         }
                         else
                         {
-                            Debug.LogError($"Failure Deleted: {CommonPlayerData.UserId}. Error: {deleteTask.Exception.Message}");
+                            Burger.Error($"Failure Deleted: {User.Id}. Error: {deleteTask.Exception.Message}");
                         }
                     });
                 }
@@ -100,11 +100,11 @@ namespace Core.ConfigModule
                 {
                     if (task.IsCompletedSuccessfully)
                     {
-                        Debug.Log($"Success Update: {SelectedTextAsset.name}");
+                        Burger.Log($"Success Update: {SelectedTextAsset.name}");
                     }
                     else
                     {
-                        Debug.LogError($"Failure Update: {SelectedTextAsset.name}. Error: {task.Exception.Message}");
+                        Burger.Error($"Failure Update: {SelectedTextAsset.name}. Error: {task.Exception.Message}");
                     }
                 });
             });

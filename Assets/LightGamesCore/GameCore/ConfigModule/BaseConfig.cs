@@ -8,18 +8,12 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 using static Core.ConfigModule.FolderNames;
-using Debug = UnityEngine.Debug;
 
 namespace Core.ConfigModule
 {
     [Serializable]
     public abstract class BaseConfig<T> where T : BaseConfig<T>, new()
     {
-        public virtual JsonSerializerSettings Settings { get; } = new JsonSerializerSettings
-        {
-            ContractResolver = UnityJsonContractResolver.Instance
-        };
-
         public static bool IsNull => instance == null;
         public static bool IsLoaded { get; private set; }
 
@@ -53,17 +47,22 @@ namespace Core.ConfigModule
             return instance;
         }
 
+        public static T Config => getter();
         protected abstract string FullFileName { get; }
 
         protected abstract string FolderPath { get; }
 
-        public abstract string Ext { get; }
-        public static T Config => getter();
+        [JsonIgnore] public abstract string Ext { get; }
 
-        public abstract string FileName { get; set; }
+        [JsonIgnore] public abstract string FileName { get; set; }
         protected virtual string DefaultFolderName => SaveData;
         protected virtual string FolderName => string.Empty;
         protected virtual bool NeedAutoSave => true;
+        
+        [JsonIgnore] public virtual JsonSerializerSettings Settings { get; } = new JsonSerializerSettings
+        {
+            ContractResolver = UnityJsonContractResolver.Instance
+        };
 
         protected virtual void SetDefault(){}
         protected virtual void OnLoading(){}
@@ -175,14 +174,14 @@ namespace Core.ConfigModule
 
         public static void Deserialize(string json)
         {
-            Debug.Log($"[{typeof(T).Name}] Deserialize (Load)");
+            Burger.Log($"[{typeof(T).Name}] Deserialize (Load)");
             instance = JsonConvert.DeserializeObject<T>(json, instance.Settings);
             getter = GetInstance;
         }
 
         private static string Serialize(T config)
         {
-            Debug.Log($"[{typeof(T).Name}] Serialize (Save)");
+            Burger.Log($"[{typeof(T).Name}] Serialize (Save)");
             var json = string.Empty;
             Serialize_Editor(config, ref json);
             Serialize_Runtime(config, ref json);

@@ -1,7 +1,9 @@
 ﻿#if DEBUG
 using System.ComponentModel;
 using Battle.Windows;
+using Core.Server;
 using GameCore.Battle;
+using UnityEngine;
 using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 
 public partial class SROptions 
@@ -29,12 +31,17 @@ public partial class SROptions
         }
     }
     
-        
     [Category("Battle")]
     public bool EnableServer
     {
         get => Config.serverEnabled;
         set => Config.serverEnabled = value;
+    }
+    
+    [Category("Leaderboards")]
+    public void IncreaseRank()
+    {
+        Leaderboards.Rank += Random.Range(0, 10);
     }
 }
 #endif

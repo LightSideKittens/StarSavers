@@ -28,7 +28,7 @@ namespace Core.ConfigModule
             }
             else
             {
-                Debug.Log($"Config {SelectedTextAsset.name} is already in Resources folder");
+                Burger.Log($"Config {SelectedTextAsset.name} is already in Resources folder");
             }
         }
         

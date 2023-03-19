@@ -11,11 +11,11 @@ namespace BeatRoyale
     {
         private CardDecks decks;
         private EntitiesProperties properties;
-        private CommonPlayerData playerData;
+        private User playerData;
         private static Dictionary<string, MatchPlayersData> byUserId = new();
         public static int Count => byUserId.Count;
 
-        private MatchPlayersData(CardDecks decks, EntitiesProperties properties, CommonPlayerData playerData)
+        private MatchPlayersData(CardDecks decks, EntitiesProperties properties, User playerData)
         {
             this.decks = decks;
             this.properties = properties;
@@ -24,7 +24,7 @@ namespace BeatRoyale
 
         public static CardDecks GetDecks(string userId) => byUserId[userId].decks;
         public static EntitiesProperties GetProperties(string userId) => byUserId[userId].properties;
-        public static CommonPlayerData GetPlayerData(string userId) => byUserId[userId].playerData;
+        public static User GetPlayerData(string userId) => byUserId[userId].playerData;
 
         public static void Add(string userId, Action onSuccess)
         {
@@ -32,7 +32,7 @@ namespace BeatRoyale
             {
                 RemotePlayerData<EntitiesProperties>.Fetch(userId, properties =>
                 {
-                    RemotePlayerData<CommonPlayerData>.Fetch(userId, playerData =>
+                    RemotePlayerData<User>.Fetch(userId, playerData =>
                     {
                         byUserId.Add(userId, new MatchPlayersData(decks, properties, playerData));
                         onSuccess();

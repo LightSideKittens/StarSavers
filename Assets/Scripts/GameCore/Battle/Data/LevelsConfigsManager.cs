@@ -64,7 +64,7 @@ namespace Battle.Data
 
         public static void UpgradeLevel(string entityName, int level)
         {
-            Debug.Log($"[{nameof(LevelsConfigsManager)}] UpgradeLevel. Entity: {entityName} | Level: {level}");
+            Burger.Log($"[{nameof(LevelsConfigsManager)}] UpgradeLevel. Entity: {entityName} | Level: {level}");
             
             if (GameScopes.IsEntityName(entityName))
             {
@@ -95,12 +95,12 @@ namespace Battle.Data
                         message = "Cannot downgrade level";
                     }
 
-                    Debug.LogError($"[{nameof(LevelsConfigsManager)}] {message} Target level: {level}, Current level: {currentLevel}");
+                    Burger.Error($"[{nameof(LevelsConfigsManager)}] {message} Target level: {level}, Current level: {currentLevel}");
                 } 
             }
             else
             {
-                Debug.LogError($"[{nameof(LevelsConfigsManager)}] Scope: {entityName} is not Entity Scope");
+                Burger.Error($"[{nameof(LevelsConfigsManager)}] Scope: {entityName} is not Entity Scope");
             }
         }
 
@@ -148,7 +148,7 @@ namespace Battle.Data
 
         private void RecomputeAllLevels()
         {
-            Debug.Log($"[{nameof(LevelsConfigsManager)}] RecomputeAllLevels");
+            Burger.Log($"[{nameof(LevelsConfigsManager)}] RecomputeAllLevels");
             ChangedLevels.Config.Levels.Clear();
             EntitiesProperties.ByName.Clear();
 

@@ -75,12 +75,12 @@ namespace Core.ConfigModule
                 {
                     if (task.IsCompleted && task.IsCompletedSuccessfully)
                     {
-                        Debug.Log($"[{typeof(T).Name}] Push Success!"); ;
+                        Burger.Log($"[{typeof(T).Name}] Push Success!"); ;
                         Invoke(onSuccess);
                     }
                     else if (task.IsFaulted || task.IsCanceled)
                     {
-                        Debug.LogError($"[{typeof(T).Name}] Push Error: {task.Exception.Message}");
+                        Burger.Error($"[{typeof(T).Name}] Push Error: {task.Exception.Message}");
                         Invoke(onError);
                     }
                 });
@@ -119,7 +119,7 @@ namespace Core.ConfigModule
 
                 if (localLevel != remoteVersions[fileName])
                 {
-                    Debug.Log($"[{typeof(T).Name}] Different Versions! Local: {localLevel} | Remote: {remoteVersions[fileName]}");
+                    Burger.Log($"[{typeof(T).Name}] Different Versions! Local: {localLevel} | Remote: {remoteVersions[fileName]}");
                     Internal_Fetch<T>(storageRef, () =>
                     {
                         localVersions[fileName] = remoteVersions[fileName];
@@ -128,7 +128,7 @@ namespace Core.ConfigModule
                 }
                 else
                 {
-                    Debug.Log($"[{typeof(T).Name}] Versions is identical! Version: {localLevel}");
+                    Burger.Log($"[{typeof(T).Name}] Versions is identical! Version: {localLevel}");
                     Invoke(onSuccess);
                 }
             }
@@ -138,7 +138,7 @@ namespace Core.ConfigModule
         {
             SignIn(() =>
             {
-                Debug.Log($"[{typeof(T1).Name}] Fetch! Path: {storageRef.Path}");
+                Burger.Log($"[{typeof(T1).Name}] Fetch! Path: {storageRef.Path}");
                 
                 storageRef.GetBytesAsync(MaxAllowedSize).ContinueWithOnMainThread(task =>
                 {
@@ -148,18 +148,18 @@ namespace Core.ConfigModule
                         
                         if (bytes == null)
                         {
-                            Debug.LogError($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
+                            Burger.Error($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
                             Invoke(onError);
                             return;
                         }
                         
                         BaseConfig<T1>.Deserialize(Encoding.UTF8.GetString(bytes));
-                        Debug.Log($"[{typeof(T1).Name}] Fetch Success!");
+                        Burger.Log($"[{typeof(T1).Name}] Fetch Success!");
                         Invoke(onSuccess);
                     }
                     else if (task.IsFaulted || task.IsCanceled)
                     {
-                        Debug.LogError($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
+                        Burger.Error($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
                         Invoke(onError);
                     }
                 });

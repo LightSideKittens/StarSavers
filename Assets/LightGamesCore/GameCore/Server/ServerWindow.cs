@@ -130,7 +130,7 @@ namespace Core.Server
             {
                 Admin.SignIn(() =>
                 {
-                    var storageRef =  Admin.Firestore
+                    var storageRef =  Admin.Database
                         .Collection("PlayersData")
                         .Document(userId)
                         .Collection("Data")
@@ -142,11 +142,11 @@ namespace Core.Server
                         {
                             value = (string)task.Result.ToDictionary()[name];
                             value = JToken.Parse(value).ToString(Formatting.Indented);
-                            Debug.Log($"Success Fetch {name} from User: {userId}");
+                            Burger.Log($"Success Fetch {name} from User: {userId}");
                         }
                         else
                         {
-                            Debug.LogError($"Failure Fetch: {userId}. Error: {task.Exception.Message}");
+                            Burger.Error($"Failure Fetch: {userId}. Error: {task.Exception.Message}");
                         }
                     });
                 });
@@ -159,7 +159,7 @@ namespace Core.Server
             {
                 if (isInvalidJson)
                 {
-                    Debug.LogError($"[{nameof(ServerWindow)}] Value of config: {name} is invalid JSON format!");
+                    Burger.Error($"[{nameof(ServerWindow)}] Value of config: {name} is invalid JSON format!");
                     return;
                 }
 
@@ -174,7 +174,7 @@ namespace Core.Server
                 
                 Admin.SignIn(() =>
                 {
-                    var storageRef =  Admin.Firestore
+                    var storageRef =  Admin.Database
                         .Collection("PlayersData")
                         .Document(userId)
                         .Collection("Data")
@@ -186,11 +186,11 @@ namespace Core.Server
                     {
                         if (task.IsCompletedSuccessfully)
                         {
-                            Debug.Log($"Success Push {name} to User: {userId}");
+                            Burger.Log($"Success Push {name} to User: {userId}");
                         }
                         else
                         {
-                            Debug.LogError($"Failure Push: {userId}. Error: {task.Exception.Message}");
+                            Burger.Error($"Failure Push: {userId}. Error: {task.Exception.Message}");
                         }
                     });
                 });

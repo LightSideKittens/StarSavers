@@ -6,7 +6,6 @@ using Firebase.Extensions;
 using Firebase.Firestore;
 using Firebase.Storage;
 using UnityEditor;
-using UnityEngine;
 
 namespace Core.Server
 {
@@ -14,7 +13,7 @@ namespace Core.Server
     public static class Admin
     {
         public static FirebaseStorage Storage { get; }
-        public static FirebaseFirestore Firestore { get; }
+        public static FirebaseFirestore Database { get; }
         public static FirebaseApp App { get; }
         private static readonly FirebaseAuth auth;
         private static bool isSingedIn;
@@ -22,7 +21,7 @@ namespace Core.Server
         static Admin()
         {
             App = FirebaseApp.Create(FirebaseApp.DefaultInstance.Options, "FIREBASE_EDITOR");
-            Firestore = FirebaseFirestore.GetInstance(App);
+            Database = FirebaseFirestore.GetInstance(App);
             Storage = FirebaseStorage.GetInstance(App);
             auth = FirebaseAuth.GetAuth(App);
         }
@@ -31,23 +30,23 @@ namespace Core.Server
         {
             if (isSingedIn)
             {
-                onSuccess();
+                onSuccess.SafeInvoke();
                 return;
             }
-            
+
             auth.SignInWithEmailAndPasswordAsync("firebase.admin@beatroyale.com", "firebaseadminbeatroyale")
                 .ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCompletedSuccessfully)
                     {
                         isSingedIn = true;
-                        Debug.Log("Success Auth as Admin!");
-                        onSuccess();
+                        Burger.Log("Success Auth as Admin!");
+                        onSuccess.SafeInvoke();
                     }
                     else
                     {
-                        onError?.Invoke();
-                        Debug.LogError($"Failure Sign In. Error: {task.Exception.Message}");
+                        onError.SafeInvoke();
+                        Burger.Error($"Failure Sign In. Error: {task.Exception.Message}");
                     }
                 });
         }

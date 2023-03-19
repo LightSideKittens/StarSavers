@@ -263,7 +263,7 @@ namespace Battle.Data
         {
             if (IsInvalid)
             {
-                Debug.Log($"[{nameof(LevelConfig)}] Config is invalid! Check errors.");
+                Burger.Log($"[{nameof(LevelConfig)}] Config is invalid! Check errors.");
             }
             else
             {
@@ -281,7 +281,7 @@ namespace Battle.Data
         {
             if (IsInvalid)
             {
-                Debug.Log($"[{nameof(LevelConfig)}] Config is invalid! Check errors.");
+                Burger.Log($"[{nameof(LevelConfig)}] Config is invalid! Check errors.");
             }
             else
             {

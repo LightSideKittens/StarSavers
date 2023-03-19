@@ -60,7 +60,7 @@ namespace Core.ConfigModule
         {
             User.SignIn(() =>
             {
-                Debug.Log($"[{typeof(T1).Name}] Push");
+                Burger.Log($"[{typeof(T1).Name}] Push");
                 var docRef = getter();
                 var config = BaseConfig<T1>.Config;
                 var json = JsonConvert.SerializeObject(config, config.Settings);
@@ -74,13 +74,13 @@ namespace Core.ConfigModule
                 {
                     if (task.IsCompleted && task.IsCompletedSuccessfully)
                     {
-                        Debug.Log($"[{typeof(T1).Name}] Success Push");
-                        Invoke(onSuccess);
+                        Burger.Log($"[{typeof(T1).Name}] Success Push");
+                        onSuccess.SafeInvoke();
                     }
                     else if (task.IsFaulted || task.IsCanceled)
                     {
-                        Debug.LogError($"[{typeof(T1).Name}] Failure Push: {task.Exception.Message}");
-                        Invoke(onError);
+                        Burger.Error($"[{typeof(T1).Name}] Failure Push: {task.Exception.Message}");
+                        onError.SafeInvoke();
                     }
                 });
             }, onError);
@@ -90,7 +90,7 @@ namespace Core.ConfigModule
         {
             if (!ServerEnabled)
             { 
-                onSuccess?.Invoke(BaseConfig<T1>.Config);
+                onSuccess.SafeInvoke(BaseConfig<T1>.Config);
                 return; 
             }
             
@@ -99,7 +99,7 @@ namespace Core.ConfigModule
                 var config = BaseConfig<T1>.Config;
                 var json = (string) dict[config.FileName];
                 config = JsonConvert.DeserializeObject<T1>(json, config.Settings);
-                Invoke(() => onSuccess?.Invoke(config));
+                onSuccess.SafeInvoke(config);
             }, onError, onComplete);
         }
 
@@ -107,18 +107,18 @@ namespace Core.ConfigModule
         {
             if (!ServerEnabled)
             { 
-                onSuccess?.Invoke();
+                onSuccess.SafeInvoke();
                 return; 
             }
             
             OnAppPause.UnSubscribe(OnApplicationPause);
             OnAppPause.Subscribe(OnApplicationPause);
-            Internal_Fetch(CommonPlayerData.UserId, onSuccess: dict =>
+            Internal_Fetch(User.Id, onSuccess: dict =>
             {
                 var config = BaseConfig<T1>.Config;
                 var json = (string) dict[config.FileName];
                 BaseConfig<T1>.Deserialize(json);
-                Invoke(onSuccess);
+                onSuccess.SafeInvoke();
             }, onError, onComplete, () => Push(onSuccess, onError));
         }
 
@@ -129,12 +129,12 @@ namespace Core.ConfigModule
         {
             User.SignIn(() =>
             {
-                Debug.Log($"[{typeof(T1).Name}] Fetch");
+                Burger.Log($"[{typeof(T1).Name}] Fetch");
 
                 if (string.IsNullOrEmpty(userId))
                 {
                     Debug.LogWarning($"[{typeof(T1).Name}] UserId is Null or Empty!");
-                    userId = CommonPlayerData.UserId;
+                    userId = User.Id;
                 }
                 
                 UserId = userId;
@@ -150,28 +150,28 @@ namespace Core.ConfigModule
                         {
                             if (onResponseEmpty != null)
                             {
-                                Debug.Log($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
-                                onResponseEmpty();
+                                Burger.Log($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
+                                onResponseEmpty.SafeInvoke();
                             }
                             else
                             {
-                                Debug.LogError($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
+                                Burger.Error($"[{typeof(T1).Name}] Failure Fetch: Response is empty. User: {userId}");
                             }
                             
-                            Invoke(onError);
-                            Invoke(onComplete);
+                            onError.SafeInvoke();
+                            onComplete.SafeInvoke();
                             return;
                         }
                         
-                        Debug.Log($"[{typeof(T1).Name}] Success Fetch. User: {userId}");
-                        Invoke(() => onSuccess?.Invoke(dict));
-                        Invoke(onComplete);
+                        Burger.Log($"[{typeof(T1).Name}] Success Fetch. User: {userId}"); 
+                        onSuccess.SafeInvoke(dict);
+                        onComplete.SafeInvoke();
                     }
                     else
                     {
-                        Debug.LogError($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}. User: {userId}");
-                        Invoke(onError);
-                        Invoke(onComplete);
+                        Burger.Error($"[{typeof(T1).Name}] Failure Fetch {task.Exception.Message}. User: {userId}");
+                        onError.SafeInvoke();
+                        onComplete.SafeInvoke();
                     }
                 });
             }, onError);
