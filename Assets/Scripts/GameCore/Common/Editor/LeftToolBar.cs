@@ -16,8 +16,14 @@ namespace BeatRoyale
 
         private static void OnToolbarLeftGUI()
         {
-            DebugData.Config.infinityMana = GUILayout.Toggle(DebugData.Config.infinityMana, "Infinity Mana", GUILayout.MaxWidth(100));
+            var infinityMana = GUILayout.Toggle(DebugData.Config.infinityMana, "Infinity Mana", GUILayout.MaxWidth(100));
 
+            if (DebugData.Config.infinityMana != infinityMana)
+            {
+                DebugData.Config.infinityMana = infinityMana;
+                DebugData.Save();
+            }
+            
             if (Application.isPlaying && DeckWindow.IsInited)
             {
                 DeckWindow.InfinityMana = DebugData.Config.infinityMana;

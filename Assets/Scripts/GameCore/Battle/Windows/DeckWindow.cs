@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Battle.Data;
 using GameCore.Battle.Data;
 using TMPro;

@@ -26,7 +26,7 @@ namespace BeatRoyale
 
         private void OnTick()
         {
-            new CountDownTimer(offset, true).Stopped += OnTickStoped;
+            new CountDownTimer(offset).Stopped += OnTickStoped;
         }
 
         private void OnTickStoped()

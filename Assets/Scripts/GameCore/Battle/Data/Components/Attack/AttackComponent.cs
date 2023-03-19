@@ -22,6 +22,7 @@ namespace GameCore.Battle.Data.Components
         protected GameObject gameObject;
         protected Transform transform;
         private int currentIndex;
+        private int tickedIndex;
         private TactListener listener;
         private Vector2 lastHitPoint;
         protected float Damage => damage * Buffs;
@@ -73,20 +74,27 @@ namespace GameCore.Battle.Data.Components
 
         protected virtual Tween AttackAnimation()
         {
-            return transform.DOMove(lastHitPoint, duration).SetLoops(2, LoopType.Yoyo);
+            var lastPos = transform.position;
+            return transform.DOMove(lastHitPoint, duration).OnComplete(() =>
+            {
+                var target = findTargetComponent.target;
+                target.Get<Health>().TakeDamage(Damage);
+                transform.DOMove(lastPos, duration);
+            });
         }
 
         private void OnTactTicked()
         {
+            tickedIndex++;
+            
             if (IsInRadius)
             {
-                var step = attackSpeed[currentIndex % attackSpeed.Length];
+                currentIndex %= attackSpeed.Length;
+                var step = attackSpeed[currentIndex];
 
                 if (step == '1')
                 {
                     findTargetComponent.Find();
-                    var target = findTargetComponent.target;
-                    target.Get<Health>().TakeDamage(Damage);
                     AttackAnimation();
                 }
                 
