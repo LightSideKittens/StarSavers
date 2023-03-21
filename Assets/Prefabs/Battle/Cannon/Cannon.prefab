@@ -276,19 +276,25 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: hitBoxComponent
+      Entry: 7
+      Data: 0|GameCore.Battle.Data.Components.HitBox.ColiderHitBoxComponent, GameCore.Battle
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: findTargetComponent
       Entry: 7
-      Data: 0|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
+      Data: 1|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
     - Name: providers
       Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
+      Data: 2|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
         GameCore.Battle]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 2|GameCore.Battle.Data.Components.TargetProviders.AllUnits, GameCore.Battle
+      Data: 3|GameCore.Battle.Data.Components.TargetProviders.AllUnits, GameCore.Battle
     - Name: 
       Entry: 8
       Data: 
@@ -301,10 +307,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  entityName: 
+  entityName: Cannon
   attackComponent:
     duration: 0.4
-    radius: 0
     bulletPrefab: {fileID: 8003541396490395842, guid: 6c59284b98e765547b0c00181bbd2b05, type: 3}
     deathFx: {fileID: 5758665396089964515, guid: 218aa04d3ab84304ba613503429b33bf, type: 3}
   healthComponent:

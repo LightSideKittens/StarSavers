@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59dae9a2401549a5a51f532a2df277f1, type: 3}
-  m_Name: Potion_Unit_1
+  m_Name: Cannon_1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -33,7 +33,7 @@ MonoBehaviour:
       Data: 1|Battle.Data.GameProperty.GamePropertiesByScope, GameCore.Battle
     - Name: <Scope>k__BackingField
       Entry: 1
-      Data: Global/Effectors/Potion
+      Data: Global/Building/Defence/Cannon
     - Name: <Properties>k__BackingField
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[Battle.Data.GameProperty.BaseGameProperty,
@@ -46,7 +46,7 @@ MonoBehaviour:
       Data: 3|Battle.Data.GameProperty.HealthGP, GameCore.Battle
     - Name: value
       Entry: 4
-      Data: 8
+      Data: 3500
     - Name: percent
       Entry: 3
       Data: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
       Data: 4|Battle.Data.GameProperty.DamageGP, GameCore.Battle
     - Name: value
       Entry: 4
-      Data: 30
+      Data: 70
     - Name: percent
       Entry: 3
       Data: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
       Data: 6|Battle.Data.GameProperty.RadiusGP, GameCore.Battle
     - Name: value
       Entry: 4
-      Data: 5
+      Data: 9.5
     - Name: percent
       Entry: 3
       Data: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
       Data: 
     - Name: entityName
       Entry: 1
-      Data: Potion
+      Data: Cannon
     - Name: level
       Entry: 3
       Data: 1
