@@ -12,14 +12,25 @@ namespace Fishcoin
     [InitializeOnLoad]
     public static class ProjectWindowCustomizer
     {
-        private static readonly Texture2D overlay;
         private static readonly Dictionary<string, Texture2D> texturesByGuid = new();
+        private static Texture2D overlay;
+        private static Texture2D Overlay
+        {
+            get
+            {
+                if (overlay == null)
+                {
+                    overlay = EditorUtils.GetTextureByColor(new Color(0.21f, 0.21f, 0.21f));
+                }
+
+                return overlay;
+            }
+        }
 
         static ProjectWindowCustomizer()
         {
             EditorApplication.projectWindowItemOnGUI += DrawAssetDetails;
-            overlay = EditorUtils.GetTextureByColor(new Color(0.21f, 0.21f, 0.21f));
-            
+
             var toRemove = new List<string>();
             var textureGuidByAssetGuid = EditorData.Config.textureGuidByAssetGuid;
             
@@ -83,7 +94,7 @@ namespace Fishcoin
 
         private static void DrawOverlay(Rect rect)
         {
-            GUI.DrawTexture(rect, overlay);
+            GUI.DrawTexture(rect, Overlay);
         }
         
         public class IconChoosingPopup : PopupWindowContent

@@ -1,25 +1,38 @@
 ﻿#if DEBUG
-using Core.ConfigModule;
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 
 namespace Battle.Windows
 {
     public partial class DeckWindow
     {
+        partial void OnInit()
+        {
+            SetInfinityMana(Config.infinityMana);
+        }
+
+        private static void SetInfinityMana(bool isInfinity)
+        {
+            if (isInfinity)
+            {
+                Instance.mana = 10;
+                Instance.UpdateManaView();
+                Instance.mana = 10000;
+            }
+                
+            Instance.manaEnabled = !isInfinity;
+        }
+
         public static bool InfinityMana
         {
-            get => DebugData.Config.infinityMana;
+            get => Config.infinityMana;
             set
             {
-                DebugData.Config.infinityMana = value;
+                Config.infinityMana = value;
 
-                if (value)
+                if (!IsNull)
                 {
-                    Instance.mana = 10;
-                    Instance.UpdateManaView();
-                    Instance.mana = 10000;
+                    SetInfinityMana(Config.infinityMana);
                 }
-                
-                Instance.manaEnabled = !value;
             }
         }
     }

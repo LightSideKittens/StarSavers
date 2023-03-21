@@ -1,6 +1,7 @@
 ﻿using BeatRoyale;
+using Core.Extensions.Unity;
 using GameCore.Battle.Data;
-using UnityEngine;
+using static Battle.BattleBootstrap;
 using static BeatRoyale.ShortNoteListener;
 using static SoundventTypes;
 
@@ -10,9 +11,7 @@ namespace Battle
     {
         protected override bool IsOpponent => true;
         public static string userId; 
-
-        [SerializeField] private Transform[] portals;
-        private int portalIndex;
+        
         private CardDecks decks;
         private readonly ShortNoteListener[] listeners = new ShortNoteListener[4];
 
@@ -27,9 +26,7 @@ namespace Battle
 
         private void Spawn(int index)
         {
-            portalIndex++;
-            portalIndex %= portals.Length;
-            Internal_Spawn(Units.ByName[decks.Defence[index]], portals[portalIndex].position);
+            Internal_Spawn(Units.ByName[decks.Defence[index]], OpponentSpawnArena.bounds.GetRandomPointInside());
         }
 
         protected override void OnStop()

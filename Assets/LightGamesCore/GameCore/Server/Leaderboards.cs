@@ -6,6 +6,7 @@ using Core.ConfigModule;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Core.Server
 {
@@ -55,7 +56,7 @@ namespace Core.Server
         protected override void OnLoaded()
         {
             base.OnLoaded();
-            reference ??= User.Database.Collection("Leaderboards");
+            reference = User.Database.Collection("Leaderboards");
         }
 
         private void OnChanged(DocumentSnapshot snapshot)
@@ -91,6 +92,10 @@ namespace Core.Server
         private static void OnRankUpdated(int diff)
         {
             Burger.Log($"[{nameof(Leaderboards)}] OnRankUpdated. Rank: {Rank}");
+            if (!User.ServerEnabled)
+            {
+                return; 
+            }
             
             if (Position == 0)
             {
@@ -140,9 +145,15 @@ namespace Core.Server
 
         private void Internal_GetUserId(Action<string> userId, int position = 1)
         {
+            if (!User.ServerEnabled)
+            { 
+                userId?.Invoke(User.Id);
+                return; 
+            }
+
             User.SignIn(() =>
             {
-                var positionRef = reference.Document($"{position}");
+                var positionRef = User.Database.Collection("Leaderboards").Document($"{position}");
                 positionRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCompletedSuccessfully)
@@ -170,6 +181,11 @@ namespace Core.Server
 
         private static void UpdatePosition(int diff)
         {
+            if (!User.ServerEnabled)
+            {
+                return; 
+            }
+            
             Burger.Log($"[{nameof(Leaderboards)}] UpdatePosition. Current: {Position}");
             var factor = diff > 0 ? -1 : 1;
 

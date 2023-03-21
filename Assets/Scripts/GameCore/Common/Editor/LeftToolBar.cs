@@ -1,33 +1,46 @@
 ﻿using Battle.Windows;
-using Core.ConfigModule;
-using UnityEditor;
+using GameCore.Battle;
 using UnityEngine;
 using UnityToolbarExtender;
-
+using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 namespace BeatRoyale
 {
-    [InitializeOnLoad]
-    public class LeftToolBar
+    public static partial class ToolBar
     {
-        static LeftToolBar()
-        {
-            ToolbarExtender.LeftToolbarGUI.Add(OnToolbarLeftGUI);
-        }
-
         private static void OnToolbarLeftGUI()
         {
-            var infinityMana = GUILayout.Toggle(DebugData.Config.infinityMana, "Infinity Mana", GUILayout.MaxWidth(100));
+            ConfigureToggleButtonStyle();
+            var infinityMana = Config.infinityMana;
+            var needShowRadius = Config.needShowRadius;
+            var serverEnabled = Config.serverEnabled;
+            GUI.changed = ToolbarExtender.leftRect.Contains(Event.current.mousePosition);
 
-            if (DebugData.Config.infinityMana != infinityMana)
+            if (DrawToggle("Server Enabled", "Server Disabled", serverEnabled))
             {
-                DebugData.Config.infinityMana = infinityMana;
-                DebugData.Save();
+                Config.serverEnabled = !serverEnabled;
+                Save();
             }
-            
-            if (Application.isPlaying && DeckWindow.IsInited)
+
+            if (DrawToggle("Radius Showed", "Radius Hidden", needShowRadius))
             {
-                DeckWindow.InfinityMana = DebugData.Config.infinityMana;
+                Config.needShowRadius = !needShowRadius;
+                RadiusUtils.SetActiveRadiuses(!needShowRadius);
+                Save();
             }
+
+            if (DrawToggle("Infinity Mana Enabled", "Infinity Mana Disabled", infinityMana, 150))
+            {
+                Config.infinityMana = !infinityMana;
+                DeckWindow.InfinityMana = !infinityMana;
+                Save();
+            }
+        }
+
+        private static bool DrawToggle(string enabledLabel, string disabledLabel, bool isEnabled, int width = 100)
+        {
+            return GUILayout.Button(isEnabled ? $"<b>{enabledLabel}</b>" : $"<b>{disabledLabel}</b>",
+                isEnabled ? GreenButtonStyle : RedButtonStyle,
+                GUILayout.MaxWidth(width), GUILayout.MinHeight(20));
         }
     }
 }

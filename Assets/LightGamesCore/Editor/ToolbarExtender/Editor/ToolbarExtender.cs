@@ -14,6 +14,8 @@ namespace UnityToolbarExtender
 
 		public static readonly List<Action> LeftToolbarGUI = new List<Action>();
 		public static readonly List<Action> RightToolbarGUI = new List<Action>();
+		public static Rect leftRect;
+		public static Rect rightRect;
 
 		static ToolbarExtender()
 		{

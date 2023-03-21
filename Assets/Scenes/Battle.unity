@@ -1785,11 +1785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f26bbcddf7142f8b348729056afa962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portals:
-  - {fileID: 1501088523}
-  - {fileID: 2014093388}
-  - {fileID: 983978595}
-  - {fileID: 1990240619}
 --- !u!4 &1009600344
 Transform:
   m_ObjectHideFlags: 0
@@ -2370,7 +2365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicName: Insidious
-  timeOffset: 40
+  timeOffset: 48
   source: {fileID: 1449142818}
   map: {fileID: 776218760}
   fires:
@@ -4010,6 +4005,10 @@ PrefabInstance:
       propertyPath: spawnArea
       value: 
       objectReference: {fileID: 1052696830}
+    - target: {fileID: 7979064945393436511, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
+      propertyPath: opponentSpawnArea
+      value: 
+      objectReference: {fileID: 1362947728}
     - target: {fileID: 7979064945393436511, guid: 02a3fe3c536de5e49a5f57df74564706, type: 3}
       propertyPath: services.Array.data[0]
       value: 

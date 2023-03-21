@@ -17,14 +17,17 @@ namespace Battle
         [SerializeField] private Cards cards;
         [SerializeField] private Effectors effectors;
         [SerializeField] private MeshRenderer spawnArea;
+        [SerializeField] private MeshRenderer opponentSpawnArea;
         [SerializeField] private BoxCollider2D arenaBox;
         public static MeshRenderer SpawnArea { get; private set; }
+        public static MeshRenderer OpponentSpawnArena { get; private set; }
         public static BoxCollider2D ArenaBox { get; private set; }
 
         protected override void Awake()
         {
             base.Awake();
             SpawnArea = spawnArea;
+            OpponentSpawnArena = opponentSpawnArea;
             ArenaBox = arenaBox;
         }
 
@@ -64,6 +67,11 @@ namespace Battle
             Tower.Destroyed -= OnTowerDestroyed;
             Cannon.Destroyed -= OnCannonDestroyed;
             MatchResultWindow.Showing -= Unsubscribe;
+        }
+
+        private void OnApplicationQuit()
+        {
+            Unsubscribe();
         }
 
         private void OnTowerDestroyed(Transform _)

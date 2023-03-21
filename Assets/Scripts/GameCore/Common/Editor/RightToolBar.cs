@@ -1,17 +1,26 @@
-﻿using UnityEditor;
+﻿using DG.DemiEditor;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityToolbarExtender;
+using static EditorUtils;
 using static UnityEditor.AssetDatabase;
 
 namespace BeatRoyale
 {
     [InitializeOnLoad]
-    public static class RightToolBar
+    public static partial class ToolBar
     {
-        static RightToolBar()
+        public static readonly GUIStyle GreenButtonStyle = new ();
+        public static readonly GUIStyle RedButtonStyle = new();
+        private static readonly Color green = new(0.49f, 1f, 0.42f);
+        private static readonly Color red = new(1f, 0.53f, 0.48f);
+        
+        static ToolBar()
         {
+            ToolbarExtender.LeftToolbarGUI.Add(OnToolbarLeftGUI);
             ToolbarExtender.RightToolbarGUI.Add(OnToolbarRightGUI);
+            ConfigureToggleButtonStyle();
         }
 
         private static void OnToolbarRightGUI()
@@ -51,6 +60,40 @@ namespace BeatRoyale
                     EditorGUIUtility.PingObject(obj);
                     Selection.activeObject = obj;
                     editorWindow.Close();
+                }
+            }
+        }
+
+        private static void ConfigureToggleButtonStyle()
+        {
+            ConfigureToggleButtonStyle(GreenButtonStyle, green);
+            ConfigureToggleButtonStyle(RedButtonStyle, red);
+        }
+
+        private static void ConfigureToggleButtonStyle(GUIStyle style, Color color)
+        {
+            style.alignment = TextAnchor.MiddleCenter;
+            style.margin = new RectOffset(10, 10, 0, 0);
+            style.richText = true;
+            var textColor = new Color(0.17f, 0.17f, 0.17f);
+
+            var normal = style.normal;
+            normal.textColor = textColor;
+            SetBackground(normal, GetTextureByColor(color));
+
+            var hover = style.hover;
+            hover.textColor = textColor;
+            SetBackground(hover, GetTextureByColor(color.CloneAndChangeBrightness(0.9f)));
+
+            var active = style.active;
+            active.textColor = textColor;
+            SetBackground(active, GetTextureByColor(color.CloneAndChangeBrightness(0.8f)));
+
+            void SetBackground(GUIStyleState state, Texture2D texture)
+            {
+                if (state.background == null)
+                {
+                    state.background = texture;
                 }
             }
         }

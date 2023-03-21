@@ -19,6 +19,7 @@ namespace MusicEventSystem.Configs
         public override string FileName => musicName;
         protected override bool NeedAutoSave => false;
         protected override string FolderName => "MusicData";
+        public override JsonSerializerSettings Settings { get; } = new() {ContractResolver = new MusicDataContractResolver()};
 
         public static string MusicName
         {

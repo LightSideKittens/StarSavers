@@ -15,15 +15,12 @@ namespace GameCore.Battle
             Unit.Destroyed += OnUnitDestroyed;
             Tower.Destroyed += OnUnitDestroyed;
             Cannon.Destroyed += OnUnitDestroyed;
-            OnTool();
         }
 
         private static void OnUnitDestroyed(Transform obj)
         {
             radiuses.Remove(obj);
         }
-
-        static partial void OnTool();
     }
 }
 #endif

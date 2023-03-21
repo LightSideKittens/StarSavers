@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Server;
 using Firebase.Extensions;
 using Firebase.Storage;
 using Newtonsoft.Json;
-using UnityEngine;
 using static Core.Server.User;
-#if DEBUG
-using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
-#endif
 
 namespace Core.ConfigModule
 {
@@ -20,18 +17,6 @@ namespace Core.ConfigModule
         private static Func<StorageReference> getter;
         private static Dictionary<string, int> localVersions;
 
-        private static bool ServerEnabled
-        {
-            get
-            {
-#if DEBUG
-                return Config.serverEnabled;
-#else
-                return true;
-#endif
-            }
-        }
-        
         static StorageRemoteConfig()
         {
             getter = GetReference;
@@ -76,12 +61,12 @@ namespace Core.ConfigModule
                     if (task.IsCompleted && task.IsCompletedSuccessfully)
                     {
                         Burger.Log($"[{typeof(T).Name}] Push Success!"); ;
-                        Invoke(onSuccess);
+                        onSuccess.SafeInvoke();
                     }
                     else if (task.IsFaulted || task.IsCanceled)
                     {
                         Burger.Error($"[{typeof(T).Name}] Push Error: {task.Exception.Message}");
-                        Invoke(onError);
+                        onError.SafeInvoke();
                     }
                 });
             }, onError);
@@ -98,7 +83,7 @@ namespace Core.ConfigModule
             var storageRef = getter();
             if (ConfigVersions.IsVersionsFetched)
             {
-                Invoke(FetchIfNeed);
+                DelegateExtensions.SafeInvoke(FetchIfNeed);
             }
             else
             {
@@ -107,7 +92,7 @@ namespace Core.ConfigModule
                 void OnSuccess()
                 {
                     ConfigVersions.IsVersionsFetched = true;
-                    Invoke(FetchIfNeed);
+                    DelegateExtensions.SafeInvoke(FetchIfNeed);
                 }
             }
 
@@ -123,13 +108,13 @@ namespace Core.ConfigModule
                     Internal_Fetch<T>(storageRef, () =>
                     {
                         localVersions[fileName] = remoteVersions[fileName];
-                        Invoke(onSuccess);
+                        onSuccess.SafeInvoke();
                     }, onError);
                 }
                 else
                 {
                     Burger.Log($"[{typeof(T).Name}] Versions is identical! Version: {localLevel}");
-                    Invoke(onSuccess);
+                    onSuccess.SafeInvoke();
                 }
             }
         }
@@ -149,27 +134,21 @@ namespace Core.ConfigModule
                         if (bytes == null)
                         {
                             Burger.Error($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
-                            Invoke(onError);
+                            onError.SafeInvoke();
                             return;
                         }
                         
                         BaseConfig<T1>.Deserialize(Encoding.UTF8.GetString(bytes));
                         Burger.Log($"[{typeof(T1).Name}] Fetch Success!");
-                        Invoke(onSuccess);
+                        onSuccess.SafeInvoke();
                     }
                     else if (task.IsFaulted || task.IsCanceled)
                     {
                         Burger.Error($"[{typeof(T1).Name}] Fetch Error: {task.Exception.Message}");
-                        Invoke(onError);
+                        onError.SafeInvoke();
                     }
                 });
             }, onError);
-        }
-
-        private static void Invoke(Action action)
-        {
-            try { action?.Invoke(); }
-            catch (Exception e) { Debug.LogException(e); }
         }
     }
 }

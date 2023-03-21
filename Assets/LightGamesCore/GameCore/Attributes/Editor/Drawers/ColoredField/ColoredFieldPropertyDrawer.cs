@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Core.Extensions;
+﻿using Core.Extensions;
 using GameCore.Attributes;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;

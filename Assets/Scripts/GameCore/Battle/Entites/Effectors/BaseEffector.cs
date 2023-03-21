@@ -15,7 +15,7 @@ namespace GameCore.Battle.Data
         [NonSerialized] public string name;
         protected float radius;
         protected bool isApplied;
-        protected static SpriteRenderer radiusRenderer;
+        protected SpriteRenderer radiusRenderer;
         private static Sprite circleSprite = Resources.Load<Sprite>("unit-circle");
         
         [field: SerializeField] public int Price { get; private set; }
@@ -24,12 +24,8 @@ namespace GameCore.Battle.Data
         public void Init()
         {
             radius = EntitiesProperties.ByName[name][nameof(RadiusGP)].Value;
-
-            if (radiusRenderer == null)
-            {
-                radiusRenderer = new GameObject("Radius").AddComponent<SpriteRenderer>();
-            }
-            
+            radiusRenderer = new GameObject($"{GetType().Name} Radius").AddComponent<SpriteRenderer>();
+            radiusRenderer.sprite = circleSprite;
             var gameObject = radiusRenderer.gameObject;
             gameObject.SetActive(false);
             findTargetComponent.Init(gameObject, !NeedFindOpponent);
@@ -39,7 +35,6 @@ namespace GameCore.Battle.Data
         public void DrawRadius(Vector3 position, Color color, int sortingOrder = 0)
         {
             radiusRenderer.gameObject.SetActive(true);
-            radiusRenderer.sprite = circleSprite;
             radiusRenderer.color = color;
             radiusRenderer.sortingOrder = sortingOrder;
             var transform = radiusRenderer.transform;

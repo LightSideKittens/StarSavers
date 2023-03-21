@@ -7,14 +7,11 @@ using Core.Server;
 using Firebase.Extensions;
 using UnityEditor;
 using UnityEngine;
-using UnityToolbarExtender;
 using static Core.ConfigModule.FolderNames;
-using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
 using static Core.ConfigModule.ConfigsUtils;
 
 namespace Core.ConfigModule
 {
-    [InitializeOnLoad]
     public static class ServerUtils
     {
         private static readonly List<string> localConfigs = new();
@@ -24,23 +21,7 @@ namespace Core.ConfigModule
             "configVersions",
             "changedLevels",
         };
-
-        static ServerUtils()
-        {
-            ToolbarExtender.LeftToolbarGUI.Add(OnToolbarLeftGUI);
-        }
-
-        private static void OnToolbarLeftGUI()
-        {
-            var serverEnabled = Config.serverEnabled;
-            
-            if (serverEnabled != GUILayout.Toggle(serverEnabled, "Enable Server", GUILayout.MaxWidth(100)))
-            {
-                Config.serverEnabled = !serverEnabled;
-                Save();
-            }
-        }
-
+        
         private static void GetAllLocalConfigs()
         {
             var files = Directory.GetFiles($"{Application.dataPath}/{Configs}/{SaveData}", "*.json");

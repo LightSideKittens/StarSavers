@@ -35,6 +35,7 @@ namespace UnityToolbarExtender
 		public static Action OnToolbarGUI;
 		public static Action OnToolbarGUILeft;
 		public static Action OnToolbarGUIRight;
+		public static IMGUIContainer container;
 		
 		static ToolbarCallback()
 		{
@@ -44,7 +45,13 @@ namespace UnityToolbarExtender
 
 		static void OnUpdate()
 		{
-			// Relying on the fact that toolbar is ScriptableObject and gets deleted when layout changes
+			if (container != null)
+			{
+				ToolbarExtender.leftRect = container.contentRect;
+				ToolbarExtender.leftRect.height = 30;
+				ToolbarExtender.leftRect.y -= 5;
+			}
+			
 			if (m_currentToolbar == null)
 			{
 				// Find toolbar
@@ -69,8 +76,9 @@ namespace UnityToolbarExtender
 								flexDirection = FlexDirection.Row,
 							}
 						};
-						var container = new IMGUIContainer();
+						container = new IMGUIContainer();
 						container.style.flexGrow = 1;
+						
 						container.onGUIHandler += () => { 
 							cb?.Invoke();
 						}; 

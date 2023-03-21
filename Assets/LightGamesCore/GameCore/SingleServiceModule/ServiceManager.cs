@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Debug = UnityEngine.Debug;
 
 namespace Core.SingleService
 {
@@ -15,7 +14,7 @@ namespace Core.SingleService
 
         protected virtual void Awake()
         {
-            Debug.Log($"[ServiceManager] Awake. Scene: {SceneManager.GetActiveScene().name}");
+            Burger.Log($"[{GetType().Name}] Awake. Scene: {SceneManager.GetActiveScene().name}");
 
             for (int i = 0; i < services.Count; i++)
             {

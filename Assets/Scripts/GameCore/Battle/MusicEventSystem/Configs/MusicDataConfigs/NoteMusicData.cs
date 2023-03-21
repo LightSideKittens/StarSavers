@@ -30,7 +30,7 @@ namespace MusicEventSystem.Configs
                 }
             }
             
-            [JsonProperty] private readonly Dictionary<string, T1> tracks = new();
+            public readonly Dictionary<string, T1> tracks = new();
             private Dictionary<string, T1> tempTracks;
             private Action remover;
             [JsonIgnore] public TracksData tracksData;

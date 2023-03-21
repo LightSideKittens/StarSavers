@@ -11,6 +11,7 @@ namespace Core.SingleService
         public override Type Type => typeof(T);
 
         protected static T Instance => staticConstructor();
+        public static bool IsNull => instance == null;
 
         static SingleService()
         {

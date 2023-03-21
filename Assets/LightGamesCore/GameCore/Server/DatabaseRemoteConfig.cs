@@ -4,10 +4,7 @@ using Core.Server;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Newtonsoft.Json;
-using UnityEngine;
-#if DEBUG
-using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
-#endif
+using static Core.Server.User;
 
 namespace Core.ConfigModule
 {
@@ -16,18 +13,6 @@ namespace Core.ConfigModule
         private static Func<DocumentReference> getter;
         private static readonly T instance;
         protected static string UserId { get; private set; }
-        
-        private static bool ServerEnabled
-        {
-            get
-            {
-#if DEBUG
-                return Config.serverEnabled;
-#else
-                return true;
-#endif
-            }
-        }
 
         static DatabaseRemoteConfig()
         {
@@ -58,7 +43,7 @@ namespace Core.ConfigModule
 
         private static void Internal_Push(Action onSuccess, Action onError)
         {
-            User.SignIn(() =>
+            SignIn(() =>
             {
                 Burger.Log($"[{typeof(T1).Name}] Push");
                 var docRef = getter();
@@ -113,7 +98,7 @@ namespace Core.ConfigModule
             
             OnAppPause.UnSubscribe(OnApplicationPause);
             OnAppPause.Subscribe(OnApplicationPause);
-            Internal_Fetch(User.Id, onSuccess: dict =>
+            Internal_Fetch(Id, onSuccess: dict =>
             {
                 var config = BaseConfig<T1>.Config;
                 var json = (string) dict[config.FileName];
@@ -127,14 +112,14 @@ namespace Core.ConfigModule
             Action onComplete = null,
             Action onResponseEmpty = null)
         {
-            User.SignIn(() =>
+            SignIn(() =>
             {
                 Burger.Log($"[{typeof(T1).Name}] Fetch");
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    Debug.LogWarning($"[{typeof(T1).Name}] UserId is Null or Empty!");
-                    userId = User.Id;
+                    Burger.Warning($"[{typeof(T1).Name}] UserId is Null or Empty!");
+                    userId = Id;
                 }
                 
                 UserId = userId;
@@ -180,12 +165,6 @@ namespace Core.ConfigModule
         private static void OnApplicationPause()
         {
             Push();
-        }
-        
-        private static void Invoke(Action action)
-        {
-            try { action?.Invoke(); }
-            catch (Exception e) { Debug.LogException(e); }
         }
     }
 }

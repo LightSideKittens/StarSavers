@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.ConfigModule;
+using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
@@ -50,6 +50,18 @@ namespace Core.Server
         
         public static long PlayersCount { get; private set; }
         
+        public static bool ServerEnabled
+        {
+            get
+            {
+#if DEBUG
+                return DebugData.Config.serverEnabled;
+#else
+                return true;
+#endif
+            }
+        }
+        
         public static FirebaseAuth Auth => FirebaseAuth.DefaultInstance;
         public static FirebaseFirestore Database => FirebaseFirestore.DefaultInstance;
         public static FirebaseStorage Storage => FirebaseStorage.DefaultInstance;
@@ -58,6 +70,13 @@ namespace Core.Server
         {
             base.OnLoading();
             playersCountRef = Database.Collection("PlayersData").Document("TotalCount");
+            OnAppPause.Subscribe(Dispose);
+        }
+
+        public static void Dispose()
+        {
+            FirebaseApp.DefaultInstance.Dispose();
+            OnAppPause.UnSubscribe(Dispose);
         }
 
         public static void SignIn(Action onSuccess, Action onError = null)

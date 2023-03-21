@@ -40,8 +40,8 @@ public static class EditorUtils
 
     public static Texture2D GetTextureByColor(Color color)
     {
-        var texture = new Texture2D(16, 16);
-        var pixels = 16 * 16;
+        var texture = new Texture2D(2, 2);
+        var pixels = 2 * 2;
         var colors = new Color[pixels];
 
         for (int i = 0; i < pixels; i++)
