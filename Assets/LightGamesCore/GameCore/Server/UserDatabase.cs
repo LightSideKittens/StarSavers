@@ -3,7 +3,7 @@ using Firebase.Firestore;
 
 namespace Core.ConfigModule
 {
-    public class RemotePlayerData<T> : DatabaseRemoteConfig<RemotePlayerData<T>, T> where T : BaseConfig<T>, new()
+    public class UserDatabase<T> : DatabaseRemoteConfig<UserDatabase<T>, T> where T : BaseConfig<T>, new()
     {
         protected override DocumentReference Reference
         {

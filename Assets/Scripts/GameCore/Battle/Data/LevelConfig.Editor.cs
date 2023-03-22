@@ -16,9 +16,7 @@ namespace Battle.Data
         private bool isFirstLevelError;
         private bool hasScopeError;
         private bool hasEmptyScopeError;
-        private bool isInited;
         private bool isSubscribed;
-        private bool isChangedLevels { get; set; }
         private string[] splitedName;
         private string configName;
         private bool IsInvalidName => string.IsNullOrEmpty(EntityName) || currentLevel == 0;
@@ -31,29 +29,6 @@ namespace Battle.Data
         public void OnValidate()
         {
             TryInit();
-            
-            if (!isSubscribed)
-            {
-                AssemblyReloadEvents.beforeAssemblyReload += OnBeforeAssemblyReload;
-                isSubscribed = true;
-            }
-
-            if (IsInvalidName)
-            {
-                return;
-            }
-            
-            if (isInited)
-            {
-                TryUpdateChangedLevels();
-            }
-        }
-
-        private void OnBeforeAssemblyReload()
-        { 
-            isInited = false;
-            AssemblyReloadEvents.beforeAssemblyReload -= OnBeforeAssemblyReload;
-            isSubscribed = false;
         }
 
         private void TryInit()
@@ -85,7 +60,6 @@ namespace Battle.Data
             }
 
             OnUpgradeStepsChanged();
-            isInited = true;
         }
 
         [OnInspectorGUI]
@@ -110,38 +84,12 @@ namespace Battle.Data
         [OnInspectorDispose]
         private void OnInspectorDispose()
         {
-            if (isChangedLevels)
-            {
-                isChangedLevels = false;
-                ChangedLevels.Save();
-                AssetDatabase.Refresh();
-            }
-            
             for (int i = 0; i < UpgradesByScope.Count; i++)
             {
                 UpgradesByScope[i].ScopeChanged -= OnScopeChanged;
             }
         }
-
-        private void TryUpdateChangedLevels()
-        {
-            var changedLevels = ChangedLevels.Config.Levels;
-
-            if (changedLevels.TryGetValue(EntityName, out var level))
-            {
-                if (level > currentLevel)
-                {
-                    changedLevels[EntityName] = currentLevel;
-                    isChangedLevels = true;
-                }
-            }
-            else
-            {
-                changedLevels.Add(EntityName, currentLevel);
-                isChangedLevels = true;
-            }
-        }
-
+        
         private void OnFirstLevel()
         {
             if (currentLevel == 1)
@@ -268,7 +216,7 @@ namespace Battle.Data
             else
             {
                 UnlockedLevels.Config.Levels[EntityName] = currentLevel;
-                OnRecomputeAll();
+                RecomputeAllAndSave();
             }
         }
         
@@ -298,23 +246,32 @@ namespace Battle.Data
                         levels.Remove(EntityName);
                     }
                     
-                    OnRecomputeAll();
+                    RecomputeAllAndSave();
                 }
             }
         }
 
-        private static void OnRecomputeAll()
+        [Button("Set As Default", ButtonSizes.Large)]
+        [PropertySpace(10)]
+        [GUIColor("setColor")]
+        private void SetAsDefault()
+        {
+            UnlockedLevels.Editor_SaveAsDefault();
+            EntitiesProperties.Editor_SaveAsDefault();
+
+            AssetDatabase.Refresh();
+        }
+
+        private static void RecomputeAllAndSave()
         {
             LevelsConfigsManager.Editor_RecomputeAllLevels();
                 
             UnlockedLevels.Save();
             EntitiesProperties.Save();
-            ChangedLevels.Save();
-                
+
             UnlockedLevels.LoadOnNextAccess();
             EntitiesProperties.LoadOnNextAccess();
-            ChangedLevels.LoadOnNextAccess();
-                
+
             AssetDatabase.Refresh();
         }
     }

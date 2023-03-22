@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
-using Common.SingleServices;
 using DG.Tweening;
 using GameCore.Battle.Data.Components;
 using GameCore.Battle.Data.Components.HitBox;
@@ -37,13 +36,11 @@ namespace GameCore.Battle.Data
         {
             listeners ??= new[]
             {
-                ShortNoteListener.Listen(ShortIV, -bulletFlyDuration),
                 ShortNoteListener.Listen(ShortIII, -bulletFlyDuration),
                 ShortNoteListener.Listen(ShortII, -bulletFlyDuration),
                 ShortNoteListener.Listen(ShortI, -bulletFlyDuration)
             };
             
-            listeners[3].Started += OnSoundvent;
             listeners[2].Started += OnSoundvent;
             listeners[1].Started += OnSoundvent;
             listeners[0].Started += OnSoundvent;
@@ -93,7 +90,6 @@ namespace GameCore.Battle.Data
             hitBoxComponent.OnDestroy();
             Towers.Remove(transform);
             currentListener.Started -= Shoot;
-            listeners[3].Started -= OnSoundvent;
             listeners[2].Started -= OnSoundvent;
             listeners[1].Started -= OnSoundvent;
             listeners[0].Started -= OnSoundvent;

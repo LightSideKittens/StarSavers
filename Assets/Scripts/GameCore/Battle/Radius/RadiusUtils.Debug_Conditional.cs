@@ -13,6 +13,7 @@ namespace GameCore.Battle
         [Conditional("DEBUG")]
         public static void SetActiveRadiuses(bool active)
         {
+#if DEBUG
             foreach (var radius in radiuses.Values)
             {
                 for (int i = 0; i < radius.Count; i++)
@@ -20,6 +21,7 @@ namespace GameCore.Battle
                     radius[i].SetActive(active);
                 }
             }
+#endif
         }
 
         [Conditional("DEBUG")]

@@ -56,7 +56,7 @@ public class MusicController : SingleService<MusicController>
 
     private void Start()
     {
-        MusicData.ShortTrackData.GetTrack(SoundventTypes.ShortIV).Started += () =>
+        MusicData.ShortTrackData.GetTrack(SoundventTypes.ShortIII).Started += () =>
         {
             new CountDownTimer(MusicOffset + 0.1f, true).Stopped += () =>
             {

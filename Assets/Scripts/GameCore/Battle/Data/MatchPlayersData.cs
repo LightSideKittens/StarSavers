@@ -30,11 +30,11 @@ namespace BeatRoyale
 
         public static void Add(string userId, Action onSuccess)
         {
-            RemotePlayerData<CardDecks>.Fetch(userId, decks =>
+            UserDatabase<CardDecks>.Fetch(userId, decks =>
             {
-                RemotePlayerData<EntitiesProperties>.Fetch(userId, properties =>
+                UserDatabase<EntitiesProperties>.Fetch(userId, properties =>
                 {
-                    RemotePlayerData<User>.Fetch(userId, playerData =>
+                    UserDatabase<User>.Fetch(userId, playerData =>
                     {
                         byUserId.Add(userId, new MatchPlayersData(decks, properties, playerData));
                         onSuccess();

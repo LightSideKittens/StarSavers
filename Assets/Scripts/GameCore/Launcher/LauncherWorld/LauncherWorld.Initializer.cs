@@ -33,18 +33,18 @@ namespace BeatRoyale.Launcher
             var loader = Loader.Create();
             onInit += loader.Destroy;
             
-            RemotePlayerData<User>.Fetch(() =>
+            UserDatabase<User>.Fetch(() =>
             {
-                RemotePlayerData<Leaderboards>.Fetch(() =>
+                Storage<ChangedLevels>.Fetch(() =>
                 {
-                    StorageRemoteConfig<ChangedLevels>.Fetch(() =>
+                    UserDatabase<Leaderboards>.Fetch(() =>
                     {
-                        RemotePlayerData<UnlockedLevels>.Fetch(() =>
+                        UserDatabase<UnlockedLevels>.Fetch(() =>
                         {
                             levelsConfigsManager.Init();
-                            RemotePlayerData<EntitiesProperties>.Fetch(() =>
+                            UserDatabase<EntitiesProperties>.Fetch(() =>
                             {
-                                RemotePlayerData<CardDecks>.Fetch(onInit);
+                                UserDatabase<CardDecks>.Fetch(onInit);
                             });
                         });
                     });

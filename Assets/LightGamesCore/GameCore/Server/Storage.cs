@@ -9,7 +9,7 @@ using static Core.Server.User;
 
 namespace Core.ConfigModule
 {
-    public static class StorageRemoteConfig<T> where T : BaseConfig<T>, new()
+    public static class Storage<T> where T : BaseConfig<T>, new()
     {
         private const long MaxAllowedSize = 4 * 1024 * 1024;
         private static StorageReference reference;
@@ -17,7 +17,7 @@ namespace Core.ConfigModule
         private static Func<StorageReference> getter;
         private static Dictionary<string, int> localVersions;
 
-        static StorageRemoteConfig()
+        static Storage()
         {
             getter = GetReference;
         }
@@ -81,19 +81,12 @@ namespace Core.ConfigModule
             }
             
             var storageRef = getter();
-            if (ConfigVersions.IsVersionsFetched)
+
+            Internal_Fetch<ConfigVersions>(versionsReference, OnSuccess, onError);
+            
+            void OnSuccess()
             {
                 DelegateExtensions.SafeInvoke(FetchIfNeed);
-            }
-            else
-            {
-                Internal_Fetch<ConfigVersions>(versionsReference, OnSuccess, onError);
-                
-                void OnSuccess()
-                {
-                    ConfigVersions.IsVersionsFetched = true;
-                    DelegateExtensions.SafeInvoke(FetchIfNeed);
-                }
             }
 
             void FetchIfNeed()

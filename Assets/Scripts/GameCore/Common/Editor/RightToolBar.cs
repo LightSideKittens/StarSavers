@@ -37,11 +37,11 @@ namespace BeatRoyale
 
             if (GUILayout.Button("Select...", GUILayout.MaxWidth(100)))
             {
-                PopupWindow.Show(GUILayoutUtility.GetLastRect(), new Popup());
+                PopupWindow.Show(GUILayoutUtility.GetLastRect(), new NavigationPopup());
             }
         }
 
-        public class Popup : PopupWindowContent
+        public class NavigationPopup : PopupWindowContent
         {
             public override void OnGUI(Rect rect)
             {

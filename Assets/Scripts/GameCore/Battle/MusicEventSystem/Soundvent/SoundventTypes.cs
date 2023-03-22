@@ -2,7 +2,6 @@
 
 public static class SoundventTypes
 {
-    public const string ShortIV = nameof(ShortIV);
     public const string ShortIII = nameof(ShortIII);
     public const string ShortII = nameof(ShortII);
     public const string ShortI = nameof(ShortI);
@@ -18,7 +17,6 @@ public static class SoundventTypes
 
     public static Dictionary<string, (bool, string)> GroupByName = new()
     {
-        {ShortIV, (true, "Sounds")},
         {ShortIII, (true, "Sounds")},
         {ShortII, (true, "Sounds")},
         {ShortI, (true, "Sounds")},
@@ -35,7 +33,6 @@ public static class SoundventTypes
 
     public static string[] Sounds { get; } =
     {
-        ShortIV,
         ShortIII,
         ShortII,
         ShortI,
