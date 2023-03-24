@@ -1,19 +1,20 @@
-using System;
+﻿using System;
 using Battle.Data;
+using BeatRoyale.Interfaces;
 using Common.SingleServices;
 using Core.ConfigModule;
 using Core.Server;
 using GameCore.Battle.Data;
-using Newtonsoft.Json.Utilities;
 using UnityEngine;
 
-namespace BeatRoyale.Launcher
+namespace BeatRoyale
 {
-    public partial class LauncherWorld
+    public class Initializer : BaseInitializer<IInitializer>
     {
+        [SerializeField] private LevelsConfigsManager levelsConfigsManager;
         private static bool isInited;
 
-        private void Initialize(Action onInit)
+        protected override void Internal_Initialize(Action onInit)
         {
             if (isInited)
             {

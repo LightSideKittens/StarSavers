@@ -13,10 +13,8 @@ namespace Core.ConfigModule
     public static class Storage<T> where T : BaseConfig<T>, new()
     {
         private static StorageReference reference;
-        private static StorageReference versionsReference;
+        
         private static Func<StorageReference> getter;
-        private const int Cooldown = 10 * 1000;
-        private static bool isCooldown;
 
         static Storage()
         {
@@ -29,12 +27,16 @@ namespace Core.ConfigModule
             getter = GetCreatedReference;
             var config = BaseConfig<T>.Config;
             reference = configsRef.Child($"{config.FileName}.{config.Ext}");
-            
-            var configVersions = BaseConfig<ConfigVersions>.Config;
-            versionsReference = configsRef.Child($"{configVersions.FileName}.{configVersions.Ext}");
+
+            if (versionsReference == null)
+            {
+                var configVersions = BaseConfig<ConfigVersions>.Config;
+                versionsReference = configsRef.Child($"{configVersions.FileName}.{configVersions.Ext}");
+            }
 
             return reference;
         }
+        
         private static StorageReference GetCreatedReference() => reference;
 
         public static void Push(Action onSuccess = null, Action onError = null)

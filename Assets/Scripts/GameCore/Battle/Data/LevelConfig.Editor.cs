@@ -224,7 +224,7 @@ namespace Battle.Data
             "Yes", 
             "No");
         
-        [OdinSerialize] 
+        [ShowInInspector]
         [ValueDropdown("configsEnvironment")]
         [PropertyOrder(1)]
         [OnValueChanged("OnEnvironmentChanged")]

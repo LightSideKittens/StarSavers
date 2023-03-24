@@ -1,20 +1,18 @@
-﻿using Battle.Data;
-using BeatRoyale.Windows;
+﻿using BeatRoyale.Windows;
 using Core.SingleService;
 using GameCore.Attributes;
 using UnityEngine;
-
+using Initializer = BeatRoyale.Interfaces.BaseInitializer<BeatRoyale.Interfaces.IInitializer>;
 namespace BeatRoyale.Launcher
 {
-    public partial class LauncherWorld : ServiceManager
+    public class LauncherWorld : ServiceManager
     {
         [ColoredField, SerializeField] private CastleBackAnimator animator;
-        [SerializeField] private LevelsConfigsManager levelsConfigsManager;
 
         protected override void Awake()
         {
             base.Awake();
-            Initialize(Init);
+            Initializer.Initialize(Init);
         }
 
         private void Init()

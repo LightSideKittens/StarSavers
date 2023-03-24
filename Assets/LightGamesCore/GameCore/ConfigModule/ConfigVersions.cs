@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
+using Firebase.Storage;
 using Newtonsoft.Json;
 
 namespace Core.ConfigModule
 {
     public class ConfigVersions : JsonBaseConfigData<ConfigVersions>
     {
+        public const int Cooldown = 10 * 1000;
+        public static bool isCooldown;
+        public static StorageReference versionsReference;
+        
         [JsonProperty] private Dictionary<string, int> localVersions = new();
         private static Dictionary<string, int> remoteVersions = new();
 

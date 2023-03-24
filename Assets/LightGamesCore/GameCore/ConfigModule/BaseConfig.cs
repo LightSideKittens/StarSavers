@@ -107,6 +107,7 @@ namespace Core.ConfigModule
 
         public static void LoadAsDefault()
         {
+            instance = new T();
             var json = Resources.Load<TextAsset>(Path.Combine(instance.FolderName, instance.FileName))?.text;
             
             if (string.IsNullOrEmpty(json) == false)
@@ -115,7 +116,6 @@ namespace Core.ConfigModule
             }
             else
             {
-                instance = new T();
                 instance.SetDefault();
                 getter = GetInstance;
             }

@@ -8,6 +8,7 @@ using GameCore.Battle.Data;
 using UnityEngine;
 using static GameCore.Battle.Data.Cannon;
 using static GameCore.Battle.Data.Tower;
+using Initializer = BeatRoyale.Interfaces.BaseInitializer<BeatRoyale.Interfaces.IInitializer>;
 
 namespace Battle
 {
@@ -32,6 +33,11 @@ namespace Battle
         }
 
         private void Start()
+        {
+            Initializer.Initialize(OnInitialize);
+        }
+
+        private void OnInitialize()
         {
             if (MatchPlayersData.Count == 0)
             {
