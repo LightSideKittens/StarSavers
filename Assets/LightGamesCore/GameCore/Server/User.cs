@@ -13,6 +13,7 @@ namespace Core.Server
 {
     public class User : JsonBaseConfigData<User>
     {
+        public const long MaxAllowedSize = 4 * 1024 * 1024;
         [JsonProperty] private string id;
         [JsonProperty] private string nickName;
         private static DocumentReference playersCountRef;

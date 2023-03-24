@@ -4,12 +4,10 @@ using Newtonsoft.Json;
 
 namespace Battle.Data
 {
-    public class EntitiesProperties : JsonBaseConfigData<EntitiesProperties>
+    public class EntiProps : JsonBaseConfigData<EntiProps>
     {
-        [JsonProperty("Properties")] 
+        [JsonProperty("props")] 
         private Dictionary<string, Dictionary<string, ValuePercent>> byName = new();
-
-        [JsonIgnore]
         public static Dictionary<string, Dictionary<string, ValuePercent>> ByName => Config.byName;
     }
 }

@@ -23,7 +23,7 @@ namespace GameCore.Battle.Data.Components
         {
             this.gameObject = gameObject; 
             transform = gameObject.transform;
-            health = EntitiesProperties.ByName[entityName][nameof(HealthGP)].Value;
+            health = EntiProps.ByName[entityName][nameof(HealthGP)].Value;
             healthBar = HealthBar.Create(health, transform, offset, scale, isOpponent);
             Add(transform, this);
         }

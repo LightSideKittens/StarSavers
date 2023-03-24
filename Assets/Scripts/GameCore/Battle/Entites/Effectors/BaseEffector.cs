@@ -23,7 +23,7 @@ namespace GameCore.Battle.Data
 
         public void Init()
         {
-            radius = EntitiesProperties.ByName[name][nameof(RadiusGP)].Value;
+            radius = EntiProps.ByName[name][nameof(RadiusGP)].Value;
             radiusRenderer = new GameObject($"{GetType().Name} Radius").AddComponent<SpriteRenderer>();
             radiusRenderer.sprite = circleSprite;
             var gameObject = radiusRenderer.gameObject;

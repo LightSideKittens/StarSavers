@@ -11,16 +11,24 @@ using UnityEngine;
 
 namespace Core.Server
 {
-    public class ServerWindow : OdinEditorWindow
+    public partial class ServerWindow : OdinEditorWindow
     {
         private static Color green = new Color(0.35f, 0.85f, 0.29f);
         private static Color red = new Color(0.84f, 0.35f, 0.29f);
-        
+        private static bool isButtonStyleSetted;
         private static string[] configNames = new[]
         {
             "unlockedLevels",
-            "entitiesProperties",
-            "commonPlayerData",
+            "entiProps",
+            "user",
+            "cardDecks",
+        };
+        
+        private static string[] storageConfigNames = new[]
+        {
+            "unlockedLevels",
+            "entiProps",
+            "configVersions",
             "cardDecks",
         };
 
@@ -29,208 +37,28 @@ namespace Core.Server
         {
             GetWindow<ServerWindow>().Show();
         }
-        
-        [TableList]
+
+        [TabGroup("Storage", order: 2)]
         [SerializeField]
-        private List<PlayerData> data;
-
-        [Button(ButtonSizes.Large)]
-        [GUIColor("green")]
-        private void FetchAll()
-        {
-            foreach (var playerData in data)
-            {
-                playerData.FetchAll();;
-            }
-        }
+        private List<ConfigData> storageConfigs;
         
-        [Button(ButtonSizes.Large)]
-        [GUIColor("red")]
-        private void PushAll()
-        {
-            foreach (var playerData in data)
-            {
-                playerData.PushAll();;
-            }
-        }
-
         [OnInspectorGUI]
         private void OnGui()
         {
-            EditorUtils.SetSirenixButtonWhiteColor();
+            if (!isButtonStyleSetted)
+            {
+                EditorUtils.SetSirenixButtonWhiteColor();
+                isButtonStyleSetted = true;
+            }
+            
             for (int i = 0; i < data.Count; i++)
             {
                 data[i].OnGUI();
             }
-        }
-
-        [Serializable]
-        private class PlayerData
-        {
-            private static Color green = new Color(0.35f, 0.85f, 0.29f);
-            private static Color red = new Color(0.84f, 0.35f, 0.29f);
             
-            [VerticalGroup("User")]
-            [TableColumnWidth(250)]
-            public string userId;
-            [TableColumnWidth(500)]
-            public List<ConfigData> configData;
-            
-            [VerticalGroup("User")]
-            [Button(ButtonSizes.Medium)]
-            [GUIColor("green")]
-            public void FetchAll()
+            for (int i = 0; i < storageConfigs.Count; i++)
             {
-                foreach (var data in configData)
-                {
-                    data.Fetch();
-                }
-            }
-        
-            [VerticalGroup("User")]
-            [Button(ButtonSizes.Medium)]
-            [GUIColor("red")]
-            public void PushAll()
-            {
-                foreach (var data in configData)
-                {
-                    data.Push();
-                }
-            }
-            
-            [HideInTables]
-            public void OnGUI()
-            {
-                for (int i = 0; i < configData.Count; i++)
-                {
-                    configData[i].userId = userId;
-                }
-            }
-        }
-
-        [Serializable]
-        private class ConfigData
-        {
-            private static Color green = new Color(0.35f, 0.85f, 0.29f);
-            private static Color red = new Color(0.84f, 0.35f, 0.29f);
-            
-            [ValueDropdown("names")]
-            public string name;
-            [TextArea(4, 20)]
-            [InfoBox("$errorMessage", InfoMessageType.Error, "isInvalidJson")]
-            public string value;
-            private static IEnumerable<string> names => configNames;
-            private string errorMessage;
-            [NonSerialized] public string userId;
-
-            [HorizontalGroup]
-            [Button(ButtonSizes.Medium)]
-            [GUIColor("green")]
-            public void Fetch()
-            {
-                Admin.SignIn(() =>
-                {
-                    var storageRef =  Admin.Database
-                        .Collection("PlayersData")
-                        .Document(userId)
-                        .Collection("Data")
-                        .Document(name);
-                    
-                    storageRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-                    {
-                        if (task.IsCompletedSuccessfully)
-                        {
-                            value = (string)task.Result.ToDictionary()[name];
-                            value = JToken.Parse(value).ToString(Formatting.Indented);
-                            Burger.Log($"Success Fetch {name} from User: {userId}");
-                        }
-                        else
-                        {
-                            Burger.Error($"Failure Fetch: {userId}. Error: {task.Exception.Message}");
-                        }
-                    });
-                });
-            }
-            
-            [HorizontalGroup]
-            [Button(ButtonSizes.Medium)]
-            [GUIColor("red")]
-            public void Push()
-            {
-                if (isInvalidJson)
-                {
-                    Burger.Error($"[{nameof(ServerWindow)}] Value of config: {name} is invalid JSON format!");
-                    return;
-                }
-
-                var canPush = EditorUtility.DisplayDialog(
-                    $"Pushing", 
-                    $"Are you sure you want to push config: {name} to User: {userId}?", 
-                    "Yes", 
-                    "No");
-                
-                if(!canPush)
-                {return;}
-                
-                Admin.SignIn(() =>
-                {
-                    var storageRef =  Admin.Database
-                        .Collection("PlayersData")
-                        .Document(userId)
-                        .Collection("Data")
-                        .Document(name);
-
-                    var notFormatedValue = JToken.Parse(value).ToString(Formatting.None);
-                    var dict = new Dictionary<string, object>(){{name, notFormatedValue}};
-                    storageRef.SetAsync(dict).ContinueWithOnMainThread(task =>
-                    {
-                        if (task.IsCompletedSuccessfully)
-                        {
-                            Burger.Log($"Success Push {name} to User: {userId}");
-                        }
-                        else
-                        {
-                            Burger.Error($"Failure Push: {userId}. Error: {task.Exception.Message}");
-                        }
-                    });
-                });
-            }
-
-            private bool isInvalidJson
-            {
-                get
-                {
-                    if (string.IsNullOrEmpty(value))
-                    {
-                        errorMessage = "Value is empty";
-                        return true;
-                    }
-
-                    value = value.Trim();
-
-                    if ((value.StartsWith("{") && value.EndsWith("}")) ||
-                        (value.StartsWith("[") && value.EndsWith("]")))
-                    {
-                        try
-                        {
-                            JToken.Parse(value);
-                            return false;
-                        }
-                        catch (JsonReaderException jex)
-                        {
-                            errorMessage = jex.Message;
-                            return true;
-                        }
-                        catch (Exception ex)
-                        {
-                            errorMessage = ex.ToString();
-                            return true;
-                        }
-                    }
-
-                    errorMessage = "Invalid JSON format";
-                    return true;
-                }
+                storageConfigs[i].names = storageConfigNames;
             }
         }
     }

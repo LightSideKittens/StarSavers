@@ -45,7 +45,7 @@ namespace GameCore.Battle.Data
             listeners[1].Started += OnSoundvent;
             listeners[0].Started += OnSoundvent;
             
-            damage = EntitiesProperties.ByName[entityName][nameof(DamageGP)].Value;
+            damage = EntiProps.ByName[entityName][nameof(DamageGP)].Value;
             currentListenerIndex = Towers.Count;
             currentListener = listeners[currentListenerIndex];
             currentListener.Started += Shoot;

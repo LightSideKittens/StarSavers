@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Battle.Data.GameProperty;
+using Core.ConfigModule;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Battle.Data
             public string LevelErrorMessage => $"Level Config <{levelErrorName}> has error";
         }
 
+        public const string ChangedLevels = "changedLevels";
         public static event Action LevelUpgraded;
         private static LevelsConfigsManager Instance { get; set; }
 
@@ -46,19 +48,10 @@ namespace Battle.Data
                 levelsByEntityName.Add(levelContainer.entityName, levelContainer.levels);
             }
 
-            var changedLevels = ChangedLevels.Config.Levels;
-            var unlockedLevels = UnlockedLevels.Config.Levels;
-            
-            foreach (var level in changedLevels)
+            if (!ConfigVersions.Compare(ChangedLevels))
             {
-                if (unlockedLevels.TryGetValue(level.Key, out var levelNum))
-                {
-                    if (levelNum >= level.Value)
-                    {
-                        RecomputeAllLevels();
-                        break;
-                    }
-                }
+                RecomputeAllLevels();
+                ConfigVersions.Update(ChangedLevels);
             }
         }
 
@@ -68,7 +61,7 @@ namespace Battle.Data
             
             if (GameScopes.IsEntityName(entityName))
             {
-                var unlockedLevels = UnlockedLevels.Config.Levels;
+                var unlockedLevels = UnlockedLevels.ByName;
                 unlockedLevels.TryGetValue(entityName, out var currentLevel);
 
                 if (level - currentLevel == 1)
@@ -78,7 +71,7 @@ namespace Battle.Data
                     
                     ComputeLevel(dict);
 
-                    UnlockedLevels.Config.Levels[entityName] = level;
+                    UnlockedLevels.ByName[entityName] = level;
                     LevelUpgraded?.Invoke();
                 }
                 else
@@ -106,7 +99,7 @@ namespace Battle.Data
 
         private static void ComputeLevel(Dictionary<string, List<BaseGameProperty>> dict)
         {
-            var entitiesProperties = EntitiesProperties.ByName;
+            var entitiesProperties = EntiProps.ByName;
 
             foreach (var propertiesByType in dict)
             {
@@ -149,14 +142,13 @@ namespace Battle.Data
         private void RecomputeAllLevels()
         {
             Burger.Log($"[{nameof(LevelsConfigsManager)}] RecomputeAllLevels");
-            ChangedLevels.Config.Levels.Clear();
-            EntitiesProperties.ByName.Clear();
+            EntiProps.ByName.Clear();
 
             for (int i = 0; i < levelsContainers.Count; i++)
             {
                 var levelsContainer = levelsContainers[i];
 
-                if (UnlockedLevels.Config.Levels.TryGetValue(levelsContainer.entityName, out var unlockedLevel))
+                if (UnlockedLevels.ByName.TryGetValue(levelsContainer.entityName, out var unlockedLevel))
                 {
                     var dict = new Dictionary<string, List<BaseGameProperty>>();
                     for (int j = 0; j < unlockedLevel; j++)

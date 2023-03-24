@@ -35,7 +35,7 @@ namespace GameCore.Battle.Data.Components
             this.gameObject = gameObject;
             this.findTargetComponent = findTargetComponent;
             transform = gameObject.transform;
-            var props = EntitiesProperties.ByName[entityName];
+            var props = EntiProps.ByName[entityName];
             radius = props[nameof(RadiusGP)].Value;
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].value, 2);

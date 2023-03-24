@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Core.ConfigModule;
-using UnityEditor;
+using Newtonsoft.Json;
 
 namespace Battle.Data
 {
     public class UnlockedLevels : JsonBaseConfigData<UnlockedLevels>
     {
-        public Dictionary<string, int> Levels { get; } = new();
+        [JsonProperty("levels")] private Dictionary<string, int> byName = new();
+        public static Dictionary<string, int> ByName => Config.byName;
     }
 }

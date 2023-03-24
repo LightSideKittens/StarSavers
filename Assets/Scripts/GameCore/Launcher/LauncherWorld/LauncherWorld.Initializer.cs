@@ -22,30 +22,37 @@ namespace BeatRoyale.Launcher
             }
             
             isInited = true;
-
-            AotHelper.EnsureList<LongNoteData>();
-            AotHelper.EnsureList<ShortNoteData>();
-#if !UNITY_EDITOR
-            Application.targetFrameRate = 60;
-#else
+            
+#if UNITY_EDITOR
             Application.targetFrameRate = 1000;
+#else
+            Application.targetFrameRate = 60;
 #endif
             var loader = Loader.Create();
             onInit += loader.Destroy;
             
             UserDatabase<User>.Fetch(() =>
             {
-                Storage<ChangedLevels>.Fetch(() =>
+                UserDatabase<Leaderboards>.Fetch(() =>
                 {
-                    UserDatabase<Leaderboards>.Fetch(() =>
+                    UserDatabase<UnlockedLevels>.Fetch(() =>
                     {
-                        UserDatabase<UnlockedLevels>.Fetch(() =>
+                        UserDatabase<EntiProps>.Fetch(() =>
                         {
-                            levelsConfigsManager.Init();
-                            UserDatabase<EntitiesProperties>.Fetch(() =>
+                            if (ConfigVersions.RemoteCount == 0)
                             {
+                                Storage<ConfigVersions>.Fetch(OnComplete);
+                            }
+                            else
+                            {
+                                OnComplete();
+                            }
+                            
+                            void OnComplete()
+                            {
+                                levelsConfigsManager.Init();
                                 UserDatabase<CardDecks>.Fetch(onInit);
-                            });
+                            }
                         });
                     });
                 });

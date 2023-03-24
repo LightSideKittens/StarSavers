@@ -48,7 +48,7 @@ namespace Core.ConfigModule
         }
 
         public static T Config => getter();
-        protected abstract string FullFileName { get; }
+        [JsonIgnore] public abstract string FullFileName { get; }
 
         protected abstract string FolderPath { get; }
 
@@ -103,6 +103,22 @@ namespace Core.ConfigModule
             ConfigsUtils.AddLoadOnNextAccessAction(instance.FileName, LoadOnNextAccess);
             
             return instance;
+        }
+
+        public static void LoadAsDefault()
+        {
+            var json = Resources.Load<TextAsset>(Path.Combine(instance.FolderName, instance.FileName))?.text;
+            
+            if (string.IsNullOrEmpty(json) == false)
+            {
+                Deserialize(json);
+            }
+            else
+            {
+                instance = new T();
+                instance.SetDefault();
+                getter = GetInstance;
+            }
         }
 
         private static void AutoSave()

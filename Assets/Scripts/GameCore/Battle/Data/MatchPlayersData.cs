@@ -11,12 +11,12 @@ namespace BeatRoyale
     public class MatchPlayersData
     {
         private CardDecks decks;
-        private EntitiesProperties properties;
+        private EntiProps properties;
         private User playerData;
         private static Dictionary<string, MatchPlayersData> byUserId = new();
         public static int Count => byUserId.Count;
 
-        private MatchPlayersData(CardDecks decks, EntitiesProperties properties, User playerData)
+        private MatchPlayersData(CardDecks decks, EntiProps properties, User playerData)
         {
             this.decks = decks;
             this.properties = properties;
@@ -25,14 +25,14 @@ namespace BeatRoyale
 
         public static string OpponentUserId => byUserId.ElementAt(0).Key;
         public static CardDecks GetDecks(string userId) => byUserId[userId].decks;
-        public static EntitiesProperties GetProperties(string userId) => byUserId[userId].properties;
+        public static EntiProps GetProperties(string userId) => byUserId[userId].properties;
         public static User GetPlayerData(string userId) => byUserId[userId].playerData;
 
         public static void Add(string userId, Action onSuccess)
         {
             UserDatabase<CardDecks>.Fetch(userId, decks =>
             {
-                UserDatabase<EntitiesProperties>.Fetch(userId, properties =>
+                UserDatabase<EntiProps>.Fetch(userId, properties =>
                 {
                     UserDatabase<User>.Fetch(userId, playerData =>
                     {

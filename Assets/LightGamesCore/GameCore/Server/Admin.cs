@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using System;
+using Core.ConfigModule;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
@@ -14,6 +15,7 @@ namespace Core.Server
     {
         public static FirebaseStorage Storage { get; }
         public static FirebaseFirestore Database { get; }
+        public static StorageReference ConfigsRef => Storage.RootReference.Child(FolderNames.Configs);
         public static FirebaseApp App { get; }
         private static readonly FirebaseAuth auth;
         private static bool isSingedIn;

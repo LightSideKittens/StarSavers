@@ -23,7 +23,7 @@ namespace GameCore.Battle.Data.Components
 
         protected override void OnInit(string entityName)
         {
-            ricochetData = RicochetData.Get(EntitiesProperties.ByName[entityName][nameof(RicochetGP)].value);
+            ricochetData = RicochetData.Get(EntiProps.ByName[entityName][nameof(RicochetGP)].value);
             tempDamage = Damage;
             hited = new HashSet<Transform>();
         }

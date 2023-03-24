@@ -59,7 +59,7 @@ namespace Fishcoin
         {
             var path = GUIDToAssetPath(guid);
             var asset = LoadAssetAtPath<Texture>(path);
-            var textStyle = GUIStyle.none;
+            var textStyle = new GUIStyle();
             textStyle.alignment = TextAnchor.MiddleRight;
             textStyle.normal.textColor = new Color(1f, 1f, 1f, 0.5f);
             GUI.Label(selectionrect, Path.GetExtension(path), textStyle);
@@ -67,6 +67,13 @@ namespace Fishcoin
             if (asset != null || IsValidFolder(path))
             {
                 return;
+            }
+            
+            if (texturesByGuid.TryGetValue(guid, out var texture))
+            {
+                selectionrect.xMax = selectionrect.x + selectionrect.height;
+                DrawOverlay(selectionrect);
+                GUI.DrawTexture(selectionrect, texture, ScaleMode.ScaleToFit);
             }
 
             if (Event.current.alt)
@@ -82,13 +89,6 @@ namespace Fishcoin
                     selectionrect.xMax = selectionrect.x + selectionrect.height;
                     DrawOverlay(selectionrect);
                 }
-            }
-            
-            if (texturesByGuid.TryGetValue(guid, out var texture))
-            {
-                selectionrect.xMax = selectionrect.x + selectionrect.height;
-                DrawOverlay(selectionrect);
-                GUI.DrawTexture(selectionrect, texture, ScaleMode.ScaleToFit);
             }
         }
 

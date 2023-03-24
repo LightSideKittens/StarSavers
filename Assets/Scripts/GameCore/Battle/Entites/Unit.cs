@@ -39,15 +39,6 @@ namespace GameCore.Battle.Data
             attackComponent.Init(entityName, gameObject, findTargetComponent);
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            var color = Color.green;
-            color.a = 0.5f;
-            Gizmos.color = color;
-            
-            Gizmos.DrawSphere(transform.position, attackComponent.Radius);
-        }
-
         public void Run()
         {
             attackComponent.Update();
@@ -65,7 +56,7 @@ namespace GameCore.Battle.Data
             hitBoxComponent.OnDestroy();
             attackComponent.OnDestroy();
             healthComponent.OnDestroy();
-            moveComponent.OnDestroy();
+            moveComponent?.OnDestroy();
             Remove(transform);
             Destroyed?.Invoke(transform);
         }

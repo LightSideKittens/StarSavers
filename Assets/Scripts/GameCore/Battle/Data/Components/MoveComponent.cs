@@ -25,7 +25,7 @@ namespace GameCore.Battle.Data.Components
             this.gameObject = gameObject;
             rigidbody = gameObject.GetComponent<Rigidbody2D>();
             collider = rigidbody.GetComponent<CircleCollider2D>();
-            speed = EntitiesProperties.ByName[entityName][nameof(MoveSpeedGP)].Value;
+            speed = EntiProps.ByName[entityName][nameof(MoveSpeedGP)].Value;
             Buffs = new Buffs();
 
             this.findTargetComponent = findTargetComponent;

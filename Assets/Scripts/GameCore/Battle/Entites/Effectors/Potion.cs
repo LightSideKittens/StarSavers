@@ -19,7 +19,7 @@ namespace GameCore.Battle.Data
 
         protected override void OnInit()
         {
-            var properties = EntitiesProperties.ByName[name];
+            var properties = EntiProps.ByName[name];
             duration = properties[nameof(HealthGP)].Value;
             attackSpeed = Convert.ToString((int)properties[nameof(AttackSpeedGP)].value, 2);
             damage = properties[nameof(DamageGP)].Value;

@@ -1,6 +1,10 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Battle.Data.GameProperty;
+using Core.ConfigModule;
+using Core.Server;
+using Firebase.Extensions;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEditor;
@@ -133,6 +137,48 @@ namespace Battle.Data
             if (folders.Length == 0)
             {
                 paths.Add(folder);
+            }
+        }
+        
+        private bool IsConfirmedPush => EditorUtility.DisplayDialog(
+            $"Pushing", 
+            $"Increase and push changedLevels version?", 
+            "Yes", 
+            "No");
+
+        [Button("Increase Config Version (changedLevels)", ButtonSizes.Large)]
+        [PropertySpace(10)]
+        [GUIColor(0.35f, 0.85f, 0.29f)]
+        private void UpdateConfigVersion()
+        {
+            if (IsConfirmedPush)
+            {
+                EditorUtility.DisplayProgressBar("Pushing...", "Pushing in progress...", 0.5f);
+                Admin.SignIn(() =>
+                {
+                    var configsRef = Admin.Storage.RootReference.Child(FolderNames.Configs);
+                    var config = configsRef.Child($"{ConfigVersions.Config.FileName}.json");
+                    ConfigVersions.Increase(ChangedLevels);
+                    ConfigVersions.Save();
+                    ConfigVersions.Editor_SaveAsDefault();
+                    AssetDatabase.Refresh();
+                    config.PutFileAsync(ConfigVersions.Config.FullFileName).ContinueWithOnMainThread(task => OnComplete(task, "configVersions"));
+
+                    void OnComplete(Task task, string name)
+                    {
+                        EditorUtility.ClearProgressBar();
+                        if (task.IsCompletedSuccessfully)
+                        {
+                            Burger.Log($"[{nameof(LevelConfig)}] Push Success! Config: {name}");
+                        }
+                        else
+                        {
+                            Burger.Error($"[{nameof(LevelConfig)}] Push Failure! Config: {name}. Error: {task.Exception.Message}");
+                        }
+                    }
+                });
+                
+                
             }
         }
 
