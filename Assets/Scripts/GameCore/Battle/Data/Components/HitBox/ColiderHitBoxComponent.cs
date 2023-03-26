@@ -11,7 +11,7 @@ namespace GameCore.Battle.Data.Components.HitBox
 
         protected override void OnInit()
         {
-            collider = gameObject.GetComponent<CircleCollider2D>();
+            collider = transform.GetComponent<CircleCollider2D>();
             DrawRadius(collider.transform,
                 collider.bounds.center,
                 collider.radius / X * collider.transform.lossyScale.x,

@@ -4,7 +4,7 @@ using Battle.Data;
 using Battle.Data.GameProperty;
 using DG.Tweening;
 using UnityEngine;
-using Object = UnityEngine.Object;
+using static UnityEngine.Object;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
@@ -21,9 +21,9 @@ namespace GameCore.Battle.Data.Components
         private float tempDamage;
         private int ricochetCount;
 
-        protected override void OnInit(string entityName)
+        protected override void OnInit()
         {
-            ricochetData = RicochetData.Get(EntiProps.ByName[entityName][nameof(RicochetGP)].value);
+            ricochetData = RicochetData.Get(BaseEntity.GetProperties(transform)[nameof(RicochetGP)].value);
             tempDamage = Damage;
             hited = new HashSet<Transform>();
         }
@@ -33,7 +33,7 @@ namespace GameCore.Battle.Data.Components
             hited.Clear();
             tempDamage = Damage;
             ricochetCount = 0;
-            bullet = Object.Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Attack();
             return null;
         }
@@ -46,7 +46,6 @@ namespace GameCore.Battle.Data.Components
 
         private void Ricochet()
         {
-            Object.Instantiate(deathFx, lastTarget.position, Quaternion.identity);
             lastTarget.Get<Health>().TakeDamage(tempDamage);
             hited.Add(lastTarget);
             tempDamage -= tempDamage * (ricochetData.decreasePercent / 100f);
@@ -59,15 +58,17 @@ namespace GameCore.Battle.Data.Components
                 }
                 else
                 {
-                    Object.Destroy(bullet);
+                    Destroy(bullet);
                 }
             
                 ricochetCount++;
             }
             else
             {
-                Object.Destroy(bullet);
+                Destroy(bullet);
             }
+            
+            Instantiate(deathFx, lastTarget.position, Quaternion.identity);
         }
     }
 }

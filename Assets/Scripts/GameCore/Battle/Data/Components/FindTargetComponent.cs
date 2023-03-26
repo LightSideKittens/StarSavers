@@ -13,13 +13,11 @@ namespace GameCore.Battle.Data.Components
         [NonSerialized] public Transform target;
         [NonSerialized] public bool isOpponent;
         [OdinSerialize] private List<TargetProvider> providers = new() {new AllUnits(), new AllBuildings()};
-        private GameObject gameObject;
         private Transform transform;
 
-        public void Init(GameObject gameObject, bool isOpponent)
+        public void Init(Transform transform, bool isOpponent)
         {
-            this.gameObject = gameObject;
-            transform = gameObject.transform;
+            this.transform = transform;
             this.isOpponent = isOpponent;
             
             for (int i = 0; i < providers.Count; i++)
@@ -38,7 +36,7 @@ namespace GameCore.Battle.Data.Components
                 var targets = providers[i].Targets;
                 foreach (var target in targets)
                 {
-                    var hitBox = HitBoxComponent.ByTransform[target];
+                    var hitBox = target.Get<HitBoxComponent>();
 
                     if (hitBox.IsIntersected(position, radius, out _))
                     {
@@ -60,7 +58,7 @@ namespace GameCore.Battle.Data.Components
                 {
                     if (!excepted.Contains(target))
                     {
-                        var hitBox = HitBoxComponent.ByTransform[target];
+                        var hitBox = target.Get<HitBoxComponent>();
 
                         if (hitBox.IsIntersected(position, distance, out var point))
                         {
@@ -91,7 +89,7 @@ namespace GameCore.Battle.Data.Components
                 var targets = providers[i].Targets;
                 foreach (var target in targets)
                 {
-                    var hitBox = HitBoxComponent.ByTransform[target];
+                    var hitBox = target.Get<HitBoxComponent>();
 
                     if (hitBox.IsIntersected(position, distance, out var point))
                     {

@@ -9,15 +9,13 @@ namespace Battle
 {
     public class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
-        protected override bool IsOpponent => true;
-        public static string userId; 
-        
         private CardDecks decks;
         private readonly ShortNoteListener[] listeners = new ShortNoteListener[4];
 
         private void Start()
         {
-            decks = MatchPlayersData.GetDecks(userId);
+            UserId = MatchData.OpponentUserId;
+            decks = MatchData.GetDecks(UserId);
             listeners[0] = Listen(EnemyI).OnStarted(() => Spawn(0));
             listeners[1] = Listen(EnemyII).OnStarted(() => Spawn(1));
             listeners[2] = Listen(EnemyIII).OnStarted(() => Spawn(2));

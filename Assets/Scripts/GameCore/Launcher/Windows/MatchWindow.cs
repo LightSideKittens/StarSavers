@@ -20,11 +20,11 @@ namespace BeatRoyale.Windows
 
         private void Match()
         {
-            MatchPlayersData.Clear();
+            MatchData.Clear();
             var loader = Loader.Create();
             Leaderboards.GetUserId(opponentUserId =>
             {
-                MatchPlayersData.Add(opponentUserId, () =>
+                MatchData.Add(opponentUserId, () =>
                 {
                     loader.Destroy();
                     SceneManager.LoadScene(1);

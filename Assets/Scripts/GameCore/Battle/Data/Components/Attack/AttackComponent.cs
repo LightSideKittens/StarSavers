@@ -1,9 +1,7 @@
 ﻿using System;
-using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
 using DG.Tweening;
-using GameCore.Battle.Data.Components.HitBox;
 using UnityEngine;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.AttackComponent>;
@@ -19,10 +17,8 @@ namespace GameCore.Battle.Data.Components
         private string attackSpeed;
         protected float damage;
         protected float radius;
-        protected GameObject gameObject;
         protected Transform transform;
         private int currentIndex;
-        private int tickedIndex;
         private TactListener listener;
         private Vector2 lastHitPoint;
         protected float Damage => damage * Buffs;
@@ -30,12 +26,11 @@ namespace GameCore.Battle.Data.Components
         public float Radius => radius;
         public Buffs Buffs { get; private set; }
 
-        public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
+        public void Init(Transform transform, FindTargetComponent findTargetComponent)
         {
-            this.gameObject = gameObject;
             this.findTargetComponent = findTargetComponent;
-            transform = gameObject.transform;
-            var props = EntiProps.ByName[entityName];
+            this.transform = transform;
+            var props = Unit.GetProperties(transform);
             radius = props[nameof(RadiusGP)].Value;
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].value, 2);
@@ -43,10 +38,10 @@ namespace GameCore.Battle.Data.Components
             DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
             Add(transform, this);
             Buffs = new Buffs();
-            OnInit(entityName);
+            OnInit();
         }
         
-        protected virtual void OnInit(string entityName){}
+        protected virtual void OnInit(){}
 
         public void Update()
         {
@@ -65,7 +60,7 @@ namespace GameCore.Battle.Data.Components
         {
             if (target != null)
             {
-                var hitBox = HitBoxComponent.ByTransform[target];
+                var hitBox = target.Get<HitBoxComponent>();
                 return hitBox.IsIntersected(transform.position, radius, out lastHitPoint);
             }
 
@@ -85,8 +80,6 @@ namespace GameCore.Battle.Data.Components
 
         private void OnTactTicked()
         {
-            tickedIndex++;
-            
             if (IsInRadius)
             {
                 currentIndex %= attackSpeed.Length;

@@ -8,25 +8,26 @@ using GameCore.Battle.Data;
 
 namespace BeatRoyale
 {
-    public class MatchPlayersData
+    public class MatchData
     {
         private CardDecks decks;
         private EntiProps properties;
-        private User playerData;
-        private static Dictionary<string, MatchPlayersData> byUserId = new();
+        private User user;
+        private static Dictionary<string, MatchData> byUserId = new();
         public static int Count => byUserId.Count;
 
-        private MatchPlayersData(CardDecks decks, EntiProps properties, User playerData)
+        private MatchData(CardDecks decks, EntiProps properties, User user)
         {
             this.decks = decks;
             this.properties = properties;
-            this.playerData = playerData;
+            this.user = user;
         }
 
         public static string OpponentUserId => byUserId.ElementAt(0).Key;
-        public static CardDecks GetDecks(string userId) => byUserId[userId].decks;
-        public static EntiProps GetProperties(string userId) => byUserId[userId].properties;
-        public static User GetPlayerData(string userId) => byUserId[userId].playerData;
+
+        public static CardDecks GetDecks(string userId) => userId == User.Id ? CardDecks.Config : byUserId[userId].decks;
+        public static EntiProps GetProperties(string userId) => userId == User.Id ? EntiProps.Config : byUserId[userId].properties;
+        public static User GetUser(string userId) => userId == User.Id ? User.Config : byUserId[userId].user;
 
         public static void Add(string userId, Action onSuccess)
         {
@@ -36,7 +37,7 @@ namespace BeatRoyale
                 {
                     UserDatabase<User>.Fetch(userId, playerData =>
                     {
-                        byUserId.Add(userId, new MatchPlayersData(decks, properties, playerData));
+                        byUserId.Add(userId, new MatchData(decks, properties, playerData));
                         onSuccess();
                     });
                 });

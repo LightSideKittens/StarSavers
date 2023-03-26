@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
+using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.HitBoxComponent>;
 
-namespace GameCore.Battle.Data.Components.HitBox
+namespace GameCore.Battle.Data.Components
 {
     [Serializable]
     internal abstract class HitBoxComponent
     {
-        public static Dictionary<Transform, HitBoxComponent> ByTransform { get; } = new();
-        protected GameObject gameObject;
-
-        public void Init(GameObject gameObject)
+        protected Transform transform;
+        
+        public void Init(Transform transform)
         {
-            this.gameObject = gameObject;
-            ByTransform.Add(gameObject.transform, this);
+            this.transform = transform;
+            Add(transform, this);
             OnInit();
         }
 
@@ -21,7 +20,7 @@ namespace GameCore.Battle.Data.Components.HitBox
 
         public void OnDestroy()
         {
-            ByTransform.Remove(gameObject.transform);
+            Remove(transform);
         }
         public abstract bool IsIntersected(in Vector2 position, in float radius, out Vector2 point);
     }

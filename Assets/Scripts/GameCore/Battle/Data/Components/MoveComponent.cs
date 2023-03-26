@@ -1,6 +1,7 @@
 ﻿using System;
 using Battle.Data;
 using Battle.Data.GameProperty;
+using BeatRoyale;
 using UnityEngine;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.MoveComponent>;
 using static GameCore.Battle.RadiusUtils;
@@ -11,7 +12,7 @@ namespace GameCore.Battle.Data.Components
     internal class MoveComponent
     {
         private FindTargetComponent findTargetComponent;
-        private GameObject gameObject;
+        private Transform transform;
         private Rigidbody2D rigidbody;
         private CircleCollider2D collider;
         private float speed;
@@ -20,16 +21,16 @@ namespace GameCore.Battle.Data.Components
         private bool enabled = true;
         public Buffs Buffs { get; private set; }
 
-        public void Init(string entityName, GameObject gameObject, FindTargetComponent findTargetComponent)
+        public void Init(Transform transform, FindTargetComponent findTargetComponent)
         {
-            this.gameObject = gameObject;
-            rigidbody = gameObject.GetComponent<Rigidbody2D>();
+            this.transform = transform;
+            rigidbody = transform.GetComponent<Rigidbody2D>();
             collider = rigidbody.GetComponent<CircleCollider2D>();
-            speed = EntiProps.ByName[entityName][nameof(MoveSpeedGP)].Value;
+            speed = Unit.GetProperties(transform)[nameof(MoveSpeedGP)].Value;
             Buffs = new Buffs();
 
             this.findTargetComponent = findTargetComponent;
-            Add(gameObject.transform, this);
+            Add(transform, this);
             
             if (mask == -1)
             {
@@ -119,7 +120,7 @@ namespace GameCore.Battle.Data.Components
 
         public void OnDestroy()
         {
-            Remove(gameObject.transform);
+            Remove(transform);
         }
     }
 }

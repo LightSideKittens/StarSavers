@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Battle.Data;
+using BeatRoyale;
 using GameCore.Battle.Data.Components;
 using GameCore.Battle.Data.Components.HitBox;
-using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
 namespace GameCore.Battle.Data
 {
-    public class Cannon : SerializedMonoBehaviour
+    public class Cannon : BaseEntity
     {
         public static event Action<Transform> Destroyed;
-        private static IEnumerable<string> EntitiesNames => GameScopes.EntitiesNames;
-        [ValueDropdown("EntitiesNames"), SerializeField] 
-        private string entityName;
-        
         [OdinSerialize] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
         [OdinSerialize] private FindTargetComponent findTargetComponent = new();
         [SerializeField] private CannonAttackComponent attackComponent;
@@ -24,15 +19,18 @@ namespace GameCore.Battle.Data
 
         private void Awake()
         {
-            Cannons.Add(transform);
+            enabled = false;
+            MusicController.EnableOnStart.Add(this);
         }
 
         private void Start()
         {
-            hitBoxComponent.Init(gameObject);
-            findTargetComponent.Init(gameObject, true);
-            healthComponent.Init(entityName, gameObject, true);
-            attackComponent.Init(entityName, gameObject, findTargetComponent);
+            Cannons.Add(transform);
+            base.Init(MatchData.OpponentUserId);
+            hitBoxComponent.Init(transform);
+            findTargetComponent.Init(transform, true);
+            healthComponent.Init(transform, true);
+            attackComponent.Init(transform, findTargetComponent);
         }
 
         public void Update()
@@ -41,8 +39,9 @@ namespace GameCore.Battle.Data
             attackComponent.Update();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             hitBoxComponent.OnDestroy();
             healthComponent.OnDestroy();
             attackComponent.OnDestroy();

@@ -50,7 +50,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 8742679449612997154, guid: ee115b9ace0b1e34e9740b4d7fcf6f7b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -89,10 +90,13 @@ MonoBehaviour:
       Data: 
     - Name: attackComponent
       Entry: 7
-      Data: 4|GameCore.Battle.Data.Components.AttackComponent, GameCore.Battle
+      Data: 4|GameCore.Battle.Data.Components.ShootAttackComponent, GameCore.Battle
     - Name: duration
       Entry: 4
       Data: 0.1
+    - Name: bulletPrefab
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 

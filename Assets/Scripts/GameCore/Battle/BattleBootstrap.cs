@@ -39,14 +39,14 @@ namespace Battle
 
         private void OnInitialize()
         {
-            if (MatchPlayersData.Count == 0)
+            if (MatchData.Count == 0)
             {
                 var loader = Loader.Create();
                 Action onSuccess = Init;
                 onSuccess += loader.Destroy;
                 Leaderboards.GetUserId(userId =>
                 {
-                    MatchPlayersData.Add(userId, onSuccess);
+                    MatchData.Add(userId, onSuccess);
                 });
             }
             else
@@ -60,7 +60,6 @@ namespace Battle
             units.Init();
             cards.Init();
             effectors.Init();
-            OpponentWorld.userId = MatchPlayersData.OpponentUserId;
             MatchResultWindow.Showing += Unsubscribe;
             Tower.Destroyed += OnTowerDestroyed;
             Cannon.Destroyed += OnCannonDestroyed;

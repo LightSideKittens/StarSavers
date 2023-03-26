@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
+using Core.Server;
 using DG.Tweening;
 using GameCore.Battle.Data.Components;
 using GameCore.Battle.Data.Components.HitBox;
@@ -13,14 +14,13 @@ using static SoundventTypes;
 
 namespace GameCore.Battle.Data
 {
-    public class Tower : SerializedMonoBehaviour
+    public class Tower : BaseEntity
     {
         public static event Action<Transform> Destroyed;
         public static HashSet<Transform> Towers { get; } = new();
         private static ShortNoteListener[] listeners;
-        private static IEnumerable<string> HeroesNames => GameScopes.HeroesNames;
-
-        [SerializeField, ValueDropdown(nameof(HeroesNames))] private string entityName;
+        protected override IEnumerable<string> Entities => GameScopes.HeroesNames;
+        
         [SerializeField] private float bulletFlyDuration = 0.4f;
         [SerializeField] private ParticleSystem deathFx;
         [SerializeField] private GameObject bulletPrefab;
@@ -32,8 +32,15 @@ namespace GameCore.Battle.Data
         private float damage;
         private int currentListenerIndex;
 
+        private void Awake()
+        {
+            enabled = false;
+            MusicController.EnableOnStart.Add(this);
+        }
+
         private void Start()
         {
+            base.Init(User.Id);
             listeners ??= new[]
             {
                 ShortNoteListener.Listen(ShortIII, -bulletFlyDuration),
@@ -45,16 +52,16 @@ namespace GameCore.Battle.Data
             listeners[1].Started += OnSoundvent;
             listeners[0].Started += OnSoundvent;
             
-            damage = EntiProps.ByName[entityName][nameof(DamageGP)].Value;
+            damage = GetProperties(transform)[nameof(DamageGP)].Value;
             currentListenerIndex = Towers.Count;
             currentListener = listeners[currentListenerIndex];
             currentListener.Started += Shoot;
             
             Towers.Add(transform);
             
-            hitBoxComponent.Init(gameObject);
-            findTargetComponent.Init(gameObject, false);
-            healthComponent.Init(entityName, gameObject, false);
+            hitBoxComponent.Init(transform);
+            findTargetComponent.Init(transform, false);
+            healthComponent.Init(transform, false);
         }
 
         private void OnSoundvent()
@@ -74,9 +81,10 @@ namespace GameCore.Battle.Data
                 var target = findTargetComponent.target;
                 bullet.transform.DOMove(target.position, 0.4f).SetEase(Ease.InExpo).OnComplete(() =>
                 {
+                    new CountDownTimer(0.35f).Stopped += () => Destroy(bullet);
+                    
                     if (target.TryGet(out HealthComponent health))
                     {
-                        new CountDownTimer(0.35f).Stopped += () => Destroy(bullet);
                         health.TakeDamage(damage);
                         Instantiate(deathFx, findTargetComponent.target.position, Quaternion.identity);
                     }
@@ -84,8 +92,9 @@ namespace GameCore.Battle.Data
             }
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             healthComponent.OnDestroy();
             hitBoxComponent.OnDestroy();
             Towers.Remove(transform);

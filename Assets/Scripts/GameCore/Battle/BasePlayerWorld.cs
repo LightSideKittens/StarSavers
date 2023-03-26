@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BeatRoyale;
 using Core.SingleService;
 using GameCore.Battle.Data;
 using UnityEngine;
@@ -8,7 +9,18 @@ namespace Battle
 {
     public abstract class BasePlayerWorld<T> : SingleService<T> where T : BasePlayerWorld<T>
     {
-        protected abstract bool IsOpponent { get; }
+        protected bool IsOpponent { get; private set; }
+        private string userId;
+
+        protected string UserId
+        {
+            get => userId;
+            set
+            {
+                userId = value;
+                IsOpponent = UserId != MatchData.OpponentUserId;
+            }
+        }
 
         private IEnumerable<Unit> Units
         {
@@ -28,7 +40,7 @@ namespace Battle
         {
             base.Awake();
             enabled = false;
-            MusicController.Started += () => enabled = true;
+            MusicController.EnableOnStart.Add(this);
         }
 
         public static void Spawn(Unit prefab, Vector2 position) => Instance.Internal_Spawn(prefab, position);
@@ -49,7 +61,7 @@ namespace Battle
         
         private void InitUnit(Unit unit)
         {
-            unit.Init(IsOpponent);
+            unit.Init(UserId);
         }
 
         private void Update()

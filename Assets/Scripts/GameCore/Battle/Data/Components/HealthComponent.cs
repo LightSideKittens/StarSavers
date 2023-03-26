@@ -1,5 +1,4 @@
 ﻿using System;
-using Battle.Data;
 using Battle.Data.GameProperty;
 using Common.SingleServices;
 using GameCore.Common.SingleServices.Windows;
@@ -14,23 +13,21 @@ namespace GameCore.Battle.Data.Components
     {
         [SerializeField] private Vector2 scale = new Vector2(1, 1);
         [SerializeField] private Vector2 offset;
-        private GameObject gameObject;
         private Transform transform;
         private HealthBar healthBar;
         private float health;
 
-        public void Init(string entityName, GameObject gameObject, bool isOpponent)
+        public void Init(Transform transform, bool isOpponent)
         {
-            this.gameObject = gameObject; 
-            transform = gameObject.transform;
-            health = EntiProps.ByName[entityName][nameof(HealthGP)].Value;
+            this.transform = transform;
+            health = BaseEntity.GetProperties(transform)[nameof(HealthGP)].Value;
             healthBar = HealthBar.Create(health, transform, offset, scale, isOpponent);
             Add(transform, this);
         }
         
         public void OnDestroy()
         { 
-            Remove(gameObject.transform);
+            Remove(transform);
         }
 
         public void Update()
@@ -52,7 +49,7 @@ namespace GameCore.Battle.Data.Components
             if (health <= 0)
             {
                 healthBar.Destroy();
-                Object.Destroy(gameObject);
+                Object.Destroy(transform.gameObject);
             }
         }
     }

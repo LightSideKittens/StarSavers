@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Core.SingleService;
 using DG.Tweening;
 using MusicEventSystem.Configs;
@@ -7,8 +8,8 @@ using UnityEngine;
 public class MusicController : SingleService<MusicController>
 {
     public static int MusicOffset => 1;
+    public static List<MonoBehaviour> EnableOnStart { get; } = new();
     private static readonly int addColorFade = Shader.PropertyToID("_AddColorFade");
-    public static event Action Started;
     private int count;
     private float time;
     private bool isMainMusicStarted;
@@ -31,7 +32,7 @@ public class MusicController : SingleService<MusicController>
     public static void Stop()
     {
         Pause();
-        Started = null;
+        EnableOnStart.Clear();
     }
 
     public static void Pause()
@@ -97,7 +98,11 @@ public class MusicController : SingleService<MusicController>
             {
                 source.Play();
             };
-            Started?.Invoke();
+
+            for (int i = 0; i < EnableOnStart.Count; i++)
+            {
+                EnableOnStart[i].enabled = true;
+            }
         }
         
         if (isMainMusicStarted)

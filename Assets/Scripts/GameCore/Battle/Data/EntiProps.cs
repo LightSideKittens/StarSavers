@@ -7,7 +7,7 @@ namespace Battle.Data
     public class EntiProps : JsonBaseConfigData<EntiProps>
     {
         [JsonProperty("props")] 
-        private Dictionary<string, Dictionary<string, ValuePercent>> byName = new();
+        public Dictionary<string, Dictionary<string, ValuePercent>> byName = new();
         public static Dictionary<string, Dictionary<string, ValuePercent>> ByName => Config.byName;
     }
 }

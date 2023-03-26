@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using Battle.Data;
 using GameCore.Battle.Data.Components;
 using GameCore.Battle.Data.Components.HitBox;
-using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
 
 namespace GameCore.Battle.Data
 {
-    public class Unit : SerializedMonoBehaviour
+    public class Unit : BaseEntity
     {
         public static event Action<Transform> Destroyed;
-        private static IEnumerable<string> Entities => GameScopes.EntitiesNames;
-        
-        [SerializeField, ValueDropdown(nameof(Entities))] private string entityName;
         [field: SerializeField] public int Price { get; private set; }
         
         [OdinSerialize] private MoveComponent moveComponent = new();
@@ -24,19 +18,18 @@ namespace GameCore.Battle.Data
         [OdinSerialize] private HealthComponent healthComponent = new();
         [OdinSerialize] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
         
-        public bool IsOpponent { get; private set; }
         private float radius;
 
-        public void Init(bool isOpponent)
+        public override void Init(string userId)
         {
-            IsOpponent = isOpponent;
+            base.Init(userId);
             Add(transform, this);
 
-            hitBoxComponent.Init(gameObject);
-            findTargetComponent.Init(gameObject, IsOpponent);
-            moveComponent?.Init(entityName, gameObject, findTargetComponent);
-            healthComponent.Init(entityName, gameObject, IsOpponent);
-            attackComponent.Init(entityName, gameObject, findTargetComponent);
+            hitBoxComponent.Init(transform);
+            findTargetComponent.Init(transform, IsOpponent);
+            moveComponent?.Init(transform, findTargetComponent);
+            healthComponent.Init(transform, IsOpponent);
+            attackComponent.Init(transform, findTargetComponent);
         }
 
         public void Run()
@@ -51,8 +44,9 @@ namespace GameCore.Battle.Data
             moveComponent?.Update();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             hitBoxComponent.OnDestroy();
             attackComponent.OnDestroy();
             healthComponent.OnDestroy();
