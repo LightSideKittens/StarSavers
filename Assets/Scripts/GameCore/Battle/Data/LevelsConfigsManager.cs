@@ -40,6 +40,7 @@ namespace Battle.Data
 
         public void Init()
         {
+            Burger.Log($"[{nameof(LevelsConfigsManager)}] Init");
             Instance = this;
 
             for (int i = 0; i < levelsContainers.Count; i++)

@@ -25,7 +25,7 @@ namespace Core.ConfigModule
             }
         }
         
-        public override string FullFileName => Path.Combine(FolderPath, $"{FileName}.{Ext}");
+        protected override string FullFileName => Path.Combine(FolderPath, $"{FileName}.{Ext}");
         public override string FileName { get; set; } = $"{char.ToLower(typeof(T).Name[0])}{typeof(T).Name.Substring(1)}";
 
         [Conditional("UNITY_EDITOR")]

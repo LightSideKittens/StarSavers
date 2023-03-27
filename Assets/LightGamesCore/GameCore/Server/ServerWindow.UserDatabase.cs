@@ -78,6 +78,8 @@ namespace Core.Server
             [HideInTables]
             public void OnGUI()
             {
+                configData ??= new List<ConfigData>();
+                
                 for (int i = 0; i < configData.Count; i++)
                 {
                     configData[i].userId = userId;

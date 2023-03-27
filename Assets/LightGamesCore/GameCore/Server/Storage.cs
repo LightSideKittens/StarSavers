@@ -80,7 +80,15 @@ namespace Core.ConfigModule
             {
                 var json = Encoding.UTF8.GetString(data);
                 SetRemote(json);
-                DelegateExtensions.SafeInvoke(FetchIfNeed);
+
+                if (typeof(T) == typeof(ConfigVersions))
+                {
+                    onSuccess.SafeInvoke();
+                }
+                else
+                {
+                    FetchIfNeed();
+                }
             }
 
             void FetchIfNeed()

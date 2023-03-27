@@ -351,8 +351,8 @@ namespace Battle.Data
                     var configsRef = Admin.Storage.RootReference.Child(FolderNames.Configs);
                     var unlockedLevelsRef = configsRef.Child($"{UnlockedLevels.Config.FileName}.json");
                     var entiPropsRef = configsRef.Child($"{EntiProps.Config.FileName}.json");
-                    unlockedLevelsRef.PutFileAsync(UnlockedLevels.Config.FullFileName).ContinueWithOnMainThread(task => OnComplete(task, "unlockedLevels"));
-                    entiPropsRef.PutFileAsync(EntiProps.Config.FullFileName).ContinueWithOnMainThread(task => OnComplete(task, "entiProps"));
+                    unlockedLevelsRef.PutBytesAsync(UnlockedLevels.Editor_GetBytes()).ContinueWithOnMainThread(task => OnComplete(task, "unlockedLevels"));
+                    entiPropsRef.PutBytesAsync(EntiProps.Editor_GetBytes()).ContinueWithOnMainThread(task => OnComplete(task, "entiProps"));
 
                     void OnComplete(Task task, string name)
                     {

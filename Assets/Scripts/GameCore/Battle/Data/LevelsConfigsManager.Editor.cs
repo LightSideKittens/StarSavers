@@ -159,10 +159,9 @@ namespace Battle.Data
                     var configsRef = Admin.Storage.RootReference.Child(FolderNames.Configs);
                     var config = configsRef.Child($"{ConfigVersions.Config.FileName}.json");
                     ConfigVersions.Increase(ChangedLevels);
-                    ConfigVersions.Save();
                     ConfigVersions.Editor_SaveAsDefault();
                     AssetDatabase.Refresh();
-                    config.PutFileAsync(ConfigVersions.Config.FullFileName).ContinueWithOnMainThread(task => OnComplete(task, "configVersions"));
+                    config.PutBytesAsync(ConfigVersions.Editor_GetBytes()).ContinueWithOnMainThread(task => OnComplete(task, "configVersions"));
 
                     void OnComplete(Task task, string name)
                     {

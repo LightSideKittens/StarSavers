@@ -16,6 +16,7 @@ namespace Core.Server
         private static Color green = new Color(0.35f, 0.85f, 0.29f);
         private static Color red = new Color(0.84f, 0.35f, 0.29f);
         private static bool isButtonStyleSetted;
+
         private static string[] configNames = new[]
         {
             "unlockedLevels",
@@ -23,7 +24,7 @@ namespace Core.Server
             "user",
             "cardDecks",
         };
-        
+
         private static string[] storageConfigNames = new[]
         {
             "unlockedLevels",
@@ -41,7 +42,7 @@ namespace Core.Server
         [TabGroup("Storage", order: 2)]
         [SerializeField]
         private List<ConfigData> storageConfigs;
-        
+
         [OnInspectorGUI]
         private void OnGui()
         {
@@ -50,6 +51,9 @@ namespace Core.Server
                 EditorUtils.SetSirenixButtonWhiteColor();
                 isButtonStyleSetted = true;
             }
+            
+            data ??= new List<PlayerData>();
+            storageConfigs ??= new List<ConfigData>();
             
             for (int i = 0; i < data.Count; i++)
             {

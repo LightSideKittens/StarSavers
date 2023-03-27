@@ -1,9 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
-using Sirenix.Utilities.Editor;
 using UnityEditor;
-using UnityEditor.Toolbars;
 using UnityEngine;
 using static UnityEditor.AssetDatabase;
 
@@ -29,11 +27,21 @@ namespace Fishcoin
 
         static ProjectWindowCustomizer()
         {
+            EditorApplication.projectWindowItemOnGUI += Initialize;
             EditorApplication.projectWindowItemOnGUI += DrawAssetDetails;
-
+        }
+        
+        private static void Initialize(string guid, Rect selectionRect)
+        {
+            if (texturesByGuid.Count > 0)
+            {
+                EditorApplication.projectWindowItemOnGUI -= Initialize;
+                return;
+            }
+            
             var toRemove = new List<string>();
             var textureGuidByAssetGuid = EditorData.Config.textureGuidByAssetGuid;
-            
+        
             foreach (var textureGuid in textureGuidByAssetGuid)
             {
                 var asset = GUIDToAssetPath(textureGuid.Key);
@@ -43,15 +51,20 @@ namespace Fishcoin
                     toRemove.Add(textureGuid.Key);
                     continue;
                 }
-                
-                texturesByGuid.Add(textureGuid.Key, LoadAssetAtPath<Texture2D>(GUIDToAssetPath(textureGuid.Value)));
+
+                var tex = LoadAssetAtPath<Texture2D>(GUIDToAssetPath(textureGuid.Value));
+
+                if (tex != null)
+                {
+                    texturesByGuid.Add(textureGuid.Key, tex);
+                }
             }
 
             for (int i = 0; i < toRemove.Count; i++)
             {
                 textureGuidByAssetGuid.Remove(toRemove[i]);
             }
-            
+        
             EditorData.Save();
         }
 

@@ -23,7 +23,7 @@ namespace BeatRoyale
             this.user = user;
         }
 
-        public static string OpponentUserId => byUserId.ElementAt(0).Key;
+        public static string OpponentUserId => User.ServerEnabled ? byUserId.ElementAt(0).Key : "Self";
 
         public static CardDecks GetDecks(string userId) => userId == User.Id ? CardDecks.Config : byUserId[userId].decks;
         public static EntiProps GetProperties(string userId) => userId == User.Id ? EntiProps.Config : byUserId[userId].properties;
@@ -37,7 +37,7 @@ namespace BeatRoyale
                 {
                     UserDatabase<User>.Fetch(userId, playerData =>
                     {
-                        byUserId.Add(userId, new MatchData(decks, properties, playerData));
+                        byUserId.Add(User.ServerEnabled ? userId : "Self", new MatchData(decks, properties, playerData));
                         onSuccess();
                     });
                 });

@@ -5,6 +5,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
 using static Core.ConfigModule.FolderNames;
@@ -48,7 +49,7 @@ namespace Core.ConfigModule
         }
 
         public static T Config => getter();
-        [JsonIgnore] public abstract string FullFileName { get; }
+        protected abstract string FullFileName { get; }
 
         protected abstract string FolderPath { get; }
 
@@ -137,6 +138,16 @@ namespace Core.ConfigModule
             var folderPath = Path.Combine(Application.dataPath, Configs, DefaultSaveData, instance.FolderName);
             var fullFileName = Path.Combine(folderPath, $"{instance.FileName}.{instance.Ext}");
             Internal_Set(instance, folderPath, fullFileName);
+        }
+        
+        public static byte[] Editor_GetBytes()
+        {
+            return Encoding.UTF8.GetBytes(Editor_GetJson());
+        }
+
+        public static string Editor_GetJson()
+        {
+            return JsonConvert.SerializeObject(instance, instance.Settings);
         }
 #endif
     
