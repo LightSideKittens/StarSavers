@@ -77,11 +77,7 @@ public class Timer : MonoBehaviour
         {
             if (IsCreated == false)
             {
-                throw new Exception(
-                    $"[{nameof(Timer)}]" +
-                    $" Timer is not created." +
-                    $" Check that the {nameof(Timer)} assembly was added to " +
-                    $"Assets/Resources/AssemdefsForStaticReseter.asset");
+                new GameObject("Timer").AddComponent<Timer>();
             }
         }
         
@@ -218,6 +214,11 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         UnityUpdated?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        UnityUpdated = null;
     }
 }
 

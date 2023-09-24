@@ -18,7 +18,7 @@ namespace GameCore.Battle.Data.Components
             var target = findTargetComponent.target;
             return bullet.transform.DOMove(target.position, duration).SetEase(Ease.InExpo).OnComplete(() =>
             {
-                new CountDownTimer(0.35f, true).Stopped += () => Object.Destroy(bullet);
+                new CountDownTimer(0.35f).Stopped += () => Object.Destroy(bullet);
                 target.Get<Health>().TakeDamage(Damage);
                 Object.Instantiate(deathFx, findTargetComponent.target.position, Quaternion.identity);
             });

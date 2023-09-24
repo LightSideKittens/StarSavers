@@ -8,11 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Blur
-  m_Shader: {fileID: 4800000, guid: b7b7316d18516bc44b4d9446426135b3, type: 3}
-  m_ValidKeywords:
-  - _SHADERSPACE_UI_ELEMENT
+  m_Shader: {fileID: 4800000, guid: 8e03858492269c84992f56cef5c73259, type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _DIRECTIONALDISTORTIONINVERT_ON
+  - _SHADERSPACE_UV
+  - _TIMESETTINGS_LINEAR_DEFAULT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -26,15 +27,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BurnNoiseTexture:
-        m_Texture: {fileID: 2800000, guid: cd21d0de17dcd734691f79979be13330, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DirectionalDistortionNoiseTexture:
-        m_Texture: {fileID: 2800000, guid: cd21d0de17dcd734691f79979be13330, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UVDistortNoiseTexture:
+        m_Texture: {fileID: 2800000, guid: cd21d0de17dcd734691f79979be13330, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UVDistortShaderMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -45,37 +46,56 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _AddColorContrast: 1.66
-    - _AddColorFade: 1
-    - _BurnEdgeNoiseFactor: 0.54
-    - _BurnFade: 1
-    - _BurnInsideContrast: 3.59
-    - _BurnInsideNoiseFactor: 0.05
-    - _BurnRadius: 4.43
-    - _BurnSwirlFactor: 2.9
-    - _BurnWidth: 0.03
-    - _DirectionalDistortionFade: -16
-    - _DirectionalDistortionInvert: 1
-    - _DirectionalDistortionNoiseFactor: 0.2
-    - _DirectionalDistortionRandomDirection: 0.117
-    - _DirectionalDistortionRotation: 180
-    - _DirectionalDistortionWidth: 13.3
+    - _PixelateFade: 1
+    - _PixelatePixelDensity: 5.6
     - _PixelsPerUnit: 100
     - _RectHeight: 100
     - _RectWidth: 100
     - _ScreenWidthUnits: 10
-    - _ShaderSpace: 5
+    - _ShaderSpace: 0
+    - _SineMoveFade: 1
+    - _SineRotateAngle: 15
+    - _SineRotateFade: 1
+    - _SineRotateFrequency: 37.65
+    - _SqueezeFade: 1
+    - _SqueezePower: 54.05
+    - _SquishFade: 1
+    - _SquishFlip: -1
+    - _SquishSquish: -1.43
+    - _SquishStretch: -0.82
+    - _TimeFPS: 5
+    - _TimeFrequency: 2
+    - _TimeRange: 0.5
+    - _TimeScale: 1
+    - _TimeSettings: 0
+    - _TimeValue: 0
+    - _UVDistortFade: 1
+    - _UVRotateSpeed: 1
+    - _VibrateFade: 1
+    - _VibrateFrequency: 100
+    - _VibrateOffset: 0.04
+    - _VibrateRotation: 4
+    - _WindFlip: 0
+    - _WindIsParallax: 0
+    - _WindMaxRotation: 2
+    - _WindRotation: 0
+    - _WindRotationWindFactor: 1
+    - _WindSquishFactor: 0.3
+    - _WindSquishWindFactor: 0
+    - _WindXPosition: 0
     m_Colors:
-    - _AddColorColor: {r: 0, g: 0.59022516, b: 3.9999995, a: 0}
-    - _BurnEdgeColor: {r: 11.98431, g: 1.129412, b: 0.1254902, a: 0}
-    - _BurnEdgeNoiseScale: {r: 0.23, g: 0.3, b: 0, a: 0}
-    - _BurnInsideColor: {r: 0.75, g: 0.5625, b: 0.525, a: 0}
-    - _BurnInsideNoiseColor: {r: 3084.047, g: 257.0039, b: 0, a: 0}
-    - _BurnInsideNoiseScale: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _BurnPosition: {r: 0, g: 5, b: 0, a: 0}
-    - _BurnSwirlNoiseScale: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DirectionalDistortionDistortion: {r: 0, g: 0.05, b: 0, a: 0}
-    - _DirectionalDistortionDistortionScale: {r: 1, g: 1, b: 0, a: 0}
-    - _DirectionalDistortionNoiseScale: {r: 0.4, g: 0.4, b: 0, a: 0}
+    - _SineMoveFrequency: {r: 1, g: 1, b: 0, a: 0}
+    - _SineMoveOffset: {r: 0, g: 0.5, b: 0, a: 0}
+    - _SineRotatePivot: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _SqueezeCenter: {r: 0.9, g: 0.5, b: 0, a: 0}
+    - _SqueezeScale: {r: 1000, g: 1000, b: 0, a: 0}
+    - _UVDistortFrom: {r: -0.1, g: -0.1, b: 0, a: 0}
+    - _UVDistortNoiseScale: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _UVDistortSpeed: {r: 2, g: 2, b: 0, a: 0}
+    - _UVDistortTo: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _UVRotatePivot: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _UVScalePivot: {r: 0, g: 0, b: 0, a: 0}
+    - _UVScaleScale: {r: 1.21, g: 0.98, b: 0, a: 0}
+    - _UVScrollSpeed: {r: 0.2, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

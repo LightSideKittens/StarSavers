@@ -57,20 +57,28 @@ public class MusicController : SingleService<MusicController>
 
     private void Start()
     {
-        MusicData.ShortTrackData.GetTrack(SoundventTypes.ShortIII).Started += () =>
-        {
-            new CountDownTimer(MusicOffset + 0.1f, true).Stopped += () =>
-            {
-                DOTween.Kill("Scale");
-                DOTween.Kill(this);
-                mapExposition = 0.4f;
+        MusicData.ShortTrackData.GetTrack(SoundventTypes.ShortIII).Started += OnShortIII;
+    }
 
-                for (int i = 0; i < fires.Length; i++)
-                {
-                    fires[i].transform.DOScale(targetScale, 0.1f).SetId("Scale");
-                }
-            };
+    private void OnShortIII()
+    {
+        new CountDownTimer(MusicOffset + 0.1f).Stopped += () =>
+        {
+            DOTween.Kill("Scale");
+            DOTween.Kill(this);
+            mapExposition = 0.4f;
+
+            for (int i = 0; i < fires.Length; i++)
+            {
+                fires[i].transform.DOScale(targetScale, 0.1f).SetId("Scale");
+            }
         };
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        EnableOnStart.Clear();
     }
 
     public void Update()

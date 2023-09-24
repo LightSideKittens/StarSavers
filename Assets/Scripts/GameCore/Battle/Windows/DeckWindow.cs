@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Battle.BattleBootstrap;
+using static Battle.BattleWorld;
 
 namespace Battle.Windows
 {

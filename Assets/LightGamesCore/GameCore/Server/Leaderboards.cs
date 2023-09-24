@@ -11,6 +11,7 @@ using UnityEngine;
 namespace Core.Server
 {
     public class Leaderboards : JsonBaseConfigData<Leaderboards>
+    
     {
         private enum Result
         {

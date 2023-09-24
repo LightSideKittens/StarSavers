@@ -8,6 +8,7 @@ namespace Core.SingleService
 {
     public abstract class ServiceManager : MonoBehaviour
     {
+        public static event Action Destroyed;
         private static readonly Dictionary<Type, BaseSingleService> Services = new Dictionary<Type, BaseSingleService>();
 
         [SerializeField] private List<BaseSingleService> services;
@@ -26,6 +27,8 @@ namespace Core.SingleService
 
         protected virtual void OnDestroy()
         {
+            Destroyed?.Invoke();
+            Destroyed = null;
             Services.Clear();
         }
 

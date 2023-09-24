@@ -16,12 +16,12 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
     public static event Action<BaseWindow<T>> HiddenWindow;
     public static event Action Showed;
     public static event Action Hidden;
-    public static bool isStaticCalled;
 
     [SerializeField] protected float fadeSpeed = 0.2f;
     private CanvasGroup canvasGroup;
     private Tween showTween;
     private Tween hideTween;
+    private static bool isStaticCalled;
 
     protected virtual Transform Parent => null;
     public RectTransform RectTransform { get; private set; }
@@ -44,6 +44,12 @@ public abstract class BaseWindow<T> : SingleService<T> where T : BaseWindow<T>
             if (ShowByDefault) { Show(); }
             else if(!ShowByDefault) { Hide(); }
         }
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        isStaticCalled = false;
     }
 
     private void InternalShow()

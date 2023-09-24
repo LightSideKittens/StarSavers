@@ -1,7 +1,7 @@
 ﻿using BeatRoyale;
 using Core.Extensions.Unity;
 using GameCore.Battle.Data;
-using static Battle.BattleBootstrap;
+using static Battle.BattleWorld;
 using static BeatRoyale.ShortNoteListener;
 using static SoundventTypes;
 

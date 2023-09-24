@@ -32,7 +32,7 @@ namespace Core
             ContractResolver = UnityJsonContractResolver.Instance
         };
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Reset()
         {
             if (!EditorSettings.enterPlayModeOptionsEnabled)

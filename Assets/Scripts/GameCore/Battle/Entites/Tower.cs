@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Battle;
 using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
 using Core.Server;
+using Core.SingleService;
 using DG.Tweening;
 using GameCore.Battle.Data.Components;
 using GameCore.Battle.Data.Components.HitBox;
-using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 using static SoundventTypes;
@@ -36,6 +37,7 @@ namespace GameCore.Battle.Data
         {
             enabled = false;
             MusicController.EnableOnStart.Add(this);
+            ServiceManager.Destroyed += OnWorldDestroy;
         }
 
         private void Start()
@@ -92,6 +94,11 @@ namespace GameCore.Battle.Data
             }
         }
 
+        private void OnWorldDestroy()
+        {
+            listeners = null;
+        }
+        
         protected override void OnDestroy()
         {
             base.OnDestroy();
@@ -99,9 +106,14 @@ namespace GameCore.Battle.Data
             hitBoxComponent.OnDestroy();
             Towers.Remove(transform);
             currentListener.Started -= Shoot;
-            listeners[2].Started -= OnSoundvent;
-            listeners[1].Started -= OnSoundvent;
-            listeners[0].Started -= OnSoundvent;
+
+            if (listeners != null)
+            {
+                listeners[2].Started -= OnSoundvent;
+                listeners[1].Started -= OnSoundvent;
+                listeners[0].Started -= OnSoundvent;
+            }
+
             Destroyed?.Invoke(transform);
         }
     }

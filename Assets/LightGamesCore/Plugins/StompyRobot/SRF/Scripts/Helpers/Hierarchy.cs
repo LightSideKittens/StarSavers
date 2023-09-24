@@ -16,6 +16,12 @@
             get { return Get(key); }
         }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Reset()
+        {
+            Cache.Clear();
+        }
+
         /// <summary>
         /// Pass in a path (e.g. /Test/Me/One) and get a transform with the hierarchy Test->Me->One.
         /// Any Transforms required below this path will be auto-created.

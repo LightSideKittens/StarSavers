@@ -14,7 +14,8 @@ namespace Core.Server
     public class User : JsonBaseConfigData<User>
     {
         public const long MaxAllowedSize = 4 * 1024 * 1024;
-        [JsonProperty] private string id = "undefined";
+        private const string Undefined = nameof(Undefined);
+        [JsonProperty] private string id = Undefined;
         [JsonProperty] private string nickName = "No Name";
         private static DocumentReference playersCountRef;
 
@@ -83,7 +84,7 @@ namespace Core.Server
         public static void SignIn(Action onSuccess, Action onError = null)
         {
             var userId = Id;
-            if (string.IsNullOrEmpty(userId))
+            if (userId == Undefined)
             {
                 var utc = DateTime.UtcNow;
                 Id = $"Y{utc.Year}M{utc.Month}D{utc.Day}h{utc.Hour}m{utc.Minute}s{utc.Second}ms{utc.Millisecond}";

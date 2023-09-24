@@ -10,25 +10,14 @@ namespace Core.ConfigModule
 {
     public abstract class DatabaseRemoteConfig<T, TConfig> where T : DatabaseRemoteConfig<T, TConfig>, new() where TConfig : BaseConfig<TConfig>, new()
     {
-        private static Func<DocumentReference> getter;
         private static readonly T instance;
-        protected static string UserId { get; private set; }
 
         static DatabaseRemoteConfig()
         {
             instance = new T();
-            getter = GetReference;
         }
 
-        private static DocumentReference GetReference()
-        {
-            getter = GetCreatedReference;
-
-            return instance.Reference;
-        }
-        
-        protected abstract DocumentReference Reference { get; }
-        private static DocumentReference GetCreatedReference() => instance.Reference;
+        protected abstract DocumentReference GetReference(string userId);
 
         public static void Push(Action onSuccess = null, Action onError = null)
         {
@@ -46,7 +35,7 @@ namespace Core.ConfigModule
             SignIn(() =>
             {
                 Burger.Log($"[{typeof(TConfig).Name}] Push");
-                var docRef = getter();
+                var docRef = instance.GetReference(Id);
                 var config = BaseConfig<TConfig>.Config;
                 var json = JsonConvert.SerializeObject(config, config.Settings);
                 var dict = new Dictionary<string, object>()
@@ -98,7 +87,7 @@ namespace Core.ConfigModule
             
             OnAppPause.UnSubscribe(OnApplicationPause);
             OnAppPause.Subscribe(OnApplicationPause);
-            Internal_Fetch(Id, onSuccess: dict =>
+            Internal_Fetch(null, onSuccess: dict =>
             {
                 var config = BaseConfig<TConfig>.Config;
                 var json = (string) dict[config.FileName];
@@ -125,12 +114,10 @@ namespace Core.ConfigModule
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    Burger.Warning($"[{typeof(TConfig).Name}] UserId is Null or Empty!");
                     userId = Id;
                 }
                 
-                UserId = userId;
-                var docRef = getter();
+                var docRef = instance.GetReference(userId);;
 
                 docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
                 {

@@ -12,7 +12,7 @@ using Initializer = BeatRoyale.Interfaces.BaseInitializer<BeatRoyale.Interfaces.
 
 namespace Battle
 {
-    public class BattleBootstrap : ServiceManager
+    public class BattleWorld : ServiceManager
     {
         [SerializeField] private Units units;
         [SerializeField] private Cards cards;

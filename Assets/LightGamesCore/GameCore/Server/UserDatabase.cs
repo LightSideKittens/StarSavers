@@ -5,18 +5,15 @@ namespace Core.ConfigModule
 {
     public class UserDatabase<T> : DatabaseRemoteConfig<UserDatabase<T>, T> where T : BaseConfig<T>, new()
     {
-        protected override DocumentReference Reference
+        protected override DocumentReference GetReference(string userId)
         {
-            get
-            {
-                var name = BaseConfig<T>.Config.FileName;
-                var database = User.Database;
-                
-                return database.Collection("PlayersData")
-                    .Document(UserId)
-                    .Collection("Data")
-                    .Document(name);
-            }
+            var name = BaseConfig<T>.Config.FileName;
+            var database = User.Database;
+            
+            return database.Collection("PlayersData")
+                .Document(userId)
+                .Collection("Data")
+                .Document(name);
         }
     }
 }
