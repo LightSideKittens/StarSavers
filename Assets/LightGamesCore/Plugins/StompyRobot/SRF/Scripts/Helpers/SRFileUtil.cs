@@ -32,22 +32,7 @@ public static class SRFileUtil
         var sign = (i < 0 ? "-" : "");
         double readable = (i < 0 ? -i : i);
         string suffix;
-        if (i >= 0x1000000000000000) // Exabyte
-        {
-            suffix = "EB";
-            readable = i >> 50;
-        }
-        else if (i >= 0x4000000000000) // Petabyte
-        {
-            suffix = "PB";
-            readable = i >> 40;
-        }
-        else if (i >= 0x10000000000) // Terabyte
-        {
-            suffix = "TB";
-            readable = i >> 30;
-        }
-        else if (i >= 0x40000000) // Gigabyte
+        if (i >= 0x40000000) // Gigabyte
         {
             suffix = "GB";
             readable = i >> 20;

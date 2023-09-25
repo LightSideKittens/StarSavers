@@ -1,13 +1,7 @@
-﻿using System;
-using Battle.Windows;
-using BeatRoyale;
-using Common.SingleServices;
-using Core.Server;
-using Core.SingleService;
+﻿using Battle.Windows;
 using GameCore.Battle.Data;
+using LGCore;
 using UnityEngine;
-using static GameCore.Battle.Data.Cannon;
-using static GameCore.Battle.Data.Tower;
 using Initializer = BeatRoyale.Interfaces.BaseInitializer<BeatRoyale.Interfaces.IInitializer>;
 
 namespace Battle
@@ -39,20 +33,7 @@ namespace Battle
 
         private void OnInitialize()
         {
-            if (MatchData.Count == 0)
-            {
-                var loader = Loader.Create();
-                Action onSuccess = Init;
-                onSuccess += loader.Destroy;
-                Leaderboards.GetUserId(userId =>
-                {
-                    MatchData.Add(userId, onSuccess);
-                });
-            }
-            else
-            {
-                Init();
-            }
+            Init();
         }
 
         private void Init()
@@ -61,38 +42,17 @@ namespace Battle
             cards.Init();
             effectors.Init();
             MatchResultWindow.Showing += Unsubscribe;
-            Tower.Destroyed += OnTowerDestroyed;
-            Cannon.Destroyed += OnCannonDestroyed;
             DeckWindow.Show();
-            MusicController.Begin();
         }
 
         private void Unsubscribe()
         {
-            Tower.Destroyed -= OnTowerDestroyed;
-            Cannon.Destroyed -= OnCannonDestroyed;
             MatchResultWindow.Showing -= Unsubscribe;
         }
 
         private void OnApplicationQuit()
         {
             Unsubscribe();
-        }
-
-        private void OnTowerDestroyed(Transform _)
-        {
-            if (Towers.Count == 0)
-            {
-                MatchResultWindow.Show(false);
-            }
-        }
-
-        private void OnCannonDestroyed(Transform _)
-        {
-            if (Cannons.Count == 0)
-            {
-                MatchResultWindow.Show(true);
-            }
         }
     }
 }

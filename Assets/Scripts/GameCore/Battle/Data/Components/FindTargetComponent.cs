@@ -12,7 +12,7 @@ namespace GameCore.Battle.Data.Components
     {
         [NonSerialized] public Transform target;
         [NonSerialized] public bool isOpponent;
-        [OdinSerialize] private List<TargetProvider> providers = new() {new AllUnits(), new AllBuildings()};
+        [OdinSerialize] private List<TargetProvider> providers = new() {new AllUnits()};
         private Transform transform;
 
         public void Init(Transform transform, bool isOpponent)

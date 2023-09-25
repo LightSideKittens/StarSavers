@@ -1,8 +1,5 @@
 ﻿using System;
-using Core.SingleService;
-using DG.Tweening;
-using DG.Tweening.Core;
-using UnityEngine;
+using LGCore;
 
 namespace BeatRoyale.Interfaces
 {

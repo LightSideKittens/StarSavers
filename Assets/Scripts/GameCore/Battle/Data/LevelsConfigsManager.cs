@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Battle.Data.GameProperty;
-using Core.ConfigModule;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -49,11 +48,12 @@ namespace Battle.Data
                 levelsByEntityName.Add(levelContainer.entityName, levelContainer.levels);
             }
 
+            /*
             if (!ConfigVersions.Compare(ChangedLevels))
             {
                 RecomputeAllLevels();
                 ConfigVersions.Update(ChangedLevels);
-            }
+            }*/
         }
 
         public static void UpgradeLevel(string entityName, int level)

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Core.ConfigModule;
+using LGCore.ConfigModule;
 using Newtonsoft.Json;
 
 namespace Battle.Data
 {
-    public class EntiProps : JsonBaseConfigData<EntiProps>
+    public class EntiProps : BaseConfig<EntiProps>
     {
         [JsonProperty("props")] 
         public Dictionary<string, Dictionary<string, ValuePercent>> byName = new();

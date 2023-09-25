@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Core.ConfigModule;
+using LGCore.ConfigModule;
 
 namespace GameCore.Battle.Data
 {
-    public class CardDecks : JsonBaseConfigData<CardDecks>
+    public class CardDecks : BaseConfig<CardDecks>
     {
         public List<string> Attack { get; } = new();
         public List<string> Defence { get; } = new();

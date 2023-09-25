@@ -1,14 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Battle.Data.GameProperty;
-using Core.ConfigModule;
-using Core.Server;
-using Firebase.Extensions;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEditor;
-using UnityEngine;
 
 namespace Battle.Data
 {
@@ -153,7 +146,7 @@ namespace Battle.Data
         {
             if (IsConfirmedPush)
             {
-                EditorUtility.DisplayProgressBar("Pushing...", "Pushing in progress...", 0.5f);
+                /*EditorUtility.DisplayProgressBar("Pushing...", "Pushing in progress...", 0.5f);
                 Admin.SignIn(() =>
                 {
                     var configsRef = Admin.Storage.RootReference.Child(FolderNames.Configs);
@@ -176,6 +169,7 @@ namespace Battle.Data
                         }
                     }
                 });
+                */
                 
                 
             }

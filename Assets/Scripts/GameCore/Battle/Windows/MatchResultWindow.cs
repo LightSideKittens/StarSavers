@@ -1,5 +1,6 @@
 ﻿using Common.SingleServices.Windows;
-using Core.Extensions.Unity;
+using LGCore;
+using LGCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,7 +20,6 @@ namespace Battle.Windows
             Show();
             PlayerWorld.Stop();
             OpponentWorld.Stop();
-            MusicController.Stop();
             AnimatableWindow.Clean();
             Instance.Internal_Show(isWin);
         }

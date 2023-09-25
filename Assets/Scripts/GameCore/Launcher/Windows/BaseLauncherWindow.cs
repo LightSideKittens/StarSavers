@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using LGCore;
 using UnityEngine;
 
 namespace BeatRoyale.Windows
@@ -11,7 +12,7 @@ namespace BeatRoyale.Windows
         protected virtual int Internal_Index { get; }
         private float XShow => ControlPanel.CurrentShowedWindowIndex > Internal_Index ? ControlPanel.LeftX : ControlPanel.RightX;
         private float XHide => ControlPanel.CurrentShowingWindowIndex > Internal_Index ? ControlPanel.LeftX : ControlPanel.RightX;
-        public override float DefaultAlpha => 1;
+        protected override float DefaultAlpha => 1;
 
         protected override void Init()
         {
@@ -34,22 +35,28 @@ namespace BeatRoyale.Windows
             ControlPanel.CurrentShowedWindowIndex = Internal_Index;
         }
 
-        protected override Tween GetShowAnimation()
+        protected override Tween ShowAnim
         {
-            RectTransform.anchoredPosition = new Vector2(XShow, 0);
-            var sequence = DOTween.Sequence()
-                /*.Insert(0, base.GetShowAnimation())*/
-                .Insert(0, RectTransform.DOAnchorPos(Vector2.zero, fadeSpeed));
-            return sequence;
+            get
+            {
+                RectTransform.anchoredPosition = new Vector2(XShow, 0);
+                var sequence = DOTween.Sequence()
+                    /*.Insert(0, base.GetShowAnimation())*/
+                    .Insert(0, RectTransform.DOAnchorPos(Vector2.zero, fadeSpeed));
+                return sequence;
+            }
         }
-        
-        protected override Tween GetHideAnimation()
+
+        protected override Tween HideAnim
         {
-            var sequence = DOTween.Sequence()
-                /*.Insert(0, base.GetHideAnimation())*/
-                .Insert(0, RectTransform.DOAnchorPos(new Vector2(XHide, 0), fadeSpeed));
+            get
+            {
+                var sequence = DOTween.Sequence()
+                    /*.Insert(0, base.GetHideAnimation())*/
+                    .Insert(0, RectTransform.DOAnchorPos(new Vector2(XHide, 0), fadeSpeed));
             
-            return sequence;
+                return sequence;
+            }
         }
     }
 }

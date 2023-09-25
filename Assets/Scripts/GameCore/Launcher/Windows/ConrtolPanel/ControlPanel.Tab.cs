@@ -1,6 +1,7 @@
 ﻿using System;
-using Core.Extensions.Unity;
 using DG.Tweening;
+using LGCore;
+using LGCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 

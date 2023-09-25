@@ -1,6 +1,8 @@
 ﻿using System;
 using Battle.Data;
 using Battle.Data.GameProperty;
+using DG.Tweening;
+using LGCore.Async;
 using UnityEngine;
 using Move = GameCore.Battle.Data.Components.MoveComponent;
 using Attack = GameCore.Battle.Data.Components.AttackComponent;
@@ -29,22 +31,19 @@ namespace GameCore.Battle.Data
         protected override void OnApply()
         {
             radiusRenderer.color = new Color(0.68f, 0.17f, 1f, 0.39f);
-            
-            var timer = new CountDownTimer(duration, true);
-            timer.Updated += x =>
+
+            Wait.Run(duration, _ =>
             {
                 foreach (var target in findTargetComponent.FindAll(radius))
                 {
                     target.Get<Move>().Buffs.Set(Name, moveSpeedBuff, buffDuration);
                     target.Get<Attack>().Buffs.Set(Name, damageBuff, buffDuration);
                 }
-            };
-
-            timer.Stopped += () =>
+            }).OnComplete(() =>
             {
                 radiusRenderer.gameObject.SetActive(false);
                 isApplied = false;
-            };
+            });
         }
     }
 }

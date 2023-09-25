@@ -1,6 +1,5 @@
 ﻿using System;
 using Common.SingleServices.Windows;
-using Core.ReferenceFrom.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using static Common.SingleServices.Windows.AnimatableWindow;

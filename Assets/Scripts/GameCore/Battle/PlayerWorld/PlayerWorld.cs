@@ -1,12 +1,10 @@
-﻿using Core.Server;
-
-namespace Battle
+﻿namespace Battle
 {
     public class PlayerWorld : BasePlayerWorld<PlayerWorld>
     {
         private void Start()
         {
-            UserId = User.Id;
+            UserId = "Player";
         }
     }
 }

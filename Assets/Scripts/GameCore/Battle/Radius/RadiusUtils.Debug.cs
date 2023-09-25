@@ -13,8 +13,6 @@ namespace GameCore.Battle
         static RadiusUtils()
         {
             Unit.Destroyed += OnUnitDestroyed;
-            Tower.Destroyed += OnUnitDestroyed;
-            Cannon.Destroyed += OnUnitDestroyed;
         }
 
         private static void OnUnitDestroyed(Transform obj)

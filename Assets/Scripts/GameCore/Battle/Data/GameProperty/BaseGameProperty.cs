@@ -7,7 +7,7 @@ using Sirenix.Utilities;
 using UnityEditor;
 
 #if UNITY_EDITOR
-using LightGamesCore.GameCore.Editor;
+using LGCore.Editor;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 #endif
@@ -108,7 +108,7 @@ namespace Battle.Data.GameProperty
         {
             if (IconsByType.TryGetValue(GetType(), out var tex))
             {
-                icon = LightGamesIcons.Get(tex);
+                icon = LGIcons.Get(tex);
             }
         }
 

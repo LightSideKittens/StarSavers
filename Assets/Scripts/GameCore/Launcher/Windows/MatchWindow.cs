@@ -1,6 +1,4 @@
-﻿using Common.SingleServices;
-using Core.Extensions.Unity;
-using Core.Server;
+﻿using LGCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,16 +18,7 @@ namespace BeatRoyale.Windows
 
         private void Match()
         {
-            MatchData.Clear();
-            var loader = Loader.Create();
-            Leaderboards.GetUserId(opponentUserId =>
-            {
-                MatchData.Add(opponentUserId, () =>
-                {
-                    loader.Destroy();
-                    SceneManager.LoadScene(1);
-                });
-            });
+            SceneManager.LoadScene(1);
         }
     }
 }

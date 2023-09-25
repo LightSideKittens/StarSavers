@@ -1,4 +1,5 @@
 ﻿using GameCore.Attributes;
+using LGCore;
 using UnityEngine;
 
 namespace BeatRoyale.Windows

@@ -19,7 +19,6 @@ namespace GameCore.Battle.Data.Components
         protected float radius;
         protected Transform transform;
         private int currentIndex;
-        private TactListener listener;
         private Vector2 lastHitPoint;
         protected float Damage => damage * Buffs;
         public bool IsInRadius { get; private set; }
@@ -34,7 +33,6 @@ namespace GameCore.Battle.Data.Components
             radius = props[nameof(RadiusGP)].Value;
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].value, 2);
-            listener = TactListener.Listen(-duration).OnTicked(OnTactTicked);
             DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
             Add(transform, this);
             Buffs = new Buffs();
@@ -51,8 +49,6 @@ namespace GameCore.Battle.Data.Components
 
         public void OnDestroy()
         {
-            listener.Ticked -= OnTactTicked;
-            listener.Dispose();
             Remove(transform);
         }
 

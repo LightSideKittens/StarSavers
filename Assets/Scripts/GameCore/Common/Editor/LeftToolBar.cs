@@ -1,8 +1,11 @@
-﻿using Battle.Windows;
+﻿using Battle.Data;
+using Battle.Windows;
 using GameCore.Battle;
+using LGCore.ConfigModule;
+using LGCore.ConfigModule.Editor;
 using UnityEngine;
 using UnityToolbarExtender;
-using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
+using static LGCore.ConfigModule.BaseConfig<LGCore.ConfigModule.DebugData>;
 namespace BeatRoyale
 {
     public static partial class ToolBar
@@ -18,21 +21,21 @@ namespace BeatRoyale
             if (DrawToggle("Server Enabled", "Server Disabled", serverEnabled))
             {
                 Config.serverEnabled = !serverEnabled;
-                Save();
+                ConfigUtils.Save<DebugData>();
             }
 
             if (DrawToggle("Radius Showed", "Radius Hidden", needShowRadius))
             {
                 Config.needShowRadius = !needShowRadius;
                 RadiusUtils.SetActiveRadiuses(!needShowRadius);
-                Save();
+                ConfigUtils.Save<DebugData>();
             }
 
             if (DrawToggle("Infinity Mana Enabled", "Infinity Mana Disabled", infinityMana, 150))
             {
                 Config.infinityMana = !infinityMana;
                 DeckWindow.InfinityMana = !infinityMana;
-                Save();
+                ConfigUtils.Save<DebugData>();
             }
         }
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using BeatRoyale;
-using Core.SingleService;
 using GameCore.Battle.Data;
+using LGCore;
 using UnityEngine;
 using UnitsByTransform = GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
 
@@ -18,7 +17,7 @@ namespace Battle
             set
             {
                 userId = value;
-                IsOpponent = UserId != MatchData.OpponentUserId;
+                IsOpponent = UserId != "Opponent";
             }
         }
 
@@ -40,7 +39,6 @@ namespace Battle
         {
             base.Awake();
             enabled = false;
-            MusicController.EnableOnStart.Add(this);
         }
 
         public static void Spawn(Unit prefab, Vector2 position) => Instance.Internal_Spawn(prefab, position);

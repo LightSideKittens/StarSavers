@@ -1,5 +1,5 @@
 ﻿#if DEBUG
-using static Core.ConfigModule.BaseConfig<Core.ConfigModule.DebugData>;
+using static LGCore.ConfigModule.BaseConfig<LGCore.ConfigModule.DebugData>;
 
 namespace Battle.Windows
 {

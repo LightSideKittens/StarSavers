@@ -25,9 +25,9 @@ MonoBehaviour:
     colorHeaderTitle: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 1}
     colorHeaderBackground: {r: 0.9098039, g: 0.9098039, b: 0.9098039, a: 1}
   professionalTheme:
-    colorRowEven: {r: 0.21176471, g: 0.21176471, b: 0.21176471, a: 1}
-    colorRowOdd: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
-    colorGrid: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+    colorRowEven: {r: 0.1137255, g: 0.13725491, b: 0.15686275, a: 1}
+    colorRowOdd: {r: 0.1137255, g: 0.13725491, b: 0.15686275, a: 1}
+    colorGrid: {r: 0.048015304, g: 0.07932785, b: 0.122641504, a: 1}
     colorTreeView: {r: 0.41960785, g: 0.41960785, b: 0.41960785, a: 1}
     colorLockIcon: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
     tagColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
@@ -63,7 +63,7 @@ MonoBehaviour:
   - RectTransform
   componentLimited: 0
   componentSize: 16
-  componentSpacing: 2
+  componentSpacing: 0
   displayTag: 1
   tagAlignment: 0
   displayLayer: 1
@@ -73,7 +73,17 @@ MonoBehaviour:
   applyLayerTargetAndChild: 1
   separatorStartWith: --->
   separatorDefaultTag: Untagged
-  useInstantBackground: 1
-  instantBackgroundColors: []
+  useInstantBackground: 0
+  instantBackgroundColors:
+  - active: 0
+    useStartWith: 0
+    useTag: 0
+    useLayer: 0
+    startWith: 
+    tag: 
+    layer:
+      serializedVersion: 2
+      m_Bits: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
   onlyDisplayWhileMouseEnter: 0
   contentDisplay: 1

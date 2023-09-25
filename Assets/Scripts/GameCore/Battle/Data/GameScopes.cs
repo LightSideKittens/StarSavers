@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Core.ConfigModule;
+using LGCore.ConfigModule;
 using Newtonsoft.Json;
-using UnityEngine;
 
 namespace Battle.Data
 {
-    public class GameScopes : JsonBaseConfigData<GameScopes>
+    public class GameScopes : BaseResourcesConfig<GameScopes>
     {
-        protected override bool NeedAutoSave => false;
-        public override JsonSerializerSettings Settings { get; } = new() {ContractResolver = new GameScopesContractResolver()};
+        protected override JsonSerializerSettings Settings { get; } = new() {ContractResolver = new GameScopesContractResolver()};
 
         [Serializable]
         public class Scope

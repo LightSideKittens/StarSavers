@@ -2,13 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Battle.Data.GameProperty;
-using Core.ConfigModule;
-using Core.Server;
-using Firebase.Extensions;
+using LGCore.ConfigModule.Editor;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEditor;
 using UnityEngine;
 using static Battle.Data.LevelsConfigsManager;
@@ -51,8 +47,6 @@ namespace Battle.Data
             var configEntityName = splitedName[0];
             EntityName = GameScopes.IsEntityName(configEntityName) ? configEntityName : null;
             int.TryParse(splitedName[^1], out currentLevel);
-            environment ??= Local;
-            OnEnvironmentChanged();
         }
 
         [OnInspectorInit]
@@ -214,33 +208,6 @@ namespace Battle.Data
         private Color unsetColor = new Color(0.84f, 0.35f, 0.29f);
         private bool canSetLevel;
         private bool cannotSetLevel;
-        private const string Local = nameof(Local);
-        private const string DefaultServer = "Default & Server";
-        private IEnumerable<string> configsEnvironment => new[] {Local, DefaultServer};
-        private bool CanUseDefaultServer => environment == DefaultServer && currentLevel == 1;
-        private bool IsConfirmedPush => EditorUtility.DisplayDialog(
-            $"Pushing", 
-            $"Push config: {name}?", 
-            "Yes", 
-            "No");
-        
-        [ShowInInspector]
-        [ValueDropdown("configsEnvironment")]
-        [PropertyOrder(1)]
-        [OnValueChanged("OnEnvironmentChanged")]
-        private string environment = Local;
-
-        private void OnEnvironmentChanged()
-        {
-            if (CanUseDefaultServer)
-            {
-                UnlockedLevels.LoadAsDefault();
-            }
-            else
-            {
-                UnlockedLevels.LoadOnNextAccess();
-            }
-        }
 
         [Button("Set Level", ButtonSizes.Large)]
         [HorizontalGroup("LevelButtons")]
@@ -256,22 +223,7 @@ namespace Battle.Data
             }
             else
             {
-                if (CanUseDefaultServer)
-                {
-                    if (IsConfirmedPush)
-                    {
-                        UnlockedLevels.LoadAsDefault();
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    UnlockedLevels.LoadOnNextAccess();
-                }
-                
+                UnlockedLevels.LoadOnNextAccess();
                 UnlockedLevels.ByName[EntityName] = currentLevel;
                 RecomputeAllAndSave();
             }
@@ -291,22 +243,7 @@ namespace Battle.Data
             }
             else
             {
-                if (CanUseDefaultServer)
-                {
-                    if (IsConfirmedPush)
-                    {
-                        UnlockedLevels.LoadAsDefault();
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    UnlockedLevels.LoadOnNextAccess();
-                }
-                
+                UnlockedLevels.LoadOnNextAccess();
                 var levels = UnlockedLevels.ByName;
 
                 if (levels.TryGetValue(EntityName, out var level))
@@ -329,45 +266,10 @@ namespace Battle.Data
         {
             Editor_RecomputeAllLevels();
 
-            if (CanUseDefaultServer)
-            {
-                UnlockedLevels.Editor_SaveAsDefault();
-                EntiProps.Editor_SaveAsDefault();
-            }
-
-            UnlockedLevels.Save();
-            EntiProps.Save();
-
-            if (!CanUseDefaultServer)
-            {
-                UnlockedLevels.LoadOnNextAccess();
-                EntiProps.LoadOnNextAccess();
-            }
-            else
-            {
-                EditorUtility.DisplayProgressBar("Pushing...", "Pushing in progress...", 0.5f);
-                Admin.SignIn(() =>
-                {
-                    var configsRef = Admin.Storage.RootReference.Child(FolderNames.Configs);
-                    var unlockedLevelsRef = configsRef.Child($"{UnlockedLevels.Config.FileName}.json");
-                    var entiPropsRef = configsRef.Child($"{EntiProps.Config.FileName}.json");
-                    unlockedLevelsRef.PutBytesAsync(UnlockedLevels.Editor_GetBytes()).ContinueWithOnMainThread(task => OnComplete(task, "unlockedLevels"));
-                    entiPropsRef.PutBytesAsync(EntiProps.Editor_GetBytes()).ContinueWithOnMainThread(task => OnComplete(task, "entiProps"));
-
-                    void OnComplete(Task task, string name)
-                    {
-                        EditorUtility.ClearProgressBar();
-                        if (task.IsCompletedSuccessfully)
-                        {
-                            Burger.Log($"[{nameof(LevelConfig)}] Push Success! Config: {name}");
-                        }
-                        else
-                        {
-                            Burger.Error($"[{nameof(LevelConfig)}] Push Failure! Config: {name}. Error: {task.Exception.Message}");
-                        }
-                    }
-                });
-            }
+            ConfigUtils.Save<UnlockedLevels>();
+            ConfigUtils.Save<EntiProps>();
+            UnlockedLevels.LoadOnNextAccess();
+            EntiProps.LoadOnNextAccess();
 
             AssetDatabase.Refresh();
         }

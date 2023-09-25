@@ -1,5 +1,7 @@
 ﻿//#define SR_CONSOLE_DEBUG
 
+using LGCore.Runtime;
+
 namespace SRDebugger.UI.Tabs
 {
     using System;
@@ -28,6 +30,8 @@ namespace SRDebugger.UI.Tabs
         public ScrollRect StackTraceScrollRect;
         [RequiredField]
         public Text StackTraceText;
+        [RequiredField]
+        public Button StackTraceCopyButton;
         [RequiredField]
         public Toggle ToggleErrors;
         [RequiredField]
@@ -62,6 +66,7 @@ namespace SRDebugger.UI.Tabs
 
             FilterToggle.onValueChanged.AddListener(FilterToggleValueChanged);
             FilterBarContainer.SetActive(FilterToggle.isOn);
+            StackTraceCopyButton.onClick.AddListener(CopyStackTrace);
 
 #if UNITY_5_3_OR_NEWER
             FilterField.onValueChanged.AddListener(FilterValueChanged);
@@ -78,6 +83,11 @@ namespace SRDebugger.UI.Tabs
             PopulateStackTraceArea(null);
 
             Refresh();
+        }
+
+        private void CopyStackTrace()
+        {
+            Clipboard.Copy(StackTraceText.text);
         }
 
 

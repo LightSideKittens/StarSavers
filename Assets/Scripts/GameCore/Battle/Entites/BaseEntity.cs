@@ -19,13 +19,13 @@ namespace GameCore.Battle.Data
         public static Dictionary<string, ValuePercent> GetProperties(Transform transform)
         {
             var unit = Get(transform);
-            return MatchData.GetProperties(unit.UserId).byName[unit.entityName];
+            return EntiProps.ByName[unit.entityName];
         }
 
         public virtual void Init(string userId)
         {
             UserId = userId;
-            IsOpponent = UserId != User.Id;
+            IsOpponent = UserId == "Opponent";
             Add(transform, this);
         }
 

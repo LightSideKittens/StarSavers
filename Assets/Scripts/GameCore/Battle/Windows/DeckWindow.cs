@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Battle.Data;
 using GameCore.Battle.Data;
+using LGCore;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
