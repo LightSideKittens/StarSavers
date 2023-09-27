@@ -1,11 +1,9 @@
 ﻿using System;
 using Battle.Data.GameProperty;
-using BeatRoyale;
 using DG.Tweening;
 using UnityEngine;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.AttackComponent>;
-using static GameCore.Battle.RadiusUtils;
 
 namespace GameCore.Battle.Data.Components
 {
@@ -33,7 +31,7 @@ namespace GameCore.Battle.Data.Components
             radius = props[nameof(RadiusGP)].Value;
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].value, 2);
-            DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
+            //DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
             Add(transform, this);
             Buffs = new Buffs();
             OnInit();

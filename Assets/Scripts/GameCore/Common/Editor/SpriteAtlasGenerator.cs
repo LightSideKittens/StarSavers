@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEditor.U2D;
-using UnityEngine;
 using UnityEngine.U2D;
 
 namespace BeatRoyale

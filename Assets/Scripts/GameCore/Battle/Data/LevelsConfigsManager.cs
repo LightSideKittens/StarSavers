@@ -26,8 +26,7 @@ namespace Battle.Data
             public string MissedLevelMessage => $"Missed level: {missedLevel}";
             public string LevelErrorMessage => $"Level Config <{levelErrorName}> has error";
         }
-
-        public const string ChangedLevels = "changedLevels";
+        
         public static event Action LevelUpgraded;
         private static LevelsConfigsManager Instance { get; set; }
 
@@ -51,49 +50,37 @@ namespace Battle.Data
             RecomputeAllLevels();
         }
 
-        public static void UpgradeLevel(string entityName, int level)
+        public static bool CanUpgrade(string entityName)
         {
-            Burger.Log($"[{nameof(LevelsConfigsManager)}] UpgradeLevel. Entity: {entityName} | Level: {level}");
-            
             if (GameScopes.IsEntityName(entityName))
+            {
+                UnlockedLevels.ByName.TryGetValue(entityName, out var currentLevel);
+                
+                var levels = Instance.levelsByEntityName[entityName];
+                return currentLevel < levels.Count;
+            }
+            
+            return false;
+        }
+
+        public static void UpgradeLevel(string entityName)
+        {
+            if (CanUpgrade(entityName))
             {
                 var unlockedLevels = UnlockedLevels.ByName;
                 unlockedLevels.TryGetValue(entityName, out var currentLevel);
 
-                if (level - currentLevel == 1)
-                {
-                    var dict = new Dictionary<string, List<BaseGameProperty>>();
-                    Instance.levelsByEntityName[entityName][level-1].InitProperties(dict);
-                    
-                    ComputeLevel(dict);
+                var dict = new Dictionary<string, List<BaseGameProperty>>();
+                Instance.levelsByEntityName[entityName][currentLevel].InitProperties(dict);
+                
+                ApplyLevel(dict);
 
-                    UnlockedLevels.ByName[entityName] = level;
-                    LevelUpgraded?.Invoke();
-                }
-                else
-                {
-                    var diff = level - currentLevel;
-                    var message = "Cannot upgrade level by more than one at once.";
-                    
-                    if (diff == 0)
-                    {
-                        message = "Cannot upgrade the same level";
-                    }
-                    else if(diff < 0)
-                    {
-                        message = "Cannot downgrade level";
-                    }
-
-                    Burger.Error($"[{nameof(LevelsConfigsManager)}] {message} Target level: {level}, Current level: {currentLevel}");
-                } 
-            }
-            else
-            {
-                Burger.Error($"[{nameof(LevelsConfigsManager)}] Scope: {entityName} is not Entity Scope");
+                UnlockedLevels.ByName[entityName] = currentLevel + 1;
+                LevelUpgraded?.Invoke();
             }
         }
 
-        private static void ComputeLevel(Dictionary<string, List<BaseGameProperty>> dict)
+        private static void ApplyLevel(Dictionary<string, List<BaseGameProperty>> dict)
         {
             var entitiesProperties = EntiProps.ByName;
 
@@ -147,11 +134,13 @@ namespace Battle.Data
                 if (UnlockedLevels.ByName.TryGetValue(levelsContainer.entityName, out var unlockedLevel))
                 {
                     var dict = new Dictionary<string, List<BaseGameProperty>>();
+                    
                     for (int j = 0; j < unlockedLevel; j++)
                     {
                         levelsContainer.levels[j].InitProperties(dict);
-                        ComputeLevel(dict);
                     }
+                    
+                    ApplyLevel(dict);
                 }
             }
         }
