@@ -8,11 +8,7 @@ using UnityEngine;
 
 internal class AddressablesWindowExt : BaseWindowExtender
 {
-    protected override Type GetWindowType()
-    {
-        return Assembly.Load("Unity.Addressables.Editor")
-            .GetType("UnityEditor.AddressableAssets.GUI.AddressableAssetsWindow");
-    }
+    protected override Type WindowType => Assembly.Load("Unity.Addressables.Editor").GetType("UnityEditor.AddressableAssets.GUI.AddressableAssetsWindow");
 
     public override void OnPreGUI() { }
 

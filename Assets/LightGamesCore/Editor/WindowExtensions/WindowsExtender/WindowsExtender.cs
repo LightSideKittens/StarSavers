@@ -24,7 +24,8 @@ internal static class WindowsExtender
         var types = assembly.GetTypes();
         //Harmony = new Harmony("com.yourname.yourproject");
         var baseType = typeof(BaseWindowExtender);
-        
+        new AddressablesWindowExt();
+        new GameViewExt();
         for (int i = 0; i < types.Length; i++)
         {
             var type = types[i];

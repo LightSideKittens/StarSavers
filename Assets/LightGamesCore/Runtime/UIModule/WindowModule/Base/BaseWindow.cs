@@ -32,8 +32,11 @@ namespace LGCore
             base.Init();
             canvasGroup = GetComponent<CanvasGroup>();
             canvasGroup.alpha = DefaultAlpha;
-            GetComponent<Canvas>().sortingOrder = SortingOrder;
-            
+            var canvas = GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            canvas.worldCamera = Camera.main;
+            canvas.sortingOrder = SortingOrder + 30000;
+
             transform.SetParent(Parent, false);
             RectTransform = (RectTransform)transform;
             

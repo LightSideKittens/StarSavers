@@ -9,12 +9,15 @@ public class GameViewExt : BaseWindowExtender
     public static Vector2 ScreenSize { get; private set; }
     private static PropertyInfo viewRectMethod;
     private static MethodInfo screenSizeMethod;
-    protected override Type GetWindowType()
+    protected override Type WindowType
     {
-        var type = Type.GetType("UnityEditor.GameView,UnityEditor");
-        viewRectMethod = type.GetProperty("targetInView", BindingFlags.NonPublic | BindingFlags.Instance);
-        screenSizeMethod = type.GetMethod("GetSizeOfMainGameView", BindingFlags.NonPublic | BindingFlags.Static);
-        return Type.GetType("UnityEditor.GameView,UnityEditor");
+        get
+        {
+            var type = Type.GetType("UnityEditor.GameView,UnityEditor");
+            viewRectMethod = type.GetProperty("targetInView", BindingFlags.NonPublic | BindingFlags.Instance);
+            screenSizeMethod = type.GetMethod("GetSizeOfMainGameView", BindingFlags.NonPublic | BindingFlags.Static);
+            return Type.GetType("UnityEditor.GameView,UnityEditor");
+        }
     }
 
     public override void OnPreGUI() { }

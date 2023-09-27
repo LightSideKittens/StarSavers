@@ -48,12 +48,7 @@ namespace Battle.Data
                 levelsByEntityName.Add(levelContainer.entityName, levelContainer.levels);
             }
 
-            /*
-            if (!ConfigVersions.Compare(ChangedLevels))
-            {
-                RecomputeAllLevels();
-                ConfigVersions.Update(ChangedLevels);
-            }*/
+            RecomputeAllLevels();
         }
 
         public static void UpgradeLevel(string entityName, int level)

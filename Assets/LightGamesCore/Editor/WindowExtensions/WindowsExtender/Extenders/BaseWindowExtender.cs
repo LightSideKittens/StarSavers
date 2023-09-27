@@ -5,11 +5,11 @@ using UnityEditor;
 using UnityEngine;
 using static WindowsExtender;
 
-public abstract class BaseWindowExtender
+public class BaseWindowExtender
 {
-    protected abstract Type GetWindowType();
-    public abstract void OnPreGUI();
-    public abstract void OnPostGUI();
+    protected virtual Type WindowType => typeof(WindowsExtender);
+    public virtual void OnPreGUI(){}
+    public virtual void OnPostGUI(){}
     protected Rect Rect => GUIUtility.ScreenToGUIRect(window.position);
     protected Type windowType;
     protected EditorWindow window;
@@ -17,7 +17,7 @@ public abstract class BaseWindowExtender
     public BaseWindowExtender()
     {
         var flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-        windowType = GetWindowType();
+        windowType = WindowType;
         var originalOnGui = windowType.GetMethod("OnGUI", flags);
         Extenders.Add(GetType(), this);
         var prefix = OnPreGUIMethod.MakeGenericMethod(GetType());

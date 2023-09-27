@@ -26,6 +26,7 @@ namespace BeatRoyale
             Application.targetFrameRate = 60;
 #endif
             levelsConfigsManager.Init();
+            onInit();
         }
     }
 }
