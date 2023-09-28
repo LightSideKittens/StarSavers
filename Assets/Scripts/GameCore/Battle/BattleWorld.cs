@@ -11,9 +11,6 @@ namespace Battle
         [SerializeField] private Units units;
         [SerializeField] private Cards cards;
         [SerializeField] private Effectors effectors;
-        [SerializeField] private MeshRenderer spawnArea;
-        [SerializeField] private MeshRenderer opponentSpawnArea;
-        [SerializeField] private BoxCollider2D arenaBox;
         public static MeshRenderer SpawnArea { get; private set; }
         public static MeshRenderer OpponentSpawnArena { get; private set; }
         public static BoxCollider2D ArenaBox { get; private set; }
@@ -21,9 +18,6 @@ namespace Battle
         protected override void Awake()
         {
             base.Awake();
-            SpawnArea = spawnArea;
-            OpponentSpawnArena = opponentSpawnArea;
-            ArenaBox = arenaBox;
         }
 
         private void Start()
