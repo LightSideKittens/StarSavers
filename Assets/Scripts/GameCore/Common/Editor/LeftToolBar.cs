@@ -1,6 +1,4 @@
-﻿using Battle.Data;
-using Battle.Windows;
-using GameCore.Battle;
+﻿using Battle.Windows;
 using LGCore.ConfigModule;
 using LGCore.ConfigModule.Editor;
 using UnityEngine;
@@ -27,7 +25,6 @@ namespace BeatRoyale
             if (DrawToggle("Radius Showed", "Radius Hidden", needShowRadius))
             {
                 Config.needShowRadius = !needShowRadius;
-                RadiusUtils.SetActiveRadiuses(!needShowRadius);
                 ConfigUtils.Save<DebugData>();
             }
 

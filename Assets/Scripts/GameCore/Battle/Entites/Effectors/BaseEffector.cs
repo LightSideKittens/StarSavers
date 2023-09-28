@@ -4,7 +4,6 @@ using Battle.Data.GameProperty;
 using GameCore.Battle.Data.Components;
 using Sirenix.Serialization;
 using UnityEngine;
-using static GameCore.Battle.RadiusUtils;
 
 namespace GameCore.Battle.Data
 {
@@ -39,7 +38,6 @@ namespace GameCore.Battle.Data
             radiusRenderer.sortingOrder = sortingOrder;
             var transform = radiusRenderer.transform;
             transform.position = position;
-            transform.localScale = new Vector2(X * radius, Y * radius) * 2;
         }
 
         public void EndDrawRadius()

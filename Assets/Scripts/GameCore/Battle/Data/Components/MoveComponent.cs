@@ -1,10 +1,7 @@
 ﻿using System;
-using Battle.Data;
 using Battle.Data.GameProperty;
-using BeatRoyale;
 using UnityEngine;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.MoveComponent>;
-using static GameCore.Battle.RadiusUtils;
 
 namespace GameCore.Battle.Data.Components
 {
@@ -111,7 +108,6 @@ namespace GameCore.Battle.Data.Components
                     var direction = (Vector2)target.position - position;
                     TryByPass(ref direction);
                     direction = direction.normalized;
-                    ToPerspective(ref direction);
                     position += direction * (Speed * Time.deltaTime);
                     rigidbody.position = position;
                 }
