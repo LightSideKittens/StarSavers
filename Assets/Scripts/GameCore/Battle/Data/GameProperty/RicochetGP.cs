@@ -8,7 +8,7 @@ namespace Battle.Data.GameProperty
         public decimal radius;
         public int ricochetCount;
 
-        public static implicit operator decimal(RicochetData data)
+        public static implicit operator float(RicochetData data)
         {
             var newBinary = 1_000_000_00;
             newBinary += data.decreasePercent * 100000;
@@ -26,7 +26,7 @@ namespace Battle.Data.GameProperty
             return a;
         }
 
-        public static RicochetData Get(decimal value)
+        public static RicochetData Get(float value)
         {
             var val = (int)value;
             var data = new RicochetData()
@@ -43,7 +43,7 @@ namespace Battle.Data.GameProperty
     [Serializable]
     public class RicochetGP : BaseGameProperty
     {
-        protected override decimal ComputeValue(decimal val)
+        protected override float ComputeValue(float val)
         {
             var data = RicochetData.Get(val);
             var valData = RicochetData.Get(value);

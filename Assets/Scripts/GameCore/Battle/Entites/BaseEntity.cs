@@ -15,7 +15,8 @@ namespace GameCore.Battle.Data
         protected virtual IEnumerable<string> Entities => GameScopes.EntitiesNames;
         
         [SerializeField, ValueDropdown(nameof(Entities))] private string entityName;
-        
+
+        public string EntityName => entityName;
         public static Dictionary<string, ValuePercent> GetProperties(Transform transform)
         {
             var unit = Get(transform);

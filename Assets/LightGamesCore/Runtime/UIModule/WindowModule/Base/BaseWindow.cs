@@ -20,6 +20,7 @@ namespace LGCore
         private Tween showTween;
         private Tween hideTween;
 
+        public static Canvas Canvas { get; private set; }
         protected virtual Transform Parent => null;
         public RectTransform RectTransform { get; private set; }
         public virtual int SortingOrder => 0;
@@ -33,6 +34,7 @@ namespace LGCore
             canvasGroup = GetComponent<CanvasGroup>();
             canvasGroup.alpha = DefaultAlpha;
             var canvas = GetComponent<Canvas>();
+            Canvas = canvas;
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             canvas.worldCamera = Camera.main;
             canvas.sortingOrder = SortingOrder + 30000;

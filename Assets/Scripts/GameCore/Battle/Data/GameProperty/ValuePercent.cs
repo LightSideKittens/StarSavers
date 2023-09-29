@@ -4,8 +4,8 @@ using Newtonsoft.Json;
 [Serializable]
 public struct ValuePercent
 {
-    public decimal value;
+    public float value;
     public int percent;
 
-    [JsonIgnore] public float Value => (float)(value + value * (percent / 100m));
+    [JsonIgnore] public float Value => value + value * (percent / 100f);
 }

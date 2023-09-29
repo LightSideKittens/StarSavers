@@ -1,5 +1,6 @@
 ﻿using System;
 using Common.SingleServices.Windows;
+using LGCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using static Common.SingleServices.Windows.AnimatableWindow;
@@ -25,7 +26,7 @@ namespace GameCore.Common.SingleServices.Windows
             position = camera.WorldToScreenPoint(position);
 
             var slider = Object.Instantiate(healthBar.slider, position, Quaternion.identity);
-            slider.transform.SetParent(spawnPoint.parent, true);
+            slider.transform.SetParent(spawnPoint.parent, false);
             slider.transform.localScale = scale;
             slider.maxValue = maxValue;
             slider.value = maxValue;
@@ -46,7 +47,10 @@ namespace GameCore.Common.SingleServices.Windows
 
         public void Update()
         {
-            slider.transform.position = camera.WorldToScreenPoint(target.position + offset);
+            var screenPoint = camera.transform.InverseTransformPoint(target.position + offset);
+            screenPoint /= AnimatableWindow.Canvas.transform.lossyScale.x;
+            screenPoint.z = 0;
+            slider.transform.localPosition = screenPoint;
         }
 
         public void SetValue(float value)
