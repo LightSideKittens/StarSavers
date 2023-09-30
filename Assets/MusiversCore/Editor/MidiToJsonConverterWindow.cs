@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using LGCore.ConfigModule.Editor;
+using LSCore.ConfigModule.Editor;
 using Melanchall.DryWetMidi.Common;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Battle.Data;
 using GameCore.Battle.Data;
-using LGCore.Extensions.Unity;
+using LSCore.Extensions.Unity;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using static Battle.BattleWorld;

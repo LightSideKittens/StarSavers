@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameCore.Battle.Data;
-using LGCore;
+using LSCore;
 using UnityEngine;
 using UnitsByTransform = GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
 

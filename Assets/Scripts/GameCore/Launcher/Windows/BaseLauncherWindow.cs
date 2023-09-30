@@ -1,5 +1,5 @@
 ﻿using DG.Tweening;
-using LGCore;
+using LSCore;
 using UnityEngine;
 
 namespace BeatRoyale.Windows

@@ -1,7 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using GameCore.Attributes;
-using LGCore.Extensions.Unity;
+using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 

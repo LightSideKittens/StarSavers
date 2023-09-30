@@ -1,7 +1,7 @@
 ﻿using System;
 using Common.SingleServices.Windows;
 using DG.Tweening;
-using LGCore.ReferenceFrom.Extensions;
+using LSCore.ReferenceFrom.Extensions;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;

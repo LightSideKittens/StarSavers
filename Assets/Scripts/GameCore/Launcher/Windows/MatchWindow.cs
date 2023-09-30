@@ -1,4 +1,4 @@
-﻿using LGCore.Extensions.Unity;
+﻿using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;

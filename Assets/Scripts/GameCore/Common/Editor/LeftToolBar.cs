@@ -1,9 +1,8 @@
-﻿using Battle.Windows;
-using LGCore.ConfigModule;
-using LGCore.ConfigModule.Editor;
+﻿using LSCore.ConfigModule.Editor;
 using UnityEngine;
 using UnityToolbarExtender;
-using static LGCore.ConfigModule.BaseConfig<LGCore.ConfigModule.DebugData>;
+using static LSCore.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+
 namespace BeatRoyale
 {
     public static partial class ToolBar
@@ -31,7 +30,6 @@ namespace BeatRoyale
             if (DrawToggle("Infinity Mana Enabled", "Infinity Mana Disabled", infinityMana, 150))
             {
                 Config.infinityMana = !infinityMana;
-                DeckWindow.InfinityMana = !infinityMana;
                 ConfigUtils.Save<DebugData>();
             }
         }

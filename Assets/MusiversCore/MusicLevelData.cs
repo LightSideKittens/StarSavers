@@ -1,5 +1,5 @@
 ﻿using System;
-using LGCore.AddressablesModule.AssetReferences;
+using LSCore.AddressablesModule.AssetReferences;
 using MusicEventSystem.Configs;
 using Sirenix.OdinInspector;
 

@@ -1,6 +1,6 @@
 ﻿using Common.SingleServices.Windows;
-using LGCore;
-using LGCore.Extensions.Unity;
+using LSCore;
+using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;

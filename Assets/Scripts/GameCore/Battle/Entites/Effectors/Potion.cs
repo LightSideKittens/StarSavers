@@ -2,7 +2,7 @@
 using Battle.Data;
 using Battle.Data.GameProperty;
 using BeatRoyale;
-using LGCore.Async;
+using LSCore.Async;
 using UnityEngine;
 using Attack = GameCore.Battle.Data.Components.AttackComponent;
 using Health = GameCore.Battle.Data.Components.HealthComponent;

@@ -1,12 +1,11 @@
-﻿using System;
-using Battle.Data;
+﻿using Battle.Data;
 using Battle.Data.GameProperty;
 using Battle.Windows;
+using BeatRoyale.Interfaces;
 using GameCore.Battle;
 using GameCore.Battle.Data;
-using LGCore;
+using LSCore;
 using UnityEngine;
-using Initializer = BeatRoyale.Interfaces.BaseInitializer<BeatRoyale.Interfaces.IInitializer>;
 
 namespace Battle
 {
@@ -42,7 +41,7 @@ namespace Battle
 
         private void Start()
         {
-            Initializer.Initialize(OnInitialize);
+            BaseInitializer.Initialize(OnInitialize);
         }
 
         private void OnInitialize()

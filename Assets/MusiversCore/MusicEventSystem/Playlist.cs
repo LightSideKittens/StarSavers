@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using BeatRoyale;
 using DG.Tweening;
-using LGCore;
-using LGCore.Async;
+using LSCore;
+using LSCore.Async;
 using MusicEventSystem.Configs;
 using UnityEngine;
 

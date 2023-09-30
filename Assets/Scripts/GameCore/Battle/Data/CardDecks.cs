@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using LGCore.ConfigModule;
+using LSCore.ConfigModule;
 
 namespace GameCore.Battle.Data
 {

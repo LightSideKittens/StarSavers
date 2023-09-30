@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using LGCore.ConfigModule;
+using LSCore.ConfigModule;
 using Newtonsoft.Json;
 using static SoundventTypes;
 

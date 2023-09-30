@@ -1,4 +1,4 @@
-﻿using LGCore;
+﻿using LSCore;
 using UnityEngine;
 
 namespace Battle.Windows

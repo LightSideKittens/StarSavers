@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using LGCore.Async;
+using LSCore.Async;
 using MusicEventSystem.Configs;
 
 namespace BeatRoyale

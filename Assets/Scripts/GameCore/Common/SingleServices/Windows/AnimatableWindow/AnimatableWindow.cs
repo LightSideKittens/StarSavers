@@ -1,6 +1,6 @@
 ﻿using GameCore.Attributes;
 using GameCore.Common.SingleServices.Windows;
-using LGCore;
+using LSCore;
 using UnityEngine;
 
 namespace Common.SingleServices.Windows

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LGCore.ConfigModule;
+using LSCore.ConfigModule;
 using Newtonsoft.Json;
 
 namespace Battle.Data

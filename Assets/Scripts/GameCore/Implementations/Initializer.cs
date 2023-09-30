@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BeatRoyale
 {
-    public class Initializer : BaseInitializer<IInitializer>
+    public class Initializer : BaseInitializer
     {
         [SerializeField] private LevelsConfigsManager levelsConfigsManager;
         private static bool isInited;

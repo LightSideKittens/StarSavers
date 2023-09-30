@@ -1,8 +1,8 @@
-﻿using BeatRoyale.Windows;
+﻿using BeatRoyale.Interfaces;
+using BeatRoyale.Windows;
 using GameCore.Attributes;
-using LGCore;
+using LSCore;
 using UnityEngine;
-using Initializer = BeatRoyale.Interfaces.BaseInitializer<BeatRoyale.Interfaces.IInitializer>;
 
 namespace BeatRoyale.Launcher
 {
@@ -13,7 +13,7 @@ namespace BeatRoyale.Launcher
         protected override void Awake()
         {
             base.Awake();
-            Initializer.Initialize(Init);
+            BaseInitializer.Initialize(Init);
         }
 
         private void Init()

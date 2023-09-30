@@ -1,6 +1,6 @@
 ﻿using System;
 using Common.SingleServices.Windows;
-using LGCore.Extensions.Unity;
+using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using static Common.SingleServices.Windows.AnimatableWindow;

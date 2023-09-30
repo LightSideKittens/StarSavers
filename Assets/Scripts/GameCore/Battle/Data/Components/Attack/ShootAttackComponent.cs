@@ -1,6 +1,6 @@
 ﻿using System;
 using DG.Tweening;
-using LGCore.Async;
+using LSCore.Async;
 using UnityEngine;
 using static UnityEngine.Object;
 

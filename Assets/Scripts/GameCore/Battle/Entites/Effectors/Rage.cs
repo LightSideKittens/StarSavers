@@ -2,7 +2,7 @@
 using Battle.Data;
 using Battle.Data.GameProperty;
 using DG.Tweening;
-using LGCore.Async;
+using LSCore.Async;
 using UnityEngine;
 using Move = GameCore.Battle.Data.Components.MoveComponent;
 using Attack = GameCore.Battle.Data.Components.AttackComponent;

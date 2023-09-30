@@ -1,5 +1,5 @@
 ﻿using System;
-using LGCore.Async;
+using LSCore.Async;
 using MusicEventSystem.Configs;
 
 namespace BeatRoyale

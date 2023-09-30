@@ -1,7 +1,7 @@
 ﻿using System;
 using Battle.Data.GameProperty;
 using DG.Tweening;
-using LGCore.Async;
+using LSCore.Async;
 using UnityEngine;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.AttackComponent>;
