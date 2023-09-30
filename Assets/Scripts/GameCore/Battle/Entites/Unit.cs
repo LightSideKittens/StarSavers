@@ -9,7 +9,7 @@ namespace GameCore.Battle.Data
 {
     public class Unit : BaseEntity
     {
-        public static event Action<Transform> Destroyed;
+        public event Action Destroyed;
         [field: SerializeField] public int Price { get; private set; }
         
         [OdinSerialize] private MoveComponent moveComponent = new();
@@ -27,7 +27,7 @@ namespace GameCore.Battle.Data
 
             hitBoxComponent.Init(transform);
             findTargetComponent.Init(transform, IsOpponent);
-            moveComponent?.Init(transform, findTargetComponent);
+            moveComponent.Init(transform, findTargetComponent);
             healthComponent.Init(transform, IsOpponent);
             attackComponent.Init(transform, findTargetComponent);
         }
@@ -35,13 +35,13 @@ namespace GameCore.Battle.Data
         public void Run()
         {
             attackComponent.Update();
-            moveComponent?.SetEnabled(!attackComponent.IsInRadius);
+            moveComponent.SetEnabled(!attackComponent.IsInRadius);
             healthComponent.Update();
         }
 
         public void FixedRun()
         {
-            moveComponent?.Update();
+            moveComponent.Update();
         }
 
         protected override void OnDestroy()
@@ -50,9 +50,9 @@ namespace GameCore.Battle.Data
             hitBoxComponent.OnDestroy();
             attackComponent.OnDestroy();
             healthComponent.OnDestroy();
-            moveComponent?.OnDestroy();
+            moveComponent.OnDestroy();
             Remove(transform);
-            Destroyed?.Invoke(transform);
+            Destroyed?.Invoke();
         }
     }
 }

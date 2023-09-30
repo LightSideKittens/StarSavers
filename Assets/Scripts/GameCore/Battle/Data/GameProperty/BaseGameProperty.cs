@@ -25,18 +25,18 @@ namespace Battle.Data.GameProperty
         
         [HideIf("$needHideFixed")]
         [CustomValueDrawer("FixedDrawer")]
-        public decimal value;
+        public float value;
         
         [HideIf("$NeedHidePercent")]
         [PropertyRange(0, 100)]
         public int percent;
 
-        public static decimal operator +(decimal a, BaseGameProperty b)
+        public static float operator +(float a, BaseGameProperty b)
         {
             return b.ComputeValue(a);
         }
         
-        protected virtual decimal ComputeValue(decimal val)
+        protected virtual float ComputeValue(float val)
         {
             return value + val;
         }
@@ -112,16 +112,16 @@ namespace Battle.Data.GameProperty
             }
         }
 
-        private decimal DrawRadiusSlider(decimal val, GUIContent label)
+        private float DrawRadiusSlider(float val, GUIContent label)
         {
-            var newValue = EditorGUILayout.Slider(label, (float)val, 0.5f, 16);
+            var newValue = EditorGUILayout.Slider(label, val, 0.5f, 16);
             var roundValue = Mathf.Round(newValue * 2);
             roundValue /= 2;
 
-            return (decimal)roundValue;
+            return roundValue;
         }
 
-        private decimal FixedDrawer(decimal val, GUIContent label, Func<GUIContent, bool> callNextDrawer)
+        private float FixedDrawer(float val, GUIContent label, Func<GUIContent, bool> callNextDrawer)
         {
             if (IsRadius)
             {
@@ -136,21 +136,7 @@ namespace Battle.Data.GameProperty
                 }
                 else
                 {
-                    EditorGUILayout.BeginHorizontal();
-                
-                    EditorGUILayout.LabelField("Move Speed", GUILayoutOptions.MaxWidth(100));
-
-                    if (EditorGUILayout.DropdownButton(new GUIContent($"{MoveSpeedSelector.GetKey(val)} | ({val})"), FocusType.Passive))
-                    {
-                        var newValue = new MoveSpeedSelector();
-                        newValue.ShowInPopup();
-                        newValue.SelectionConfirmed += x =>
-                        {
-                            value = newValue.GetValue();
-                        };
-                    }
-                
-                    EditorGUILayout.EndHorizontal();
+                    value = EditorGUILayout.Slider(new GUIContent("Speed"), val, 1f, 5f);
                 }
             }
             else if(IsAttackSpeed)
@@ -182,7 +168,7 @@ namespace Battle.Data.GameProperty
             }
             else if(IsRicochet)
             {
-                if (value < 1_000_000_00)
+                /*if (value < 1_000_000_00)
                 {
                     value = 1_000_000_00;
                 }
@@ -204,7 +190,7 @@ namespace Battle.Data.GameProperty
                 newBinary += percentValue * 100000;
                 newBinary += ((int)(radius * 10)) * 100;
                 newBinary += ricochet;
-                value = newBinary;
+                value = newBinary;*/
             }
             else
             {
@@ -223,7 +209,7 @@ namespace Battle.Data.GameProperty
                         label.text = GetType().Name.Replace("GP", string.Empty);
                     }
                     
-                    value = (decimal)EditorGUILayout.FloatField(label, (float)val);
+                    value = EditorGUILayout.FloatField(label, val);
                 }
             }
 
@@ -267,41 +253,4 @@ namespace Battle.Data.GameProperty
         }
 #endif
     }
-
-#if UNITY_EDITOR
-    public class MoveSpeedSelector : OdinSelector<decimal>
-    {
-        private static readonly Dictionary<decimal, string> keysByValues = new()
-        {
-            {0.75m, "Slow"},
-            {1m, "Normal"},
-            {1.5m, "Fast"},
-            {1.75m, "Faster"},
-        };
-
-        protected override void BuildSelectionTree(OdinMenuTree tree)
-        {
-            tree.Config.DrawSearchToolbar = false;
-            foreach (var value in keysByValues)
-            {
-                tree.Add(value.Value, value.Key);
-            }
-        }
-        
-        public static string GetKey(decimal value)
-        {
-            if (keysByValues.TryGetValue(value, out var key))
-            {
-                return key;
-            }
-
-            return "Slow";
-        }
-        
-        public decimal GetValue()
-        {
-            return GetCurrentSelection().FirstOrDefault();
-        }
-    }
-#endif
 }

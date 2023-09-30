@@ -1,6 +1,7 @@
 ﻿using System;
 using Battle.Data.GameProperty;
 using DG.Tweening;
+using LGCore.Async;
 using UnityEngine;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.AttackComponent>;
@@ -22,6 +23,7 @@ namespace GameCore.Battle.Data.Components
         public bool IsInRadius { get; private set; }
         public float Radius => radius;
         public Buffs Buffs { get; private set; }
+        private Tween attackTween;
 
         public void Init(Transform transform, FindTargetComponent findTargetComponent)
         {
@@ -32,6 +34,7 @@ namespace GameCore.Battle.Data.Components
             damage = props[nameof(DamageGP)].Value;
             attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].value, 2);
             //DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
+            attackTween = Wait.InfinityLoop(1, OnTactTicked);
             Add(transform, this);
             Buffs = new Buffs();
             OnInit();
@@ -47,6 +50,7 @@ namespace GameCore.Battle.Data.Components
 
         public void OnDestroy()
         {
+            attackTween.Kill();
             Remove(transform);
         }
 
@@ -76,16 +80,7 @@ namespace GameCore.Battle.Data.Components
         {
             if (IsInRadius)
             {
-                currentIndex %= attackSpeed.Length;
-                var step = attackSpeed[currentIndex];
-
-                if (step == '1')
-                {
-                    findTargetComponent.Find();
-                    AttackAnimation();
-                }
-                
-                currentIndex++;
+                AttackAnimation();
             }
         }
     }

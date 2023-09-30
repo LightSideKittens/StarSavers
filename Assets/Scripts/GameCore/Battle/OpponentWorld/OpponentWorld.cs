@@ -1,21 +1,46 @@
-﻿using GameCore.Battle.Data;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Battle.Data;
+using GameCore.Battle.Data;
 using LGCore.Extensions.Unity;
+using Sirenix.OdinInspector;
+using UnityEngine;
 using static Battle.BattleWorld;
 
 namespace Battle
 {
     public class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
+        private static IEnumerable<string> EnemyNames => GameScopes.EntitiesNames;
+        [SerializeField, ValueDropdown(nameof(EnemyNames))] private string enemyName;
+        [SerializeField] private Transform spawnPoint;
+        
         private CardDecks decks;
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
             UserId = "Opponent";
         }
 
-        private void Spawn(int index)
+        private void OnEnable()
         {
-            Internal_Spawn(Units.ByName[decks.Defence[index]], OpponentSpawnArena.bounds.GetRandomPointInside());
+            StartCoroutine(SpawnOpponents());
+        }
+
+        private IEnumerator SpawnOpponents()
+        {
+            while (enabled)
+            {
+                Spawn();
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        private void Spawn()
+        {
+            Internal_Spawn(Units.ByName[enemyName], spawnPoint.position);
         }
 
         protected override void OnStop()

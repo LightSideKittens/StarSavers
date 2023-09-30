@@ -17,7 +17,7 @@ namespace Battle
             set
             {
                 userId = value;
-                IsOpponent = UserId != "Opponent";
+                IsOpponent = UserId == "Opponent";
             }
         }
 
