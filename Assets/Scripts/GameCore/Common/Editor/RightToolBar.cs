@@ -25,19 +25,10 @@ namespace BeatRoyale
 
         private static void OnToolbarRightGUI()
         {
-            if (GUILayout.Button("Launcher", GUILayout.MaxWidth(100)))
+            var rect = GUILayoutUtility.GetRect(new GUIContent("Select..."), GUI.skin.button, GUILayout.MaxWidth(100));
+            if (GUI.Button(rect, "Select..."))
             {
-                EditorSceneManager.OpenScene("Assets/Scenes/Launcher.unity");
-            }
-            
-            if (GUILayout.Button("Battle", GUILayout.MaxWidth(100)))
-            {
-                EditorSceneManager.OpenScene("Assets/Scenes/Battle.unity");
-            }
-
-            if (GUILayout.Button("Select...", GUILayout.MaxWidth(100)))
-            {
-                PopupWindow.Show(GUILayoutUtility.GetLastRect(), new NavigationPopup());
+                PopupWindow.Show(rect, new NavigationPopup());
             }
         }
 
@@ -45,6 +36,11 @@ namespace BeatRoyale
         {
             public override void OnGUI(Rect rect)
             {
+                GUILayout.Label("Scenes");
+                DrawButton("Launcher", "t: Scene Launcher");
+                DrawButton("Battle", "t: Scene Battle");
+                
+                GUILayout.Label("Configs");
                 DrawButton("Cards Config", "t: Cards");
                 DrawButton("Units Config", "t: Units");
                 DrawButton("Effectors Config", "t: Effectors");

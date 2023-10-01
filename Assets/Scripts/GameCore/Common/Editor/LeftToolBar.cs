@@ -1,7 +1,6 @@
-﻿using LSCore.ConfigModule.Editor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityToolbarExtender;
-using static LSCore.ConfigModule.BaseConfig<BeatRoyale.DebugData>;
+using static BeatRoyale.DebugData;
 
 namespace BeatRoyale
 {
@@ -10,6 +9,7 @@ namespace BeatRoyale
         private static void OnToolbarLeftGUI()
         {
             ConfigureToggleButtonStyle();
+            var d = Config.infinityMana;
             var infinityMana = Config.infinityMana;
             var needShowRadius = Config.needShowRadius;
             var serverEnabled = Config.serverEnabled;
@@ -18,19 +18,19 @@ namespace BeatRoyale
             if (DrawToggle("Server Enabled", "Server Disabled", serverEnabled))
             {
                 Config.serverEnabled = !serverEnabled;
-                ConfigUtils.Save<DebugData>();
+                Save();
             }
 
             if (DrawToggle("Radius Showed", "Radius Hidden", needShowRadius))
             {
                 Config.needShowRadius = !needShowRadius;
-                ConfigUtils.Save<DebugData>();
+                Save();
             }
 
             if (DrawToggle("Infinity Mana Enabled", "Infinity Mana Disabled", infinityMana, 150))
             {
                 Config.infinityMana = !infinityMana;
-                ConfigUtils.Save<DebugData>();
+                Save();
             }
         }
 
