@@ -25,6 +25,7 @@ namespace GameCore.Battle.Data.Components
                 var provider = providers[i];
                 provider.findTargetComponent = this;
             }
+            
         }
 
         public IEnumerable<Transform> FindAll(float radius) => FindAll(transform.position, radius);
