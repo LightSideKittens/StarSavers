@@ -47,10 +47,10 @@ namespace GameCore.Common.SingleServices.Windows
 
         public void Update()
         {
-            var screenPoint = camera.transform.InverseTransformPoint(target.position + offset);
-            screenPoint /= AnimatableWindow.Canvas.transform.lossyScale.x;
-            screenPoint.z = 0;
-            slider.transform.localPosition = screenPoint;
+            var targetLocalPosByCam = camera.transform.InverseTransformPoint(target.position + offset);
+            targetLocalPosByCam /= AnimatableWindow.Canvas.transform.lossyScale.x;
+            targetLocalPosByCam.z = 0;
+            slider.transform.localPosition = targetLocalPosByCam;
         }
 
         public void SetValue(float value)

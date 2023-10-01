@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class FloatingJoystick : Joystick
 {
     private Vector2 defaultPosition;
-    
+
     protected override void Start()
     {
         base.Start();
@@ -22,4 +22,4 @@ public class FloatingJoystick : Joystick
         background.anchoredPosition = defaultPosition;
         base.OnPointerUp(eventData);
     }
-}
+}*/

@@ -5,8 +5,8 @@ namespace Battle.Windows
 {
     public class BattleWindow : BaseWindow<BattleWindow>
     {
-        [SerializeField] private FloatingJoystick joystick;
+        [SerializeField] private Joystick joystick;
 
-        public static FloatingJoystick Joystick => Instance.joystick;
+        public static Joystick Joystick => Instance.joystick;
     }
 }
