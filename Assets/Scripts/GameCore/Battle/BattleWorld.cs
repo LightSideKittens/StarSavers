@@ -26,12 +26,12 @@ namespace Battle
         protected override void Awake()
         {
             base.Awake();
-            /*hero = Instantiate(hero);
+            hero = Instantiate(hero);
             hero.Destroyed += OnHeroDied;
             rbHero = hero.GetComponent<Rigidbody2D>();
             heroSpeed = EntiProps.ByName[hero.EntityName][nameof(MoveSpeedGP)].Value;
             hero.Init("Player");
-            CameraMover.Init(camera, hero.transform);*/
+            CameraMover.Init(camera, hero.transform);
         }
 
         private void OnHeroDied()
@@ -60,22 +60,12 @@ namespace Battle
 
         private void Update()
         {
-            //hero.Run();
+            hero.Run();
         }
 
         private void FixedUpdate()
         {
-            /*var direction = BattleWindow.Joystick.Direction.normalized;
-            if (direction.Equals(Vector2.zero))
-            {
-                return;
-            }
-            
-            rbHero.position += direction * (heroSpeed * Time.fixedDeltaTime);
-            var zAngle = Vector2.SignedAngle(Vector2.up, direction);
-            rbHero.rotation = zAngle;
             hero.FixedRun();
-            CameraMover.MoveCamera();*/
         }
 
         private void Unsubscribe()

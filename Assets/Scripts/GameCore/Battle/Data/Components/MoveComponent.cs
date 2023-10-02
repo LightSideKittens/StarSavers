@@ -10,9 +10,9 @@ namespace GameCore.Battle.Data.Components
     {
         private FindTargetComponent findTargetComponent;
         private Transform transform;
-        private Rigidbody2D rigidbody;
+        protected Rigidbody2D rigidbody;
         private CircleCollider2D collider;
-        private float speed;
+        protected float speed;
         public float Speed => speed * Buffs;
         private static int mask = -1;
         private bool enabled = true;
@@ -94,8 +94,8 @@ namespace GameCore.Battle.Data.Components
                 direction = point - pos;
             }
         }
-        
-        public void Update()
+
+        public virtual void Move()
         {
             if (enabled)
             {
@@ -113,6 +113,8 @@ namespace GameCore.Battle.Data.Components
                 }
             }
         }
+        
+        public void Update() => Move();
 
         public void OnDestroy()
         {
