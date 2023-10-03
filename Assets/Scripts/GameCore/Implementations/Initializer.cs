@@ -28,5 +28,10 @@ namespace BeatRoyale
             levelsConfigsManager.Init();
             onInit();
         }
+
+        protected override void DeInit()
+        {
+            isInited = false;
+        }
     }
 }

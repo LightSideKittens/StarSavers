@@ -35,9 +35,8 @@ namespace Battle
             }
         }
 
-        protected override void Awake()
+        protected override void Init()
         {
-            base.Awake();
             enabled = false;
         }
 

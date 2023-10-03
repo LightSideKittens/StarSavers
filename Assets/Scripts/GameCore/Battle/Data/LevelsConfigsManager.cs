@@ -40,7 +40,8 @@ namespace Battle.Data
         {
             Burger.Log($"[{nameof(LevelsConfigsManager)}] Init");
             Instance = this;
-
+            levelsByEntityName.Clear();
+            
             for (int i = 0; i < levelsContainers.Count; i++)
             {
                 var levelContainer = levelsContainers[i];

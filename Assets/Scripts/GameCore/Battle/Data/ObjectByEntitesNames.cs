@@ -61,7 +61,9 @@ namespace GameCore.Battle.Data
         [SerializeField] private List<ObjectByName> cardByNames = new ();
 
         public void Init()
-        {
+        {   
+            ByName.Clear();
+            
             for (int i = 0; i < cardByNames.Count; i++)
             {
                 var data = cardByNames[i];

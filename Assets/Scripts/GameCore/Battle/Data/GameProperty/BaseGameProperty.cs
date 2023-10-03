@@ -136,7 +136,7 @@ namespace Battle.Data.GameProperty
                 }
                 else
                 {
-                    value = EditorGUILayout.Slider(new GUIContent("Speed"), val, 1f, 5f);
+                    value = EditorGUILayout.Slider(new GUIContent("Speed"), val, 1f, 10f);
                 }
             }
             else if(IsAttackSpeed)

@@ -18,8 +18,6 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 924fa314f61767e42b24d598f3bcefd7, type: 2}
     - {fileID: 11400000, guid: 51baebe8ad2d38146845538a9052c459, type: 2}
-    - {fileID: 11400000, guid: f07ced59d0533ff40900b36319b4ee70, type: 2}
-    - {fileID: 11400000, guid: 2e6ea3c129ac1a14d9db3a135c508efe, type: 2}
     - {fileID: 11400000, guid: 7bba9652485513a4ebce4963302d23a4, type: 2}
     - {fileID: 11400000, guid: e658f1b1a8a965e45a34789ffa8bea62, type: 2}
     - {fileID: 11400000, guid: 67396cba8a6f1344b90c2dd30d830439, type: 2}
@@ -34,11 +32,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9011720acda425f41a417dd0ae6d35ae, type: 2}
     - {fileID: 11400000, guid: 20690be0d4d71824a9ba9a2927798fd3, type: 2}
     - {fileID: 11400000, guid: a88a1fdbd22c2ea44890d3e33a0014db, type: 2}
-    - {fileID: 11400000, guid: 16904984eac58234ea25a9008e5545ab, type: 2}
-    - {fileID: 11400000, guid: 041e412617b68bd41995e484f504bdb5, type: 2}
-    - {fileID: 11400000, guid: 49a80f11d4f44984b8fce6d0df28e654, type: 2}
-    - {fileID: 11400000, guid: 980b5cd7dda9d3f47ba55c90d59b3b83, type: 2}
-    - {fileID: 11400000, guid: 13e6c4b6af3774940bade5a1a774af85, type: 2}
+    - {fileID: 11400000, guid: 85afd2b24bd135a45b390691b006632d, type: 2}
+    - {fileID: 11400000, guid: cb7a564a01c13094283f9c3a4645235c, type: 2}
+    - {fileID: 11400000, guid: a87415576863b2e46b1f416a9448ab11, type: 2}
+    - {fileID: 11400000, guid: f07ced59d0533ff40900b36319b4ee70, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -50,7 +47,7 @@ MonoBehaviour:
         GameCore.Battle]], mscorlib
     - Name: 
       Entry: 12
-      Data: 21
+      Data: 20
     - Name: 
       Entry: 7
       Data: 1|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
@@ -136,20 +133,17 @@ MonoBehaviour:
       Data: 5|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Knight
+      Data: Snowy
     - Name: levels
       Entry: 7
       Data: 6|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 10
       Data: 2
-    - Name: 
-      Entry: 10
-      Data: 3
     - Name: 
       Entry: 13
       Data: 
@@ -179,10 +173,50 @@ MonoBehaviour:
       Data: 7|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Snowy
+      Data: Archer
     - Name: levels
       Entry: 7
       Data: 8|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isEntityNotExist
+      Entry: 5
+      Data: false
+    - Name: isMissedLevel
+      Entry: 5
+      Data: false
+    - Name: missedLevel
+      Entry: 3
+      Data: 0
+    - Name: isLevelError
+      Entry: 5
+      Data: false
+    - Name: levelErrorName
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+    - Name: entityName
+      Entry: 1
+      Data: Bomby
+    - Name: levels
+      Entry: 7
+      Data: 10|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -216,13 +250,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 9|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 11|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Archer
+      Data: Elsa
     - Name: levels
       Entry: 7
-      Data: 10|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 12|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -256,13 +290,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 11|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 13|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Bomby
+      Data: Faun
     - Name: levels
       Entry: 7
-      Data: 12|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 14|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -296,13 +330,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 13|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 15|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Elsa
+      Data: Stanley
     - Name: levels
       Entry: 7
-      Data: 14|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 16|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -336,13 +370,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 15|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 17|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Faun
+      Data: Frozer
     - Name: levels
       Entry: 7
-      Data: 16|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 18|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -376,13 +410,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 17|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 19|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Stanley
+      Data: Stoneval
     - Name: levels
       Entry: 7
-      Data: 18|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 20|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -416,13 +450,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 19|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 21|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Frozer
+      Data: Goblin
     - Name: levels
       Entry: 7
-      Data: 20|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 22|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -456,13 +490,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 21|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 23|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Stoneval
+      Data: Drago
     - Name: levels
       Entry: 7
-      Data: 22|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 24|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -496,13 +530,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 23|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 25|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Goblin
+      Data: Manny
     - Name: levels
       Entry: 7
-      Data: 24|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 26|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -536,13 +570,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 25|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 27|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Drago
+      Data: Cannon
     - Name: levels
       Entry: 7
-      Data: 26|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 28|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -576,13 +610,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 27|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 29|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Manny
+      Data: Potion
     - Name: levels
       Entry: 7
-      Data: 28|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 30|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -616,13 +650,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 29|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 31|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Cannon
+      Data: Rage
     - Name: levels
       Entry: 7
-      Data: 30|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 32|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -656,13 +690,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 31|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 33|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Potion
+      Data: Mage
     - Name: levels
       Entry: 7
-      Data: 32|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 34|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -696,13 +730,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 33|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 35|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Rage
+      Data: Hunter
     - Name: levels
       Entry: 7
-      Data: 34|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 36|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -736,13 +770,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 35|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 37|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Raccoon
+      Data: Barbarian
     - Name: levels
       Entry: 7
-      Data: 36|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 38|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -776,13 +810,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 37|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
+      Data: 39|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
     - Name: entityName
       Entry: 1
-      Data: Madina
+      Data: Knight
     - Name: levels
       Entry: 7
-      Data: 38|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
+      Data: 40|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
         mscorlib
     - Name: 
       Entry: 12
@@ -790,89 +824,6 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 19
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: isEntityNotExist
-      Entry: 5
-      Data: false
-    - Name: isMissedLevel
-      Entry: 5
-      Data: false
-    - Name: missedLevel
-      Entry: 3
-      Data: 0
-    - Name: isLevelError
-      Entry: 5
-      Data: false
-    - Name: levelErrorName
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 39|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
-    - Name: entityName
-      Entry: 1
-      Data: Dumbledore
-    - Name: levels
-      Entry: 7
-      Data: 40|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 20
-    - Name: 
-      Entry: 10
-      Data: 21
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: isEntityNotExist
-      Entry: 5
-      Data: false
-    - Name: isMissedLevel
-      Entry: 5
-      Data: false
-    - Name: missedLevel
-      Entry: 3
-      Data: 0
-    - Name: isLevelError
-      Entry: 5
-      Data: false
-    - Name: levelErrorName
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 41|Battle.Data.LevelsConfigsManager+LevelsContainer, GameCore.Battle
-    - Name: entityName
-      Entry: 1
-      Data: Valkyrie
-    - Name: levels
-      Entry: 7
-      Data: 42|System.Collections.Generic.List`1[[Battle.Data.LevelConfig, GameCore.Battle]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 22
     - Name: 
       Entry: 13
       Data: 

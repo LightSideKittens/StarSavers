@@ -18,9 +18,8 @@ namespace Battle
         
         private CardDecks decks;
 
-        protected override void Awake()
+        protected override void Init()
         {
-            base.Awake();
             UserId = "Opponent";
         }
 
