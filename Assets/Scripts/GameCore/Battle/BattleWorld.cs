@@ -1,52 +1,64 @@
-﻿using Battle.Data;
-using Battle.Data.GameProperty;
-using Battle.Windows;
+﻿using Battle.Windows;
 using BeatRoyale.Interfaces;
 using GameCore.Battle;
 using GameCore.Battle.Data;
 using LSCore;
+using LSCore.AddressablesModule.AssetReferences;
+using LSCore.Extensions;
 using UnityEngine;
 
 namespace Battle
 {
-    public partial class BattleWorld : ServiceManager
+    public class BattleWorld : ServiceManager
     {
         [SerializeField] private Units units;
         [SerializeField] private Cards cards;
         [SerializeField] private Effectors effectors;
-        [SerializeField] private Unit hero;
         [SerializeField] private Camera camera;
+        [SerializeField] private Locations locations;
+        [SerializeField] private Vector3 cameraOffset;
+        
         public static MeshRenderer SpawnArea { get; private set; }
         public static MeshRenderer OpponentSpawnArena { get; private set; }
         public static BoxCollider2D ArenaBox { get; private set; }
 
-        private Rigidbody2D rbHero;
-        private float heroSpeed;
-        
+        private Unit hero;
+        private Location location;
+
         protected override void Awake()
         {
             base.Awake();
-            hero = Instantiate(hero);
+            enabled = false;
+            BaseInitializer.Initialize(OnInitialize);
+        }
+
+        private void InstatiateLocation()
+        {
+            var locationIndex = IListExtensions.ClosestBinarySearch(
+                index => locations[index].maxLevel,
+                locations.Length,
+                PlayerData.Config.Level);
+            var locationData = locations[locationIndex];
+            location = Instantiate(locationData.locationRef.Load().prefab);
+        }
+
+        private void InstatiateHero()
+        {
+            hero = Instantiate(Units.ByName[PlayerData.Config.SelectedHero]);
+            hero.transform.position = location.HeroSpawnPoint.position;
             hero.Destroyed += OnHeroDied;
-            rbHero = hero.GetComponent<Rigidbody2D>();
-            heroSpeed = EntiProps.ByName[hero.EntityName][nameof(MoveSpeedGP)].Value;
             hero.Init("Player");
-            CameraMover.Init(camera, hero.transform);
         }
 
         private void OnHeroDied()
         {
             enabled = false;
         }
-
-        private void Start()
-        {
-            BaseInitializer.Initialize(OnInitialize);
-        }
-
+        
         private void OnInitialize()
         {
             Init();
+            enabled = true;
         }
 
         private void Init()
@@ -54,6 +66,9 @@ namespace Battle
             units.Init();
             cards.Init();
             effectors.Init();
+            InstatiateLocation();
+            InstatiateHero();
+            CameraMover.Init(camera, hero.transform, cameraOffset);
             MatchResultWindow.Showing += Unsubscribe;
             BattleWindow.Show();
         }
@@ -66,6 +81,12 @@ namespace Battle
         private void FixedUpdate()
         {
             hero.FixedRun();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            hero.Destroyed -= OnHeroDied;
         }
 
         private void Unsubscribe()

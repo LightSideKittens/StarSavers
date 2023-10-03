@@ -6,20 +6,19 @@ namespace GameCore.Battle
     {
         public static Camera Camera { get; private set; }
         public static Transform Hero { get; private set; }
-        private static Vector3 prevHeroPosition;
+        private static Vector3 offset;
         
-        public static void Init(Camera camera, Transform hero)
+        public static void Init(Camera camera, Transform hero, Vector3 offset)
         {
             Camera = camera;
             Hero = hero;
-            prevHeroPosition = Hero.position;
+            CameraMover.offset = offset;
+            MoveCamera();
         }
 
         public static void MoveCamera()
         {
-            var offset = Hero.position - prevHeroPosition;
-            Camera.transform.position += new Vector3(offset.x, offset.y, 0);
-            prevHeroPosition = Hero.position;
+            Camera.transform.position = Hero.position + offset;
         }
     }
 }

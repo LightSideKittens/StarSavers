@@ -21,7 +21,7 @@ namespace BeatRoyale.Windows
             {
                 Tab.animationData = tabsAnimationData;
                 shopTab.Init<ShopWindow>();
-                cardGalleryTab.Init<CardGalleryWindow>();
+                cardGalleryTab.Init<HeroesWindow>();
                 matchTab.Init<MatchWindow>();
                 clanTab.Init<ClanWindow>();
                 gameEventsTab.Init<GameEventsWindow>();
