@@ -15,17 +15,16 @@ namespace GameCore.Battle.Data
         [Serializable]
         private class ObjectByName
         {
-            [ReadOnly]
-            [InfoBox("Not entity name", InfoMessageType.Error, "$isNotEntityError")]
+            private IEnumerable<string> Entities => GameScopes.EntitiesNames;
             [InfoBox("Entity name does not exist in LevelsConfigsManager", InfoMessageType.Error, "$isNotExistEntity")]
-            [InfoBox("Card is already added", InfoMessageType.Error, "$isAlreadyAdded")]
+            [InfoBox("Name is already added", InfoMessageType.Error, "$isAlreadyAdded")]
+            [ValueDropdown(nameof(Entities))]
             public string name;
             [OnValueChanged("OnValueChanged")]
             public T obj;
             
 #if UNITY_EDITOR
             private static HashSet<string> addedNames = new();
-            private bool isNotEntityError;
             private bool isNotExistEntity;
             private bool isAlreadyAdded;
 
@@ -40,9 +39,6 @@ namespace GameCore.Battle.Data
             
             private void OnValueChanged()
             {
-                var splited = obj.name.Split('_');
-                name = splited[0];
-                isNotEntityError = !GameScopes.IsEntityName(name);
                 isNotExistEntity = !levelsConfigsManager.EntitesNames.Contains(name);
                 addedNames.Clear();
                 

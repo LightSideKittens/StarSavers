@@ -1,38 +1,44 @@
-﻿using System.Collections.Generic;
-using GameCore.Battle.Data;
+﻿using GameCore.Battle.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BeatRoyale.Windows
 {
-    public class HeroView : MonoBehaviour
+    public class HeroView
     {
+        public static HeroView PrevSelectedHero;
         private Toggle toggle;
-
         private string id;
-        
-        private void Awake()
-        {
-            toggle = GetComponent<Toggle>();
-            
-        }
 
-        public void Init(string name, Image image)
+        public Toggle Toggle => toggle;
+        
+        public void Init(Toggle toggle, string name, Sprite image)
         {
+            this.toggle = toggle;
             id = name;
-            toggle.targetGraphic.GetComponent<Image>().sprite = image.sprite;
+            toggle.targetGraphic.GetComponent<Image>().sprite = image;
             toggle.onValueChanged.AddListener(OnSelectedHeroChanged);
+            SetSelected(false);
         }
 
         public void SetSelected(bool value)
         {
             toggle.isOn = value;
+            if (value)
+            {
+                PrevSelectedHero = this;
+            }
         }
         
         private void OnSelectedHeroChanged(bool value)
         {
             if (value)
             {
+                if (PrevSelectedHero != null)
+                {
+                    PrevSelectedHero.Toggle.isOn = false;
+                }
+                PrevSelectedHero = this;
                 PlayerData.Config.SelectedHero = id;
             }
         }

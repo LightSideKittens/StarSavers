@@ -1,6 +1,7 @@
 ﻿using BeatRoyale.Interfaces;
 using BeatRoyale.Windows;
 using GameCore.Attributes;
+using GameCore.Battle.Data;
 using LSCore;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace BeatRoyale.Launcher
     public class LauncherWorld : ServiceManager
     {
         [ColoredField, SerializeField] private CastleBackAnimator animator;
+        [SerializeField] private Cards cards;
 
         protected override void Awake()
         {
@@ -19,6 +21,7 @@ namespace BeatRoyale.Launcher
         private void Init()
         {
             animator.Init();
+            cards.Init();
             ControlPanel.Show();
         }
         
