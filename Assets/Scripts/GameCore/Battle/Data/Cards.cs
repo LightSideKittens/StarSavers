@@ -1,6 +1,7 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameCore.Battle.Data
 {
-    public class Cards : ObjectByEntitesNames<Image> { }
+    public class Cards : ObjectByEntitesNames<Sprite> { }
 }
