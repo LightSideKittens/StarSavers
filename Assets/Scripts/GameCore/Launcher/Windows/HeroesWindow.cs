@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
 using GameCore.Battle.Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace BeatRoyale.Windows
 {
     public class HeroesWindow : BaseLauncherWindow<HeroesWindow>
     {
+        protected override int Internal_Index => 1;
+        
         [SerializeField] private Transform slotsParent;
         [SerializeField] private Toggle heroPrefab;
 
         private Dictionary<string, HeroView> heroes = new();
         
-        protected override void OnShowing()
+        protected override void Init()
         {
-            base.OnShowing();
+            base.Init();
             foreach (var pair in Cards.ByName)
             {
                 var hero = Instantiate(heroPrefab, slotsParent);
@@ -26,25 +27,5 @@ namespace BeatRoyale.Windows
 
             heroes[PlayerData.Config.SelectedHero].SetSelected(true);
         }
-
-        protected override void OnHiding()
-        {
-            base.OnHiding();
-            ClearHeroes();
-        }
-
-        protected override void DeInit()
-        {
-            base.DeInit();
-            ClearHeroes();
-        }
-
-        private void ClearHeroes()
-        {
-            foreach (var hero in heroes)
-            {
-                Destroy(hero.Value.Toggle.gameObject);
-            }
-            heroes.Clear();        }
     }
 }

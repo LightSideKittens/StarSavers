@@ -10,17 +10,15 @@ namespace BeatRoyale.Windows
         
         protected override Transform Parent => ControlPanel.Instance.transform;
         protected virtual int Internal_Index { get; }
-        private float XShow => ControlPanel.CurrentShowedWindowIndex > Internal_Index ? ControlPanel.LeftX : ControlPanel.RightX;
-        private float XHide => ControlPanel.CurrentShowingWindowIndex > Internal_Index ? ControlPanel.LeftX : ControlPanel.RightX;
+        private float XShow => ControlPanel.CurrentShowedWindowIndex > Internal_Index ? 1 : -1;
+        private float XHide => ControlPanel.CurrentShowingWindowIndex > Internal_Index ? 1 : -1;
         protected override float DefaultAlpha => 1;
+        private Vector2 startPivot;
 
         protected override void Init()
         {
             base.Init();
-            var center = new Vector2(0.5f, 0.5f);
-            RectTransform.anchorMin = center;
-            RectTransform.anchorMax = center;
-            RectTransform.sizeDelta = ControlPanel.Rect.size;
+            startPivot = RectTransform.pivot;
         }
 
         protected override void OnShowing()
@@ -39,10 +37,11 @@ namespace BeatRoyale.Windows
         {
             get
             {
-                RectTransform.anchoredPosition = new Vector2(XShow, 0);
+                var pivot = startPivot;
+                pivot.x += XShow;
+                RectTransform.pivot = pivot;
                 var sequence = DOTween.Sequence()
-                    /*.Insert(0, base.GetShowAnimation())*/
-                    .Insert(0, RectTransform.DOAnchorPos(Vector2.zero, fadeSpeed));
+                    .Insert(0, RectTransform.DOPivotX(startPivot.x, fadeSpeed));
                 return sequence;
             }
         }
@@ -52,8 +51,7 @@ namespace BeatRoyale.Windows
             get
             {
                 var sequence = DOTween.Sequence()
-                    /*.Insert(0, base.GetHideAnimation())*/
-                    .Insert(0, RectTransform.DOAnchorPos(new Vector2(XHide, 0), fadeSpeed));
+                    .Insert(0, RectTransform.DOPivotX(startPivot.x + XHide, fadeSpeed));
             
                 return sequence;
             }
