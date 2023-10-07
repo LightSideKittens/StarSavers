@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityToolbarExtender;
 using static BeatRoyale.DebugData;
 
 namespace BeatRoyale
@@ -8,10 +7,9 @@ namespace BeatRoyale
     {
         private static void OnToolbarLeftGUI()
         {
-            ConfigureToggleButtonStyle();
             var needShowRadius = Config.needShowRadius;
             var serverEnabled = Config.serverEnabled;
-            GUI.changed = ToolbarExtender.leftRect.Contains(Event.current.mousePosition);
+            //GUI.changed = ToolbarExtender.leftRect.Contains(Event.current.mousePosition);
 
             if (DrawToggle("Server Enabled", "Server Disabled", serverEnabled))
             {
