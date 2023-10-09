@@ -23,7 +23,7 @@ namespace GameCore.Battle.Data.Components
             this.transform = transform;
             rigidbody = transform.GetComponent<Rigidbody2D>();
             collider = rigidbody.GetComponent<CircleCollider2D>();
-            speed = Unit.GetProperties(transform)[nameof(MoveSpeedGP)].Value;
+            speed = transform.GetProp<MoveSpeedGP>();
             Buffs = new Buffs();
 
             this.findTargetComponent = findTargetComponent;

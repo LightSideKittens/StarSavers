@@ -20,7 +20,7 @@ namespace GameCore.Battle.Data.Components
         public void Init(Transform transform, bool isOpponent)
         {
             this.transform = transform;
-            health = BaseEntity.GetProperties(transform)[nameof(HealthGP)].Value;
+            health = transform.GetProp<HealthGP>();
             healthBar = HealthBar.Create(health, transform, offset, scale, isOpponent);
             Add(transform, this);
         }

@@ -12,7 +12,7 @@ namespace BeatRoyale.Windows
         [SerializeField] private Transform slotsParent;
         [SerializeField] private Toggle heroPrefab;
 
-        private Dictionary<string, HeroView> heroes = new();
+        private Dictionary<int, HeroView> heroes = new();
         
         protected override void Init()
         {

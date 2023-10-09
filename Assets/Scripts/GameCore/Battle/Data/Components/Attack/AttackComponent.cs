@@ -13,7 +13,7 @@ namespace GameCore.Battle.Data.Components
     {
         [SerializeField] protected float duration = 0.1f;
         protected FindTargetComponent findTargetComponent;
-        private string attackSpeed;
+        private float attackSpeed;
         protected float damage;
         protected float radius;
         protected Transform transform;
@@ -29,10 +29,10 @@ namespace GameCore.Battle.Data.Components
         {
             this.findTargetComponent = findTargetComponent;
             this.transform = transform;
-            var props = Unit.GetProperties(transform);
-            radius = props[nameof(RadiusGP)].Value;
-            damage = props[nameof(DamageGP)].Value;
-            attackSpeed = Convert.ToString((int)props[nameof(AttackSpeedGP)].value, 2);
+            var unit = transform.Get<BaseUnit>();
+            radius = unit.GetProp<RadiusGP>();
+            damage = unit.GetProp<DamageGP>();
+            attackSpeed = unit.GetProp<AttackSpeedGP>();
             //DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
             attackTween = Wait.InfinityLoop(1, OnTactTicked);
             Add(transform, this);

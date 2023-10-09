@@ -8,11 +8,11 @@ namespace BeatRoyale.Windows
     {
         public static HeroView PrevSelectedHero;
         private Toggle toggle;
-        private string id;
+        private int id;
 
         public Toggle Toggle => toggle;
         
-        public void Init(Toggle toggle, string name, Sprite image)
+        public void Init(Toggle toggle, int name, Sprite image)
         {
             this.toggle = toggle;
             id = name;

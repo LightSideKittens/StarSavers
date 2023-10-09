@@ -17,7 +17,6 @@ namespace GameCore.Battle.Data.Components
         private GameObject bullet;
         private Transform lastTarget;
         private HashSet<Transform> hited;
-        private RicochetData ricochetData;
         private float tempDamage;
         private int ricochetCount;
 
@@ -46,7 +45,7 @@ namespace GameCore.Battle.Data.Components
 
         private void Ricochet()
         {
-            lastTarget.Get<Health>().TakeDamage(tempDamage);
+            /*lastTarget.Get<Health>().TakeDamage(tempDamage);
             hited.Add(lastTarget);
             tempDamage -= tempDamage * (ricochetData.decreasePercent / 100f);
             
@@ -68,7 +67,7 @@ namespace GameCore.Battle.Data.Components
                 Destroy(bullet);
             }
             
-            Instantiate(deathFx, lastTarget.position, Quaternion.identity);
+            Instantiate(deathFx, lastTarget.position, Quaternion.identity);*/
         }
     }
 }

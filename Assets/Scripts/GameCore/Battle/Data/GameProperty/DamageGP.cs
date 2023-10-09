@@ -3,5 +3,10 @@
 namespace Battle.Data.GameProperty
 {
     [Serializable]
-    public class DamageGP : BaseGameProperty { }
+    public class DamageGP : FloatAndPercent
+    {
+#if UNITY_EDITOR
+        protected override string IconName { get; }
+#endif
+    }
 }

@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Battle.Data;
 using GameCore.Battle.Data;
-using LSCore.Extensions.Unity;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using static Battle.BattleWorld;
 
 namespace Battle
 {
     public class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
-        private static IEnumerable<string> EnemyNames => GameScopes.EntitiesNames;
-        [SerializeField, ValueDropdown(nameof(EnemyNames))] private string enemyName;
+        private static IList<ValueDropdownItem<int>> EnemyNames => IdToName.ValuesFunction(EntityMeta.EntityNames);
+        [SerializeField, ValueDropdown(nameof(EnemyNames))] private int enemyName;
         [SerializeField] private Transform spawnPoint;
         
         private CardDecks decks;

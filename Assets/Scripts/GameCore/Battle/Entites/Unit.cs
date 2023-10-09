@@ -7,7 +7,7 @@ using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
 
 namespace GameCore.Battle.Data
 {
-    public class Unit : BaseEntity
+    public class Unit : BaseUnit
     {
         public event Action Destroyed;
         [field: SerializeField] public int Price { get; private set; }

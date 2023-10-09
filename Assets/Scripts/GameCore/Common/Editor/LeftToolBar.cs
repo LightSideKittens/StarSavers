@@ -9,7 +9,6 @@ namespace BeatRoyale
         {
             var needShowRadius = Config.needShowRadius;
             var serverEnabled = Config.serverEnabled;
-            //GUI.changed = ToolbarExtender.leftRect.Contains(Event.current.mousePosition);
 
             if (DrawToggle("Server Enabled", "Server Disabled", serverEnabled))
             {

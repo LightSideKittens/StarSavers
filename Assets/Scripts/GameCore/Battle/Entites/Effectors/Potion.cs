@@ -1,7 +1,6 @@
 ﻿using System;
 using Battle.Data;
 using Battle.Data.GameProperty;
-using BeatRoyale;
 using LSCore.Async;
 using UnityEngine;
 using Attack = GameCore.Battle.Data.Components.AttackComponent;
@@ -17,9 +16,9 @@ namespace GameCore.Battle.Data
 
         protected override void OnInit()
         {
-            var properties = EntiProps.ByName[name];
-            duration = properties[nameof(HealthGP)].Value;
-            damage = properties[nameof(DamageGP)].Value;
+            var props = EntiProps.GetProps(name);
+            duration = props.GetValue<HealthGP>();
+            damage = props.GetValue<DamageGP>();
         }
         
         protected override void OnApply()
