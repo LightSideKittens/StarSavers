@@ -22,10 +22,10 @@ namespace GameCore.Battle.Data
 
         protected override void OnInit()
         {
-            var properties = EntiProps.ByName[name];
-            duration = properties[nameof(HealthGP)].Value;
-            damageBuff = properties[nameof(DamageGP)].Value / 100;
-            moveSpeedBuff = properties[nameof(MoveSpeedGP)].Value / 100;
+            var props = EntiProps.GetProps(name);
+            duration = props.GetValue<HealthGP>();
+            damageBuff = props.GetValue<DamageGP>() / 100;
+            moveSpeedBuff = props.GetValue<MoveSpeedGP>() / 100;
         }
 
         protected override void OnApply()

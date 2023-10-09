@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using Battle.Data;
 using UnityEditor;
@@ -11,7 +11,7 @@ public class LevelConfigEditor : BaseWalletSerializationHelper<LevelConfig>
     {
         if (config.Prices == null)
         {
-            config.Prices = new List<BaseWallet>();
+            config.Prices = new List<BasePrice>();
         }
         else
         {
@@ -27,7 +27,7 @@ public class LevelConfigEditor : BaseWalletSerializationHelper<LevelConfig>
     {
         if (!config.AddedPrices.TryGetValue(type, out var price))
         {
-            price = (BaseWallet) Activator.CreateInstance(type);
+            price = (BasePrice) Activator.CreateInstance(type);
             config.Prices.Add(price);
             config.AddedPrices.TryAdd(price.GetType(), price);
         }
@@ -55,4 +55,4 @@ public class LevelConfigEditor : BaseWalletSerializationHelper<LevelConfig>
             }
         }
     }
-}
+}*/

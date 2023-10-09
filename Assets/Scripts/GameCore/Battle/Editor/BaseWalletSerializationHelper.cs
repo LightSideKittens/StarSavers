@@ -15,10 +15,10 @@ public abstract class BaseWalletSerializationHelper<T> : OdinEditor where T : Sc
     };
     public static List<Type> MatchedTypes { get; } = new()
     {
-        typeof(Coins.Wallet),
-        typeof(Crystal.Wallet),
-        typeof(Metal.Wallet),
-        typeof(DarkElexir.Wallet),
+        typeof(Coins.Price),
+        typeof(Crystal.Price),
+        typeof(Metal.Price),
+        typeof(DarkElexir.Price),
     };
 
     private static bool isInited;

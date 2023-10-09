@@ -3,5 +3,5 @@ using UnityEngine.UI;
 
 namespace GameCore.Battle.Data
 {
-    public class Cards : ObjectByEntitesNames<Sprite> { }
+    public class Cards : ObjectByEntitiesNames<Sprite> { }
 }

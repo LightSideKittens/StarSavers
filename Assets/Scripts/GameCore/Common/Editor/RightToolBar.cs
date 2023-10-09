@@ -66,7 +66,6 @@ namespace BeatRoyale
             {
                 GreenButtonStyle = new GUIStyle(GUI.skin.button);
                 RedButtonStyle = new GUIStyle(GreenButtonStyle);
-                
                 ConfigureToggleButtonStyle(GreenButtonStyle, green);
                 ConfigureToggleButtonStyle(RedButtonStyle, red);
             }
@@ -74,32 +73,17 @@ namespace BeatRoyale
 
         private static void ConfigureToggleButtonStyle(GUIStyle style, Color color)
         {
-            /*style.alignment = TextAnchor.MiddleCenter;
+            style.alignment = TextAnchor.MiddleCenter;
             style.margin = new RectOffset(10, 10, 0, 0);
             style.richText = true;
-            var textColor = new Color(0.17f, 0.17f, 0.17f);*/
-
-            var normal = style.normal;
-            //normal.textColor = textColor;
-            SetBackground(normal, GetTextureByColor(color));
-
-            /*
-            var hover = style.hover;
-            //hover.textColor = textColor;
-            SetBackground(hover, GetTextureByColor(color.CloneAndChangeBrightness(0.9f)));
+            var textColor = new Color(0.17f, 0.17f, 0.17f);
             
-            var hover1 = style.onHover;
-            //hover.textColor = textColor;
-            SetBackground(hover1, GetTextureByColor(color.CloneAndChangeBrightness(0.9f)));
+            style.Add(textColor);
+            var back = GetTextureByColor(color);
+            var back2 = GetTextureByColor(color.CloneAndChangeBrightness(0.9f));
+            var back3 = GetTextureByColor(color.CloneAndChangeBrightness(0.75f));
 
-            var active = style.active;
-            //active.textColor = textColor;
-            SetBackground(active, GetTextureByColor(color.CloneAndChangeBrightness(0.75f)));*/
-
-            void SetBackground(GUIStyleState state, Texture2D texture)
-            {
-                state.background = texture;
-            }
+            style.Background(back, back3, back2);
         }
     }
 }

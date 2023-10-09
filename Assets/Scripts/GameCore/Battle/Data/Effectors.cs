@@ -12,14 +12,14 @@ namespace GameCore.Battle.Data
         [Serializable] 
         public class EffectorByName
         {
-            private static IEnumerable<string> EffectorsNames => GameScopes.EffectorsNames;
+            private static IList<ValueDropdownItem<int>> EffectorsNames => IdToName.GetValues(EntityMeta.EntityNames);
         
-            [SerializeField, ValueDropdown(nameof(EffectorsNames))] public string effectorName;
+            [SerializeField, ValueDropdown(nameof(EffectorsNames))] public int effectorName;
             [OdinSerialize] public BaseEffector effector;
         }
-
+        
         [OdinSerialize, TableList] private List<EffectorByName> byName = new();
-        public static Dictionary<string, BaseEffector> ByName { get; } = new();
+        public static Dictionary<int, BaseEffector> ByName { get; } = new();
 
         public void Init()
         {

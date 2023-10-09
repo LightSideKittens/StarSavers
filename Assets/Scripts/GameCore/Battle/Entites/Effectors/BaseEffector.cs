@@ -11,7 +11,7 @@ namespace GameCore.Battle.Data
     internal abstract class BaseEffector
     {
         [OdinSerialize] protected FindTargetComponent findTargetComponent;
-        [NonSerialized] public string name;
+        [NonSerialized] public int name;
         protected float radius;
         protected bool isApplied;
         protected SpriteRenderer radiusRenderer;
@@ -22,7 +22,8 @@ namespace GameCore.Battle.Data
 
         public void Init()
         {
-            radius = EntiProps.ByName[name][nameof(RadiusGP)].Value;
+            var props = EntiProps.GetProps(name);
+            radius = props.GetValue<RadiusGP>();
             radiusRenderer = new GameObject($"{GetType().Name} Radius").AddComponent<SpriteRenderer>();
             radiusRenderer.sprite = circleSprite;
             var gameObject = radiusRenderer.gameObject;
