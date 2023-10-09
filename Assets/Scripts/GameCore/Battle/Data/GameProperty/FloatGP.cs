@@ -9,7 +9,7 @@ namespace Battle.Data.GameProperty
     [Serializable]
     public abstract class BaseGameProperty : GamePropertyDrawer
     {
-        public abstract void Init(string entityName, int level);
+        public abstract void Init(string entityId, int level);
     }
 
     [Serializable]
@@ -18,12 +18,12 @@ namespace Battle.Data.GameProperty
         protected abstract T This { get; }
         public static Dictionary<string, Dictionary<int, T>> AllProps { get; private set; } = new();
         
-        public override void Init(string entityName, int level)
+        public override void Init(string entityId, int level)
         {
-            if (!AllProps.TryGetValue(entityName, out var dict))
+            if (!AllProps.TryGetValue(entityId, out var dict))
             {
                 dict = new Dictionary<int, T>();
-                AllProps.Add(entityName, dict);
+                AllProps.Add(entityId, dict);
             }
             
             dict.Add(level, This);

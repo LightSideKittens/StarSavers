@@ -9,7 +9,7 @@ namespace Battle.Data
     public class EntiProps : BaseConfig<EntiProps>
     {
         [Serializable]
-        public class PropsByEntityName : Dictionary<int, Props> { }
+        public class PropsByEntityId : Dictionary<int, Props> { }
 
         [Serializable]
         public class Props : Dictionary<string, float>
@@ -20,10 +20,10 @@ namespace Battle.Data
             }
         }
         
-        [JsonProperty("props")] private PropsByEntityName props = new();
+        [JsonProperty("props")] private PropsByEntityId props = new();
 
-        public static PropsByEntityName ByName => Config.props;
-        public static Props GetProps(int entityName) => Config.props[entityName];
+        public static PropsByEntityId ByName => Config.props;
+        public static Props GetProps(int entityId) => Config.props[entityId];
         public static void Clear() => Config.props.Clear();
     }
 }

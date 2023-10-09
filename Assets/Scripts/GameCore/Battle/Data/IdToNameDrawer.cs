@@ -1,9 +1,7 @@
-﻿using LSCore.Extensions.Unity;
-using Sirenix.OdinInspector.Editor;
+﻿using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
-using RectExtensions = Sirenix.Utilities.RectExtensions;
 
 namespace GameCore.Battle.Data
 {
@@ -21,51 +19,56 @@ namespace GameCore.Battle.Data
         protected override void DrawPropertyLayout(GUIContent label)
         {
             SirenixEditorGUI.BeginBox();
-            SirenixGUIStyles.BoxHeaderStyle.fixedHeight = 22;
-            SirenixEditorGUI.BeginBoxHeader();
-            isExpanded.Value = SirenixEditorGUI.Foldout(isExpanded.Value, label);
-            
-            if (SirenixEditorGUI.IconButton(EditorIcons.Plus))
             {
-                this.ValueEntry.SmartValue.CreateData();
-            }
-            
-            SirenixEditorGUI.EndBoxHeader();
-            
-            if (SirenixEditorGUI.BeginFadeGroup(this, isExpanded.Value))
-            {
-                EditorGUI.indentLevel = 1;
-                
-                for (int i = 0; i < Property.Children.Count; i++)
+                SirenixGUIStyles.BoxHeaderStyle.fixedHeight = 22;
+                SirenixEditorGUI.BeginBoxHeader();
                 {
-                    var child = Property.Children[i];
-                    EditorGUILayout.BeginHorizontal();
-                    var widths = new float[] { 50, 150 };
-                    
-                    for (int j = 0; j < child.Children.Count; j++)
+                    isExpanded.Value = SirenixEditorGUI.Foldout(isExpanded.Value, label);
+
+                    if (SirenixEditorGUI.IconButton(EditorIcons.Plus))
                     {
-                        var childChild = child.Children[j];
-                        var childLabel = childChild.Label;
-                        float labelWidth = GUI.skin.label.CalcSize(childLabel).x + 20;
-                        float oldLabelWidth = EditorGUIUtility.labelWidth;
-                        EditorGUIUtility.labelWidth = labelWidth;
-                        EditorGUIUtility.fieldWidth = widths[j];
-                        childChild.Draw();
-                        EditorGUIUtility.labelWidth = oldLabelWidth;
+                        ValueEntry.SmartValue.CreateData();
+                    }
+                }
+                SirenixEditorGUI.EndBoxHeader();
+
+                float oldLabelWidth = EditorGUIUtility.labelWidth;
+                EditorGUIUtility.labelWidth = 0;
+                
+                if (SirenixEditorGUI.BeginFadeGroup(this, isExpanded.Value))
+                {
+                    EditorGUI.indentLevel = 1;
+                    var rect = EditorGUILayout.GetControlRect();
+                    
+                    for (int i = 0; i < Property.Children.Count; i++)
+                    {
+                        var child = Property.Children[i];
+                        EditorGUILayout.BeginHorizontal();
+                        var widths = new float[] { 1, 5 };
+
+                        for (int j = 0; j < child.Children.Count; j++)
+                        {
+                            var childChild = child.Children[j];
+                            EditorGUIUtility.fieldWidth = widths[j];
+                            childChild.Draw(GUIContent.none);
+                        }
+
+                        if (SirenixEditorGUI.IconButton(EditorIcons.Minus))
+                        {
+                            ValueEntry.SmartValue.RemoveAt(i);
+                        }
+
+                        EditorGUILayout.EndHorizontal();
+                        EditorGUILayout.Space(2);
                     }
 
-                    if (SirenixEditorGUI.IconButton(EditorIcons.Minus))
-                    {
-                        ValueEntry.SmartValue.RemoveAt(i);
-                    }
-                    
-                    EditorGUILayout.EndHorizontal();
+                    EditorGUI.indentLevel = 0;
                 }
+                SirenixEditorGUI.EndFadeGroup();
                 
-                EditorGUI.indentLevel = 0;
+                EditorGUIUtility.labelWidth = oldLabelWidth;
             }
-            
-            SirenixEditorGUI.EndFadeGroup();
+            EditorGUILayout.Space(2);
             SirenixEditorGUI.EndBox();
         }
     }

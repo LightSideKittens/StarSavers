@@ -6,6 +6,7 @@ using GameCore.Battle.Data;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Sirenix.Utilities;
+using UnityEditor;
 using UnityEngine;
 
 namespace Battle.Data
@@ -21,81 +22,110 @@ namespace Battle.Data
             {
                 get
                 {
-                    Instance.groupNames.TryGetNameById(id, out var name);
+                    Instance.groupIds.TryGetNameById(id, out var name);
                     return name;
                 }
             }
             
             [Header("$Name")]
-            [ValueDropdown(nameof(EntityNames), IsUniqueList = true)] 
-            [OdinSerialize] private HashSet<int> entites = new();
+            [ValueDropdown(nameof(EntityIds), IsUniqueList = true)] 
+            [OdinSerialize] private HashSet<int> entityIds = new();
             
             [ValueDropdown(nameof(GroupNames), IsUniqueList = true)]
             [OdinSerialize] private HashSet<int> includedGroups = new();
-            
-            
-/*
-#if UNITY_EDITOR
-            [ValueDropdown(nameof(EntityNames), IsUniqueList = true)] 
-            [ShowInInspector] private List<int> allEntities = new();
-#endif
 
-            private void IncludedGroupsChanged()
+            private HashSet<Group> ToGroups(IEnumerable<int> groupsIds)
             {
-                allEntities.Clear();
-                
-                if (includedGroups.Contains(name))
+                var set = new HashSet<Group>();
+
+                foreach (var groupsId in groupsIds)
                 {
-                    includedGroups.Remove(name);
+                    set.Add(GroupsById[groupsId]);
                 }
 
-                foreach (var group in includedGroups)
+                return set;
+            }
+            
+            private HashSet<Group> AllIncludedGroups
+            {
+                get
                 {
-                    readOnlyGroups.Add(GroupsByName[group]);
-                }
-            }*/
+                    var set = new HashSet<Group>();
+                    Recur(includedGroups, set);
 
+                    return set;
+
+                    void Recur(HashSet<int> groupIds, HashSet<Group> result)
+                    {
+                        foreach (var newGroup in ToGroups(groupIds))
+                        {
+                            result.Add(newGroup);
+                            Recur(newGroup.includedGroups, result);
+                        }
+                    }
+                }
+            }
+
+            
             private HashSet<int> ExcludedGroups
             {
                 get
                 {
                     var set = new HashSet<int>{id};
+                    
                     foreach (var group in Instance.groups)
                     {
-                        Recur(group, set);
-                    }
-
-                    return set;
-
-                    void Recur(Group group, HashSet<int> except)
-                    {
-                        foreach (var groupId in group.includedGroups)
+                        Exclude(group);
+                        
+                        foreach (var childGroup in group.AllIncludedGroups)
                         {
-                            var newGroup = Instance.groupsByName[groupId];
-                            
-                            if (groupId == id || newGroup.includedGroups.Contains(id))
+                            if (Exclude(childGroup))
                             {
-                                except.Add(group.id);
-                            }
-                            else
-                            {
-                                Recur(newGroup, except);
+                                set.Add(group.id);
                             }
                         }
                     }
+
+                    bool Exclude(Group group)
+                    {
+                        if (group.id == id || group.includedGroups.Contains(id))
+                        {
+                            set.Add(group.id);
+                            return true;
+                        }
+
+                        return false;
+                    }
+                    
+                    return set;
                 }
             }
             
-            private IList<ValueDropdownItem<int>> GroupNames => IdToName.GetValues(EntityMeta.GroupNames, ExcludedGroups);
-            private IList<ValueDropdownItem<int>> EntityNames => IdToName.GetValues(EntityMeta.EntityNames);
-            public IEnumerator<int> GetEnumerator() => entites.GetEnumerator();
+            private HashSet<int> ExcludedEntities
+            {
+                get
+                {
+                    var set = new HashSet<int>();
+                    
+                    foreach (var group in AllIncludedGroups)
+                    {
+                        set.AddRange(group.entityIds);
+                    }
+
+                    return set;
+                }
+            }
+            
+            private IList<ValueDropdownItem<int>> GroupNames => IdToName.GetValues(EntityMeta.GroupIds, ExcludedGroups);
+            private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds, ExcludedEntities);
+            public IEnumerator<int> GetEnumerator() => entityIds.GetEnumerator();
 
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return GetEnumerator();
             }
 
-            public void Add(Group group) => entites.AddRange(group.entites);
+            public void Add(Group group) => entityIds.AddRange(group.entityIds);
 
             public override bool Equals(object obj)
             {
@@ -142,14 +172,13 @@ namespace Battle.Data
         }
 
         public static IdToName AllDestinations => Instance.allDestinations;
-        public static IdToName EntityNames => Instance.entityNames;
-        public static IdToName GroupNames => Instance.groupNames;
-        public static Dictionary<int, Group> GroupsByName => Instance.groupsByName;
+        public static IdToName EntityIds => Instance.entityIds;
+        public static IdToName GroupIds => Instance.groupIds;
+        public static Dictionary<int, Group> GroupsById => Instance.groupsById;
         
         [Header("Constants")]
-        
-        [OdinSerialize] private IdToName entityNames;
-        [OdinSerialize] private IdToName groupNames;
+        [OdinSerialize] private IdToName entityIds;
+        [OdinSerialize] private IdToName groupIds;
         
         [Header("Groups")]
         [ListDrawerSettings(HideAddButton = true, HideRemoveButton = true, DraggableItems = true)]
@@ -157,10 +186,10 @@ namespace Battle.Data
         [OdinSerialize] private HashSet<Group> groups = new();
         
         private readonly IdToName allDestinations = new();
-        private Dictionary<int, Group> groupsByName;
+        private Dictionary<int, Group> groupsById;
 
-        public static bool IsEntityName(int name) => EntityNames.Contains(name);
-        public static bool IsGroupName(int name) => GroupNames.Contains(name);
+        public static bool IsEntityId(int name) => EntityIds.Contains(name);
+        public static bool IsGroupName(int name) => GroupIds.Contains(name);
         
 #if UNITY_EDITOR
         
@@ -174,14 +203,14 @@ namespace Battle.Data
         private void InitData()
         {
             allDestinations.Clear();
-            allDestinations.AddRange(entityNames);
-            allDestinations.AddRange(groupNames);
+            allDestinations.AddRange(entityIds);
+            allDestinations.AddRange(groupIds);
 
             var toRemove = new List<Group>();
             
             foreach (var group in groups)
             {
-                if (!groupNames.Contains(group.id))
+                if (!groupIds.Contains(group.id))
                 {
                     toRemove.Add(group);
                 }
@@ -192,22 +221,24 @@ namespace Battle.Data
                 groups.Remove(remove);
             }
             
-            foreach (var groupName in groupNames)
+            foreach (var groupName in groupIds)
             {
                 var group = new Group{ id = groupName.id };
                 groups.Add(group);
             }
             
-            groupsByName = groups.ToDictionary(x => x.id);
+            groupsById = groups.ToDictionary(x => x.id);
+            EditorUtility.SetDirty(this);
         }
         
         public void Init()
         {
-            entityNames.Init();
-            groupNames.Init();
-            entityNames.Changed += InitData;
-            groupNames.Changed += InitData;
+            entityIds.Init();
+            groupIds.Init();
+            entityIds.Changed += InitData;
+            groupIds.Changed += InitData;
             InitData();
+            
             instance = this;
         }
     }

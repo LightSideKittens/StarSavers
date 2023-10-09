@@ -13,7 +13,7 @@ namespace GameCore.Battle.Data
 {
     public abstract class ObjectByEntitiesNames<T> : SerializedScriptableObject where T : Object
     {
-        private static IList<ValueDropdownItem<int>> AllEntities => IdToName.GetValues(EntityMeta.EntityNames);
+        private static IList<ValueDropdownItem<int>> AllEntities => IdToName.GetValues(EntityMeta.EntityIds);
         
         [Serializable]
         private class ObjectByName

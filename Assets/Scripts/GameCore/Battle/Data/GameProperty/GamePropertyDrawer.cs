@@ -5,7 +5,6 @@ using LSCore.Editor;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
-using UnityEditor;
 using UnityEngine;
 
 namespace Battle.Data.GameProperty
@@ -13,6 +12,26 @@ namespace Battle.Data.GameProperty
     [Serializable]
     public abstract class GamePropertyDrawer
     {
+        public override bool Equals(object obj)
+        {
+            if (obj is GamePropertyDrawer drawer)
+            {
+                return Equals(drawer);
+            }
+
+            return false;
+        }
+        
+        public bool Equals(GamePropertyDrawer other)
+        {
+            return GetType() == other.GetType();
+        }
+
+        public override int GetHashCode()
+        {
+            return GetType().GetHashCode();
+        }
+
         [CustomValueDrawer("IconDrawer")]
         [ShowInInspector] private int iconDrawer;
         

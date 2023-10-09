@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEngine;
-using Random = UnityEngine.Random;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace GameCore.Battle.Data
 {
@@ -12,57 +14,37 @@ namespace GameCore.Battle.Data
         [Serializable]
         public class Data
         {
-            [NonSerialized] public IdToName set;
-            [NonSerialized] public int prevId;
-            [NonSerialized] public string prevName;
+            [NonSerialized] private string prevName;
 
-            [OnValueChanged("IdChanged")] public int id;
+            [ReadOnly] public int id;
             [OnValueChanged("NameChanged")] public string name;
 
-            public void Init(IdToName set)
+            public void Init()
             {
-                this.set = set;
-                prevId = id;
                 prevName = name;
-            }
-
-            private void IdChanged()
-            {
-                if (set.ids.Contains(id))
-                {
-                    id = prevId;
-                }
-                else
-                {
-                    set.ids.Remove(prevId);
-                    set.nameById.Remove(prevId);
-                    
-                    prevId = id;
-                    
-                    set.ids.Add(prevId);
-                    set.nameById.Add(prevId, name);
-                }
             }
 
             private void NameChanged()
             {
-                if (set.names.Contains(name))
+                Undo.ClearAll();
+                if (names.Contains(name))
                 {
                     name = prevName;
                 }
                 else
                 {
-                    set.names.Remove(prevName);
+                    names.Remove(prevName);
                     prevName = name;
-                    set.names.Add(prevName);
-                    set.nameById[id] = prevName;
+                    names.Add(prevName);
+                    nameById[id] = prevName;
                 }
             }
         }
 
-        private HashSet<int> ids = new();
-        private HashSet<string> names = new();
-        private Dictionary<int, string> nameById = new();
+        private static int maxHash;
+        private static HashSet<int> ids = new();
+        private static HashSet<string> names = new();
+        private static Dictionary<int, string> nameById = new();
 
         public event Action Changed;
 
@@ -73,49 +55,75 @@ namespace GameCore.Battle.Data
         
         public void Init()
         {
-            ids.Clear();
-            names.Clear();
-            nameById.Clear();
+            ClearMeta();
             
-            foreach (var data1 in this)
+            foreach (var data in this)
             {
-                data1.Init(this);
-                ids.Add(data1.id);
-                names.Add(data1.name);
-                nameById.Add(data1.id, data1.name);
+                var id = data.id;
+                var name = data.name;
+                data.Init();
+                ids.Add(id);
+                names.Add(name);
+                nameById.Add(id, name);
+                IncreaseHash(data);
             }
         }
-
+        
         public bool CreateData()
         {
-            var hash = Random.Range(-999999, 999999);
+            var hash = maxHash;
             var name = $"Entity Name {hash}";
 
             if (ids.Add(hash) && names.Add(name))
             {
                 var data = new Data{ name = $"Entity Name {hash}", id = hash };
-                data.Init(this);
+                data.Init();
                 base.Add(data);
                 nameById.Add(data.id, data.name);
+                IncreaseHash(data);
                 Changed?.Invoke();
                 return true;
             }
-
+            
+            ids.Remove(hash);
+            names.Remove(name);
             return false;
+        }
+
+        public new void AddRange(IEnumerable<Data> data)
+        {
+            foreach (var data1 in data)
+            {
+                if (!Add(data1))
+                {
+                    throw new Exception($"Detected the same Id: {data1.id} or Name: {data1.name}");
+                }
+            }
         }
 
         public new bool Add(Data data)
         {
             if (ids.Add(data.id) && names.Add(data.name))
             {
-                data.Init(this);
+                data.Init();
                 base.Add(data);
                 nameById.Add(data.id, data.name);
+                IncreaseHash(data);
                 Changed?.Invoke();
                 return true;
             }
             
+            ids.Remove(data.id);
+            names.Remove(data.name);
             return false;
+        }
+
+        private void IncreaseHash(Data data)
+        {
+            if (data.id >= maxHash)
+            {
+                maxHash = data.id + 1;
+            }
         }
         
         public new void Remove(Data data)
@@ -130,6 +138,20 @@ namespace GameCore.Battle.Data
             InternalRemove(this[index]);
             base.RemoveAt(index);
             Changed?.Invoke();
+        }
+
+        public new void Clear()
+        {
+            ClearMeta();
+            base.Clear();
+        }
+
+        private void ClearMeta()
+        {
+            ids.Clear();
+            names.Clear();
+            nameById.Clear();
+            maxHash = 0;
         }
 
         private void InternalRemove(Data data)

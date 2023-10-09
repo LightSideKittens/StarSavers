@@ -11,7 +11,7 @@ namespace Battle.Data
         [Serializable]
         private class LevelsContainer
         {
-            public int entityName;
+            public int entityId;
             public List<LevelConfig> levels = new();
         }
         
@@ -22,43 +22,43 @@ namespace Battle.Data
         [ReadOnly] public bool hasError = true;
 
         [TableList, OdinSerialize, ReadOnly] private List<LevelsContainer> levelsContainers = new();
-        private readonly Dictionary<int, List<LevelConfig>> levelsByEntityName = new();
+        private readonly Dictionary<int, List<LevelConfig>> levelsByEntityId = new();
 
         public void Init()
         {
             Burger.Log($"[{nameof(LevelsManager)}] Init");
             Instance = this;
-            levelsByEntityName.Clear();
+            levelsByEntityId.Clear();
             
             for (int i = 0; i < levelsContainers.Count; i++)
             {
                 var levelContainer = levelsContainers[i];
-                levelsByEntityName.Add(levelContainer.entityName, levelContainer.levels);
+                levelsByEntityId.Add(levelContainer.entityId, levelContainer.levels);
             }
 
             RecomputeAllLevels();
         }
 
-        public static bool CanUpgrade(int entityName)
+        public static bool CanUpgrade(int entityId)
         {
-            if (EntityMeta.IsEntityName(entityName))
+            if (EntityMeta.IsEntityId(entityId))
             {
-                UnlockedLevels.EntitiesLevel.TryGetValue(entityName, out var currentLevel);
+                UnlockedLevels.EntitiesLevel.TryGetValue(entityId, out var currentLevel);
                 
-                var levels = Instance.levelsByEntityName[entityName];
+                var levels = Instance.levelsByEntityId[entityId];
                 return currentLevel < levels.Count;
             }
             
             return false;
         }
 
-        public static void UpgradeLevel(int entityName)
+        public static void UpgradeLevel(int entityId)
         {
-            if (CanUpgrade(entityName))
+            if (CanUpgrade(entityId))
             {
                 var entitiesLevel = UnlockedLevels.EntitiesLevel;
-                entitiesLevel.TryGetValue(entityName, out var currentLevel);
-                var level = Instance.levelsByEntityName[entityName][currentLevel];
+                entitiesLevel.TryGetValue(entityId, out var currentLevel);
+                var level = Instance.levelsByEntityId[entityId][currentLevel];
                 
                 ApplyLevel(level);
                 UnlockedLevels.UpgradeLevel(level);
@@ -79,12 +79,12 @@ namespace Battle.Data
             Burger.Log($"[{nameof(LevelsManager)}] RecomputeAllLevels");
             EntiProps.Clear();
 
-            var entityNames = UnlockedLevels.EntityIdByUpgradesOrder;
+            var entityIds = UnlockedLevels.EntityIdByUpgradesOrder;
             
-            for (int i = 0; i < entityNames.Count; i++)
+            for (int i = 0; i < entityIds.Count; i++)
             {
-                var data = entityNames[i];
-                var level = levelsByEntityName[data.entityName][data.level];
+                var data = entityIds[i];
+                var level = levelsByEntityId[data.entityId][data.level];
                 ApplyLevel(level);
             }
         }
