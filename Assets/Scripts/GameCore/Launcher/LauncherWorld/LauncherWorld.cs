@@ -18,8 +18,8 @@ namespace BeatRoyale.Launcher
 
         private void Init()
         {
-            cards.Init();
-            ControlPanel.Show();
+            //cards.Init();
+            MainWindow.Show();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace BeatRoyale
 #else
             Application.targetFrameRate = 60;
 #endif
-            levelsManager.Init();
+            //levelsManager.Init();
             onInit();
         }
 

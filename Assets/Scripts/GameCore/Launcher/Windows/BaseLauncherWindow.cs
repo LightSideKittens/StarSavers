@@ -7,11 +7,9 @@ namespace BeatRoyale.Windows
     public class BaseLauncherWindow<T> : BaseWindow<T> where T : BaseLauncherWindow<T>
     {
         public static int Index => Instance.Internal_Index;
-        
-        protected override Transform Parent => ControlPanel.Instance.transform;
         protected virtual int Internal_Index { get; }
-        private float XShow => ControlPanel.CurrentShowedWindowIndex > Internal_Index ? 1 : -1;
-        private float XHide => ControlPanel.CurrentShowingWindowIndex > Internal_Index ? 1 : -1;
+        private float XShow => MainWindow.CurrentShowedWindowIndex > Internal_Index ? 1 : -1;
+        private float XHide => MainWindow.CurrentShowingWindowIndex > Internal_Index ? 1 : -1;
         protected override float DefaultAlpha => 1;
         private Vector2 startPivot;
 
@@ -24,13 +22,13 @@ namespace BeatRoyale.Windows
         protected override void OnShowing()
         {
             base.OnShowing();
-            ControlPanel.CurrentShowingWindowIndex = Internal_Index;
+            MainWindow.CurrentShowingWindowIndex = Internal_Index;
         }
         
         protected override void OnShowed()
         {
             base.OnShowed();
-            ControlPanel.CurrentShowedWindowIndex = Internal_Index;
+            MainWindow.CurrentShowedWindowIndex = Internal_Index;
         }
 
         protected override Tween ShowAnim
