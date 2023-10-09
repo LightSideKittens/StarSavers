@@ -35,7 +35,7 @@ MonoBehaviour:
       Data: 618037
     - Name: name
       Entry: 1
-      Data: Entity Name 618037
+      Data: Arcane
     - Name: 
       Entry: 8
       Data: 
@@ -47,7 +47,7 @@ MonoBehaviour:
       Data: 332275
     - Name: name
       Entry: 1
-      Data: Entity Name 332275
+      Data: Knight
     - Name: 
       Entry: 8
       Data: 
@@ -59,7 +59,7 @@ MonoBehaviour:
       Data: 479123
     - Name: name
       Entry: 1
-      Data: Entity Name 47912
+      Data: Barbarian
     - Name: 
       Entry: 8
       Data: 
@@ -74,13 +74,13 @@ MonoBehaviour:
       Data: 4|GameCore.Battle.Data.IdToName, GameCore.Battle
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
       Data: 5|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
     - Name: id
       Entry: 3
-      Data: -360382
+      Data: 872079
     - Name: name
       Entry: 1
       Data: AllUnits
@@ -92,10 +92,34 @@ MonoBehaviour:
       Data: 6|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
     - Name: id
       Entry: 3
-      Data: 517158
+      Data: -78024
     - Name: name
       Entry: 1
-      Data: Entity Name 517158
+      Data: Enemies
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: -780240
+    - Name: name
+      Entry: 1
+      Data: Heroes
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: -652623
+    - Name: name
+      Entry: 1
+      Data: Effectors
     - Name: 
       Entry: 8
       Data: 
@@ -105,5 +129,160 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  groups:
-  - name: -360382
+    - Name: groups
+      Entry: 7
+      Data: 9|System.Collections.Generic.HashSet`1[[Battle.Data.EntityMeta+Group,
+        GameCore.Battle]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 10|Battle.Data.EntityMeta+Group, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 872079
+    - Name: entites
+      Entry: 7
+      Data: 11|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: includedGroups
+      Entry: 7
+      Data: 12|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: -78024
+    - Name: 
+      Entry: 3
+      Data: -780240
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|Battle.Data.EntityMeta+Group, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: -78024
+    - Name: entites
+      Entry: 7
+      Data: 14|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: includedGroups
+      Entry: 7
+      Data: 15|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: -652623
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 16|Battle.Data.EntityMeta+Group, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: -780240
+    - Name: entites
+      Entry: 7
+      Data: 17|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: includedGroups
+      Entry: 7
+      Data: 18|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: -652623
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 19|Battle.Data.EntityMeta+Group, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: -652623
+    - Name: entites
+      Entry: 7
+      Data: 20|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: includedGroups
+      Entry: 7
+      Data: 21|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
