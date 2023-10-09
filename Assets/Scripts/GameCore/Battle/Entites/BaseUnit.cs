@@ -14,7 +14,7 @@ namespace GameCore.Battle.Data
         
         public bool IsOpponent { get; private set; }
         public string UserId { get; private set; }
-        protected virtual IList<ValueDropdownItem<int>> Entities => IdToName.ValuesFunction(EntityMeta.EntityNames);
+        protected virtual IList<ValueDropdownItem<int>> Entities => IdToName.GetValues(EntityMeta.EntityNames);
 
         public int Name => unitName;
         

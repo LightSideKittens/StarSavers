@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace GameCore.Battle.Data
@@ -34,8 +35,12 @@ namespace GameCore.Battle.Data
                 else
                 {
                     set.ids.Remove(prevId);
+                    set.nameById.Remove(prevId);
+                    
                     prevId = id;
+                    
                     set.ids.Add(prevId);
+                    set.nameById.Add(prevId, name);
                 }
             }
 
@@ -50,47 +55,117 @@ namespace GameCore.Battle.Data
                     set.names.Remove(prevName);
                     prevName = name;
                     set.names.Add(prevName);
+                    set.nameById[id] = prevName;
                 }
             }
         }
 
         private HashSet<int> ids = new();
         private HashSet<string> names = new();
+        private Dictionary<int, string> nameById = new();
+
+        public event Action Changed;
+
+        public IdToName()
+        {
+            Init();
+        }
         
         public void Init()
         {
+            ids.Clear();
+            names.Clear();
+            nameById.Clear();
+            
             foreach (var data1 in this)
             {
                 data1.Init(this);
                 ids.Add(data1.id);
                 names.Add(data1.name);
+                nameById.Add(data1.id, data1.name);
             }
         }
 
-        public void AddData()
+        public bool CreateData()
         {
             var hash = Random.Range(-999999, 999999);
             var name = $"Entity Name {hash}";
-            Data data = null;
 
             if (ids.Add(hash) && names.Add(name))
             {
-                data = new Data() { name = $"Entity Name {hash}", id = hash };
+                var data = new Data{ name = $"Entity Name {hash}", id = hash };
                 data.Init(this);
+                base.Add(data);
+                nameById.Add(data.id, data.name);
+                Changed?.Invoke();
+                return true;
             }
 
-            Add(data);
+            return false;
+        }
+
+        public new bool Add(Data data)
+        {
+            if (ids.Add(data.id) && names.Add(data.name))
+            {
+                data.Init(this);
+                base.Add(data);
+                nameById.Add(data.id, data.name);
+                Changed?.Invoke();
+                return true;
+            }
+            
+            return false;
+        }
+        
+        public new void Remove(Data data)
+        {
+            InternalRemove(data);
+            base.Remove(data);
+            Changed?.Invoke();
+        }
+        
+        public new void RemoveAt(int index)
+        {
+            InternalRemove(this[index]);
+            base.RemoveAt(index);
+            Changed?.Invoke();
+        }
+
+        private void InternalRemove(Data data)
+        {
+            ids.Remove(data.id);
+            names.Remove(data.name);
+            nameById.Remove(data.id);
         }
 
         public bool Contains(int id) => ids.Contains(id);
+
+        public string GetNameById(int id) => nameById[id];
+        public bool TryGetNameById(int id, out string name) => nameById.TryGetValue(id, out name);
         
-        public static IList<ValueDropdownItem<int>> ValuesFunction(IdToName set)
+        public static IList<ValueDropdownItem<int>> GetValues(IdToName set)
         {
             var list = new ValueDropdownList<int>();
 
-            foreach (var id in set)
+            foreach (var data in set)
             {
-                list.Add(id.name, id.id);
+                list.Add(data.name, data.id);
+            }
+
+            return list;
+        }
+        
+        public static IList<ValueDropdownItem<int>> GetValues(IdToName set, HashSet<int> except)
+        {
+            var list = new ValueDropdownList<int>();
+
+            foreach (var data in set)
+            {
+                if (!except.Contains(data.id))
+                {
+                    list.Add(data.name, data.id);
+                }
             }
 
             return list;

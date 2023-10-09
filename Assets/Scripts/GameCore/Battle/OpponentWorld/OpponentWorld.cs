@@ -9,7 +9,7 @@ namespace Battle
 {
     public class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
-        private static IList<ValueDropdownItem<int>> EnemyNames => IdToName.ValuesFunction(EntityMeta.EntityNames);
+        private static IList<ValueDropdownItem<int>> EnemyNames => IdToName.GetValues(EntityMeta.EntityNames);
         [SerializeField, ValueDropdown(nameof(EnemyNames))] private int enemyName;
         [SerializeField] private Transform spawnPoint;
         

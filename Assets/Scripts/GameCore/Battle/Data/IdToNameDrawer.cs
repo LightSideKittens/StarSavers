@@ -21,12 +21,13 @@ namespace GameCore.Battle.Data
         protected override void DrawPropertyLayout(GUIContent label)
         {
             SirenixEditorGUI.BeginBox();
+            SirenixGUIStyles.BoxHeaderStyle.fixedHeight = 22;
             SirenixEditorGUI.BeginBoxHeader();
             isExpanded.Value = SirenixEditorGUI.Foldout(isExpanded.Value, label);
             
             if (SirenixEditorGUI.IconButton(EditorIcons.Plus))
             {
-                this.ValueEntry.SmartValue.AddData();
+                this.ValueEntry.SmartValue.CreateData();
             }
             
             SirenixEditorGUI.EndBoxHeader();
@@ -53,6 +54,11 @@ namespace GameCore.Battle.Data
                         EditorGUIUtility.labelWidth = oldLabelWidth;
                     }
 
+                    if (SirenixEditorGUI.IconButton(EditorIcons.Minus))
+                    {
+                        ValueEntry.SmartValue.RemoveAt(i);
+                    }
+                    
                     EditorGUILayout.EndHorizontal();
                 }
                 

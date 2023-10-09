@@ -8,7 +8,7 @@ namespace GameCore.Battle.Data
     public class LocationData : ScriptableObject
     {
         public Location prefab;
-        protected virtual IList<ValueDropdownItem<int>> Enemies => IdToName.ValuesFunction(EntityMeta.EntityNames);
+        protected virtual IList<ValueDropdownItem<int>> Enemies => IdToName.GetValues(EntityMeta.EntityNames);
         
         [ValueDropdown(nameof(Enemies))] public string[] enemies;
     }

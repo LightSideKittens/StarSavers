@@ -13,24 +13,36 @@ namespace Battle.Data
     public class EntityMeta : SerializedScriptableObject
     {
         [Serializable]
-        public class Group : IEnumerable<int>
+        public sealed class Group : IEnumerable<int>
         {
-            [ValueDropdown(nameof(GroupNames))] 
-            public int name;
+            [HideInInspector] public int id;
+
+            private string Name
+            {
+                get
+                {
+                    Instance.groupNames.TryGetNameById(id, out var name);
+                    return name;
+                }
+            }
             
-            [ValueDropdown(nameof(EntityNames))] 
-            [OdinSerialize] private HashSet<int> entites;
+            [Header("$Name")]
+            [ValueDropdown(nameof(EntityNames), IsUniqueList = true)] 
+            [OdinSerialize] private HashSet<int> entites = new();
             
-            [ValueDropdown(nameof(GroupNames))] 
-            [OdinSerialize] private HashSet<int> includedGroups;
+            [ValueDropdown(nameof(GroupNames), IsUniqueList = true)]
+            [OdinSerialize] private HashSet<int> includedGroups = new();
             
-/*#if UNITY_EDITOR
-            [ShowInInspector] private List<Group> readOnlyGroups = new();
+            
+/*
+#if UNITY_EDITOR
+            [ValueDropdown(nameof(EntityNames), IsUniqueList = true)] 
+            [ShowInInspector] private List<int> allEntities = new();
 #endif
 
             private void IncludedGroupsChanged()
             {
-                readOnlyGroups.Clear();
+                allEntities.Clear();
                 
                 if (includedGroups.Contains(name))
                 {
@@ -42,9 +54,40 @@ namespace Battle.Data
                     readOnlyGroups.Add(GroupsByName[group]);
                 }
             }*/
+
+            private HashSet<int> ExcludedGroups
+            {
+                get
+                {
+                    var set = new HashSet<int>{id};
+                    foreach (var group in Instance.groups)
+                    {
+                        Recur(group, set);
+                    }
+
+                    return set;
+
+                    void Recur(Group group, HashSet<int> except)
+                    {
+                        foreach (var groupId in group.includedGroups)
+                        {
+                            var newGroup = Instance.groupsByName[groupId];
+                            
+                            if (groupId == id || newGroup.includedGroups.Contains(id))
+                            {
+                                except.Add(group.id);
+                            }
+                            else
+                            {
+                                Recur(newGroup, except);
+                            }
+                        }
+                    }
+                }
+            }
             
-            private IList<ValueDropdownItem<int>> GroupNames => IdToName.ValuesFunction(EntityMeta.GroupNames);
-            private IList<ValueDropdownItem<int>> EntityNames => IdToName.ValuesFunction(EntityMeta.EntityNames);
+            private IList<ValueDropdownItem<int>> GroupNames => IdToName.GetValues(EntityMeta.GroupNames, ExcludedGroups);
+            private IList<ValueDropdownItem<int>> EntityNames => IdToName.GetValues(EntityMeta.EntityNames);
             public IEnumerator<int> GetEnumerator() => entites.GetEnumerator();
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -53,21 +96,47 @@ namespace Battle.Data
             }
 
             public void Add(Group group) => entites.AddRange(group.entites);
+
+            public override bool Equals(object obj)
+            {
+                if (obj is Group group)
+                {
+                    return Equals(group);
+                }
+                return false;
+            }
+            
+            public bool Equals(Group other)
+            {
+                return id == other.id;
+            }
+
+            public override int GetHashCode()
+            {
+                return id;
+            }
         }
 
         private static EntityMeta instance;
+        
+#if UNITY_EDITOR
+        private static void TryInitInstance()
+        {
+            if (instance == null)
+            {
+                instance = AssetDatabaseUtils.LoadAny<EntityMeta>();
+                instance.Init();
+            }
+        }
+#endif
 
         private static EntityMeta Instance
         {
             get
             {
 #if UNITY_EDITOR
-                if (instance == null)
-                {
-                    instance = AssetDatabaseUtils.LoadAny<EntityMeta>();
-                }
+                TryInitInstance();
 #endif
-                instance.Init();
                 return instance;
             }
         }
@@ -83,7 +152,9 @@ namespace Battle.Data
         [OdinSerialize] private IdToName groupNames;
         
         [Header("Groups")]
-        [SerializeField] private List<Group> groups;
+        [ListDrawerSettings(HideAddButton = true, HideRemoveButton = true, DraggableItems = true)]
+        [HideReferenceObjectPicker]
+        [OdinSerialize] private HashSet<Group> groups = new();
         
         private readonly IdToName allDestinations = new();
         private Dictionary<int, Group> groupsByName;
@@ -92,25 +163,51 @@ namespace Battle.Data
         public static bool IsGroupName(int name) => GroupNames.Contains(name);
         
 #if UNITY_EDITOR
-        private void OnValidate()
-        {
-            Init();
-        }
-
+        
         [OnInspectorInit]
         private void OnInspectorInit()
         {
-            entityNames.Init();
-            groupNames.Init();
+            TryInitInstance();
         }
 #endif
         
-        public void Init()
+        private void InitData()
         {
-            groupsByName = groups.ToDictionary(x => x.name);
             allDestinations.Clear();
             allDestinations.AddRange(entityNames);
             allDestinations.AddRange(groupNames);
+
+            var toRemove = new List<Group>();
+            
+            foreach (var group in groups)
+            {
+                if (!groupNames.Contains(group.id))
+                {
+                    toRemove.Add(group);
+                }
+            }
+
+            foreach (var remove in toRemove)
+            {
+                groups.Remove(remove);
+            }
+            
+            foreach (var groupName in groupNames)
+            {
+                var group = new Group{ id = groupName.id };
+                groups.Add(group);
+            }
+            
+            groupsByName = groups.ToDictionary(x => x.id);
+        }
+        
+        public void Init()
+        {
+            entityNames.Init();
+            groupNames.Init();
+            entityNames.Changed += InitData;
+            groupNames.Changed += InitData;
+            InitData();
             instance = this;
         }
     }

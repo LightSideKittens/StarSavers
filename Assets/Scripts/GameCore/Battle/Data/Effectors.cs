@@ -12,7 +12,7 @@ namespace GameCore.Battle.Data
         [Serializable] 
         public class EffectorByName
         {
-            private static IList<ValueDropdownItem<int>> EffectorsNames => IdToName.ValuesFunction(EntityMeta.EntityNames);
+            private static IList<ValueDropdownItem<int>> EffectorsNames => IdToName.GetValues(EntityMeta.EntityNames);
         
             [SerializeField, ValueDropdown(nameof(EffectorsNames))] public int effectorName;
             [OdinSerialize] public BaseEffector effector;
