@@ -12,11 +12,11 @@ namespace Battle.Data
         public class PropsByEntityId : Dictionary<int, Props> { }
 
         [Serializable]
-        public class Props : Dictionary<string, float>
+        public class Props : Dictionary<string, string>
         {
             public float GetValue<T>() where T : BaseGameProperty
             {
-                return this[typeof(T).Name];
+                return this[typeof(T).Name].GetFloat();
             }
         }
         

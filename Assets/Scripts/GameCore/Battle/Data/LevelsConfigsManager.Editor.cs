@@ -7,7 +7,7 @@ namespace Battle.Data
     {
         public static LevelsManager Editor_GetInstance()
         {
-            var guid = AssetDatabase.FindAssets("t: LevelsConfigsManager");
+            var guid = AssetDatabase.FindAssets("t: LevelsManager");
             return AssetDatabase.LoadAssetAtPath<LevelsManager>(AssetDatabase.GUIDToAssetPath(guid[0]));
         }
         

@@ -10,7 +10,7 @@ namespace GameCore.Battle.Data
     public class BaseUnit : SerializedMonoBehaviour
     {
         [SerializeField, ValueDropdown(nameof(Entities))] private int unitName;
-        public Dictionary<string, float> properties;
+        public Dictionary<string, string> properties;
         
         public bool IsOpponent { get; private set; }
         public string UserId { get; private set; }
@@ -18,9 +18,9 @@ namespace GameCore.Battle.Data
 
         public int Name => unitName;
         
-        public float GetProp<T>() where T : BaseGameProperty
+        public float GetValue<T>() where T : BaseGameProperty
         {
-            return properties[typeof(T).Name];
+            return properties[typeof(T).Name].GetFloat();
         }
 
         public virtual void Init(string userId)

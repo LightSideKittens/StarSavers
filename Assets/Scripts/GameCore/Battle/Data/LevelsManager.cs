@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Battle.Data.GameProperty;
+using GameCore.Battle.Data;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
@@ -11,28 +11,71 @@ namespace Battle.Data
         [Serializable]
         private class LevelsContainer
         {
-            public int entityId;
+            [ValueDropdown("EntityIds")]
+            [ReadOnly] public int entityId;
+            [ValueDropdown("Levels", IsUniqueList = true)]
             public List<LevelConfig> levels = new();
+            
+            private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds);
+
+            private IEnumerable<LevelConfig> Levels => AssetDatabaseUtils.LoadAllAssets<LevelConfig>(EntityMeta.EntityIds.GetNameById(entityId));
+
+            public override bool Equals(object obj)
+            {
+                if (obj is LevelsContainer drawer)
+                {
+                    return Equals(drawer);
+                }
+
+                return false;
+            }
+        
+            public bool Equals(LevelsContainer other)
+            {
+                return entityId == other.entityId;
+            }
+
+            public override int GetHashCode()
+            {
+                return entityId.GetHashCode();
+            }
         }
         
         public static event Action LevelUpgraded;
         private static LevelsManager Instance { get; set; }
 
-        [InfoBox("Some configs contains errors", InfoMessageType.Error, "$" + nameof(hasError))]
-        [ReadOnly] public bool hasError = true;
-
-        [TableList, OdinSerialize, ReadOnly] private List<LevelsContainer> levelsContainers = new();
+        [TableList, OdinSerialize, ValueDropdown("AvailableContainer", IsUniqueList = true)]
+        [HideReferenceObjectPicker]
+        private HashSet<LevelsContainer> levelsContainers = new();
+        
         private readonly Dictionary<int, List<LevelConfig>> levelsByEntityId = new();
+
+        private ValueDropdownList<LevelsContainer> list;
+        private IList<ValueDropdownItem<LevelsContainer>> AvailableContainer
+        {
+            get
+            {
+                if (list == null)
+                { 
+                    list = new ValueDropdownList<LevelsContainer>();
+                    foreach (var id in EntityMeta.EntityIds)
+                    {
+                        list.Add(id.name, new LevelsContainer(){entityId = id.id});
+                    }
+                }
+                
+                return list;
+            }
+        }
 
         public void Init()
         {
             Burger.Log($"[{nameof(LevelsManager)}] Init");
             Instance = this;
             levelsByEntityId.Clear();
-            
-            for (int i = 0; i < levelsContainers.Count; i++)
+
+            foreach (var levelContainer in levelsContainers)
             {
-                var levelContainer = levelsContainers[i];
                 levelsByEntityId.Add(levelContainer.entityId, levelContainer.levels);
             }
 
@@ -60,18 +103,11 @@ namespace Battle.Data
                 entitiesLevel.TryGetValue(entityId, out var currentLevel);
                 var level = Instance.levelsByEntityId[entityId][currentLevel];
                 
-                ApplyLevel(level);
+                level.Apply();
                 UnlockedLevels.UpgradeLevel(level);
                 
                 LevelUpgraded?.Invoke();
             }
-        }
-
-        private static void ApplyLevel(LevelConfig level)
-        {
-            var entiProps = EntiProps.ByName;
-            
-            
         }
 
         private void RecomputeAllLevels()
@@ -84,8 +120,8 @@ namespace Battle.Data
             for (int i = 0; i < entityIds.Count; i++)
             {
                 var data = entityIds[i];
-                var level = levelsByEntityId[data.entityId][data.level];
-                ApplyLevel(level);
+                var level = levelsByEntityId[data.entityId][data.level-1];
+                level.Apply();
             }
         }
     }

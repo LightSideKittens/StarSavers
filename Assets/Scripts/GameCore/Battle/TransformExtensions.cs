@@ -11,10 +11,10 @@ namespace GameCore.Battle
             return ObjectsByTransfroms<T>.Get(target);
         }
         
-        public static float GetProp<T>(this Transform transform) where T : BaseGameProperty
+        public static float GetValue<T>(this Transform transform) where T : BaseGameProperty
         {
             var unit = ObjectsByTransfroms<BaseUnit>.Get(transform);
-            return unit.properties[typeof(T).Name];
+            return unit.properties[typeof(T).Name].GetFloat();
         }
 
         public static bool TryGet<T>(this Transform target, out T result)

@@ -30,9 +30,9 @@ namespace GameCore.Battle.Data.Components
             this.findTargetComponent = findTargetComponent;
             this.transform = transform;
             var unit = transform.Get<BaseUnit>();
-            radius = unit.GetProp<RadiusGP>();
-            damage = unit.GetProp<DamageGP>();
-            attackSpeed = unit.GetProp<AttackSpeedGP>();
+            radius = unit.GetValue<RadiusGP>();
+            damage = unit.GetValue<DamageGP>();
+            attackSpeed = unit.GetValue<AttackSpeedGP>();
             //DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
             attackTween = Wait.InfinityLoop(1, OnTactTicked);
             Add(transform, this);

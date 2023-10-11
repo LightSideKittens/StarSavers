@@ -33,6 +33,7 @@ namespace GameCore.Battle.Data
                 SirenixEditorGUI.EndBoxHeader();
 
                 float oldLabelWidth = EditorGUIUtility.labelWidth;
+                float oldFieldWidth = EditorGUIUtility.fieldWidth;
                 EditorGUIUtility.labelWidth = 0;
                 
                 if (SirenixEditorGUI.BeginFadeGroup(this, isExpanded.Value))
@@ -42,15 +43,12 @@ namespace GameCore.Battle.Data
                     
                     for (int i = 0; i < Property.Children.Count; i++)
                     {
-                        var child = Property.Children[i];
+                        var child = Property.Children[i].Children;
                         EditorGUILayout.BeginHorizontal();
-                        var widths = new float[] { 1, 5 };
 
-                        for (int j = 0; j < child.Children.Count; j++)
+                        for (int j = 0; j < child.Count; j++)
                         {
-                            var childChild = child.Children[j];
-                            EditorGUIUtility.fieldWidth = widths[j];
-                            childChild.Draw(GUIContent.none);
+                            child[j].Draw();
                         }
 
                         if (SirenixEditorGUI.IconButton(EditorIcons.Minus))
@@ -67,6 +65,7 @@ namespace GameCore.Battle.Data
                 SirenixEditorGUI.EndFadeGroup();
                 
                 EditorGUIUtility.labelWidth = oldLabelWidth;
+                EditorGUIUtility.fieldWidth = oldFieldWidth;
             }
             EditorGUILayout.Space(2);
             SirenixEditorGUI.EndBox();

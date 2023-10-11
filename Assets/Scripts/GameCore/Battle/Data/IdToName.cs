@@ -16,7 +16,12 @@ namespace GameCore.Battle.Data
         {
             [NonSerialized] private string prevName;
 
+            [HideLabel]
+            [LabelWidth(1)]
             [ReadOnly] public int id;
+            
+            [HideLabel]
+            [LabelWidth(1000)]
             [OnValueChanged("NameChanged")] public string name;
 
             public void Init()
@@ -27,24 +32,23 @@ namespace GameCore.Battle.Data
             private void NameChanged()
             {
                 Undo.ClearAll();
-                if (names.Contains(name))
+                if (Global.idByName.ContainsKey(name))
                 {
                     name = prevName;
                 }
                 else
                 {
-                    names.Remove(prevName);
+                    Global.idByName.Remove(prevName);
                     prevName = name;
-                    names.Add(prevName);
-                    nameById[id] = prevName;
+                    Global.idByName.Add(prevName, id);
                 }
             }
         }
 
         private static int maxHash;
-        private static HashSet<int> ids = new();
-        private static HashSet<string> names = new();
-        private static Dictionary<int, string> nameById = new();
+        public static IdToName Global { get; private set; } = new IdToName();
+        private Dictionary<int, string> nameById = new();
+        private Dictionary<string, int> idByName = new();
 
         public event Action Changed;
 
@@ -52,6 +56,7 @@ namespace GameCore.Battle.Data
         {
             Init();
         }
+        
         
         public void Init()
         {
@@ -62,9 +67,11 @@ namespace GameCore.Battle.Data
                 var id = data.id;
                 var name = data.name;
                 data.Init();
-                ids.Add(id);
-                names.Add(name);
                 nameById.Add(id, name);
+                idByName.Add(name, id);
+                Global.AddInternal(data);
+                Global.nameById.Add(id, name);
+                Global.idByName.Add(name, id);
                 IncreaseHash(data);
             }
         }
@@ -74,19 +81,15 @@ namespace GameCore.Battle.Data
             var hash = maxHash;
             var name = $"Entity Name {hash}";
 
-            if (ids.Add(hash) && names.Add(name))
+            if (Global.nameById.TryAdd(hash, name) && Global.idByName.TryAdd(name, hash))
             {
-                var data = new Data{ name = $"Entity Name {hash}", id = hash };
-                data.Init();
-                base.Add(data);
-                nameById.Add(data.id, data.name);
-                IncreaseHash(data);
-                Changed?.Invoke();
+                var data = new Data{ name = name, id = hash };
+                InternalAdd(data);
                 return true;
             }
             
-            ids.Remove(hash);
-            names.Remove(name);
+            Global.nameById.Remove(hash);
+            Global.idByName.Remove(name);
             return false;
         }
 
@@ -101,20 +104,29 @@ namespace GameCore.Battle.Data
             }
         }
 
+        private void InternalAdd(Data data)
+        {
+            data.Init();
+            base.Add(data);
+            Global.AddInternal(data);
+            idByName.Add(data.name, data.id);
+            nameById.Add(data.id, data.name);
+            IncreaseHash(data);
+            Changed?.Invoke();
+        }
+
+        private void AddInternal(Data data) => base.Add(data);
+        
         public new bool Add(Data data)
         {
-            if (ids.Add(data.id) && names.Add(data.name))
+            if (Global.nameById.TryAdd(data.id, data.name) && Global.idByName.TryAdd(data.name, data.id))
             {
-                data.Init();
-                base.Add(data);
-                nameById.Add(data.id, data.name);
-                IncreaseHash(data);
-                Changed?.Invoke();
+                InternalAdd(data);
                 return true;
             }
             
-            ids.Remove(data.id);
-            names.Remove(data.name);
+            Global.nameById.Remove(data.id);
+            Global.idByName.Remove(data.name);
             return false;
         }
 
@@ -130,6 +142,7 @@ namespace GameCore.Battle.Data
         {
             InternalRemove(data);
             base.Remove(data);
+            Global.Remove(data);
             Changed?.Invoke();
         }
         
@@ -137,6 +150,7 @@ namespace GameCore.Battle.Data
         {
             InternalRemove(this[index]);
             base.RemoveAt(index);
+            Global.RemoveAt(index);
             Changed?.Invoke();
         }
 
@@ -148,23 +162,35 @@ namespace GameCore.Battle.Data
 
         private void ClearMeta()
         {
-            ids.Clear();
-            names.Clear();
+            foreach (var id in nameById.Keys)
+            {
+                Global.nameById.Remove(id);
+            }
+            
+            foreach (var name in idByName.Keys)
+            {
+                Global.idByName.Remove(name);
+            }
+            
             nameById.Clear();
+            idByName.Clear();
             maxHash = 0;
         }
 
         private void InternalRemove(Data data)
         {
-            ids.Remove(data.id);
-            names.Remove(data.name);
             nameById.Remove(data.id);
+            idByName.Remove(data.name);
+            Global.nameById.Remove(data.id);
+            Global.idByName.Remove(data.name);
         }
 
-        public bool Contains(int id) => ids.Contains(id);
-
+        public bool ContainsId(int id) => nameById.ContainsKey(id);
+        public bool ContainsName(string name) => idByName.ContainsKey(name);
         public string GetNameById(int id) => nameById[id];
+        public int GetIdByName(string id) => idByName[id];
         public bool TryGetNameById(int id, out string name) => nameById.TryGetValue(id, out name);
+        public bool TryGetIdByName(string name, out int id) => idByName.TryGetValue(name, out id);
         
         public static IList<ValueDropdownItem<int>> GetValues(IdToName set)
         {

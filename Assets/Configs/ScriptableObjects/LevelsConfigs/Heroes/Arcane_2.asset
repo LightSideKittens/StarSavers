@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59dae9a2401549a5a51f532a2df277f1, type: 3}
-  m_Name: Mage_Unit_1
+  m_Name: Arcane_2
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -26,26 +26,20 @@ MonoBehaviour:
       Data: 0|Battle.Data.GameProperty.EntityGameProps, GameCore.Battle
     - Name: <Destination>k__BackingField
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: <Props>k__BackingField
       Entry: 7
       Data: 1|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
-        GameCore.Battle]], System.Core
+        Battle.GameProperty]], System.Core
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 2|Battle.Data.GameProperty.HealthGP, GameCore.Battle
+      Data: 2|Battle.Data.GameProperty.HealthGP, Battle.GameProperty
     - Name: value
-      Entry: 4
-      Data: 0
-    - Name: percent
-      Entry: 3
-      Data: 0
-    - Name: additional
-      Entry: 3
-      Data: 0
+      Entry: 1
+      Data: 'Value:100 Percent:50 '
     - Name: 
       Entry: 8
       Data: 
@@ -64,7 +58,7 @@ MonoBehaviour:
         GameCore.Battle]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 4|Battle.Data.GameProperty.AllDestinationsGameProps, GameCore.Battle
@@ -74,34 +68,56 @@ MonoBehaviour:
     - Name: <Props>k__BackingField
       Entry: 7
       Data: 5|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
-        GameCore.Battle]], System.Core
+        Battle.GameProperty]], System.Core
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
-      Data: 6|Battle.Data.GameProperty.HealthGP, GameCore.Battle
+      Data: 6|Battle.Data.GameProperty.DamageGP, Battle.GameProperty
     - Name: value
-      Entry: 4
-      Data: 0
-    - Name: percent
-      Entry: 3
-      Data: 0
-    - Name: additional
-      Entry: 3
-      Data: 0
+      Entry: 1
+      Data: 'Value:1000 Percent:100 '
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 7|Battle.Data.GameProperty.AttackSpeedGP, GameCore.Battle
-    - Name: value
-      Entry: 4
-      Data: 0
-    - Name: percent
+      Data: 7|Battle.Data.GameProperty.AllDestinationsGameProps, GameCore.Battle
+    - Name: <Destination>k__BackingField
       Entry: 3
-      Data: 0
+      Data: 5
+    - Name: <Props>k__BackingField
+      Entry: 7
+      Data: 8|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
+        Battle.GameProperty]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 9|Battle.Data.GameProperty.AttackSpeedGP, Battle.GameProperty
+    - Name: value
+      Entry: 1
+      Data: 'Value:500 Percent:30 '
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|Battle.Data.GameProperty.DamageGP, Battle.GameProperty
+    - Name: value
+      Entry: 1
+      Data: 'Value:123 Percent:0 '
     - Name: 
       Entry: 8
       Data: 
@@ -122,7 +138,7 @@ MonoBehaviour:
       Data: 
     - Name: Prices
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[BasePrice, LSCore.CurrencySystem]],
+      Data: 11|System.Collections.Generic.List`1[[BasePrice, LSCore.CurrencySystem]],
         mscorlib
     - Name: 
       Entry: 12

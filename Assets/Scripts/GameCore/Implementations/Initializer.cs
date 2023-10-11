@@ -2,13 +2,13 @@
 using Battle.Data;
 using BeatRoyale.Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BeatRoyale
 {
     public class Initializer : BaseInitializer
     {
-        [FormerlySerializedAs("levelsConfigsManager")] [SerializeField] private LevelsManager levelsManager;
+        [SerializeField] private LevelsManager levelsManager;
+        [SerializeField] private EntityMeta entityMeta;
         private static bool isInited;
 
         protected override void Internal_Initialize(Action onInit)
@@ -26,7 +26,9 @@ namespace BeatRoyale
 #else
             Application.targetFrameRate = 60;
 #endif
-            //levelsManager.Init();
+            entityMeta.Init();
+            levelsManager.Init();
+            LevelsManager.UpgradeLevel(EntityMeta.EntityIds.GetIdByName("Arcane"));
             onInit();
         }
 

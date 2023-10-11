@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Battle.Data.GameProperty;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -30,6 +31,24 @@ namespace Battle.Data
                 OtherUpgrades.Add(new AllDestinationsGameProps());
             }
         }
+
+        public static bool TryGetCurrent(ref LevelConfig config)
+        {
+            return config != null || LSPropertyEditor.AllEditors.TryGetInspectedObject(out config);
+        }
+        
+        public static HashSet<int> GetExcept(ref HashSet<int> set, ref LevelConfig config, Action<LevelConfig> onGet)
+        {
+            set ??= new HashSet<int>();
+            set.Clear();
+            
+            if (TryGetCurrent(ref config))
+            {
+                onGet(config);
+            }
+
+            return set;
+        }
 #endif
         
         public static int GetLevel(string configName)
@@ -39,5 +58,50 @@ namespace Battle.Data
         }
 
         public int Level => GetLevel(name);
+
+        public void Apply()
+        {
+            var entiProps = EntiProps.ByName;
+            var allPropsByEntityId = new Dictionary<int, HashSet<string>>();
+            AddProps(EntityUpgrades);
+
+            for (int i = 0; i < OtherUpgrades.Count; i++)
+            {
+                AddProps(OtherUpgrades[i]);
+            }
+            
+            void AddProps(EntityGameProps props)
+            {
+                foreach (var id in EntityMeta.GetAllEntityIds(props.Destination))
+                {
+                    if (!allPropsByEntityId.TryGetValue(id, out var propsDict))
+                    {
+                        propsDict = new HashSet<string>();
+                        allPropsByEntityId.Add(id, propsDict);
+                    }
+
+                    foreach (var prop in props.Props)
+                    {
+                        if (propsDict.Add(prop.Name))
+                        {
+                            if (!entiProps.TryGetValue(id, out var entiPropsDict))
+                            {
+                                entiPropsDict = new EntiProps.Props();
+                                entiProps.Add(id, entiPropsDict);
+                            }
+                            
+                            if (entiPropsDict.TryGetValue(prop.Name, out var propValue))
+                            {
+                                entiPropsDict[prop.Name] = prop.Upgrade(propValue);
+                            }
+                            else
+                            {
+                                entiPropsDict.Add(prop.Name, prop.Serialize());
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

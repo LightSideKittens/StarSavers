@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GameCore.Battle.Data;
+using LSCore;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Sirenix.Utilities;
@@ -28,10 +29,10 @@ namespace Battle.Data
             }
             
             [Header("$Name")]
-            [ValueDropdown(nameof(EntityIds), IsUniqueList = true)] 
+            [ValueDropdown("EntityIds", IsUniqueList = true)] 
             [OdinSerialize] private HashSet<int> entityIds = new();
             
-            [ValueDropdown(nameof(GroupNames), IsUniqueList = true)]
+            [ValueDropdown("GroupIds", IsUniqueList = true)]
             [OdinSerialize] private HashSet<int> includedGroups = new();
 
             private HashSet<Group> ToGroups(IEnumerable<int> groupsIds)
@@ -65,8 +66,22 @@ namespace Battle.Data
                     }
                 }
             }
+            public HashSet<int> AllEntityIds
+            {
+                get
+                {
+                    var set = new HashSet<int>(entityIds);
+                    
+                    foreach (var group in AllIncludedGroups)
+                    {
+                        set.AddRange(group.entityIds);
+                    }
 
-            
+                    return set;
+                }
+            }
+
+#if UNITY_EDITOR
             private HashSet<int> ExcludedGroups
             {
                 get
@@ -116,8 +131,10 @@ namespace Battle.Data
                 }
             }
             
-            private IList<ValueDropdownItem<int>> GroupNames => IdToName.GetValues(EntityMeta.GroupIds, ExcludedGroups);
+            private IList<ValueDropdownItem<int>> GroupIds => IdToName.GetValues(EntityMeta.GroupIds, ExcludedGroups);
             private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds, ExcludedEntities);
+#endif
+            
             public IEnumerator<int> GetEnumerator() => entityIds.GetEnumerator();
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -165,13 +182,16 @@ namespace Battle.Data
             get
             {
 #if UNITY_EDITOR
-                TryInitInstance();
+                if (!World.IsPlaying)
+                {
+                    TryInitInstance();
+                }
 #endif
                 return instance;
             }
         }
 
-        public static IdToName AllDestinations => Instance.allDestinations;
+        public static IdToName AllDestinations => IdToName.Global;
         public static IdToName EntityIds => Instance.entityIds;
         public static IdToName GroupIds => Instance.groupIds;
         public static Dictionary<int, Group> GroupsById => Instance.groupsById;
@@ -185,11 +205,25 @@ namespace Battle.Data
         [HideReferenceObjectPicker]
         [OdinSerialize] private HashSet<Group> groups = new();
         
-        private readonly IdToName allDestinations = new();
         private Dictionary<int, Group> groupsById;
 
-        public static bool IsEntityId(int name) => EntityIds.Contains(name);
-        public static bool IsGroupName(int name) => GroupIds.Contains(name);
+        public static bool IsEntityId(int name) => EntityIds.ContainsId(name);
+        public static bool IsGroupName(int name) => GroupIds.ContainsId(name);
+
+        public static IEnumerable<int> GetAllEntityIds(int destinationId)
+        {
+            if (IsEntityId(destinationId))
+            {
+                yield return destinationId;
+            }
+            else if(IsGroupName(destinationId))
+            {
+                foreach (var id in GroupsById[destinationId].AllEntityIds)
+                {
+                    yield return id;
+                }
+            }
+        }
         
 #if UNITY_EDITOR
         
@@ -202,15 +236,11 @@ namespace Battle.Data
         
         private void InitData()
         {
-            allDestinations.Clear();
-            allDestinations.AddRange(entityIds);
-            allDestinations.AddRange(groupIds);
-
             var toRemove = new List<Group>();
             
             foreach (var group in groups)
             {
-                if (!groupIds.Contains(group.id))
+                if (!groupIds.ContainsId(group.id))
                 {
                     toRemove.Add(group);
                 }

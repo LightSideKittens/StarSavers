@@ -8,5 +8,6 @@ namespace Battle.Data.GameProperty
 #if UNITY_EDITOR
         protected override string IconName { get; }
 #endif
+
     }
 }
