@@ -3,6 +3,7 @@ using Battle.Data;
 using Battle.Data.GameProperty;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.BaseUnit>;
 
 namespace GameCore.Battle.Data
@@ -10,7 +11,7 @@ namespace GameCore.Battle.Data
     public class BaseUnit : SerializedMonoBehaviour
     {
         [SerializeField, ValueDropdown(nameof(Entities))] private int unitName;
-        public Dictionary<string, string> properties;
+        public Dictionary<string, Prop> Props { get; private set; }
         
         public bool IsOpponent { get; private set; }
         public string UserId { get; private set; }
@@ -20,7 +21,7 @@ namespace GameCore.Battle.Data
         
         public float GetValue<T>() where T : BaseGameProperty
         {
-            return properties[typeof(T).Name].GetFloat();
+            return FloatAndPercent.GetValue<T>(Props);
         }
 
         public virtual void Init(string userId)
@@ -28,7 +29,7 @@ namespace GameCore.Battle.Data
             UserId = userId;
             IsOpponent = UserId == "Opponent";
             Add(transform, this);
-            properties = EntiProps.GetProps(unitName);
+            Props = EntiProps.GetProps(unitName);
         }
 
         protected virtual void OnDestroy()

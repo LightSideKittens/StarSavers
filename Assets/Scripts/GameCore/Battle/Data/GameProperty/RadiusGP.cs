@@ -6,7 +6,7 @@ namespace Battle.Data.GameProperty
     public class RadiusGP : FloatAndPercent
     {
 #if UNITY_EDITOR
-        protected override string IconName { get; }
+        protected override string IconName => "radius-icon";
 #endif
     }
 }

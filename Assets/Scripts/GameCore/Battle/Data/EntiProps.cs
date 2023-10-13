@@ -12,13 +12,18 @@ namespace Battle.Data
         public class PropsByEntityId : Dictionary<int, Props> { }
 
         [Serializable]
-        public class Props : Dictionary<string, string>
+        public class Props : Dictionary<string, Prop>
         {
             public float GetValue<T>() where T : BaseGameProperty
             {
-                return this[typeof(T).Name].GetFloat();
+                return this[typeof(T).Name].Value[FloatAndPercent.ValueKey];
             }
         }
+
+        protected override JsonSerializerSettings Settings { get; } = new()
+        {
+            Converters = new List<JsonConverter> { new PropConverter() },
+        };
         
         [JsonProperty("props")] private PropsByEntityId props = new();
 

@@ -96,7 +96,7 @@ namespace Battle.Data
                             }
                             else
                             {
-                                entiPropsDict.Add(prop.Name, prop.Serialize());
+                                entiPropsDict.Add(prop.Name, Prop.Copy(prop.Prop));
                             }
                         }
                     }

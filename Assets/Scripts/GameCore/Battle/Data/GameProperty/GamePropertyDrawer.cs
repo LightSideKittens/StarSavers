@@ -89,7 +89,7 @@ namespace Battle.Data.GameProperty
             var rect = GUIHelper.GetCurrentLayoutRect();
 
             rect.xMax -= 20;
-            rect.xMin += 40;
+            rect.xMin += 20;
             rect.yMax = rect.yMin + 30;
             var texRect = rect;
             var center = texRect.center;

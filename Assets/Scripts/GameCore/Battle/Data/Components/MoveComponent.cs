@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Battle.Data.GameProperty;
 using UnityEngine;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.MoveComponent>;
@@ -24,11 +23,7 @@ namespace GameCore.Battle.Data.Components
             this.transform = transform;
             rigidbody = transform.GetComponent<Rigidbody2D>();
             collider = rigidbody.GetComponent<CircleCollider2D>();
-            var dst = "";
-            var fields = new Dictionary<string, float>();
-            BaseGameProperty.Deserialize(dst, fields);
-            speed = fields[""];
-            
+            speed = transform.GetValue<MoveSpeedGP>();
             Buffs = new Buffs();
 
             this.findTargetComponent = findTargetComponent;

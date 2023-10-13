@@ -14,7 +14,7 @@ namespace GameCore.Battle
         public static float GetValue<T>(this Transform transform) where T : BaseGameProperty
         {
             var unit = ObjectsByTransfroms<BaseUnit>.Get(transform);
-            return unit.properties[typeof(T).Name].GetFloat();
+            return FloatAndPercent.GetValue<T>(unit.Props);
         }
 
         public static bool TryGet<T>(this Transform target, out T result)

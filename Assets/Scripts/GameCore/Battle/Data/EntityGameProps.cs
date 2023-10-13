@@ -39,8 +39,9 @@ namespace Battle.Data.GameProperty
         }
         protected virtual IList<ValueDropdownItem<int>> Destinations => IdToName.GetValues(EntityMeta.EntityIds, LevelConfig.GetExcept(ref except, ref config, Filter));
         
-        private LevelConfig config;
-        private HashSet<int> except;
+        [NonSerialized] private LevelConfig config;
+        [NonSerialized] private HashSet<int> except;
+        
 
         private void Filter(LevelConfig level)
         {
@@ -59,8 +60,8 @@ namespace Battle.Data.GameProperty
 #if UNITY_EDITOR
         protected override IList<ValueDropdownItem<int>> Destinations => IdToName.GetValues(EntityMeta.AllDestinations, LevelConfig.GetExcept(ref except, ref config, Filter));
         
-        private LevelConfig config;
-        private HashSet<int> except;
+        [NonSerialized] private LevelConfig config;
+        [NonSerialized] private HashSet<int> except;
 
         private void Filter(LevelConfig level) => except.Add(level.EntityId);
 #endif
