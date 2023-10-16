@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public class TransformScaler : BaseScreenScaler
     {

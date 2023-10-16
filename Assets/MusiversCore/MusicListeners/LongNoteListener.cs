@@ -2,7 +2,7 @@
 using LSCore.Async;
 using MusicEventSystem.Configs;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public class LongNoteListener
     {

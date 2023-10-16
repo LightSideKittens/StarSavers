@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using BeatRoyale;
+using BeatHeroes;
 using DG.Tweening;
 using LSCore;
 using LSCore.Async;

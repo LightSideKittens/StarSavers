@@ -1,5 +1,5 @@
 ﻿using Battle.Windows;
-using BeatRoyale.Interfaces;
+using BeatHeroes.Interfaces;
 using GameCore.Battle;
 using GameCore.Battle.Data;
 using LSCore;

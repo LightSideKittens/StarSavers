@@ -6,7 +6,7 @@ using Core.ConfigModule;
 using Core.Server;
 using GameCore.Battle.Data;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public class MatchData
     {

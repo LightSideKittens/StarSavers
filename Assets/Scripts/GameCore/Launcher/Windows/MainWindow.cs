@@ -3,7 +3,7 @@ using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BeatRoyale.Windows
+namespace BeatHeroes.Windows
 {
     internal class MainWindow : BaseWindow<MainWindow>
     {

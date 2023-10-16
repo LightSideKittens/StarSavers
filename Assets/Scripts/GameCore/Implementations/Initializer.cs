@@ -1,9 +1,9 @@
 ﻿using System;
 using Battle.Data;
-using BeatRoyale.Interfaces;
+using BeatHeroes.Interfaces;
 using UnityEngine;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public class Initializer : BaseInitializer
     {

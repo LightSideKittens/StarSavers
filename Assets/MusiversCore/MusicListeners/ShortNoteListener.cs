@@ -4,7 +4,7 @@ using DG.Tweening;
 using LSCore.Async;
 using MusicEventSystem.Configs;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public class ShortNoteListener : IDisposable
     {

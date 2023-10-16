@@ -2,7 +2,7 @@
 using LSCore;
 using UnityEngine;
 
-namespace BeatRoyale.Windows
+namespace BeatHeroes.Windows
 {
     public class BaseLauncherWindow<T> : BaseWindow<T> where T : BaseLauncherWindow<T>
     {

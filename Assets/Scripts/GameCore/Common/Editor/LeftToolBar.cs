@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using static BeatRoyale.DebugData;
+using static BeatHeroes.DebugData;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public static partial class ToolBar
     {

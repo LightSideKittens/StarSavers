@@ -1,6 +1,6 @@
 ﻿using LSCore;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public partial class DebugData : BaseDebugData<DebugData>
     {

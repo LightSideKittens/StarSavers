@@ -1,11 +1,11 @@
-﻿using BeatRoyale.Interfaces;
-using BeatRoyale.Windows;
+﻿using BeatHeroes.Interfaces;
+using BeatHeroes.Windows;
 using GameCore.Battle.Data;
 using LSCore;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace BeatRoyale.Launcher
+namespace BeatHeroes.Launcher
 {
     public class LauncherWorld : ServiceManager
     {

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace BeatRoyale
+namespace BeatHeroes
 {
     public partial class DebugData
     {

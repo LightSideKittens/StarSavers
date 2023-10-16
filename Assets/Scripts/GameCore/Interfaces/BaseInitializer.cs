@@ -1,7 +1,7 @@
 ﻿using System;
 using LSCore;
 
-namespace BeatRoyale.Interfaces
+namespace BeatHeroes.Interfaces
 {
     public abstract class BaseInitializer : SingleService<BaseInitializer>
     {
