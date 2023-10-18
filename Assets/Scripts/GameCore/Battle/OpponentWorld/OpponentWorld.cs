@@ -12,8 +12,6 @@ namespace Battle
         private static IList<ValueDropdownItem<int>> EnemyNames => IdToName.GetValues(EntityMeta.EntityIds);
         [SerializeField, ValueDropdown(nameof(EnemyNames))] private int enemyName;
         [SerializeField] private Transform spawnPoint;
-        
-        private CardDecks decks;
 
         protected override void Init()
         {

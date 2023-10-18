@@ -1,16 +1,12 @@
 ﻿using BeatHeroes.Interfaces;
 using BeatHeroes.Windows;
-using GameCore.Battle.Data;
 using LSCore;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace BeatHeroes.Launcher
 {
     public class LauncherWorld : ServiceManager
     {
-        [SerializeField] private Cards cards;
-
         protected override void Awake()
         {
             base.Awake();
@@ -19,7 +15,6 @@ namespace BeatHeroes.Launcher
 
         private void Init()
         {
-            //cards.Init();
             MainWindow.Show();
         }
 

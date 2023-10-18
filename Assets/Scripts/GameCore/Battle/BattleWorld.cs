@@ -12,15 +12,10 @@ namespace Battle
     public class BattleWorld : ServiceManager
     {
         [SerializeField] private Units units;
-        [SerializeField] private Cards cards;
         [SerializeField] private Effectors effectors;
         [SerializeField] private Camera camera;
         [SerializeField] private Locations locations;
         [SerializeField] private Vector3 cameraOffset;
-        
-        public static MeshRenderer SpawnArea { get; private set; }
-        public static MeshRenderer OpponentSpawnArena { get; private set; }
-        public static BoxCollider2D ArenaBox { get; private set; }
 
         private Unit hero;
         private Location location;
@@ -64,7 +59,6 @@ namespace Battle
         private void Init()
         {
             units.Init();
-            cards.Init();
             effectors.Init();
             InstatiateLocation();
             InstatiateHero();
