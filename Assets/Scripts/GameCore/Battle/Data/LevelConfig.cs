@@ -28,27 +28,30 @@ namespace Battle.Data
         {
             if (SirenixEditorGUI.ToolbarButton(EditorIcons.Plus))
             {
-                OtherUpgrades.Add(new AllDestinationsGameProps());
+                var allDestinationsProps = new AllDestinationsGameProps();
+                allDestinationsProps.Editor_SetDestination(-1);
+                OtherUpgrades.Add(allDestinationsProps);
             }
         }
 
-        public static bool TryGetCurrent(ref LevelConfig config)
-        {
-            return config != null || LSPropertyEditor.AllEditors.TryGetInspectedObject(out config);
-        }
+        private static LevelConfig currentInspected;
+        private static readonly HashSet<int> except = new ();
         
-        public static HashSet<int> GetExcept(ref HashSet<int> set, ref LevelConfig config, Action<LevelConfig> onGet)
+        public static HashSet<int> Filter()
         {
-            set ??= new HashSet<int>();
-            set.Clear();
+            except.Clear();
+            except.Add(currentInspected.EntityId);
             
-            if (TryGetCurrent(ref config))
+            foreach (var upgrade in currentInspected.OtherUpgrades)
             {
-                onGet(config);
+                except.Add(upgrade.Destination);
             }
 
-            return set;
+            return except;
         }
+
+        [OnInspectorInit] private void OnInit() => OnGui();
+        [OnInspectorGUI] private void OnGui() => currentInspected = this;
 #endif
         
         public static int GetLevel(string configName)

@@ -30,7 +30,7 @@ namespace Battle.Data.GameProperty
     
     [Serializable]
     [JsonConverter(typeof(PropConverter))]
-    public struct Prop : ISerializationCallbackReceiver, IEnumerable<KeyValuePair<string, float>>
+    public struct Prop : IEnumerable<KeyValuePair<string, float>>, ISerializationCallbackReceiver
     {
         private Dictionary<string, float> value;
         [SerializeField] private string serializedValue;
@@ -44,10 +44,6 @@ namespace Battle.Data.GameProperty
             }
         }
 
-        public void OnBeforeSerialize() => serializedValue = this;
-        public void OnAfterDeserialize() => Init(serializedValue);
-
-        
         private static readonly StringBuilder stringBuilder = new();
         public const string FloatRegex = @"(\w+):(-?\d+(\.\d+)?)";
         
@@ -96,13 +92,24 @@ namespace Battle.Data.GameProperty
         public void DrawFloat(string name)
         {
             Value.TryGetValue(name, out var floatValue);
-            Value[name] = EditorGUILayout.FloatField(name, floatValue);
+            EditorGUI.BeginChangeCheck();
+            TryApplyValue(name, EditorGUILayout.FloatField(name, floatValue));
         }
         
         public void DrawSlider(string name, float min, float max)
         {
             Value.TryGetValue(name, out var floatValue);
-            Value[name] = EditorGUILayout.Slider(name, floatValue, min, max);
+            EditorGUI.BeginChangeCheck();
+            TryApplyValue(name, EditorGUILayout.Slider(name, floatValue, min, max));
+        }
+
+        private void TryApplyValue(string name, float newValue)
+        {
+            if (EditorGUI.EndChangeCheck())
+            {
+                Value[name] = newValue;
+                serializedValue = this;
+            }
         }
 #endif
 
@@ -114,6 +121,14 @@ namespace Battle.Data.GameProperty
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public void OnBeforeSerialize() { }
+
+        public void OnAfterDeserialize()
+        {
+            serializedValue ??= string.Empty;
+            Init(serializedValue);
         }
     }
 }

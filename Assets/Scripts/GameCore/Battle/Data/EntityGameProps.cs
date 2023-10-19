@@ -37,20 +37,10 @@ namespace Battle.Data.GameProperty
                 return list;
             }
         }
-        protected virtual IList<ValueDropdownItem<int>> Destinations => IdToName.GetValues(EntityMeta.EntityIds, LevelConfig.GetExcept(ref except, ref config, Filter));
-        
-        [NonSerialized] private LevelConfig config;
-        [NonSerialized] private HashSet<int> except;
-        
 
-        private void Filter(LevelConfig level)
-        {
-            foreach (var upgrade in level.OtherUpgrades)
-            {
-                except.Add(upgrade.Destination);
-            }
-        }
-
+        public void Editor_SetDestination(int id) => Destination = id;
+        protected virtual IdToName Scope => EntityMeta.EntityIds;
+        private IList<ValueDropdownItem<int>> Destinations => IdToName.GetValues(Scope, Destination, LevelConfig.Filter());
 #endif
     }
 
@@ -58,12 +48,7 @@ namespace Battle.Data.GameProperty
     public class AllDestinationsGameProps : EntityGameProps
     {
 #if UNITY_EDITOR
-        protected override IList<ValueDropdownItem<int>> Destinations => IdToName.GetValues(EntityMeta.AllDestinations, LevelConfig.GetExcept(ref except, ref config, Filter));
-        
-        [NonSerialized] private LevelConfig config;
-        [NonSerialized] private HashSet<int> except;
-
-        private void Filter(LevelConfig level) => except.Add(level.EntityId);
+        protected override IdToName Scope => EntityMeta.AllDestinations;
 #endif
     }
 }

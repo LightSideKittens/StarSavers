@@ -12,6 +12,7 @@ using UnityEngine;
 
 namespace Battle.Data
 {
+    [InitializeOnLoad]
     public class EntityMeta : SerializedScriptableObject
     {
         [Serializable]
@@ -131,8 +132,8 @@ namespace Battle.Data
                 }
             }
             
-            private IList<ValueDropdownItem<int>> GroupIds => IdToName.GetValues(EntityMeta.GroupIds, ExcludedGroups);
-            private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds, ExcludedEntities);
+            private IList<ValueDropdownItem<int>> GroupIds => IdToName.GetValues(EntityMeta.GroupIds, -1, ExcludedGroups);
+            private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds,-1, ExcludedEntities);
 #endif
             
             public IEnumerator<int> GetEnumerator() => entityIds.GetEnumerator();

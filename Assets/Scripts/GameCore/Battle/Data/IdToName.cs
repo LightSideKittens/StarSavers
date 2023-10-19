@@ -203,20 +203,22 @@ namespace GameCore.Battle.Data
 
             return list;
         }
+
+        private static ValueDropdownList<int> values = new();
         
-        public static IList<ValueDropdownItem<int>> GetValues(IdToName set, HashSet<int> except)
+        public static IList<ValueDropdownItem<int>> GetValues(IdToName set, int current, HashSet<int> except)
         {
-            var list = new ValueDropdownList<int>();
+            values.Clear();
 
             foreach (var data in set)
             {
-                if (!except.Contains(data.id))
+                if (!except.Contains(data.id) || data.id == current)
                 {
-                    list.Add(data.name, data.id);
+                    values.Add(data.name, data.id);
                 }
             }
 
-            return list;
+            return values;
         }
     }
 }
