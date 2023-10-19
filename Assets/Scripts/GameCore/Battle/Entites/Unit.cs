@@ -2,7 +2,6 @@
 using GameCore.Battle.Data.Components;
 using GameCore.Battle.Data.Components.HitBox;
 using Sirenix.Serialization;
-using UnityEngine;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
 
 namespace GameCore.Battle.Data
@@ -10,8 +9,6 @@ namespace GameCore.Battle.Data
     public class Unit : BaseUnit
     {
         public event Action Destroyed;
-        [field: SerializeField] public int Price { get; private set; }
-        
         [OdinSerialize] private MoveComponent moveComponent = new();
         [OdinSerialize] private FindTargetComponent findTargetComponent = new ();
         [OdinSerialize] private AttackComponent attackComponent = new();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 
 #if UNITY_EDITOR
@@ -50,6 +51,7 @@ namespace GameCore.Battle.Data
         private Dictionary<int, string> nameById = new();
         private Dictionary<string, int> idByName = new();
 
+        public HashSet<int> Ids => nameById.Keys.ToHashSet();
         public event Action Changed;
 
         public IdToName()

@@ -34,7 +34,7 @@ namespace Battle
 
         private void Spawn()
         {
-            Internal_Spawn(Units.ByName[enemyName], spawnPoint.position);
+            Internal_Spawn(Heroes.ByName[enemyName], spawnPoint.position);
         }
 
         protected override void OnStop()

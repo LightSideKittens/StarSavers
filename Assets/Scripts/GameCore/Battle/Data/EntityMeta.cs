@@ -196,6 +196,7 @@ namespace Battle.Data
         public static IdToName EntityIds => Instance.entityIds;
         public static IdToName GroupIds => Instance.groupIds;
         public static Dictionary<int, Group> GroupsById => Instance.groupsById;
+        public static Group GetGroupByName(string name) => GroupsById[GroupIds.GetIdByName(name)];
         
         [Header("Constants")]
         [OdinSerialize] private IdToName entityIds;

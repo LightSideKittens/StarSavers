@@ -42,7 +42,7 @@ namespace BeatHeroes
                 
                 GUILayout.Label("Configs");
                 DrawButton("Cards Config", "t: Cards");
-                DrawButton("Units Config", "t: Units");
+                DrawButton("Heroes Config", "t: Heroes");
                 DrawButton("Effectors Config", "t: Effectors");
                 DrawButton("Levels Configs Manager", "t: LevelsConfigsManager");
             }

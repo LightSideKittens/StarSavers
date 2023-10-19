@@ -6,12 +6,13 @@ using LSCore;
 using LSCore.AddressablesModule.AssetReferences;
 using LSCore.Extensions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Battle
 {
     public class BattleWorld : ServiceManager
     {
-        [SerializeField] private Units units;
+        [FormerlySerializedAs("units")] [SerializeField] private Heroes heroes;
         [SerializeField] private Effectors effectors;
         [SerializeField] private Camera camera;
         [SerializeField] private Locations locations;
@@ -39,7 +40,7 @@ namespace Battle
 
         private void InstatiateHero()
         {
-            hero = Instantiate(Units.ByName[PlayerData.Config.SelectedHero]);
+            hero = Instantiate(Heroes.ByName[PlayerData.Config.SelectedHero]);
             hero.transform.position = location.HeroSpawnPoint.position;
             hero.Destroyed += OnHeroDied;
             hero.Init("Player");
@@ -58,7 +59,7 @@ namespace Battle
 
         private void Init()
         {
-            units.Init();
+            heroes.Init();
             effectors.Init();
             InstatiateLocation();
             InstatiateHero();
