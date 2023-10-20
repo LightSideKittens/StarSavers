@@ -19,7 +19,7 @@ namespace Battle
         [SerializeField] private Vector3 cameraOffset;
 
         private Unit hero;
-        private Location location;
+        private GameObject location;
 
         protected override void Awake()
         {
@@ -41,7 +41,7 @@ namespace Battle
         private void InstatiateHero()
         {
             hero = Instantiate(Heroes.ByName[PlayerData.Config.SelectedHero]);
-            hero.transform.position = location.HeroSpawnPoint.position;
+            //hero.transform.position = location.HeroSpawnPoint.position;
             hero.Destroyed += OnHeroDied;
             hero.Init("Player");
         }

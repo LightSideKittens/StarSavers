@@ -13,7 +13,7 @@ namespace GameCore.Battle.Data
 {
     public abstract class ObjectsByEntityId<T> : SerializedScriptableObject where T : Object
     {
-        protected virtual HashSet<int> Scope => EntityMeta.EntityIds.Ids;
+        protected abstract HashSet<int> Scope { get; }
         
         [Serializable]
         private class ObjectByName
