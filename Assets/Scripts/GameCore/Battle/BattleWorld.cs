@@ -6,20 +6,19 @@ using LSCore;
 using LSCore.AddressablesModule.AssetReferences;
 using LSCore.Extensions;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Battle
 {
     public class BattleWorld : ServiceManager
     {
-        [FormerlySerializedAs("units")] [SerializeField] private Heroes heroes;
+        [SerializeField] private Heroes heroes;
         [SerializeField] private Effectors effectors;
         [SerializeField] private Camera camera;
         [SerializeField] private Locations locations;
         [SerializeField] private Vector3 cameraOffset;
 
         private Unit hero;
-        private GameObject location;
+        private Location location;
 
         protected override void Awake()
         {
@@ -35,13 +34,13 @@ namespace Battle
                 locations.Length,
                 PlayerData.Config.Level);
             var locationData = locations[locationIndex];
-            location = Instantiate(locationData.locationRef.Load().prefab);
+            location = locationData.locationRef.Load();
+            location.Generate();
         }
 
         private void InstatiateHero()
         {
             hero = Instantiate(Heroes.ByName[PlayerData.Config.SelectedHero]);
-            //hero.transform.position = location.HeroSpawnPoint.position;
             hero.Destroyed += OnHeroDied;
             hero.Init("Player");
         }

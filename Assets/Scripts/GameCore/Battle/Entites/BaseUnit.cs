@@ -3,7 +3,6 @@ using Battle.Data;
 using Battle.Data.GameProperty;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.BaseUnit>;
 
 namespace GameCore.Battle.Data
@@ -11,7 +10,7 @@ namespace GameCore.Battle.Data
     public class BaseUnit : SerializedMonoBehaviour
     {
 #if UNITY_EDITOR
-        protected virtual IList<ValueDropdownItem<int>> Entities => IdToName.GetValues(EntityMeta.EntityIds);
+        protected virtual IList<ValueDropdownItem<int>> Entities => EntityMeta.EntityIds.GetValues();
 #endif
         
         [SerializeField, ValueDropdown("Entities")] private int unitName;

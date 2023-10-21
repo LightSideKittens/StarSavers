@@ -133,8 +133,8 @@ namespace Battle.Data
                 }
             }
             
-            private IList<ValueDropdownItem<int>> GroupIds => IdToName.GetValues(EntityMeta.GroupIds, -1, ExcludedGroups);
-            private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds,-1, ExcludedEntities);
+            private IList<ValueDropdownItem<int>> GroupIds => EntityMeta.GroupIds.GetValues(-1, ExcludedGroups);
+            private IList<ValueDropdownItem<int>> EntityIds => EntityMeta.EntityIds.GetValues(-1, ExcludedEntities);
             
             public IList<ValueDropdownItem<int>> GetEntityValues(int current, HashSet<int> except)
             {

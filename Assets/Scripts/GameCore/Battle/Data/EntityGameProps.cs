@@ -40,7 +40,7 @@ namespace Battle.Data.GameProperty
 
         public void Editor_SetDestination(int id) => Destination = id;
         protected virtual IdToName Scope => EntityMeta.EntityIds;
-        private IList<ValueDropdownItem<int>> Destinations => IdToName.GetValues(Scope, Destination, LevelConfig.Filter());
+        private IList<ValueDropdownItem<int>> Destinations => Scope.GetValues(Destination, LevelConfig.Filter());
 #endif
     }
 

@@ -203,11 +203,11 @@ namespace GameCore.Battle.Data
         public bool TryGetIdByName(string name, out int id) => idByName.TryGetValue(name, out id);
 
 #if UNITY_EDITOR
-        public static IList<ValueDropdownItem<int>> GetValues(IdToName set)
+        public IList<ValueDropdownItem<int>> GetValues()
         {
             var list = new ValueDropdownList<int>();
 
-            foreach (var data in set)
+            foreach (var data in this)
             {
                 list.Add(data.name, data.id);
             }
@@ -217,11 +217,11 @@ namespace GameCore.Battle.Data
 
         private static ValueDropdownList<int> values = new();
 
-        public static IList<ValueDropdownItem<int>> GetValues(IdToName set, int current, HashSet<int> except)
+        public IList<ValueDropdownItem<int>> GetValues(int current, HashSet<int> except)
         {
             values.Clear();
 
-            foreach (var data in set)
+            foreach (var data in this)
             {
                 if (!except.Contains(data.id) || data.id == current)
                 {
