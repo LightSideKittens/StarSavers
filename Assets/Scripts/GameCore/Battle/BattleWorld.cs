@@ -69,6 +69,7 @@ namespace Battle
 
         private void Update()
         {
+            CameraMover.MoveCamera();
             hero.Run();
         }
 

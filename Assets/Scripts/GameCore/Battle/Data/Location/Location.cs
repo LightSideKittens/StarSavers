@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Battle.Data;
-using LSCore.Extensions;
+﻿using LSCore.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,7 +9,7 @@ namespace GameCore.Battle.Data
         [SerializeField] private GameObject prefab;
         [SerializeField] private GameObject[] chunks;
 
-        [ValueDropdown("Enemies", IsUniqueList = true)] public int[] enemies;
+        [EntityId("Enemies")] public int[] enemies;
 
         [Button]
         public void Generate()
@@ -32,9 +30,5 @@ namespace GameCore.Battle.Data
                 position.x += step;
             }
         }
-
-#if UNITY_EDITOR
-        protected IList<ValueDropdownItem<int>> Enemies => EntityMeta.GetGroupByName("Enemies").EntityValues;
-#endif
     }
 }

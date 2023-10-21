@@ -1,23 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Battle.Data;
+﻿using System;
+using System.Collections;
 using GameCore.Battle.Data;
 using LSCore.Extensions;
 using LSCore.Extensions.Unity;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Battle
 {
     public class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
-#if UNITY_EDITOR
-        private static IList<ValueDropdownItem<int>> Enemies => EntityMeta.GetGroupByName("Enemies").EntityValues;
-#endif
-        
-        [SerializeField, ValueDropdown("Enemies")] private int[] enemyIds;
+        [SerializeField, EntityId("Enemies")] private int[] enemyIds;
         [SerializeField] private Enemies enemies;
-        [SerializeField] private Transform spawnPoint;
         private Camera cam;
         private Rect cameraRect;
         
@@ -45,11 +38,16 @@ namespace Battle
 
         private void Spawn()
         {
-            cameraRect.position = cam.transform.position;
-            for (int i = 0; i < Random.Range(10, 20); i++)
-            {
-                Internal_Spawn(Heroes.ByName[enemyIds.Random()], cameraRect.RandomPointAroundRect());
-            }
+            cameraRect.center = cam.transform.position;
+            Internal_Spawn(Heroes.ByName[enemyIds.Random()], cameraRect.RandomPointAroundRect());
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            var oldColor = Gizmos.color;
+            Gizmos.color = new Color(0f, 1f, 0f, 0.49f);
+            Gizmos.DrawCube(cameraRect.center, cameraRect.size);
+            Gizmos.color = oldColor;
         }
 
         protected override void OnStop()

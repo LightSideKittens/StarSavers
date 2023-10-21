@@ -13,12 +13,7 @@ namespace BeatHeroes
         [SerializeField] private LevelsManager levelsManager;
         [SerializeField] private EntityMeta entityMeta;
         
-        [ValueDropdown("Entities")]
-        [SerializeField] private int[] ids;
-        
-#if UNITY_EDITOR
-        private static IList<ValueDropdownItem<int>> Entities => EntityMeta.EntityIds.GetValues();
-#endif
+        [EntityId] [SerializeField] private int[] ids;
         
         private static bool isInited;
 

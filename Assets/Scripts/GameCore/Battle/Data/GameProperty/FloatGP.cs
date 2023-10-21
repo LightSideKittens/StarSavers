@@ -58,7 +58,10 @@ namespace Battle.Data.GameProperty
         public override Prop Upgrade(Prop propValue)
         {
             propValue.Value[ValueKey] += prop.Value[ValueKey];
-            propValue.Value[ValueKey] *= 1 + prop.Value[PercentKey] / 100;
+            if (prop.Value.TryGetValue(PercentKey, out var percent))
+            {
+                propValue.Value[ValueKey] *= 1 + percent / 100;
+            }
             return propValue;
         }
 
