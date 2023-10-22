@@ -12,7 +12,6 @@ using UnityEngine;
 
 namespace Battle.Data
 {
-    [InitializeOnLoad]
     public class EntityMeta : SerializedScriptableObject
     {
         [Serializable]
@@ -81,6 +80,8 @@ namespace Battle.Data
                     return set;
                 }
             }
+            
+            private static ValueDropdownList<int> values = new();
 
 #if UNITY_EDITOR
             private HashSet<int> ExcludedGroups
@@ -132,8 +133,38 @@ namespace Battle.Data
                 }
             }
             
-            private IList<ValueDropdownItem<int>> GroupIds => IdToName.GetValues(EntityMeta.GroupIds, -1, ExcludedGroups);
-            private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds,-1, ExcludedEntities);
+            private IList<ValueDropdownItem<int>> GroupIds => EntityMeta.GroupIds.GetValues(-1, ExcludedGroups);
+            private IList<ValueDropdownItem<int>> EntityIds => EntityMeta.EntityIds.GetValues(-1, ExcludedEntities);
+            
+            public IList<ValueDropdownItem<int>> GetEntityValues(int current, HashSet<int> except)
+            {
+                values.Clear();
+
+                foreach (var id in AllEntityIds)
+                {
+                    if (!except.Contains(id) || id == current)
+                    {
+                        values.Add(EntityMeta.EntityIds.GetNameById(id), id);
+                    }
+                }
+
+                return values;
+            }
+            
+            public IList<ValueDropdownItem<int>> EntityValues
+            {
+                get
+                {
+                    values.Clear();
+
+                    foreach (var id in AllEntityIds)
+                    {
+                        values.Add(EntityMeta.EntityIds.GetNameById(id), id);
+                    }
+
+                    return values;
+                }
+            }
 #endif
             
             public IEnumerator<int> GetEnumerator() => entityIds.GetEnumerator();

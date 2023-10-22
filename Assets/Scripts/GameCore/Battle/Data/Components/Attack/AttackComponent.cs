@@ -34,7 +34,7 @@ namespace GameCore.Battle.Data.Components
             damage = unit.GetValue<DamageGP>();
             attackSpeed = unit.GetValue<AttackSpeedGP>();
             //DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
-            attackTween = Wait.InfinityLoop(1, OnTactTicked);
+            attackTween = Wait.InfinityLoop(attackSpeed, OnTactTicked);
             Add(transform, this);
             Buffs = new Buffs();
             OnInit();
@@ -74,6 +74,7 @@ namespace GameCore.Battle.Data.Components
                 target.Get<Health>().TakeDamage(Damage);
                 transform.DOMove(lastPos, duration);
             });
+            
         }
 
         private void OnTactTicked()

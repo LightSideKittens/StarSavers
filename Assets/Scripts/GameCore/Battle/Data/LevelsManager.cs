@@ -16,7 +16,7 @@ namespace Battle.Data
             [ValueDropdown("Levels", IsUniqueList = true)]
             public List<LevelConfig> levels = new();
             
-            private IList<ValueDropdownItem<int>> EntityIds => IdToName.GetValues(EntityMeta.EntityIds);
+            private IList<ValueDropdownItem<int>> EntityIds => EntityMeta.EntityIds.GetValues();
 
             private IEnumerable<LevelConfig> Levels => AssetDatabaseUtils.LoadAllAssets<LevelConfig>(EntityMeta.EntityIds.GetNameById(entityId));
 

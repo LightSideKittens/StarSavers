@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Data;
 using Sirenix.OdinInspector;
 
 #if UNITY_EDITOR
@@ -25,9 +26,12 @@ namespace GameCore.Battle.Data
             [LabelWidth(1000)]
             [OnValueChanged("NameChanged")] public string name;
 
-            public void Init()
+            private IdToName parent;
+            
+            public void Init(IdToName parent)
             {
                 prevName = name;
+                this.parent = parent;
             }
 
             private void NameChanged()
@@ -40,14 +44,19 @@ namespace GameCore.Battle.Data
                 else
                 {
                     Global.idByName.Remove(prevName);
+                    parent.idByName.Remove(prevName);
                     prevName = name;
                     Global.idByName.Add(prevName, id);
+                    Global.nameById[id] = prevName;
+                    
+                    parent.idByName.Add(prevName, id);
+                    parent.nameById[id] = prevName;
                 }
             }
         }
 
         private static int maxHash;
-        public static IdToName Global { get; private set; } = new IdToName();
+        public static IdToName Global { get; private set; } = new();
         private Dictionary<int, string> nameById = new();
         private Dictionary<string, int> idByName = new();
 
@@ -68,7 +77,7 @@ namespace GameCore.Battle.Data
             {
                 var id = data.id;
                 var name = data.name;
-                data.Init();
+                data.Init(this);
                 nameById.Add(id, name);
                 idByName.Add(name, id);
                 Global.AddInternal(data);
@@ -108,7 +117,7 @@ namespace GameCore.Battle.Data
 
         private void InternalAdd(Data data)
         {
-            data.Init();
+            data.Init(this);
             base.Add(data);
             Global.AddInternal(data);
             idByName.Add(data.name, data.id);
@@ -176,7 +185,6 @@ namespace GameCore.Battle.Data
             
             nameById.Clear();
             idByName.Clear();
-            maxHash = 0;
         }
 
         private void InternalRemove(Data data)
@@ -193,12 +201,13 @@ namespace GameCore.Battle.Data
         public int GetIdByName(string id) => idByName[id];
         public bool TryGetNameById(int id, out string name) => nameById.TryGetValue(id, out name);
         public bool TryGetIdByName(string name, out int id) => idByName.TryGetValue(name, out id);
-        
-        public static IList<ValueDropdownItem<int>> GetValues(IdToName set)
+
+#if UNITY_EDITOR
+        public IList<ValueDropdownItem<int>> GetValues()
         {
             var list = new ValueDropdownList<int>();
 
-            foreach (var data in set)
+            foreach (var data in this)
             {
                 list.Add(data.name, data.id);
             }
@@ -207,12 +216,12 @@ namespace GameCore.Battle.Data
         }
 
         private static ValueDropdownList<int> values = new();
-        
-        public static IList<ValueDropdownItem<int>> GetValues(IdToName set, int current, HashSet<int> except)
+
+        public IList<ValueDropdownItem<int>> GetValues(int current, HashSet<int> except)
         {
             values.Clear();
 
-            foreach (var data in set)
+            foreach (var data in this)
             {
                 if (!except.Contains(data.id) || data.id == current)
                 {
@@ -222,5 +231,7 @@ namespace GameCore.Battle.Data
 
             return values;
         }
+#endif
+        
     }
 }

@@ -9,8 +9,9 @@ namespace GameCore.Battle.Data.Components
     {
         protected override Tween AttackAnimation()
         {
-            return base.AttackAnimation().SetLoops(1, LoopType.Yoyo)
-                .OnComplete(() => transform.Get<Health>().Kill());
+            var anim = base.AttackAnimation();
+            anim.onComplete += () => transform.Get<Health>().Kill();
+            return anim;
         }
     }
 }

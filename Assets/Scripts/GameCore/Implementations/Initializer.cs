@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Battle.Data;
 using BeatHeroes.Interfaces;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace BeatHeroes
@@ -9,6 +12,9 @@ namespace BeatHeroes
     {
         [SerializeField] private LevelsManager levelsManager;
         [SerializeField] private EntityMeta entityMeta;
+        
+        [EntityId] [SerializeField] private int[] ids;
+        
         private static bool isInited;
 
         protected override void Internal_Initialize(Action onInit)
@@ -28,7 +34,12 @@ namespace BeatHeroes
 #endif
             entityMeta.Init();
             levelsManager.Init();
-            LevelsManager.UpgradeLevel(EntityMeta.EntityIds.GetIdByName("Arcane"));
+            
+            for (int i = 0; i < ids.Length; i++)
+            {
+                LevelsManager.UpgradeLevel(ids[i]);
+            }
+            
             onInit();
         }
 
