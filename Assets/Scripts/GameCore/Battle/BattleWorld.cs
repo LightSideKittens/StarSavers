@@ -1,4 +1,5 @@
-﻿using Battle.Windows;
+﻿using System;
+using Battle.Windows;
 using BeatHeroes.Interfaces;
 using GameCore.Battle.Data;
 using LSCore;
@@ -15,10 +16,8 @@ namespace Battle
         [SerializeField] private Locations locations;
         private Location location;
 
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
-            enabled = false;
             BaseInitializer.Initialize(OnInitialize);
         }
 

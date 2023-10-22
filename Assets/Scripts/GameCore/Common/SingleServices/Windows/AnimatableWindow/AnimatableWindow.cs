@@ -6,12 +6,13 @@ namespace Animatable
 {
     public class AnimatableWindow : BaseWindow<AnimatableWindow>
     {
-        [SerializeField] private Transform spawnPoint;
         [ColoredField, SerializeField] private AnimText animText;
         [ColoredField, SerializeField] private HealthBar healthBar;
         [ColoredField, SerializeField] private HealthBar opponentHealthBar;
         [ColoredField, SerializeField] private Loader loader;
-        public static Transform SpawnPoint => Instance.spawnPoint;
+        
+        public static Camera Cam { get; private set; }
+        public static Transform SpawnPoint => Instance.transform;
         internal static AnimText AnimText => Instance.animText;
         internal static HealthBar HealthBar => Instance.healthBar;
         internal static HealthBar OpponentHealthBar => Instance.opponentHealthBar;
@@ -23,8 +24,18 @@ namespace Animatable
         {
             base.Init();
             DontDestroyOnLoad(this);
+            Cam = Camera.main;
+            animText.Init();
         }
 
+        internal static Vector3 GetLocalPosition(Vector3 worldPos)
+        {
+            var targetLocalPosByCam = Cam.transform.InverseTransformPoint(worldPos);
+            targetLocalPosByCam /= Canvas.transform.lossyScale.x;
+            targetLocalPosByCam.z = 0;
+            return targetLocalPosByCam;
+        }
+        
         public static void Clean()
         {
             var instance = Instance;

@@ -1,12 +1,11 @@
-﻿namespace BeatHeroes.Windows
-{
-    public class HeroesGalleryWindow : BaseLauncherWindow<HeroesGalleryWindow>
-    {
-        protected override int Internal_Index => 0;
+﻿using LSCore;
 
+namespace BeatHeroes.Windows
+{
+    public class ShopWindow : BaseWindow<ShopWindow>
+    {
         protected override void OnShowing()
         {
-            base.OnShowing();
             MainWindow.Hide();
         }
 

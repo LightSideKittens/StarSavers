@@ -2,7 +2,7 @@
 
 namespace BeatHeroes.Windows
 {
-    public class ClanWindow : BaseWindow<ClanWindow>
+    public class QuestsWindow : BaseWindow<QuestsWindow>
     {
         
     }

@@ -50,7 +50,6 @@ namespace GameCore.Battle.Data.Components
         public void Update()
         {
             Buffs.Update();
-            IsInRadius = CheckInRadius(findTargetComponent.target);
         }
 
         public void Destroy()
@@ -59,12 +58,13 @@ namespace GameCore.Battle.Data.Components
             Remove(transform);
         }
 
-        public bool CheckInRadius(Transform target)
+        public bool CheckInRadius()
         {
-            if (target != null)
+            var target = findTargetComponent.target;
+            if (target.TryGet<HitBoxComponent>(out var hitBox))
             {
-                var hitBox = target.Get<HitBoxComponent>();
-                return hitBox.IsIntersected(transform.position, radius, out lastHitPoint);
+                IsInRadius = hitBox.IsIntersected(transform.position, radius, out lastHitPoint);
+                return IsInRadius;
             }
 
             return false;
@@ -76,16 +76,27 @@ namespace GameCore.Battle.Data.Components
             return transform.DOMove(lastHitPoint, duration).OnComplete(() =>
             {
                 var target = findTargetComponent.target;
-                target.Get<Health>().TakeDamage(Damage);
+                TryApplyDamage(target);
                 transform.DOMove(lastPos, duration);
             });
         }
 
+        protected void TryApplyDamage(Transform target)
+        {
+            if (target != null && target.TryGet<Health>(out var health))
+            {
+                health.TakeDamage(Damage);
+            }
+        }
+        
         private void OnTactTicked()
         {
-            if (IsInRadius)
+            if (findTargetComponent.Find(radius))
             {
-                AttackAnimation();
+                if (CheckInRadius())
+                {
+                    AttackAnimation();
+                }
             }
         }
     }

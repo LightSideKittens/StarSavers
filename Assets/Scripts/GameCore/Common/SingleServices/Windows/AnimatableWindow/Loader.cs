@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static Animatable.AnimatableWindow;
 using Object = UnityEngine.Object;
 
 namespace Animatable
@@ -11,11 +12,10 @@ namespace Animatable
 
         public static Loader Create()
         {
-            var spawnPoint = AnimatableWindow.SpawnPoint;
             var animText = AnimatableWindow.Loader;
 
             var scale = animText.gameObject.transform.localScale;
-            var obj = Object.Instantiate(animText.gameObject, spawnPoint.parent);
+            var obj = Object.Instantiate(animText.gameObject, SpawnPoint);
             obj.transform.localScale = scale;
 
             return new Loader

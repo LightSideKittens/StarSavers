@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameCore.Battle.Data;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
@@ -11,13 +10,12 @@ namespace Battle.Data
         [Serializable]
         private class LevelsContainer
         {
-            [ValueDropdown("EntityIds")]
+            [EntityId]
             [ReadOnly] public int entityId;
             [ValueDropdown("Levels", IsUniqueList = true)]
             public List<LevelConfig> levels = new();
             
-            private IList<ValueDropdownItem<int>> EntityIds => EntityMeta.EntityIds.GetValues();
-
+#if UNITY_EDITOR
             private IEnumerable<LevelConfig> Levels => AssetDatabaseUtils.LoadAllAssets<LevelConfig>(EntityMeta.EntityIds.GetNameById(entityId));
 
             public override bool Equals(object obj)
@@ -39,6 +37,7 @@ namespace Battle.Data
             {
                 return entityId.GetHashCode();
             }
+#endif
         }
         
         public static event Action LevelUpgraded;
@@ -49,24 +48,6 @@ namespace Battle.Data
         private HashSet<LevelsContainer> levelsContainers = new();
         
         private readonly Dictionary<int, List<LevelConfig>> levelsByEntityId = new();
-
-        private ValueDropdownList<LevelsContainer> list;
-        private IList<ValueDropdownItem<LevelsContainer>> AvailableContainer
-        {
-            get
-            {
-                if (list == null)
-                { 
-                    list = new ValueDropdownList<LevelsContainer>();
-                    foreach (var id in EntityMeta.EntityIds)
-                    {
-                        list.Add(id.name, new LevelsContainer(){entityId = id.id});
-                    }
-                }
-                
-                return list;
-            }
-        }
 
         public void Init()
         {

@@ -33,7 +33,7 @@ namespace GameCore.Battle.Data
                 prevName = name;
                 this.parent = parent;
             }
-
+#if UNITY_EDITOR
             private void NameChanged()
             {
                 Undo.ClearAll();
@@ -53,6 +53,7 @@ namespace GameCore.Battle.Data
                     parent.nameById[id] = prevName;
                 }
             }
+#endif
         }
 
         private static int maxHash;

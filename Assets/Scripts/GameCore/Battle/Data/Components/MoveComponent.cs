@@ -109,12 +109,16 @@ namespace GameCore.Battle.Data.Components
                     TryByPass(ref direction);
                     direction = direction.normalized;
                     position += direction * (Speed * Time.deltaTime);
+                    transform.up = direction;
                     rigidbody.position = position;
                 }
             }
         }
         
-        public void Update() => Move();
+        public void Update()
+        {
+            Move();
+        }
 
         public void Destroy()
         {

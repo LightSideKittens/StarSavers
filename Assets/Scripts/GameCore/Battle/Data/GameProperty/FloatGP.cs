@@ -7,7 +7,10 @@ using UnityEngine;
 namespace Battle.Data.GameProperty
 {
     [Serializable]
-    public abstract class BaseGameProperty : GamePropertyDrawer
+    public abstract class BaseGameProperty 
+#if UNITY_EDITOR
+        : GamePropertyDrawer
+#endif
     {
         [CustomValueDrawer("DrawValue")] [SerializeField] protected Prop prop;
 

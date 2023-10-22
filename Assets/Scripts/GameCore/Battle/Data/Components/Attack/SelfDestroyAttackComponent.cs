@@ -1,6 +1,5 @@
 ﻿using System;
 using DG.Tweening;
-using UnityEngine;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
@@ -15,8 +14,8 @@ namespace GameCore.Battle.Data.Components
                 .OnComplete(() =>
                 {
                     var target = findTargetComponent.target;
-                    target.Get<Health>().TakeDamage(Damage);
-                    transform.Get<Health>().Kill();
+                    TryApplyDamage(target);
+                    if(transform.TryGet<Health>(out var health)) health.Kill();
                 });
         }
     }

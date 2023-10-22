@@ -7,9 +7,7 @@ namespace BeatHeroes.Windows
     public class HeroWindow : BaseLauncherWindow<HeroWindow>
     {
         protected override int Internal_Index => 1;
-        [SerializeField] private Button backButton;
         [SerializeField] private Button homeButton;
-        protected override Button BackButton => backButton;
 
         protected override void Init()
         {

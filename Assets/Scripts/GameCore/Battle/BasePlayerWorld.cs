@@ -40,6 +40,7 @@ namespace Battle
         
         public static void Stop()
         {
+            Debug.Log($"Stoped {typeof(T)}");
             Instance.enabled = false;
             Instance.OnStop();
         }
@@ -61,7 +62,7 @@ namespace Battle
 
         private void Update()
         {
-            foreach (var (_, unit) in units)
+            foreach (var unit in units.Values)
             {
                 unit.Run();
             }
@@ -69,7 +70,7 @@ namespace Battle
         
         private void FixedUpdate()
         {
-            foreach (var (_, unit) in units)
+            foreach (var unit in units.Values)
             {
                 unit.FixedRun();
             }

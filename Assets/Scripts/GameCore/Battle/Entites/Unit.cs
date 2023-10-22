@@ -69,6 +69,7 @@ namespace GameCore.Battle.Data
         public override void Destroy()
         {
             base.Destroy();
+            All[UserId].Remove(transform);
             hitBoxComponent.Destroy();
             attackComponent.Destroy();
             healthComponent.Destroy();

@@ -14,6 +14,8 @@ namespace GameCore.Battle.Data.Components
         [NonSerialized] public bool isOpponent;
         [OdinSerialize] private List<TargetProvider> providers = new() {new AllUnits()};
         private Transform transform;
+        private bool lastResult;
+        private int frame;
 
         public void Init(Transform transform, bool isOpponent)
         {
@@ -32,6 +34,20 @@ namespace GameCore.Battle.Data.Components
 
         public IEnumerable<Transform> FindAll(Vector2 position, float radius)
         {
+            if (frame == Time.frameCount)
+            {
+                if (lastResult)
+                {
+                    yield return target;
+                }
+                else
+                {
+                    yield break;
+                }
+            }
+            
+            frame = Time.frameCount;
+            
             for (int i = 0; i < providers.Count; i++)
             {
                 var targets = providers[i].Targets;
@@ -49,6 +65,9 @@ namespace GameCore.Battle.Data.Components
 
         public bool Find(Vector2 position, float radius, HashSet<Transform> excepted)
         {
+            if (frame == Time.frameCount) return lastResult;
+            frame = Time.frameCount;
+            
             var distance = radius;
             Transform currentTarget = null;
 
@@ -76,12 +95,15 @@ namespace GameCore.Battle.Data.Components
             }
 
             target = currentTarget;
-
-            return target != null;
+            lastResult = target != null;
+            return lastResult;
         }
 
         public bool Find(Vector2 position, float radius)
         {
+            if (frame == Time.frameCount) return lastResult;
+            frame = Time.frameCount;
+            
             var distance = radius;
             Transform currentTarget = null;
 
@@ -106,11 +128,12 @@ namespace GameCore.Battle.Data.Components
             }
 
             target = currentTarget;
-
-            return target != null;
+            lastResult = target != null;
+            return lastResult;
         }
 
         public bool Find() => Find(transform.position, 1000);
+        public bool Find(float radius) => Find(transform.position, radius);
         public bool Find(HashSet<Transform> excepted) => Find(transform.position, 1000, excepted);
     }
 }

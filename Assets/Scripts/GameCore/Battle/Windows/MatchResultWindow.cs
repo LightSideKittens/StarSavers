@@ -1,5 +1,4 @@
-﻿using Animatable;
-using LSCore;
+﻿using LSCore;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +19,7 @@ namespace Battle.Windows
             Show();
             PlayerWorld.Stop();
             OpponentWorld.Stop();
-            AnimatableWindow.Clean();
+            Debug.Log("Stoped");
             Instance.Internal_Show(isWin);
         }
 

@@ -276,7 +276,7 @@ RectTransform:
   m_GameObject: {fileID: 1011038207463600825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7822647448895376665}
@@ -359,8 +359,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0.2
+  <BackButton>k__BackingField: {fileID: 0}
   burgerButton: {fileID: 5928965369335432593}
   heroButton: {fileID: 691964540223483654}
+  battleButton: {fileID: 6813985397447738023}
+  clanButton: {fileID: 6785699788536827292}
+  questsButton: {fileID: 8365949913879387531}
+  shopButton: {fileID: 4234995654075532061}
 --- !u!1 &1117587204310296531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1726,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
+--- !u!114 &4234995654075532061 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3524537975584831332, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
+  m_PrefabInstance: {fileID: 732985584580392057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a381c2a00441b6a8998e071caa5bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7081544223882096217 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7524006940361579040, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
@@ -2056,6 +2072,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7524006940361579040, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
   m_PrefabInstance: {fileID: 4967610586543565551}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8365949913879387531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3524537975584831332, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
+  m_PrefabInstance: {fileID: 4967610586543565551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a381c2a00441b6a8998e071caa5bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7300048598940417701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2597,7 +2624,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7be46be0d3eed4b8ca25b5aed5e46afb, type: 3}
     - target: {fileID: 1742583765902334409, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
       propertyPath: m_Name
-      value: ArmorButton
+      value: ClanButton
       objectReference: {fileID: 0}
     - target: {fileID: 3966143189205726616, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
       propertyPath: m_Sprite
@@ -2693,6 +2720,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7524006940361579040, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
   m_PrefabInstance: {fileID: 7980953155191307000}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6785699788536827292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3524537975584831332, guid: 175d095e5a453df4a8c64449a5b06036, type: 3}
+  m_PrefabInstance: {fileID: 7980953155191307000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a381c2a00441b6a8998e071caa5bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8523730411499948564
 PrefabInstance:
   m_ObjectHideFlags: 0

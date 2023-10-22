@@ -127,8 +127,10 @@ namespace Battle.Data.GameProperty
 
         public void OnAfterDeserialize()
         {
+            Debug.Log($"Prop Deserialize {serializedValue}");
             serializedValue ??= string.Empty;
             Init(serializedValue);
+            Debug.Log($"Prop Deserialize Value is Null: {value != null}");
         }
     }
 }

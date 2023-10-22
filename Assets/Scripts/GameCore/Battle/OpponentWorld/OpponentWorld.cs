@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Linq;
+using DG.Tweening;
 using GameCore.Battle;
 using GameCore.Battle.Data;
 using LSCore.Async;
@@ -51,11 +52,19 @@ namespace Battle
             cameraRect = cam.GetRect();
             Pool = new ObjectPool<Transform>(Instance.CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, 100, 500);
             Spawn();
-            spawnLoopTween = Wait.InfinityLoop(5, Spawn);
+            spawnLoopTween = Wait.InfinityLoop(0.2f, Spawn);
         }
         
         protected override void OnStop()
         {
+            var units = Unit.All[UserId].Values.ToList();
+            
+            foreach (var unit in units)
+            {
+                unit.Destroy();
+            }
+            
+            Pool.Clear();
             spawnLoopTween.Kill();
         }
 

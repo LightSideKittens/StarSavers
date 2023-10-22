@@ -1,4 +1,5 @@
-﻿using GameCore.Battle;
+﻿using Battle.Windows;
+using GameCore.Battle;
 using GameCore.Battle.Data;
 using UnityEngine;
 
@@ -27,8 +28,7 @@ namespace Battle
 
         private void OnHeroDied()
         {
-            enabled = false;
-            OpponentWorld.Stop();
+            MatchResultWindow.Show(false);
         }
     }
 }

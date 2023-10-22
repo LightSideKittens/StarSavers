@@ -14,6 +14,7 @@ namespace GameCore.Battle.Data.Components
         [SerializeField] private Vector2 offset;
         private Transform transform;
         private HealthBar healthBar;
+        private bool isKilled;
         private bool isOpponent;
         private float health;
 
@@ -26,7 +27,12 @@ namespace GameCore.Battle.Data.Components
             Add(transform, this);
         }
 
-        public void Reset() => healthBar.Reset();
+        public void Reset()
+        {
+            isKilled = false;
+            health = transform.GetValue<HealthGP>();
+            healthBar.Reset();
+        }
 
         public void Destroy()
         { 
@@ -45,12 +51,15 @@ namespace GameCore.Battle.Data.Components
 
         public void TakeDamage(float damage)
         {
+            if (isKilled) return;
+            
             health -= damage;
             healthBar.SetValue(health);
             AnimText.Create($"{(int)damage}", transform.position, fromWorldSpace: true);
 
             if (health <= 0)
             {
+                isKilled = true;
                 healthBar.Disable();
                 
                 if (isOpponent)
