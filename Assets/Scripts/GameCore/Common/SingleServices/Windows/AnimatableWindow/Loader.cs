@@ -1,9 +1,8 @@
 ﻿using System;
-using Common.SingleServices.Windows;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Common.SingleServices
+namespace Animatable
 {
     [Serializable]
     public class Loader

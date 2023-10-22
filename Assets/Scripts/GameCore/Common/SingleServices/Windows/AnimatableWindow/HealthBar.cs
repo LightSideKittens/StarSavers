@@ -1,33 +1,40 @@
 ﻿using System;
-using Common.SingleServices.Windows;
-using LSCore.Extensions.Unity;
+using LSCore;
 using UnityEngine;
 using UnityEngine.UI;
-using static Common.SingleServices.Windows.AnimatableWindow;
+using static Animatable.AnimatableWindow;
 using Object = UnityEngine.Object;
 
-namespace GameCore.Common.SingleServices.Windows
+namespace Animatable
 {
     [Serializable]
     public class HealthBar
     {
-        [SerializeField] private Slider slider;
+        [SerializeField] public Slider slider;
         private Transform target;
         private Camera camera;
         private Vector3 offset;
 
+        public void Reset()
+        {
+            slider.gameObject.SetActive(true);
+            slider.value = slider.maxValue;
+        }
+        
         public static HealthBar Create(float maxValue, Transform target, Vector2 offset, Vector2 scale, bool isOpponent)
         {
             var spawnPoint = SpawnPoint;
-            var healthBar = isOpponent ? OpponentHealthBar : AnimatableWindow.HealthBar;
+            var template = isOpponent ? OpponentHealthBar : AnimatableWindow.HealthBar;
             Vector2 position = target.position;
             position += offset;
             var camera = Camera.main;
             position = camera.WorldToScreenPoint(position);
 
-            var slider = Object.Instantiate(healthBar.slider, position, Quaternion.identity);
+            var slider = Object.Instantiate(template.slider, position, Quaternion.identity);
+            var sliderTransform = slider.transform;
+            sliderTransform.position = position;
             slider.transform.SetParent(spawnPoint.parent, false);
-            slider.transform.localScale = scale;
+            sliderTransform.localScale = scale;
             slider.maxValue = maxValue;
             slider.value = maxValue;
 
@@ -40,15 +47,15 @@ namespace GameCore.Common.SingleServices.Windows
             };
         }
 
-        public void Destroy()
-        {
-            Object.Destroy(slider.gameObject);
+        public void Disable()
+        { 
+            slider.gameObject.SetActive(false);
         }
 
         public void Update()
         {
             var targetLocalPosByCam = camera.transform.InverseTransformPoint(target.position + offset);
-            targetLocalPosByCam /= AnimatableWindow.Canvas.transform.lossyScale.x;
+            targetLocalPosByCam /= BaseWindow<AnimatableWindow>.Canvas.transform.lossyScale.x;
             targetLocalPosByCam.z = 0;
             slider.transform.localPosition = targetLocalPosByCam;
         }

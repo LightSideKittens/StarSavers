@@ -116,7 +116,7 @@ namespace GameCore.Battle.Data.Components
         
         public void Update() => Move();
 
-        public void OnDestroy()
+        public void Destroy()
         {
             Remove(transform);
         }

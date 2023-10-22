@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using UnityEngine;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
@@ -9,9 +10,14 @@ namespace GameCore.Battle.Data.Components
     {
         protected override Tween AttackAnimation()
         {
-            var anim = base.AttackAnimation();
-            anim.onComplete += () => transform.Get<Health>().Kill();
-            return anim;
+            attackLoopEmiter.Kill();
+            return transform.DOMove(lastHitPoint, duration)
+                .OnComplete(() =>
+                {
+                    var target = findTargetComponent.target;
+                    target.Get<Health>().TakeDamage(Damage);
+                    transform.Get<Health>().Kill();
+                });
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
-using Common.SingleServices.Windows;
 using DG.Tweening;
 using LSCore.ReferenceFrom.Extensions;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Common.SingleServices
+namespace Animatable
 {
     [Serializable]
     public class AnimText

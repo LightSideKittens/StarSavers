@@ -36,6 +36,12 @@ namespace GameCore.Battle.Data
             data.value = value;
             data.time = time;
         }
+
+        public void Reset()
+        {
+            ByName.Clear();
+            toRemove.Clear();
+        }
         
         public void Update()
         {

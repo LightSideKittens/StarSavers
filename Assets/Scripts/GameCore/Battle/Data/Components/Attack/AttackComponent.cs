@@ -17,13 +17,12 @@ namespace GameCore.Battle.Data.Components
         protected float damage;
         protected float radius;
         protected Transform transform;
-        private int currentIndex;
-        private Vector2 lastHitPoint;
+        protected Vector2 lastHitPoint;
         protected float Damage => damage * Buffs;
         public bool IsInRadius { get; private set; }
         public float Radius => radius;
         public Buffs Buffs { get; private set; }
-        private Tween attackTween;
+        protected Tween attackLoopEmiter;
 
         public void Init(Transform transform, FindTargetComponent findTargetComponent)
         {
@@ -34,7 +33,6 @@ namespace GameCore.Battle.Data.Components
             damage = unit.GetValue<DamageGP>();
             attackSpeed = unit.GetValue<AttackSpeedGP>();
             //DrawRadius(transform, transform.position, radius, new Color(1f, 0.22f, 0.19f, 0.5f));
-            attackTween = Wait.InfinityLoop(attackSpeed, OnTactTicked);
             Add(transform, this);
             Buffs = new Buffs();
             OnInit();
@@ -42,15 +40,22 @@ namespace GameCore.Battle.Data.Components
         
         protected virtual void OnInit(){}
 
+        public void Enable()
+        {
+            attackLoopEmiter = Wait.InfinityLoop(attackSpeed, OnTactTicked);
+        }
+
+        public void Disable() => attackLoopEmiter.Kill();
+
         public void Update()
         {
             Buffs.Update();
             IsInRadius = CheckInRadius(findTargetComponent.target);
         }
 
-        public void OnDestroy()
+        public void Destroy()
         {
-            attackTween.Kill();
+            attackLoopEmiter.Kill();
             Remove(transform);
         }
 
@@ -74,7 +79,6 @@ namespace GameCore.Battle.Data.Components
                 target.Get<Health>().TakeDamage(Damage);
                 transform.DOMove(lastPos, duration);
             });
-            
         }
 
         private void OnTactTicked()

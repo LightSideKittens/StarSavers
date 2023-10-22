@@ -1,9 +1,8 @@
 ﻿using GameCore.Attributes;
-using GameCore.Common.SingleServices.Windows;
 using LSCore;
 using UnityEngine;
 
-namespace Common.SingleServices.Windows
+namespace Animatable
 {
     public class AnimatableWindow : BaseWindow<AnimatableWindow>
     {

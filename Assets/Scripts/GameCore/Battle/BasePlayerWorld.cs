@@ -8,8 +8,9 @@ namespace Battle
 {
     public abstract class BasePlayerWorld<T> : SingleService<T> where T : BasePlayerWorld<T>
     {
-        protected bool IsOpponent { get; private set; }
+        private static Dictionary<Transform, Unit> units;
         private string userId;
+        protected bool IsOpponent { get; private set; }
 
         protected string UserId
         {
@@ -18,19 +19,10 @@ namespace Battle
             {
                 userId = value;
                 IsOpponent = UserId == "Opponent";
-            }
-        }
-
-        private IEnumerable<Unit> Units
-        {
-            get
-            {
-                foreach (var unit in UnitsByTransform.All)
+                units ??= new Dictionary<Transform, Unit>();
+                if (!Unit.All.TryAdd(value, units))
                 {
-                    if (unit.IsOpponent == IsOpponent)
-                    {
-                        yield return unit;
-                    }
+                    units.Clear();
                 }
             }
         }
@@ -40,20 +32,26 @@ namespace Battle
             enabled = false;
         }
 
-        public static void Spawn(Unit prefab, Vector2 position) => Instance.Internal_Spawn(prefab, position);
-
+        public static void Begin()
+        {
+            Instance.enabled = true;
+            Instance.OnBegin();
+        }
+        
         public static void Stop()
         {
             Instance.enabled = false;
             Instance.OnStop();
         }
         
+        protected virtual void OnBegin(){}
         protected virtual void OnStop(){}
-
-        protected void Internal_Spawn(Unit prefab, Vector2 position)
+        
+        protected Unit Spawn(Unit prefab)
         {
-            var unit = Instantiate(prefab, position, Quaternion.identity);
+            var unit = Instantiate(prefab);
             InitUnit(unit);
+            return unit;
         }
         
         private void InitUnit(Unit unit)
@@ -63,7 +61,7 @@ namespace Battle
 
         private void Update()
         {
-            foreach (var unit in Units)
+            foreach (var (_, unit) in units)
             {
                 unit.Run();
             }
@@ -71,7 +69,7 @@ namespace Battle
         
         private void FixedUpdate()
         {
-            foreach (var unit in Units)
+            foreach (var (_, unit) in units)
             {
                 unit.FixedRun();
             }

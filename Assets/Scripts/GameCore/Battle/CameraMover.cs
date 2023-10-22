@@ -13,10 +13,10 @@ namespace GameCore.Battle
             Camera = camera;
             Hero = hero;
             CameraMover.offset = offset;
-            MoveCamera();
+            Move();
         }
 
-        public static void MoveCamera()
+        public static void Move()
         {
             Camera.transform.position = Hero.position + offset;
         }

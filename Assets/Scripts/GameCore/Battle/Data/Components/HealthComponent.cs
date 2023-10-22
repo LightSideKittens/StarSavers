@@ -1,10 +1,9 @@
 ﻿using System;
+using Animatable;
+using Battle;
 using Battle.Data.GameProperty;
-using Common.SingleServices;
-using GameCore.Common.SingleServices.Windows;
 using UnityEngine;
 using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.HealthComponent>;
-using Object = UnityEngine.Object;
 
 namespace GameCore.Battle.Data.Components
 {
@@ -15,6 +14,7 @@ namespace GameCore.Battle.Data.Components
         [SerializeField] private Vector2 offset;
         private Transform transform;
         private HealthBar healthBar;
+        private bool isOpponent;
         private float health;
 
         public void Init(Transform transform, bool isOpponent)
@@ -22,10 +22,13 @@ namespace GameCore.Battle.Data.Components
             this.transform = transform;
             health = transform.GetValue<HealthGP>();
             healthBar = HealthBar.Create(health, transform, offset, scale, isOpponent);
+            this.isOpponent = isOpponent;
             Add(transform, this);
         }
-        
-        public void OnDestroy()
+
+        public void Reset() => healthBar.Reset();
+
+        public void Destroy()
         { 
             Remove(transform);
         }
@@ -48,8 +51,16 @@ namespace GameCore.Battle.Data.Components
 
             if (health <= 0)
             {
-                healthBar.Destroy();
-                Object.Destroy(transform.gameObject);
+                healthBar.Disable();
+                
+                if (isOpponent)
+                {
+                    OpponentWorld.Pool.Release(transform);
+                }
+                else
+                {
+                    transform.Get<Unit>().Destroy();
+                }
             }
         }
     }

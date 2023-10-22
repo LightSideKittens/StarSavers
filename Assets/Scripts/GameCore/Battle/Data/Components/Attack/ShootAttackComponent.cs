@@ -3,6 +3,7 @@ using DG.Tweening;
 using LSCore.Async;
 using UnityEngine;
 using static UnityEngine.Object;
+using Object = UnityEngine.Object;
 
 namespace GameCore.Battle.Data.Components
 {
@@ -17,7 +18,7 @@ namespace GameCore.Battle.Data.Components
             var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             return bullet.transform.DOMove(target.position, duration).OnComplete(() =>
             {
-                Wait.Delay(0.35f, () => Destroy(bullet));
+                Object.Destroy(bullet, 0.35f);
                 target.Get<HealthComponent>().TakeDamage(damage);
             });
         }

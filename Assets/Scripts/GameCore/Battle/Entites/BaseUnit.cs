@@ -34,7 +34,7 @@ namespace GameCore.Battle.Data
             Props = EntiProps.GetProps(unitName);
         }
 
-        protected virtual void OnDestroy()
+        public virtual void Destroy()
         {
             Remove(transform);
         }

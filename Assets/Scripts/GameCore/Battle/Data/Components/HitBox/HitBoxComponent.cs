@@ -18,7 +18,7 @@ namespace GameCore.Battle.Data.Components
 
         protected virtual void OnInit(){}
 
-        public void OnDestroy()
+        public void Destroy()
         {
             Remove(transform);
         }

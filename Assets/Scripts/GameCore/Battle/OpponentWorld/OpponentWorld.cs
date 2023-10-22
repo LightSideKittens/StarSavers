@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using DG.Tweening;
+using GameCore.Battle;
 using GameCore.Battle.Data;
+using LSCore.Async;
 using LSCore.Extensions;
 using LSCore.Extensions.Unity;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Battle
 {
@@ -12,35 +14,52 @@ namespace Battle
         [SerializeField, EntityId("Enemies")] private int[] enemyIds;
         [SerializeField] private Enemies enemies;
         private Camera cam;
-        private Rect cameraRect;
+        private Tween spawnLoopTween;
+        private static Rect cameraRect;
         
-        protected override void Init()
+        public static IObjectPool<Transform> Pool { get; private set; }
+                
+        private Transform CreatePooledItem()
+        {
+            cameraRect.center = cam.transform.position;
+            return Spawn(Heroes.ByName[enemyIds.Random()]).transform;
+        }
+        
+        private static void OnTakeFromPool(Transform transform)
+        {
+            var unit = transform.Get<Unit>();
+            transform.position = cameraRect.RandomPointAroundRect();
+            unit.Reset();
+            unit.Enable();
+        }
+        
+        private static void OnReturnedToPool(Transform unit)
+        {
+            unit.Get<Unit>().Disable();
+        }
+
+        private static void OnDestroyPoolObject(Transform unit)
+        {
+            unit.Get<Unit>().Destroy();
+        }
+        
+        protected override void OnBegin()
         {
             UserId = "Opponent";
             enemies.Init();
             cam = Camera.main;
             cameraRect = cam.GetRect();
+            Pool = new ObjectPool<Transform>(Instance.CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, 100, 500);
+            Spawn();
+            spawnLoopTween = Wait.InfinityLoop(5, Spawn);
+        }
+        
+        protected override void OnStop()
+        {
+            spawnLoopTween.Kill();
         }
 
-        private void OnEnable()
-        {
-            StartCoroutine(SpawnOpponents());
-        }
-
-        private IEnumerator SpawnOpponents()
-        {
-            while (enabled)
-            {
-                Spawn();
-                yield return new WaitForSeconds(1);
-            }
-        }
-
-        private void Spawn()
-        {
-            cameraRect.center = cam.transform.position;
-            Internal_Spawn(Heroes.ByName[enemyIds.Random()], cameraRect.RandomPointAroundRect());
-        }
+        private void Spawn() => Pool.Get();
 
         private void OnDrawGizmosSelected()
         {
@@ -48,11 +67,6 @@ namespace Battle
             Gizmos.color = new Color(0f, 1f, 0f, 0.49f);
             Gizmos.DrawCube(cameraRect.center, cameraRect.size);
             Gizmos.color = oldColor;
-        }
-
-        protected override void OnStop()
-        {
-            
         }
     }
 }

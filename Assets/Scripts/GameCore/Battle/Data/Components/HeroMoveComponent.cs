@@ -9,6 +9,7 @@ namespace GameCore.Battle.Data.Components
     {
         public override void Move()
         {
+            CameraMover.Move();
             var joystick = BattleWindow.Joystick;
             if (!joystick.IsUsing) return;
 
@@ -16,7 +17,6 @@ namespace GameCore.Battle.Data.Components
             rigidbody.position += direction * (speed * Time.fixedDeltaTime);
             var zAngle = Vector2.SignedAngle(Vector2.up, direction);
             rigidbody.rotation = zAngle;
-            
         }
     }
 }
