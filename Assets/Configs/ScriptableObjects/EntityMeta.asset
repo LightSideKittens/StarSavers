@@ -13,11 +13,324 @@ MonoBehaviour:
   m_Name: EntityMeta
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 01010900000065006e0074006900740079004900640073002f00000000012e000000470061006d00650043006f00720065002e0042006100740074006c0065002e0044006100740061002e004900640054006f004e0061006d0065002c002000470061006d00650043006f00720065002e0042006100740074006c00650000000000060900000000000000022f010000000133000000470061006d00650043006f00720065002e0042006100740074006c0065002e0044006100740061002e004900640054006f004e0061006d0065002b0044006100740061002c002000470061006d00650043006f00720065002e0042006100740074006c0065000100000017010200000069006400000000002701040000006e0061006d006500010600000041007200630061006e006500050230010000000200000017010200000069006400010000002701040000006e0061006d006500010b0000004400610072006b0020004b006e006900670068007400050230010000000300000017010200000069006400020000002701040000006e0061006d0065000109000000420061007200620061007200690061006e00050230010000000400000017010200000069006400030000002701040000006e0061006d0065000106000000480075006e00740065007200050230010000000500000017010200000069006400070000002701040000006e0061006d006500010800000053006b0065006c00650074006f006e00050230010000000600000017010200000069006400080000002701040000006e0061006d0065000103000000420061007400050230010000000700000017010200000069006400090000002701040000006e0061006d006500010b0000004400610072006b00200047006f0062006c0069006e000502300100000008000000170102000000690064000a0000002701040000006e0061006d006500010c000000470068006f007300740020004b006e0069006700680074000502300100000009000000170102000000690064000b0000002701040000006e0061006d0065000107000000570061007200720069006f007200050705010108000000670072006f007500700049006400730030000000000a0000000603000000000000000230010000000b00000017010200000069006400040000002701040000006e0061006d006500010800000041006c006c0055006e00690074007300050230010000000c00000017010200000069006400050000002701040000006e0061006d00650001060000004800650072006f0065007300050230010000000d00000017010200000069006400060000002701040000006e0061006d006500010700000045006e0065006d00690065007300050705010106000000670072006f007500700073002f020000000162000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004800610073006800530065007400600031005b005b0042006100740074006c0065002e0044006100740061002e0045006e0074006900740079004d006500740061002b00470072006f00750070002c002000470061006d00650043006f00720065002e0042006100740074006c0065005d005d002c002000530079007300740065006d002e0043006f00720065000e000000060300000000000000022f03000000012d00000042006100740074006c0065002e0044006100740061002e0045006e0074006900740079004d006500740061002b00470072006f00750070002c002000470061006d00650043006f00720065002e0042006100740074006c0065000f000000170102000000690064000400000001010900000065006e0074006900740079004900640073002f04000000014b000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004800610073006800530065007400600031005b005b00530079007300740065006d002e0049006e007400330032002c0020006d00730063006f0072006c00690062005d005d002c002000530079007300740065006d002e0043006f007200650010000000060000000000000000070501010e00000069006e0063006c007500640065006400470072006f007500700073003004000000110000000602000000000000001805000000180600000007050502300300000012000000170102000000690064000500000001010900000065006e0074006900740079004900640073003004000000130000000604000000000000001800000000180200000018010000001803000000070501010e00000069006e0063006c007500640065006400470072006f0075007000730030040000001400000006000000000000000007050502300300000015000000170102000000690064000600000001010900000065006e007400690074007900490064007300300400000016000000060500000000000000180b0000001809000000180a00000018080000001807000000070501010e00000069006e0063006c007500640065006400470072006f007500700073003004000000170000000600000000000000000705050705
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: entityIds
+      Entry: 7
+      Data: 0|GameCore.Battle.Data.IdToName, GameCore.Battle
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: 
+      Entry: 7
+      Data: 1|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 0
+    - Name: name
+      Entry: 1
+      Data: Arcane
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 1
+    - Name: name
+      Entry: 1
+      Data: Dark Knight
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 2
+    - Name: name
+      Entry: 1
+      Data: Barbarian
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 3
+    - Name: name
+      Entry: 1
+      Data: Hunter
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 7
+    - Name: name
+      Entry: 1
+      Data: Skeleton
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 8
+    - Name: name
+      Entry: 1
+      Data: Bat
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 9
+    - Name: name
+      Entry: 1
+      Data: Dark Goblin
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 10
+    - Name: name
+      Entry: 1
+      Data: Ghost Knight
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 11
+    - Name: name
+      Entry: 1
+      Data: Warrior
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: groupIds
+      Entry: 7
+      Data: 10|GameCore.Battle.Data.IdToName, GameCore.Battle
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 11|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 4
+    - Name: name
+      Entry: 1
+      Data: AllUnits
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 12|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 5
+    - Name: name
+      Entry: 1
+      Data: Heroes
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|GameCore.Battle.Data.IdToName+Data, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 6
+    - Name: name
+      Entry: 1
+      Data: Enemies
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: groups
+      Entry: 7
+      Data: 14|System.Collections.Generic.HashSet`1[[Battle.Data.EntityMeta+Group,
+        GameCore.Battle]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 15|Battle.Data.EntityMeta+Group, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 4
+    - Name: entityIds
+      Entry: 7
+      Data: 16|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: includedGroups
+      Entry: 7
+      Data: 17|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 18|Battle.Data.EntityMeta+Group, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 5
+    - Name: entityIds
+      Entry: 7
+      Data: 19|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: includedGroups
+      Entry: 7
+      Data: 20|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 21|Battle.Data.EntityMeta+Group, GameCore.Battle
+    - Name: id
+      Entry: 3
+      Data: 6
+    - Name: entityIds
+      Entry: 7
+      Data: 22|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 11
+    - Name: 
+      Entry: 3
+      Data: 9
+    - Name: 
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 3
+      Data: 7
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: includedGroups
+      Entry: 7
+      Data: 23|System.Collections.Generic.HashSet`1[[System.Int32, mscorlib]], System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
