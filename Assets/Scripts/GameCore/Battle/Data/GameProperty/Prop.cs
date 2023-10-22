@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
@@ -79,7 +80,7 @@ namespace Battle.Data.GameProperty
             var matches = Regex.Matches(props, FloatRegex);
             foreach (Match match in matches)
             {
-                var val = float.Parse(match.Groups[2].Value);
+                var val = float.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture);
                 Value[match.Groups[1].Value] = val;
             }
 
@@ -127,10 +128,8 @@ namespace Battle.Data.GameProperty
 
         public void OnAfterDeserialize()
         {
-            Debug.Log($"Prop Deserialize {serializedValue}");
             serializedValue ??= string.Empty;
             Init(serializedValue);
-            Debug.Log($"Prop Deserialize Value is Null: {value != null}");
         }
     }
 }

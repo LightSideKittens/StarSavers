@@ -1,10 +1,11 @@
 ﻿using System;
 using Battle.Windows;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace GameCore.Battle.Data.Components
 {
-    [Serializable]
+    [Preserve, Serializable]
     internal class HeroMoveComponent : MoveComponent
     {
         public override void Move()

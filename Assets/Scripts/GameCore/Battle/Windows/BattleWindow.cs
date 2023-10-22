@@ -8,5 +8,12 @@ namespace Battle.Windows
         [SerializeField] private Joystick joystick;
 
         public static Joystick Joystick => Instance.joystick;
+
+        protected override void OnBackButton()
+        {
+            base.OnBackButton();
+            MatchResultWindow.Show(false);
+            
+        }
     }
 }

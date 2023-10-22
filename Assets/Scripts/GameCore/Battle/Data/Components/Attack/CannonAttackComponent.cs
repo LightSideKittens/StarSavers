@@ -2,12 +2,13 @@
 using DG.Tweening;
 using LSCore.Async;
 using UnityEngine;
+using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
 {
-    [Serializable]
+    [Preserve, Serializable]
     internal class CannonAttackComponent : AttackComponent
     {
         [SerializeField] private GameObject bulletPrefab;

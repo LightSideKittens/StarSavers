@@ -1,10 +1,11 @@
 ﻿using System;
 using DG.Tweening;
+using UnityEngine.Scripting;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
 {
-    [Serializable]
+    [Preserve, Serializable]
     internal class SelfDestroyAttackComponent : AttackComponent
     {
         protected override Tween AttackAnimation()

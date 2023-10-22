@@ -24,6 +24,7 @@ namespace Battle
         protected override void OnStop()
         {
             hero.Destroyed -= OnHeroDied;
+            hero.Destroy();
         }
 
         private void OnHeroDied()

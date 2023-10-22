@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Battle.Data;
-using Battle.Data.GameProperty;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Scripting;
 using static UnityEngine.Object;
 using Health = GameCore.Battle.Data.Components.HealthComponent;
 
 namespace GameCore.Battle.Data.Components
 {
-    [Serializable]
+    [Preserve, Serializable]
     internal class RicochetAttackComponent : AttackComponent
     {
         [SerializeField] private GameObject bulletPrefab;

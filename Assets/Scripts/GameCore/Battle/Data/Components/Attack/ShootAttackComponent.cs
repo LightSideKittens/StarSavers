@@ -1,13 +1,13 @@
 ﻿using System;
 using DG.Tweening;
-using LSCore.Async;
 using UnityEngine;
+using UnityEngine.Scripting;
 using static UnityEngine.Object;
 using Object = UnityEngine.Object;
 
 namespace GameCore.Battle.Data.Components
 {
-    [Serializable]
+    [Preserve, Serializable]
     internal class ShootAttackComponent : AttackComponent
     {
         [SerializeField] private GameObject bulletPrefab;
@@ -19,7 +19,7 @@ namespace GameCore.Battle.Data.Components
             return bullet.transform.DOMove(target.position, duration).OnComplete(() =>
             {
                 Object.Destroy(bullet, 0.35f);
-                target.Get<HealthComponent>().TakeDamage(damage);
+                TryApplyDamage(target);
             });
         }
     }
