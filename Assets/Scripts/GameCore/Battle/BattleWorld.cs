@@ -1,6 +1,7 @@
 ﻿using System;
 using Battle.Windows;
 using BeatHeroes.Interfaces;
+using DG.Tweening;
 using GameCore.Battle.Data;
 using LSCore;
 using LSCore.AddressablesModule.AssetReferences;
@@ -46,6 +47,12 @@ namespace Battle
             OpponentWorld.Begin();
             MatchResultWindow.Showing += Unsubscribe;
             BattleWindow.Show();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            DOTween.KillAll();
         }
 
         private void Unsubscribe()
