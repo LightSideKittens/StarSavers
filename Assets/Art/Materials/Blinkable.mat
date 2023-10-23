@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Blinkable
   m_Shader: {fileID: 4800000, guid: 59f94746a5262df4b84d5ed84f847248, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - UNITY_UI_ALPHACLIP
   m_InvalidKeywords: []
@@ -18,6 +20,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -28,6 +31,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
+    - _Softness: 0.5
+    - _SpeedX: 1
+    - _SpeedY: 1
     - _Stencil: 1
     - _StencilComp: 8
     - _StencilOp: 2
