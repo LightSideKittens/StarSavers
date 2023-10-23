@@ -100,9 +100,7 @@ namespace GameCore.Battle.Data.Components
             if (enabled)
             {
                 Buffs.Update();
-                findTargetComponent.Find();
-                var target = findTargetComponent.target;
-                if (target != null)
+                if (findTargetComponent.Find(out var target))
                 {
                     var position = rigidbody.position;
                     var direction = (Vector2)target.position - position;

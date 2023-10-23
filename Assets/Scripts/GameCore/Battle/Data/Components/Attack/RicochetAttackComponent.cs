@@ -33,12 +33,12 @@ namespace GameCore.Battle.Data.Components
             ricochetCount = 0;
             bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Attack();
-            return null;
+            return DOTween.Sequence();
         }
 
         private void Attack()
         {
-            lastTarget = findTargetComponent.target;
+            //lastTarget = findTargetComponent.target;
             bullet.transform.DOMove(lastTarget.position, duration).OnComplete(Ricochet);
         }
 

@@ -14,8 +14,7 @@ namespace GameCore.Battle.Data.Components
             return transform.DOMove(lastHitPoint, duration)
                 .OnComplete(() =>
                 {
-                    var target = findTargetComponent.target;
-                    TryApplyDamage(target);
+                    TryApplyDamage();
                     if(transform.TryGet<Health>(out var health)) health.Kill();
                 });
         }

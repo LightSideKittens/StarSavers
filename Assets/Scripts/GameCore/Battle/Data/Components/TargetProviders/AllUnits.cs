@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Battle;
 using UnityEngine;
 
 namespace GameCore.Battle.Data.Components.TargetProviders
 {
-    using Unit = ObjectsByTransfroms<Unit>;
-    
     [Serializable]
     internal class AllUnits : TargetProvider
     {
@@ -13,14 +12,9 @@ namespace GameCore.Battle.Data.Components.TargetProviders
         {
             get
             {
-                var units = Unit.All;
-
-                foreach (var unit in units)
+                foreach (var unit in OpponentWorld.Units)
                 {
-                    if (unit.IsOpponent != findTargetComponent.isOpponent)
-                    {
-                        yield return unit.transform;
-                    }
+                    yield return unit.transform;
                 }
             }
         }

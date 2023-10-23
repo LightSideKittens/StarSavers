@@ -9,6 +9,19 @@ namespace Battle
     public abstract class BasePlayerWorld<T> : SingleService<T> where T : BasePlayerWorld<T>
     {
         private static Dictionary<Transform, Unit> units;
+        public static int UnitCount => units.Count;
+        
+        public static IEnumerable<Unit> Units
+        {
+            get
+            {
+                foreach (var unit in units.Values)
+                {
+                    yield return unit;
+                }
+            }
+        }
+        
         private string userId;
         protected bool IsOpponent { get; private set; }
 
@@ -20,7 +33,7 @@ namespace Battle
                 userId = value;
                 IsOpponent = UserId == "Opponent";
                 units ??= new Dictionary<Transform, Unit>();
-                if (!Unit.All.TryAdd(value, units))
+                if (!Unit.ByWorld.TryAdd(value, units))
                 {
                     units.Clear();
                 }

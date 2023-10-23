@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using DG.Tweening;
 using GameCore.Battle;
 using GameCore.Battle.Data;
@@ -10,8 +11,9 @@ using UnityEngine.Pool;
 
 namespace Battle
 {
-    public class OpponentWorld : BasePlayerWorld<OpponentWorld>
+    public partial class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
+        private const int MaxEnemyCount = 100;
         [SerializeField, EntityId("Enemies")] private int[] enemyIds;
         [SerializeField] private Enemies enemies;
         private Camera cam;
@@ -23,25 +25,36 @@ namespace Battle
         private Transform CreatePooledItem()
         {
             cameraRect.center = cam.transform.position;
-            return Spawn(Heroes.ByName[enemyIds.Random()]).transform;
+            return Spawn(Heroes.ByName[enemyIds.Random()]).transform;;
         }
         
         private static void OnTakeFromPool(Transform transform)
         {
             var unit = transform.Get<Unit>();
-            transform.position = cameraRect.RandomPointAroundRect();
+            transform.position = cameraRect.RandomPointAroundRect(5);
             unit.Reset();
             unit.Enable();
+            OnChange();
         }
         
         private static void OnReturnedToPool(Transform unit)
         {
             unit.Get<Unit>().Disable();
+            OnChange();
         }
 
         private static void OnDestroyPoolObject(Transform unit)
         {
             unit.Get<Unit>().Destroy();
+            OnChange();
+        }
+        
+        [Conditional("DEBUG")]
+        public static void OnChange()
+        {
+#if DEBUG
+            DebugData.OnChange();   
+#endif
         }
         
         protected override void OnBegin()
@@ -57,7 +70,7 @@ namespace Battle
         
         protected override void OnStop()
         {
-            var units = Unit.All[UserId].Values.ToList();
+            var units = Unit.ByWorld[UserId].Values.ToList();
             
             foreach (var unit in units)
             {
@@ -68,7 +81,13 @@ namespace Battle
             spawnLoopTween.Kill();
         }
 
-        private void Spawn() => Pool.Get();
+        private void Spawn()
+        {
+            if (UnitCount < MaxEnemyCount)
+            {
+                Pool.Get();
+            }
+        }
 
         private void OnDrawGizmosSelected()
         {

@@ -23,6 +23,8 @@ namespace GameCore.Battle.Data.Components
         public float Radius => radius;
         public Buffs Buffs { get; private set; }
         protected Tween attackLoopEmiter;
+        protected Tween attackTween;
+        protected Transform target;
 
         public void Init(Transform transform, FindTargetComponent findTargetComponent)
         {
@@ -45,7 +47,11 @@ namespace GameCore.Battle.Data.Components
             attackLoopEmiter = Wait.InfinityLoop(attackSpeed, OnTactTicked);
         }
 
-        public void Disable() => attackLoopEmiter.Kill();
+        public void Disable()
+        {
+            attackLoopEmiter.Kill();
+            attackTween.Kill();
+        }
 
         public void Update()
         {
@@ -54,13 +60,12 @@ namespace GameCore.Battle.Data.Components
 
         public void Destroy()
         {
-            attackLoopEmiter.Kill();
+            Disable();
             Remove(transform);
         }
 
         public bool CheckInRadius()
         {
-            var target = findTargetComponent.target;
             if (target.TryGet<HitBoxComponent>(out var hitBox))
             {
                 IsInRadius = hitBox.IsIntersected(transform.position, radius, out lastHitPoint);
@@ -72,16 +77,15 @@ namespace GameCore.Battle.Data.Components
 
         protected virtual Tween AttackAnimation()
         {
-            var lastPos = transform.position;
+            var lastPos = transform.position; 
             return transform.DOMove(lastHitPoint, duration).OnComplete(() =>
             {
-                var target = findTargetComponent.target;
-                TryApplyDamage(target);
+                TryApplyDamage();
                 transform.DOMove(lastPos, duration);
             });
         }
 
-        protected void TryApplyDamage(Transform target)
+        protected void TryApplyDamage()
         {
             if (target != null && target.TryGet<Health>(out var health))
             {
@@ -91,11 +95,11 @@ namespace GameCore.Battle.Data.Components
         
         private void OnTactTicked()
         {
-            if (findTargetComponent.Find(radius))
+            if (findTargetComponent.Find(out target))
             {
                 if (CheckInRadius())
                 {
-                    AttackAnimation();
+                    attackTween = AttackAnimation();
                 }
             }
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameCore.Battle.Data.Components.HitBox;
 using GameCore.Battle.Data.Components.TargetProviders;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -10,12 +9,12 @@ namespace GameCore.Battle.Data.Components
     [Serializable]
     internal class FindTargetComponent
     {
-        [NonSerialized] public Transform target;
         [NonSerialized] public bool isOpponent;
         [OdinSerialize] private List<TargetProvider> providers = new() {new AllUnits()};
+        private Transform lastTarget;
         private Transform transform;
-        private bool lastResult;
         private int frame;
+        private bool IsFound => lastTarget != null;
 
         public void Init(Transform transform, bool isOpponent)
         {
@@ -27,7 +26,6 @@ namespace GameCore.Battle.Data.Components
                 var provider = providers[i];
                 provider.findTargetComponent = this;
             }
-            
         }
 
         public IEnumerable<Transform> FindAll(float radius) => FindAll(transform.position, radius);
@@ -36,9 +34,9 @@ namespace GameCore.Battle.Data.Components
         {
             if (frame == Time.frameCount)
             {
-                if (lastResult)
+                if (IsFound)
                 {
-                    yield return target;
+                    yield return lastTarget;
                 }
                 else
                 {
@@ -63,22 +61,27 @@ namespace GameCore.Battle.Data.Components
             }
         }
 
-        public bool Find(Vector2 position, float radius, HashSet<Transform> excepted)
+        public bool Find(Vector2 position, float radius, HashSet<Transform> excepted, out Transform target)
         {
-            if (frame == Time.frameCount) return lastResult;
+            if (frame == Time.frameCount)
+            {
+                target = lastTarget;
+                return IsFound;
+            }
+            
             frame = Time.frameCount;
             
             var distance = radius;
-            Transform currentTarget = null;
-
+            target = null;
+            
             for (int i = 0; i < providers.Count; i++)
             {
                 var targets = providers[i].Targets;
-                foreach (var target in targets)
+                foreach (var target1 in targets)
                 {
-                    if (!excepted.Contains(target))
+                    if (!excepted.Contains(target1))
                     {
-                        var hitBox = target.Get<HitBoxComponent>();
+                        var hitBox = target1.Get<HitBoxComponent>();
 
                         if (hitBox.IsIntersected(position, distance, out var point))
                         {
@@ -86,7 +89,7 @@ namespace GameCore.Battle.Data.Components
 
                             if (distance > newDistance)
                             {
-                                currentTarget = target;
+                                target = target1;
                                 distance = newDistance;
                             }
                         }
@@ -94,25 +97,29 @@ namespace GameCore.Battle.Data.Components
                 }
             }
 
-            target = currentTarget;
-            lastResult = target != null;
-            return lastResult;
+            lastTarget = target;
+            return IsFound;
         }
 
-        public bool Find(Vector2 position, float radius)
+        public bool Find(Vector2 position, float radius, out Transform target)
         {
-            if (frame == Time.frameCount) return lastResult;
+            if (frame == Time.frameCount)
+            {
+                target = lastTarget;
+                return IsFound;
+            }
+            
             frame = Time.frameCount;
             
             var distance = radius;
-            Transform currentTarget = null;
-
+            target = null;
+            
             for (int i = 0; i < providers.Count; i++)
             {
                 var targets = providers[i].Targets;
-                foreach (var target in targets)
+                foreach (var target1 in targets)
                 {
-                    var hitBox = target.Get<HitBoxComponent>();
+                    var hitBox = target1.Get<HitBoxComponent>();
 
                     if (hitBox.IsIntersected(position, distance, out var point))
                     {
@@ -120,20 +127,19 @@ namespace GameCore.Battle.Data.Components
 
                         if (distance > newDistance)
                         {
-                            currentTarget = target;
+                            target = target1;
                             distance = newDistance;
                         }
                     }
                 }
             }
 
-            target = currentTarget;
-            lastResult = target != null;
-            return lastResult;
+            lastTarget = target;
+            return IsFound;
         }
 
-        public bool Find() => Find(transform.position, 1000);
-        public bool Find(float radius) => Find(transform.position, radius);
-        public bool Find(HashSet<Transform> excepted) => Find(transform.position, 1000, excepted);
+        public virtual bool Find(out Transform target) => Find(transform.position, 1000, out target);
+        public bool Find(float radius, out Transform target) => Find(transform.position, radius, out target);
+        public bool Find(HashSet<Transform> excepted, out Transform target) => Find(transform.position, 1000, excepted, out target);
     }
 }
