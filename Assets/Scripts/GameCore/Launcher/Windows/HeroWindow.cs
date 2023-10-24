@@ -1,18 +1,17 @@
-﻿using LSCore.Extensions.Unity;
+﻿using LSCore;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace BeatHeroes.Windows
 {
     public class HeroWindow : BaseLauncherWindow<HeroWindow>
     {
         protected override int Internal_Index => 1;
-        [SerializeField] private Button homeButton;
+        [SerializeField] private LSButton homeButton;
 
         protected override void Init()
         {
             base.Init();
-            homeButton.AddListener(OnHome);
+            homeButton.Listen(OnHome);
         }
 
         private void OnHome()
