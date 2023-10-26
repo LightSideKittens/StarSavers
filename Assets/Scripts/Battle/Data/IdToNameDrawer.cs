@@ -19,6 +19,7 @@ namespace GameCore.Battle.Data
         
         protected override void DrawPropertyLayout(GUIContent label)
         {
+            var value = (IdToName)Property.ValueEntry.WeakSmartValue;
             SirenixEditorGUI.BeginBox();
             {
                 SirenixGUIStyles.BoxHeaderStyle.fixedHeight = 22;
@@ -28,7 +29,8 @@ namespace GameCore.Battle.Data
 
                     if (SirenixEditorGUI.IconButton(EditorIcons.Plus))
                     {
-                        ValueEntry.SmartValue.CreateData();
+                        value.CreateData();
+                        this.ForceSaveParent();
                     }
                 }
                 SirenixEditorGUI.EndBoxHeader();
@@ -54,7 +56,8 @@ namespace GameCore.Battle.Data
 
                         if (SirenixEditorGUI.IconButton(EditorIcons.Minus))
                         {
-                            ValueEntry.SmartValue.RemoveAt(i);
+                            value.RemoveAt(i);
+                            this.ForceSaveParent();
                         }
 
                         EditorGUILayout.EndHorizontal();

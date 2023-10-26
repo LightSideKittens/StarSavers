@@ -6,16 +6,16 @@ using Object = UnityEngine.Object;
 
 namespace GameCore.Battle.Data
 {
-    public class ObjectByKey<Key, Value> : SerializedScriptableObject where Value : Object
+    public class ObjectByKey<TKey, TValue> : SerializedScriptableObject where TValue : Object
     {
         [Serializable]
         public struct Pair
         {
-            public Key key;
-            public Value value;
+            public TKey key;
+            public TValue value;
         }
         
-        public static Dictionary<Key, Value> ByKey { get; } = new(); 
+        public static Dictionary<TKey, TValue> ByKey { get; } = new(); 
         [SerializeField] private List<Pair> objectsByKey = new ();
 
         public void Init()

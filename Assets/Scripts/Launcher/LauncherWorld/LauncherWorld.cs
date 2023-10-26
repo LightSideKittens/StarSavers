@@ -11,6 +11,13 @@ namespace BeatHeroes.Launcher
         {
             base.Awake();
             BaseInitializer.Initialize(Init);
+            Coins.Earn(100);
+            Coins.Earn(120);
+            Coins.Earn(40);
+            Keys.Earn(123);
+            Keys.Earn(532);
+
+            Coins.TryConvertTo<Keys>(100, 2000);
         }
 
         private void Init()

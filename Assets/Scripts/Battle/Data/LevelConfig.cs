@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Battle.Data.GameProperty;
+using LSCore;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 #if UNITY_EDITOR
 using Sirenix.Utilities.Editor;
+using UnityEditor;
 #endif
 using UnityEngine;
 
@@ -22,7 +24,7 @@ namespace Battle.Data
         [ListDrawerSettings(HideAddButton = true, OnTitleBarGUI = "OtherUpgradesGui")]
         public List<AllDestinationsGameProps> OtherUpgrades { get; private set; } = new();
 
-        [OdinSerialize] public List<BasePrice> Prices { get; set; } = new();
+        [OdinSerialize] [HideReferenceObjectPicker] public Prices Prices { get; set; } = new();
 
 #if UNITY_EDITOR
         private void OtherUpgradesGui()
@@ -51,7 +53,13 @@ namespace Battle.Data
             return except;
         }
 
-        [OnInspectorInit] private void OnInit() => OnGui();
+        [OnInspectorInit] 
+        private void OnInit()
+        {
+            Prices.Init(typeof(Coins), typeof(Keys), typeof(RedGems), typeof(Rank), typeof(Exp));
+            OnGui();
+        }
+
         [OnInspectorGUI] private void OnGui() => currentInspected = this;
 #endif
         

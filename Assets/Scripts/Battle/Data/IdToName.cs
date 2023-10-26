@@ -81,7 +81,7 @@ namespace GameCore.Battle.Data
                 data.Init(this);
                 nameById.Add(id, name);
                 idByName.Add(name, id);
-                Global.AddInternal(data);
+                Global.AddForGlobal(data);
                 Global.nameById.Add(id, name);
                 Global.idByName.Add(name, id);
                 IncreaseHash(data);
@@ -120,14 +120,16 @@ namespace GameCore.Battle.Data
         {
             data.Init(this);
             base.Add(data);
-            Global.AddInternal(data);
+            Global.AddForGlobal(data);
             idByName.Add(data.name, data.id);
             nameById.Add(data.id, data.name);
             IncreaseHash(data);
             Changed?.Invoke();
         }
 
-        private void AddInternal(Data data) => base.Add(data);
+        private void AddForGlobal(Data data) => base.Add(data);
+        private void RemoveForGlobal(Data data) => base.Remove(data);
+        private void RemoveAtForGlobal(int index) => base.RemoveAt(index);
         
         public new bool Add(Data data)
         {
@@ -152,17 +154,17 @@ namespace GameCore.Battle.Data
         
         public new void Remove(Data data)
         {
-            InternalRemove(data);
+            RemoveFromDict(data);
             base.Remove(data);
-            Global.Remove(data);
+            Global.RemoveForGlobal(data);
             Changed?.Invoke();
         }
         
         public new void RemoveAt(int index)
         {
-            InternalRemove(this[index]);
+            RemoveFromDict(this[index]);
             base.RemoveAt(index);
-            Global.RemoveAt(index);
+            Global.RemoveAtForGlobal(index);
             Changed?.Invoke();
         }
 
@@ -188,7 +190,7 @@ namespace GameCore.Battle.Data
             idByName.Clear();
         }
 
-        private void InternalRemove(Data data)
+        private void RemoveFromDict(Data data)
         {
             nameById.Remove(data.id);
             idByName.Remove(data.name);

@@ -291,10 +291,6 @@ namespace Battle.Data
             }
             
             groupsById = groups.ToDictionary(x => x.id);
-            
-#if UNITY_EDITOR
-            EditorUtility.SetDirty(this);
-#endif
         }
         
         public void Init()
