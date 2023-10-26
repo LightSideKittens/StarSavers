@@ -216,7 +216,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -375.97, y: 0}
-  m_SizeDelta: {x: 400, y: 107.34}
+  m_SizeDelta: {x: 400, y: 105.5526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2330300811401814269
 CanvasRenderer:
@@ -448,7 +448,6 @@ GameObject:
   - component: {fileID: 6756807629268934200}
   - component: {fileID: 8828928397276944736}
   - component: {fileID: 6315889675723285219}
-  - component: {fileID: 2080755604896115284}
   - component: {fileID: 700756687089359129}
   m_Layer: 0
   m_Name: Tabs
@@ -466,7 +465,7 @@ RectTransform:
   m_GameObject: {fileID: 6681974033841174987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 338369540650852773}
@@ -501,36 +500,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6681974033841174987}
   m_CullTransparentMesh: 1
---- !u!114 &2080755604896115284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6681974033841174987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.08317016, g: 0.096963316, b: 0.1981132, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 1372593798, guid: 9ce6c205fe627ac47a636d93f5372ab8, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.82
 --- !u!114 &700756687089359129
 MonoBehaviour:
   m_ObjectHideFlags: 0
