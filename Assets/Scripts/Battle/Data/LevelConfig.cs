@@ -14,6 +14,7 @@ namespace Battle.Data
     [CreateAssetMenu(fileName = nameof(LevelConfig), menuName = "Battle/" + nameof(LevelConfig), order = 0)]
     public class LevelConfig : SerializedScriptableObject
     {
+        [SerializeField] private Id id;
         public int EntityId => EntityUpgrades.Destination;
         
         [HideReferenceObjectPicker]
@@ -53,9 +54,10 @@ namespace Battle.Data
             return except;
         }
 
-        [OnInspectorInit] 
+        [OnInspectorInit]
         private void OnInit()
         {
+            Coins.TryConvertTo<Keys>(1, 2);
             Prices.Init(typeof(Coins), typeof(Keys), typeof(RedGems), typeof(Rank), typeof(Exp));
             OnGui();
         }
