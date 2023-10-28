@@ -4,13 +4,13 @@ namespace GameCore.Battle.Data
 {
     public class PlayerData : BaseConfig<PlayerData>
     {
-        public int SelectedHero { get; set; }
+        public string SelectedHero { get; set; }
         public int Level { get; set; }
 
         protected override void SetDefault()
         {
             base.SetDefault();
-            SelectedHero = 0;
+            SelectedHero = "Arcane";
             Level = 1;
         }
     }

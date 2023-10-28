@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Battle.Data;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 #if UNITY_EDITOR
@@ -11,14 +10,14 @@ using Object = UnityEngine.Object;
 
 namespace GameCore.Battle.Data
 {
-    public abstract class ObjectsByEntityId<T> : SerializedScriptableObject where T : Object
+    public abstract class ObjectsById<T> : SerializedScriptableObject where T : Object
     {
-        protected abstract HashSet<int> Scope { get; }
+        protected abstract IdGroup IdGroup { get; }
         
         [Serializable]
         private class ObjectByName
         {
-            [HideInInspector] public int id;
+            [HideInInspector] public Id id;
             public T obj;
             
             public override bool Equals(object obj)
@@ -33,10 +32,10 @@ namespace GameCore.Battle.Data
         
             public bool Equals(ObjectByName other) => id == other.id;
 
-            public override int GetHashCode() => id;
+            public override int GetHashCode() => id.GetInstanceID();
         }
         
-        public static Dictionary<int, T> ByName { get; } = new();
+        public static Dictionary<string, T> ByName { get; } = new();
 
         [HideReferenceObjectPicker]
         [ValueDropdown("AvailableObjects", IsUniqueList = true)]
@@ -63,9 +62,9 @@ namespace GameCore.Battle.Data
                 { 
                     list = new ValueDropdownList<ObjectByName>();
 
-                    foreach (var id in Scope)
+                    foreach (var id in IdGroup.Ids)
                     {
-                        /*list.Add(EntityMeta.EntityIds.GetNameById(id), new ObjectByName(){id = id});*/
+                        list.Add(id, new ObjectByName(){id = id});
                     }
                 }
                 

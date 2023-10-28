@@ -3,8 +3,8 @@ using Battle.Data;
 
 namespace GameCore.Battle.Data
 {
-    public class Heroes : ObjectsByEntityId<Unit>
+    public class Heroes : ObjectsById<Unit>
     {
-        protected override HashSet<int> Scope { get; }
+        protected override IdGroup IdGroup { get; }
     }
 }
