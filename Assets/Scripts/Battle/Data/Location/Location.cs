@@ -9,7 +9,7 @@ namespace GameCore.Battle.Data
         [SerializeField] private GameObject prefab;
         [SerializeField] private GameObject[] chunks;
 
-        [EntityId("Enemies")] public int[] enemies;
+        [Id("Enemies")] public int[] enemies;
 
         [Button]
         public void Generate()

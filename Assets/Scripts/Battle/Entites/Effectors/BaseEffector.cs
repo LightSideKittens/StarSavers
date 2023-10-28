@@ -11,7 +11,7 @@ namespace GameCore.Battle.Data
     internal abstract class BaseEffector
     {
         [OdinSerialize] protected FindTargetComponent findTargetComponent;
-        [NonSerialized] public int name;
+        [NonSerialized] public Id name;
         protected float radius;
         protected bool isApplied;
         protected SpriteRenderer radiusRenderer;

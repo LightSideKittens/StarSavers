@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59dae9a2401549a5a51f532a2df277f1, type: 3}
-  m_Name: Arcane_3
+  m_Name: Hunter_1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,12 +21,9 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: EntityUpgrades
+    - Name: upgrades
       Entry: 7
-      Data: 0|Battle.Data.GameProperty.EntityGameProps, GameCore.Battle
-    - Name: <Destination>k__BackingField
-      Entry: 3
-      Data: 0
+      Data: 0|Battle.Data.GameProperty.GameProps, GameCore.Battle
     - Name: <Props>k__BackingField
       Entry: 7
       Data: 1|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
@@ -45,8 +42,18 @@ MonoBehaviour:
       Data: 
     - Name: OtherUpgrades
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.GameProperty.AllDestinationsGameProps,
+      Data: 2|System.Collections.Generic.List`1[[Battle.Data.GameProperty.GroupGameProps,
         GameCore.Battle]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 3|Battle.Data.GameProperty.GroupGameProps, GameCore.Battle
+    - Name: <Props>k__BackingField
+      Entry: 7
+      Data: 4|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
+        Battle.GameProperty]], System.Core
     - Name: 
       Entry: 12
       Data: 0
@@ -56,12 +63,24 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <Group>k__BackingField
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: Prices
       Entry: 7
-      Data: 3|LSCore.Prices, LSCore.CurrencySystem
+      Data: 5|LSCore.Prices, LSCore.CurrencySystem
     - Name: prices
       Entry: 7
-      Data: 4|System.Collections.Generic.HashSet`1[[BasePrice, LSCore.CurrencySystem]],
+      Data: 6|System.Collections.Generic.HashSet`1[[BasePrice, LSCore.CurrencySystem]],
         System.Core
     - Name: 
       Entry: 12
@@ -75,3 +94,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  <Container>k__BackingField: {fileID: 11400000, guid: fa71f3866f91e984695bdaa4c2deddf1, type: 2}

@@ -10,16 +10,16 @@ namespace GameCore.Battle.Data
     public class BaseUnit : SerializedMonoBehaviour
     {
 #if UNITY_EDITOR
-        protected virtual IList<ValueDropdownItem<int>> Entities => EntityMeta.EntityIds.GetValues();
+        //protected virtual IList<ValueDropdownItem<int>> Entities => EntityMeta.EntityIds.GetValues();
 #endif
         
-        [SerializeField, ValueDropdown("Entities")] private int unitName;
+        [SerializeField, ValueDropdown("Entities")] private Id unitName;
         public Dictionary<string, Prop> Props { get; private set; }
         
         public bool IsOpponent { get; private set; }
         public string UserId { get; private set; }
 
-        public int Name => unitName;
+        public Id Name => unitName;
 
         public float GetValue<T>() where T : BaseGameProperty
         {

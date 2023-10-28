@@ -14,7 +14,7 @@ namespace Battle
     public partial class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
         private const int MaxEnemyCount = 100;
-        [SerializeField, EntityId("Enemies")] private int[] enemyIds;
+        [SerializeField, Id("Enemies")] private int[] enemyIds;
         [SerializeField] private Enemies enemies;
         private Camera cam;
         private Tween spawnLoopTween;

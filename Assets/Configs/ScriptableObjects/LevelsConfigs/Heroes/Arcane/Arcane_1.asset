@@ -21,19 +21,16 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: EntityUpgrades
+    - Name: upgrades
       Entry: 7
-      Data: 0|Battle.Data.GameProperty.EntityGameProps, GameCore.Battle
-    - Name: <Destination>k__BackingField
-      Entry: 3
-      Data: 0
+      Data: 0|Battle.Data.GameProperty.GameProps, GameCore.Battle
     - Name: <Props>k__BackingField
       Entry: 7
       Data: 1|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
         Battle.GameProperty]], System.Core
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 3
     - Name: 
       Entry: 7
       Data: 2|Battle.Data.GameProperty.HealthGP, Battle.GameProperty
@@ -42,7 +39,7 @@ MonoBehaviour:
       Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:1000 '
+      Data: 'Value:2000 '
     - Name: 
       Entry: 8
       Data: 
@@ -51,22 +48,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|Battle.Data.GameProperty.DamageGP, Battle.GameProperty
-    - Name: prop
-      Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
-    - Name: serializedValue
-      Entry: 1
-      Data: 'Value:20 '
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 4|Battle.Data.GameProperty.MoveSpeedGP, Battle.GameProperty
+      Data: 3|Battle.Data.GameProperty.MoveSpeedGP, Battle.GameProperty
     - Name: prop
       Entry: 7
       Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
@@ -81,28 +63,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 5|Battle.Data.GameProperty.RadiusGP, Battle.GameProperty
+      Data: 4|Battle.Data.GameProperty.DamageGP, Battle.GameProperty
     - Name: prop
       Entry: 7
       Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:10 '
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|Battle.Data.GameProperty.AttackSpeedGP, Battle.GameProperty
-    - Name: prop
-      Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
-    - Name: serializedValue
-      Entry: 1
-      Data: 'Value:0.4 '
+      Data: 'Value:100 '
     - Name: 
       Entry: 8
       Data: 
@@ -120,7 +87,7 @@ MonoBehaviour:
       Data: 
     - Name: OtherUpgrades
       Entry: 7
-      Data: 7|System.Collections.Generic.List`1[[Battle.Data.GameProperty.AllDestinationsGameProps,
+      Data: 5|System.Collections.Generic.List`1[[Battle.Data.GameProperty.GroupGameProps,
         GameCore.Battle]], mscorlib
     - Name: 
       Entry: 12
@@ -133,50 +100,14 @@ MonoBehaviour:
       Data: 
     - Name: Prices
       Entry: 7
-      Data: 8|LSCore.Prices, LSCore.CurrencySystem
+      Data: 6|LSCore.Prices, LSCore.CurrencySystem
     - Name: prices
       Entry: 7
-      Data: 9|System.Collections.Generic.HashSet`1[[BasePrice, LSCore.CurrencySystem]],
+      Data: 7|System.Collections.Generic.HashSet`1[[BasePrice, LSCore.CurrencySystem]],
         System.Core
     - Name: 
       Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: 10|LSCore.BaseCurrency`1+Price[[Coins, GameCore.Common]], LSCore.CurrencySystem
-    - Name: value
-      Entry: 3
-      Data: 123
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 11|LSCore.BaseCurrency`1+Price[[Keys, GameCore.Common]], LSCore.CurrencySystem
-    - Name: value
-      Entry: 3
-      Data: 44
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 12|LSCore.BaseCurrency`1+Price[[RedGems, GameCore.Common]], LSCore.CurrencySystem
-    - Name: value
-      Entry: 3
-      Data: 999
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 13|LSCore.BaseCurrency`1+Price[[Rank, GameCore.Common]], LSCore.CurrencySystem
-    - Name: value
-      Entry: 3
-      Data: 56
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -186,4 +117,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  id: {fileID: -6750239444755058063, guid: 743f181f47da2574aafa01a293e298ca, type: 3}
+  <Container>k__BackingField: {fileID: 11400000, guid: 270a1f554a30a194c91a89be5fba60d5, type: 2}

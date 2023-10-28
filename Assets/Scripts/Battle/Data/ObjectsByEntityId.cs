@@ -65,7 +65,7 @@ namespace GameCore.Battle.Data
 
                     foreach (var id in Scope)
                     {
-                        list.Add(EntityMeta.EntityIds.GetNameById(id), new ObjectByName(){id = id});
+                        /*list.Add(EntityMeta.EntityIds.GetNameById(id), new ObjectByName(){id = id});*/
                     }
                 }
                 

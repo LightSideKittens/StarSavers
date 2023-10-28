@@ -5,6 +5,6 @@ namespace GameCore.Battle.Data
 {
     public class Enemies : ObjectsByEntityId<Unit>
     {
-        protected override HashSet<int> Scope => EntityMeta.GetGroupByName("Enemies").AllEntityIds;
+        protected override HashSet<int> Scope { get; }
     }
 }

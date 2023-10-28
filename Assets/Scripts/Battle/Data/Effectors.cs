@@ -12,12 +12,12 @@ namespace GameCore.Battle.Data
         [Serializable] 
         public class EffectorByName
         {
-            [SerializeField, EntityId("Effectors")] public int effectorName;
+            [SerializeField, Id("Effectors")] public Id effectorName;
             [OdinSerialize] public BaseEffector effector;
         }
         
         [OdinSerialize, TableList] private List<EffectorByName> byName = new();
-        public static Dictionary<int, BaseEffector> ByName { get; } = new();
+        public static Dictionary<Id, BaseEffector> ByName { get; } = new();
 
         public void Init()
         {
