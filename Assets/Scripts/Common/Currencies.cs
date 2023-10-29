@@ -1,4 +1,5 @@
-﻿using LSCore;
+﻿using System;
+using LSCore;
 using UnityEngine;
 using static Paths;
 
@@ -8,10 +9,7 @@ internal abstract class Paths
 }
 
 [Icon(Root + "coin.png")]
-public class Coins : BaseCurrency<Coins>
-{
-    
-}
+public class Coins : BaseCurrency<Coins> { }
 [Icon(Root + "key.png")] public class Keys : BaseCurrency<Keys> { }
 [Icon(Root + "gem-red.png")] public class RedGems : BaseCurrency<RedGems> { }
 [Icon(Root + "trophy.png")] public class Rank : BaseCurrency<Rank> { }

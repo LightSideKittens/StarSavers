@@ -2,8 +2,8 @@
 using System.Linq;
 using DG.Tweening;
 using Battle.Data;
+using LSCore;
 using LSCore.Async;
-using LSCore.Extensions;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -14,7 +14,7 @@ namespace Battle
     {
         private const int MaxEnemyCount = 100;
         [SerializeField, Id("Enemies")] private Id[] enemyIds;
-        [SerializeField] private Enemies enemies;
+        //[SerializeField] private Enemies enemies;
         private Camera cam;
         private Tween spawnLoopTween;
         private static Rect cameraRect;
@@ -24,7 +24,8 @@ namespace Battle
         private Transform CreatePooledItem()
         {
             cameraRect.center = cam.transform.position;
-            return Spawn(Heroes.ByName[enemyIds.Random()]).transform;;
+            //return Spawn(Heroes.ByKey[enemyIds.Random()]).transform;;
+            return null;
         }
         
         private static void OnTakeFromPool(Transform transform)
@@ -59,7 +60,7 @@ namespace Battle
         protected override void OnBegin()
         {
             UserId = "Opponent";
-            enemies.Init();
+            //enemies.Init();
             cam = Camera.main;
             cameraRect = cam.GetRect();
             Pool = new ObjectPool<Transform>(Instance.CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, 100, 500);

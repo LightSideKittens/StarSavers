@@ -6,7 +6,7 @@ namespace Battle
 {
     public class PlayerWorld : BasePlayerWorld<PlayerWorld>
     {
-        [SerializeField] private Heroes heroes;
+        //[SerializeField] private Heroes heroes;
         [SerializeField] private Vector3 cameraOffset;
         public static Transform HeroTransform { get; private set; }
         private Unit hero;
@@ -14,8 +14,8 @@ namespace Battle
         protected override void OnBegin()
         {
             UserId = "Player";
-            heroes.Init();
-            hero = Spawn(Heroes.ByName[PlayerData.Config.SelectedHero]);
+            //heroes.Init();
+            //hero = Spawn(Heroes.ByKey[PlayerData.Config.SelectedHero]);
             hero.Enable();
             hero.Destroyed += OnHeroDied;
             HeroTransform = hero.transform;

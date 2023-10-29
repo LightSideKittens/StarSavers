@@ -1,6 +1,7 @@
 ﻿using System;
 using LSCore.LevelSystem;
 using Battle.Data.Components;
+using LSCore;
 using Sirenix.Serialization;
 using UnityEngine;
 

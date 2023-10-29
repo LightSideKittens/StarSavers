@@ -9,42 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d4ac9f1f5f497790111d63cc900c1c, type: 3}
+  m_Script: {fileID: 11500000, guid: e121e787dae64c32a255c5598db8036b, type: 3}
   m_Name: Heroes
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 4455982007906564866, guid: fd0564b446cdb2d488e102623f697393, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: byName
+    - Name: byKey
       Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[GameCore.Battle.Data.ObjectsByEntityId`1+ObjectByName[[GameCore.Battle.Data.Unit,
-        GameCore.Battle]], GameCore.Battle]], System.Core
+      Data: 0|System.Collections.Generic.HashSet`1[[LSCore.ValuesByKeys`2+Data[[LSCore.Id,
+        LSCore.IdGroupSystem],[Battle.Data.Unit, Battle]], LSCore.ScriptableObjects]],
+        System.Core
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 1|GameCore.Battle.Data.ObjectsByEntityId`1+ObjectByName[[GameCore.Battle.Data.Unit,
-        GameCore.Battle]], GameCore.Battle
-    - Name: id
-      Entry: 3
       Data: 0
-    - Name: obj
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+  group: {fileID: 11400000, guid: b1e4359f52d0a3f46954d5501f83cabc, type: 2}

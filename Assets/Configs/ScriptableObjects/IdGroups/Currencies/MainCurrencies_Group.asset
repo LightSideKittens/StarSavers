@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b20958ecb787472589fbe60a9f141ebd, type: 3}
+  m_Script: {fileID: 11500000, guid: f3b4ab3b84fc4c829f69694262e95be6, type: 3}
   m_Name: MainCurrencies_Group
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
+    - {fileID: -6750239444755058063, guid: 529de37825ef3ad4498a18d0705726b0, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -23,10 +25,17 @@ MonoBehaviour:
     SerializationNodes:
     - Name: ids
       Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[Id, LSCore.IdGroupSystem]], System.Core
+      Data: 0|System.Collections.Generic.HashSet`1[[LSCore.Id, LSCore.IdGroupSystem]],
+        System.Core
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
       Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 13
       Data: 

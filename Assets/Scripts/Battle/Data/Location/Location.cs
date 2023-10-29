@@ -1,4 +1,5 @@
-﻿using LSCore.Extensions;
+﻿using LSCore;
+using LSCore.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

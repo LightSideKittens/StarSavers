@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: b1e4359f52d0a3f46954d5501f83cabc, type: 2}
+    - {fileID: 11400000, guid: 2774ab2a8087ca041b90f40e1f4aeb11, type: 2}
     - {fileID: 11400000, guid: 046ba63c26ce6904381ec5787927e73a, type: 2}
     - {fileID: 11400000, guid: cbb4c090e9ab5c84ba517eea57faf99e, type: 2}
     - {fileID: 11400000, guid: fa71f3866f91e984695bdaa4c2deddf1, type: 2}
@@ -26,32 +27,19 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: Groups
-      Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[IdGroup, LSCore.IdGroupSystem]],
-        System.Core
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
+    - Name: Group
       Entry: 10
       Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    - Name: CurrencyGroup
+      Entry: 10
+      Data: 1
     - Name: levelsContainers
       Entry: 7
-      Data: 1|System.Collections.Generic.HashSet`1[[LevelsContainer, LSCore.LevelSystem]],
+      Data: 0|System.Collections.Generic.HashSet`1[[LevelsContainer, LSCore.LevelSystem]],
         System.Core
     - Name: 
       Entry: 12
       Data: 4
-    - Name: 
-      Entry: 10
-      Data: 1
     - Name: 
       Entry: 10
       Data: 2
@@ -61,6 +49,9 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 13
       Data: 
