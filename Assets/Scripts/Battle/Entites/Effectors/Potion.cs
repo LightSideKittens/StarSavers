@@ -1,12 +1,11 @@
 ﻿using System;
-using Battle.Data;
-using Battle.Data.GameProperty;
+using LSCore.LevelSystem;
 using LSCore.Async;
 using UnityEngine;
-using Attack = GameCore.Battle.Data.Components.AttackComponent;
-using Health = GameCore.Battle.Data.Components.HealthComponent;
+using Attack = Battle.Data.Components.AttackComponent;
+using Health = Battle.Data.Components.HealthComponent;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     [Serializable]
     internal class Potion : BaseEffector

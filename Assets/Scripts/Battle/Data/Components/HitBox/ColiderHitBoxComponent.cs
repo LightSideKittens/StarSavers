@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameCore.Battle.Data.Components.HitBox
+namespace Battle.Data.Components.HitBox
 {
     [Serializable]
     internal class ColiderHitBoxComponent : HitBoxComponent

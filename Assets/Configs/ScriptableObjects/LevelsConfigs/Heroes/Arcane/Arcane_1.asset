@@ -23,20 +23,20 @@ MonoBehaviour:
     SerializationNodes:
     - Name: upgrades
       Entry: 7
-      Data: 0|Battle.Data.GameProperty.GameProps, GameCore.Battle
+      Data: 0|LSCore.LevelSystem.GameProps, LSCore.LevelSystem
     - Name: <Props>k__BackingField
       Entry: 7
-      Data: 1|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
-        Battle.GameProperty]], System.Core
+      Data: 1|System.Collections.Generic.HashSet`1[[LSCore.LevelSystem.BaseGameProperty,
+        LSCore.LevelSystem]], System.Core
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 7
-      Data: 2|Battle.Data.GameProperty.HealthGP, Battle.GameProperty
+      Data: 2|LSCore.LevelSystem.HealthGP, Battle.GameProperty
     - Name: prop
       Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
       Data: 'Value:2000 '
@@ -48,10 +48,40 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|Battle.Data.GameProperty.MoveSpeedGP, Battle.GameProperty
+      Data: 3|LSCore.LevelSystem.DamageGP, Battle.GameProperty
     - Name: prop
       Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
+    - Name: serializedValue
+      Entry: 1
+      Data: 'Value:20 '
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|LSCore.LevelSystem.RadiusGP, Battle.GameProperty
+    - Name: prop
+      Entry: 7
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
+    - Name: serializedValue
+      Entry: 1
+      Data: 'Value:10 '
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|LSCore.LevelSystem.MoveSpeedGP, Battle.GameProperty
+    - Name: prop
+      Entry: 7
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
       Data: 'Value:5 '
@@ -63,13 +93,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|Battle.Data.GameProperty.DamageGP, Battle.GameProperty
+      Data: 6|LSCore.LevelSystem.AttackSpeedGP, Battle.GameProperty
     - Name: prop
       Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:100 '
+      Data: 'Value:0.1 '
     - Name: 
       Entry: 8
       Data: 
@@ -87,32 +117,13 @@ MonoBehaviour:
       Data: 
     - Name: OtherUpgrades
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[Battle.Data.GameProperty.GroupGameProps,
-        GameCore.Battle]], mscorlib
+      Data: 7|System.Collections.Generic.List`1[[LSCore.LevelSystem.GroupGameProps,
+        LSCore.LevelSystem]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
     - Name: 
       Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Prices
-      Entry: 7
-      Data: 6|LSCore.Prices, LSCore.CurrencySystem
-    - Name: prices
-      Entry: 7
-      Data: 7|System.Collections.Generic.HashSet`1[[BasePrice, LSCore.CurrencySystem]],
-        System.Core
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: 
       Entry: 8

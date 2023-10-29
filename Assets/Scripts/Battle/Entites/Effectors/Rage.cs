@@ -1,13 +1,12 @@
 ﻿using System;
-using Battle.Data;
-using Battle.Data.GameProperty;
+using LSCore.LevelSystem;
 using DG.Tweening;
 using LSCore.Async;
 using UnityEngine;
-using Move = GameCore.Battle.Data.Components.MoveComponent;
-using Attack = GameCore.Battle.Data.Components.AttackComponent;
+using Move = Battle.Data.Components.MoveComponent;
+using Attack = Battle.Data.Components.AttackComponent;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     [Serializable]
     internal class Rage : BaseEffector

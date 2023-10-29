@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameCore.Battle.Data.Components.TargetProviders;
+using Battle.Data.Components.TargetProviders;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Serializable]
     internal class FindTargetComponent

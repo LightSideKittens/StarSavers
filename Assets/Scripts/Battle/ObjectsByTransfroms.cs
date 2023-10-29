@@ -2,7 +2,7 @@
 using LSCore;
 using UnityEngine;
 
-namespace GameCore.Battle
+namespace Battle
 {
     public static class ObjectsByTransfroms<T>
     {

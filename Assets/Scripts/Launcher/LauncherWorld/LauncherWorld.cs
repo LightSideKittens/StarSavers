@@ -1,7 +1,9 @@
-﻿using BeatHeroes.Interfaces;
+﻿using System.Threading.Tasks;
+using BeatHeroes.Interfaces;
 using BeatHeroes.Windows;
 using LSCore;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace BeatHeroes.Launcher
 {
@@ -11,13 +13,13 @@ namespace BeatHeroes.Launcher
         {
             base.Awake();
             BaseInitializer.Initialize(Init);
-            Coins.Earn(100);
-            Coins.Earn(120);
-            Coins.Earn(40);
-            Keys.Earn(123);
-            Keys.Earn(532);
+            Debug.Log("Started");
+            Task.Delay(1000).GetAwaiter().OnCompleted(OnEnd);
+        }
 
-            Coins.TryConvertTo<Keys>(100, 2000);
+        private void OnEnd()
+        {
+            Debug.Log("Ended");
         }
 
         private void Init()

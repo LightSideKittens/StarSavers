@@ -17,10 +17,10 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: b1e4359f52d0a3f46954d5501f83cabc, type: 2}
-    - {fileID: 11400000, guid: 270a1f554a30a194c91a89be5fba60d5, type: 2}
     - {fileID: 11400000, guid: 046ba63c26ce6904381ec5787927e73a, type: 2}
     - {fileID: 11400000, guid: cbb4c090e9ab5c84ba517eea57faf99e, type: 2}
     - {fileID: 11400000, guid: fa71f3866f91e984695bdaa4c2deddf1, type: 2}
+    - {fileID: 11400000, guid: 270a1f554a30a194c91a89be5fba60d5, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -28,7 +28,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: Groups
       Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[IdGroup, GameCore.Battle]], System.Core
+      Data: 0|System.Collections.Generic.HashSet`1[[IdGroup, LSCore.IdGroupSystem]],
+        System.Core
     - Name: 
       Entry: 12
       Data: 1
@@ -43,7 +44,7 @@ MonoBehaviour:
       Data: 
     - Name: levelsContainers
       Entry: 7
-      Data: 1|System.Collections.Generic.HashSet`1[[LevelsContainer, GameCore.Battle]],
+      Data: 1|System.Collections.Generic.HashSet`1[[LevelsContainer, LSCore.LevelSystem]],
         System.Core
     - Name: 
       Entry: 12

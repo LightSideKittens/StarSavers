@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Battle.Data;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     internal class Effectors : SerializedScriptableObject
     {

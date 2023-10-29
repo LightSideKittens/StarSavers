@@ -4,9 +4,9 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Scripting;
 using static UnityEngine.Object;
-using Health = GameCore.Battle.Data.Components.HealthComponent;
+using Health = Battle.Data.Components.HealthComponent;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Preserve, Serializable]
     internal class RicochetAttackComponent : AttackComponent

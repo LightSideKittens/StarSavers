@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using UnityEditor;
 
-namespace Battle.Data.GameProperty
+namespace LSCore.LevelSystem
 {
     [InitializeOnLoad]
     public class Initializer

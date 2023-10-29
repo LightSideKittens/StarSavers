@@ -1,4 +1,4 @@
-﻿using GameCore.Attributes;
+﻿using Attributes;
 using LSCore;
 using UnityEngine;
 

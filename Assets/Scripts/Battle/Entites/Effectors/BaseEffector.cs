@@ -1,11 +1,10 @@
 ﻿using System;
-using Battle.Data;
-using Battle.Data.GameProperty;
-using GameCore.Battle.Data.Components;
+using LSCore.LevelSystem;
+using Battle.Data.Components;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     [Serializable]
     internal abstract class BaseEffector

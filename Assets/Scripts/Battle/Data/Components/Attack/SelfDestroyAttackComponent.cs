@@ -1,9 +1,9 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine.Scripting;
-using Health = GameCore.Battle.Data.Components.HealthComponent;
+using Health = Battle.Data.Components.HealthComponent;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Preserve, Serializable]
     internal class SelfDestroyAttackComponent : AttackComponent

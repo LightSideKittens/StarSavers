@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Battle.Data;
-
-namespace GameCore.Battle.Data
+﻿namespace Battle.Data
 {
     public class Heroes : ObjectsById<Unit>
     {

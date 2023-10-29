@@ -3,7 +3,7 @@ using Battle.Windows;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Preserve, Serializable]
     internal class HeroMoveComponent : MoveComponent

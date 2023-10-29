@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameCore.Battle.Data.Components.TargetProviders
+namespace Battle.Data.Components.TargetProviders
 {
     [Serializable]
     internal class AllBuildings : TargetProvider

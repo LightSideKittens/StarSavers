@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using Battle.Data;
-using Battle.Data.GameProperty;
+using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.BaseUnit>;
+using static Battle.ObjectsByTransfroms<Battle.Data.BaseUnit>;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     public class BaseUnit : SerializedMonoBehaviour
     {

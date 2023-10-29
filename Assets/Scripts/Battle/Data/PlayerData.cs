@@ -1,6 +1,6 @@
 ﻿using LSCore.ConfigModule;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     public class PlayerData : BaseConfig<PlayerData>
     {

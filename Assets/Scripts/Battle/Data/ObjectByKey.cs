@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     public class ObjectByKey<TKey, TValue> : SerializedScriptableObject where TValue : Object
     {

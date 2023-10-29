@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameCore.Battle.Data.Components;
-using GameCore.Battle.Data.Components.HitBox;
+using Battle.Data.Components;
+using Battle.Data.Components.HitBox;
 using Sirenix.Serialization;
 using UnityEngine;
-using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
+using static Battle.ObjectsByTransfroms<Battle.Data.Unit>;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     public class Unit : BaseUnit
     {

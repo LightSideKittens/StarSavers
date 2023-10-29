@@ -1,8 +1,8 @@
 ﻿using System;
-using Battle.Data;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using LSCore;
+using LSCore.LevelSystem;
 using UnityEngine;
 
 namespace BeatHeroes

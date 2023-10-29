@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameCore.Battle
+namespace Battle
 {
     public static class CameraMover
     {

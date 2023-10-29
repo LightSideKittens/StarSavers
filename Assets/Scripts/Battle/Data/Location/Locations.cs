@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     public class Locations : ScriptableObject
     {

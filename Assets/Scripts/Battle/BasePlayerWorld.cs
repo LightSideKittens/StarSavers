@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using GameCore.Battle.Data;
+using Battle.Data;
 using LSCore;
 using UnityEngine;
-using UnitsByTransform = GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Unit>;
+using UnitsByTransform = Battle.ObjectsByTransfroms<Battle.Data.Unit>;
 
 namespace Battle
 {

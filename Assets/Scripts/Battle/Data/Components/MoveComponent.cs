@@ -1,9 +1,9 @@
 ﻿using System;
-using Battle.Data.GameProperty;
+using LSCore.LevelSystem;
 using UnityEngine;
-using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.MoveComponent>;
+using static Battle.ObjectsByTransfroms<Battle.Data.Components.MoveComponent>;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Serializable]
     internal class MoveComponent

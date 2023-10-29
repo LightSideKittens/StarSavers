@@ -1,8 +1,8 @@
-﻿using Battle.Data.GameProperty;
-using GameCore.Battle.Data;
+﻿using Battle.Data;
+using LSCore.LevelSystem;
 using UnityEngine;
 
-namespace GameCore.Battle
+namespace Battle
 {
     internal static class TransformExtensions
     {

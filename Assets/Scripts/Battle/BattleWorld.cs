@@ -1,8 +1,7 @@
-﻿using System;
-using Battle.Windows;
+﻿using Battle.Windows;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
-using GameCore.Battle.Data;
+using Battle.Data;
 using LSCore;
 using LSCore.AddressablesModule.AssetReferences;
 using LSCore.Extensions;

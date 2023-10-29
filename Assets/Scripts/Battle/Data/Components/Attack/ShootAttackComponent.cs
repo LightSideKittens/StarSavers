@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Scripting;
 using static UnityEngine.Object;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Preserve, Serializable]
     internal class ShootAttackComponent : AttackComponent

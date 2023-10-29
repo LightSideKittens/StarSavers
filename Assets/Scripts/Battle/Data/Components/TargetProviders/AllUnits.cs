@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Battle;
 using UnityEngine;
 
-namespace GameCore.Battle.Data.Components.TargetProviders
+namespace Battle.Data.Components.TargetProviders
 {
     [Serializable]
     internal class AllUnits : TargetProvider

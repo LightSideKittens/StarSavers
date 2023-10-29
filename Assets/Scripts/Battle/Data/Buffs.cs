@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     internal class Buffs
     {

@@ -25,14 +25,14 @@ MonoBehaviour:
     SerializationNodes:
     - Name: typesByGroup
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Battle.Data.PropTypesByIdGroup+Data,
+      Data: 0|System.Collections.Generic.List`1[[LSCore.LevelSystem.PropTypesByIdGroup+Data,
         LSCore.LevelSystem]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|Battle.Data.PropTypesByIdGroup+Data, LSCore.LevelSystem
+      Data: 1|LSCore.LevelSystem.PropTypesByIdGroup+Data, LSCore.LevelSystem
     - Name: group
       Entry: 10
       Data: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Battle.Data.GameProperty.AreaDamageGP, Battle.GameProperty
+      Data: LSCore.LevelSystem.AttackSpeedGP, Battle.GameProperty
     - Name: 
       Entry: 8
       Data: 
@@ -56,7 +56,7 @@ MonoBehaviour:
       Data: 4|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Battle.Data.GameProperty.AttackSpeedGP, Battle.GameProperty
+      Data: LSCore.LevelSystem.AreaDamageGP, Battle.GameProperty
     - Name: 
       Entry: 8
       Data: 
@@ -65,7 +65,7 @@ MonoBehaviour:
       Data: 5|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Battle.Data.GameProperty.DamageGP, Battle.GameProperty
+      Data: LSCore.LevelSystem.HealthGP, Battle.GameProperty
     - Name: 
       Entry: 8
       Data: 
@@ -74,7 +74,7 @@ MonoBehaviour:
       Data: 6|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Battle.Data.GameProperty.MoveSpeedGP, Battle.GameProperty
+      Data: LSCore.LevelSystem.DamageGP, Battle.GameProperty
     - Name: 
       Entry: 8
       Data: 
@@ -83,7 +83,7 @@ MonoBehaviour:
       Data: 7|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Battle.Data.GameProperty.RadiusGP, Battle.GameProperty
+      Data: LSCore.LevelSystem.RadiusGP, Battle.GameProperty
     - Name: 
       Entry: 8
       Data: 
@@ -92,7 +92,7 @@ MonoBehaviour:
       Data: 8|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Battle.Data.GameProperty.HealthGP, Battle.GameProperty
+      Data: LSCore.LevelSystem.MoveSpeedGP, Battle.GameProperty
     - Name: 
       Entry: 8
       Data: 
@@ -101,7 +101,7 @@ MonoBehaviour:
       Data: 9|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Battle.Data.GameProperty.RicochetGP, Battle.GameProperty
+      Data: LSCore.LevelSystem.RicochetGP, Battle.GameProperty
     - Name: 
       Entry: 8
       Data: 
@@ -116,7 +116,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 10|Battle.Data.PropTypesByIdGroup+Data, LSCore.LevelSystem
+      Data: 10|LSCore.LevelSystem.PropTypesByIdGroup+Data, LSCore.LevelSystem
     - Name: group
       Entry: 10
       Data: 1
@@ -134,13 +134,13 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 9
+      Data: 6
+    - Name: 
+      Entry: 9
       Data: 5
     - Name: 
       Entry: 9
       Data: 8
-    - Name: 
-      Entry: 9
-      Data: 6
     - Name: 
       Entry: 9
       Data: 7

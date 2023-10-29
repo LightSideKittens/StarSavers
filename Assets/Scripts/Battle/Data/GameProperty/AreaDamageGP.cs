@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Battle.Data.GameProperty
+namespace LSCore.LevelSystem
 {
     [Serializable]
     public class AreaDamageGP : FloatAndPercent

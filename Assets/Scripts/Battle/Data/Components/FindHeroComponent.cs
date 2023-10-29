@@ -1,9 +1,8 @@
 ﻿using System;
-using Battle;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Serializable, Preserve]
     internal class FindHeroComponent : FindTargetComponent

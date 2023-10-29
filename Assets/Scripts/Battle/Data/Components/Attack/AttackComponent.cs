@@ -1,12 +1,12 @@
 ﻿using System;
-using Battle.Data.GameProperty;
+using LSCore.LevelSystem;
 using DG.Tweening;
 using LSCore.Async;
 using UnityEngine;
-using Health = GameCore.Battle.Data.Components.HealthComponent;
-using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.AttackComponent>;
+using Health = Battle.Data.Components.HealthComponent;
+using static Battle.ObjectsByTransfroms<Battle.Data.Components.AttackComponent>;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Serializable]
     internal class AttackComponent

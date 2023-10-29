@@ -1,11 +1,10 @@
 ﻿using System;
 using Animatable;
-using Battle;
-using Battle.Data.GameProperty;
+using LSCore.LevelSystem;
 using UnityEngine;
-using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.HealthComponent>;
+using static Battle.ObjectsByTransfroms<Battle.Data.Components.HealthComponent>;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Serializable]
     internal class HealthComponent

@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using static GameCore.Battle.ObjectsByTransfroms<GameCore.Battle.Data.Components.HitBoxComponent>;
+using static Battle.ObjectsByTransfroms<Battle.Data.Components.HitBoxComponent>;
 
-namespace GameCore.Battle.Data.Components
+namespace Battle.Data.Components
 {
     [Serializable]
     internal abstract class HitBoxComponent

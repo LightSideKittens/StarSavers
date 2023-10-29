@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     public abstract class ObjectsById<T> : SerializedScriptableObject where T : Object
     {

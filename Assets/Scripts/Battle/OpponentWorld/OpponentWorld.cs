@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using DG.Tweening;
-using GameCore.Battle;
-using GameCore.Battle.Data;
+using Battle.Data;
 using LSCore.Async;
 using LSCore.Extensions;
 using LSCore.Extensions.Unity;

@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace GameCore.Battle.Data
+namespace Battle.Data
 {
     public class Location : ScriptableObject
     {

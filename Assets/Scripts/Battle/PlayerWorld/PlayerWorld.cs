@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Battle.Windows;
-using GameCore.Battle;
-using GameCore.Battle.Data;
+﻿using Battle.Windows;
+using Battle.Data;
 using UnityEngine;
 
 namespace Battle
