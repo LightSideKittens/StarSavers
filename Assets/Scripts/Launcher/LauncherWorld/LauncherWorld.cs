@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-using BeatHeroes.Interfaces;
+﻿using BeatHeroes.Interfaces;
 using BeatHeroes.Windows;
 using LSCore;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace BeatHeroes.Launcher
 {
@@ -13,15 +11,8 @@ namespace BeatHeroes.Launcher
         {
             base.Awake();
             BaseInitializer.Initialize(Init);
-            Debug.Log("Started");
-            Task.Delay(1000).GetAwaiter().OnCompleted(OnEnd);
         }
-
-        private void OnEnd()
-        {
-            Debug.Log("Ended");
-        }
-
+        
         private void Init()
         {
             MainWindow.Show();
