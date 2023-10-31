@@ -35,13 +35,14 @@ namespace BeatHeroes
 #else
             Application.targetFrameRate = 60;
 #endif
-            levelsManager.Init();
+            var d = EntiProps.ByName;
+            //levelsManager.Init();
             DOTween.SetTweensCapacity(200, 200);
             
-            for (int i = 0; i < ids.Length; i++)
+            /*for (int i = 0; i < ids.Length; i++)
             {
                 levelsManager.UpgradeLevel(ids[i]);
-            }
+            }*/
             
             onInit();
         }
