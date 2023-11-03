@@ -2,11 +2,16 @@
 using BeatHeroes.Windows;
 using LSCore;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace BeatHeroes.Launcher
 {
-    public class LauncherWorld : ServiceManager
+    public class LauncherWorld : ServiceManager<LauncherWorld>
     {
+        [SerializeField] private IconsById currencyIcons;
+
+        public static IconsById CurrencyIcons => Instance.currencyIcons;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -23,6 +28,7 @@ namespace BeatHeroes.Launcher
         [Button] private void Delete() => Clan.Delete().OnComplete(task => Burger.Log($"[Clan] Delete {Clan.Id} {task.IsSuccess} {task.Exception}"));
         [Button] private void Leave() => Clan.Leave().OnComplete(task => Burger.Log($"[Clan] Leave {Clan.Id} {task.IsSuccess} {task.Exception}"));
         [Button] private void Kick(string userId) => Clan.Kick(userId).OnComplete(task => Burger.Log($"[Clan] Kick {Clan.Id} User: {userId} {task.IsSuccess} {task.Exception}"));
+        
     }
 }
 

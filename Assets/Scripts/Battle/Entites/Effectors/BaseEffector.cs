@@ -17,7 +17,7 @@ namespace Battle.Data
         protected SpriteRenderer radiusRenderer;
         private static Sprite circleSprite = Resources.Load<Sprite>("unit-circle");
         
-        [field: SerializeField] public int Price { get; private set; }
+        [field: SerializeField] public int Fund { get; private set; }
         protected virtual bool NeedFindOpponent => true;
 
         public void Init()
