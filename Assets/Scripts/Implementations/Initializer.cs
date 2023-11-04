@@ -2,16 +2,22 @@
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using LSCore;
+using LSCore.ConfigModule;
 using LSCore.LevelSystem;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
+using static Sirenix.Serialization.UnitySerializationUtility;
 
 namespace BeatHeroes
 {
-    public class Initializer : BaseInitializer
+    [ShowOdinSerializedPropertiesInInspector]
+    public class Initializer : BaseInitializer, ISerializationCallbackReceiver, ISupportsPrefabSerialization
     {
         [SerializeField] private LevelsManager levelsManager;
         
         [Id("Heroes")] [SerializeField] private Id[] ids;
+        [OdinSerialize] private Funds funds;
 
         static Initializer()
         {
@@ -35,16 +41,30 @@ namespace BeatHeroes
 #else
             Application.targetFrameRate = 60;
 #endif
-            var d = EntiProps.ByName;
-            //levelsManager.Init();
             DOTween.SetTweensCapacity(200, 200);
             
-            /*for (int i = 0; i < ids.Length; i++)
+            levelsManager.Init();
+            const string ftKey = "Give funds and hero";
+            
+            if (FirstTime.IsNot(ftKey, out var pass))
             {
-                levelsManager.UpgradeLevel(ids[i]);
-            }*/
+                funds.Earn();
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    levelsManager.UpgradeLevel(ids[i]);
+                }
+
+                pass();
+            }
             
             onInit();
         }
+        
+        
+        
+        [SerializeField, HideInInspector] private SerializationData serializationData;
+        SerializationData ISupportsPrefabSerialization.SerializationData { get => serializationData; set => serializationData = value; }
+        void ISerializationCallbackReceiver.OnAfterDeserialize() => DeserializeUnityObject(this, ref serializationData);
+        void ISerializationCallbackReceiver.OnBeforeSerialize() => SerializeUnityObject(this, ref serializationData);
     }
 }

@@ -2,16 +2,11 @@
 using BeatHeroes.Windows;
 using LSCore;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace BeatHeroes.Launcher
 {
     public class LauncherWorld : ServiceManager<LauncherWorld>
     {
-        [SerializeField] private IconsById currencyIcons;
-
-        public static IconsById CurrencyIcons => Instance.currencyIcons;
-        
         protected override void Awake()
         {
             base.Awake();
