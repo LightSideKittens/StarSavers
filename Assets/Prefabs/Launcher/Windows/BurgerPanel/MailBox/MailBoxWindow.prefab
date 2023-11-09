@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011038207463600818}
   - component: {fileID: 1011038207463600823}
+  - component: {fileID: -8506106371364723312}
   m_Layer: 0
   m_Name: MailBoxWindow
   m_TagString: Untagged
@@ -24,12 +25,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011038207463600825}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2883774632938678529}
+  - {fileID: 3287746432717197258}
+  - {fileID: 224120582566718920}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -49,6 +51,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-8506106371364723312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011038207463600825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4576f8d63c4c60b9e88e02e0e55703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animDuration: 0.2
 --- !u!1 &1547575663801207781
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,11 +96,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4202185031357775800}
-  m_Father: {fileID: 2883774632938678529}
+  m_Father: {fileID: 1011038207463600818}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 14.77002, y: -29.437988}
+  m_AnchoredPosition: {x: 14.75, y: -29.437927}
   m_SizeDelta: {x: -29.54, y: -161.9728}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4269158724039773084
@@ -186,11 +201,11 @@ RectTransform:
   m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2883774632938678529}
+  m_Father: {fileID: 1011038207463600818}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.00083053, y: -69.668}
+  m_AnchoredPosition: {x: -0.019189002, y: -69.66788}
   m_SizeDelta: {x: 720.6782, y: 81.506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5785796069873915897
@@ -372,43 +387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!1 &7450790690692565246
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2883774632938678529}
-  m_Layer: 0
-  m_Name: Window
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2883774632938678529
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450790690692565246}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3287746432717197258}
-  - {fileID: 224120582566718920}
-  m_Father: {fileID: 1011038207463600818}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -586.87, y: 0.000061035156}
-  m_SizeDelta: {x: 1173.7, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8519546640617714149
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,9 +550,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4532944909039422510, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
+      propertyPath: m_fontSize
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4864359639688254813, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
       propertyPath: m_Name
       value: MailInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483714002863644470, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
+      propertyPath: m_fontSize
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7058214611600226450, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -722,6 +708,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4532944909039422510, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
+      propertyPath: m_fontSize
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4864359639688254813, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
       propertyPath: m_Name
       value: MailInfo_2
@@ -730,6 +720,10 @@ PrefabInstance:
       propertyPath: m_text
       value: New Version!!!New Version!!!New Version!!!New Version!!!New Version!!!New
         Version!!!New Version!!!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483714002863644470, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
+      propertyPath: m_fontSize
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7058214611600226450, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -877,6 +871,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4532944909039422510, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
+      propertyPath: m_fontSize
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4864359639688254813, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
       propertyPath: m_Name
       value: MailInfo_1
@@ -884,6 +882,10 @@ PrefabInstance:
     - target: {fileID: 5483714002863644470, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
       propertyPath: m_text
       value: New Version!!!New Version!!!New Version!!!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483714002863644470, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
+      propertyPath: m_fontSize
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7058214611600226450, guid: dec373f9d2b1357409b9e403d8ddfb04, type: 3}
       propertyPath: m_AnchorMax.y
