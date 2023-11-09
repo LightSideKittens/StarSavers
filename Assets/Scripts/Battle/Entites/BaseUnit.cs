@@ -32,7 +32,7 @@ namespace Battle.Data
             UserId = userId;
             IsOpponent = UserId == "Opponent";
             Add(transform, this);
-            Props = EntiProps.GetProps(id);
+            Props = EntiProps.Get("").GetProps(id);//TODO: Refactor
         }
 
         public virtual void Destroy()

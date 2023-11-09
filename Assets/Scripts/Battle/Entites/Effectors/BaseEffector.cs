@@ -22,7 +22,7 @@ namespace Battle.Data
 
         public void Init()
         {
-            var props = EntiProps.GetProps(name);
+            var props = EntiProps.Get("").GetProps(name);//TODO: Refactor
             radius = props.GetValue<RadiusGP>();
             radiusRenderer = new GameObject($"{GetType().Name} Radius").AddComponent<SpriteRenderer>();
             radiusRenderer.sprite = circleSprite;
