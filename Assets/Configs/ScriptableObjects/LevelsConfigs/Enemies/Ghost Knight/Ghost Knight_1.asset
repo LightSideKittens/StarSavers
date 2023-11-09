@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59dae9a2401549a5a51f532a2df277f1, type: 3}
-  m_Name: Bat_1
+  m_Name: Ghost Knight_1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -30,7 +30,7 @@ MonoBehaviour:
         LSCore.LevelSystem]], System.Core
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 2|LSCore.LevelSystem.HealthGP, Battle.GameProperty
@@ -39,7 +39,7 @@ MonoBehaviour:
       Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:3 '
+      Data: 'Value:100 '
     - Name: 
       Entry: 8
       Data: 
@@ -54,7 +54,7 @@ MonoBehaviour:
       Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:1 '
+      Data: 'Value:100 '
     - Name: 
       Entry: 8
       Data: 
@@ -92,6 +92,21 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 6|LSCore.LevelSystem.AttackSpeedGP, Battle.GameProperty
+    - Name: prop
+      Entry: 7
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
+    - Name: serializedValue
+      Entry: 1
+      Data: 'Percent:0.5 '
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -102,7 +117,7 @@ MonoBehaviour:
       Data: 
     - Name: OtherUpgrades
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[LSCore.LevelSystem.GroupGameProps,
+      Data: 7|System.Collections.Generic.List`1[[LSCore.LevelSystem.GroupGameProps,
         LSCore.LevelSystem]], mscorlib
     - Name: 
       Entry: 12
@@ -113,4 +128,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  <Container>k__BackingField: {fileID: 11400000, guid: 010debdaa077d6242ad0eceef262fd4b, type: 2}
+  <Container>k__BackingField: {fileID: 11400000, guid: 407d710002e32614ab8c6dac63b6aa12, type: 2}

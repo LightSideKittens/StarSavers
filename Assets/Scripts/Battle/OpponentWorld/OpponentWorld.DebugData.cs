@@ -1,6 +1,8 @@
 ﻿#if DEBUG
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Battle.Data;
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -31,6 +33,8 @@ namespace Battle
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        private static void OnChange(Unit _) => DebugData.OnChange();
     }
 }
 #endif

@@ -21,28 +21,25 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: EntityUpgrades
+    - Name: upgrades
       Entry: 7
-      Data: 0|Battle.Data.GameProperty.EntityGameProps, GameCore.Battle
-    - Name: <Destination>k__BackingField
-      Entry: 3
-      Data: 11
+      Data: 0|LSCore.LevelSystem.GameProps, LSCore.LevelSystem
     - Name: <Props>k__BackingField
       Entry: 7
-      Data: 1|System.Collections.Generic.HashSet`1[[Battle.Data.GameProperty.BaseGameProperty,
-        Battle.GameProperty]], System.Core
+      Data: 1|System.Collections.Generic.HashSet`1[[LSCore.LevelSystem.BaseGameProperty,
+        LSCore.LevelSystem]], System.Core
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 4
     - Name: 
       Entry: 7
-      Data: 2|Battle.Data.GameProperty.HealthGP, Battle.GameProperty
+      Data: 2|LSCore.LevelSystem.HealthGP, Battle.GameProperty
     - Name: prop
       Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:15 '
+      Data: 'Value:7 '
     - Name: 
       Entry: 8
       Data: 
@@ -51,40 +48,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|Battle.Data.GameProperty.DamageGP, Battle.GameProperty
+      Data: 3|LSCore.LevelSystem.DamageGP, Battle.GameProperty
     - Name: prop
       Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
-    - Name: serializedValue
-      Entry: 1
-      Data: 'Value:50 '
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 4|Battle.Data.GameProperty.MoveSpeedGP, Battle.GameProperty
-    - Name: prop
-      Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
-    - Name: serializedValue
-      Entry: 1
-      Data: 'Value:1.5 '
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 5|Battle.Data.GameProperty.RadiusGP, Battle.GameProperty
-    - Name: prop
-      Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
       Data: 'Value:2 '
@@ -96,13 +63,28 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 6|Battle.Data.GameProperty.AttackSpeedGP, Battle.GameProperty
+      Data: 4|LSCore.LevelSystem.RadiusGP, Battle.GameProperty
     - Name: prop
       Entry: 7
-      Data: Battle.Data.GameProperty.Prop, Battle.GameProperty
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:0.1 '
+      Data: 'Value:2 '
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|LSCore.LevelSystem.MoveSpeedGP, Battle.GameProperty
+    - Name: prop
+      Entry: 7
+      Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
+    - Name: serializedValue
+      Entry: 1
+      Data: 'Value:4 '
     - Name: 
       Entry: 8
       Data: 
@@ -120,8 +102,8 @@ MonoBehaviour:
       Data: 
     - Name: OtherUpgrades
       Entry: 7
-      Data: 7|System.Collections.Generic.List`1[[Battle.Data.GameProperty.AllDestinationsGameProps,
-        GameCore.Battle]], mscorlib
+      Data: 6|System.Collections.Generic.List`1[[LSCore.LevelSystem.GroupGameProps,
+        LSCore.LevelSystem]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -131,16 +113,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: Prices
-      Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[BasePrice, LSCore.CurrencySystem]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+  <Container>k__BackingField: {fileID: 11400000, guid: 82cdf92588aac7649bc97a0ecbe87c0c, type: 2}

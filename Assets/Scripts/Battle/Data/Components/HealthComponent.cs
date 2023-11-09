@@ -60,15 +60,7 @@ namespace Battle.Data.Components
             {
                 isKilled = true;
                 healthBar.Disable();
-                
-                if (isOpponent)
-                {
-                    OpponentWorld.Pool.Release(transform);
-                }
-                else
-                {
-                    transform.Get<Unit>().Destroy();
-                }
+                Unit.Destroy(transform.Get<Unit>());
             }
         }
     }

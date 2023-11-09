@@ -44,7 +44,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 742620597919280992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
+  m_Script: {fileID: 11500000, guid: fe1be2638e6b4249adbdfe45491063d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -58,17 +58,17 @@ MonoBehaviour:
     SerializationNodes:
     - Name: moveComponent
       Entry: 7
-      Data: 0|GameCore.Battle.Data.Components.MoveComponent, GameCore.Battle
+      Data: 0|Battle.Data.Components.MoveComponent, Battle
     - Name: 
       Entry: 8
       Data: 
     - Name: findTargetComponent
       Entry: 7
-      Data: 1|GameCore.Battle.Data.Components.FindHeroComponent, GameCore.Battle
+      Data: 1|Battle.Data.Components.FindHeroComponent, Battle
     - Name: providers
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
-        GameCore.Battle]], mscorlib
+      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
+        Battle]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
       Data: 
     - Name: attackComponent
       Entry: 7
-      Data: 3|GameCore.Battle.Data.Components.SelfDestroyAttackComponent, GameCore.Battle
+      Data: 3|Battle.Data.Components.AttackComponent, Battle
     - Name: duration
       Entry: 4
       Data: 0.1
@@ -92,7 +92,7 @@ MonoBehaviour:
       Data: 
     - Name: healthComponent
       Entry: 7
-      Data: 4|GameCore.Battle.Data.Components.HealthComponent, GameCore.Battle
+      Data: 4|Battle.Data.Components.HealthComponent, Battle
     - Name: scale
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
@@ -122,11 +122,11 @@ MonoBehaviour:
       Data: 
     - Name: hitBoxComponent
       Entry: 7
-      Data: 5|GameCore.Battle.Data.Components.HitBox.ColiderHitBoxComponent, GameCore.Battle
+      Data: 5|Battle.Data.Components.HitBox.ColiderHitBoxComponent, Battle
     - Name: 
       Entry: 8
       Data: 
-  unitName: 11
+  id: {fileID: -6750239444755058063, guid: 91b36cd705d17db4c91168b22e3ced31, type: 3}
 --- !u!50 &4573317970349082657
 Rigidbody2D:
   serializedVersion: 4

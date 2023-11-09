@@ -41,8 +41,8 @@ namespace BeatHeroes
                 DrawButton("Battle", "t: Scene Battle");
                 
                 GUILayout.Label("Configs");
-                DrawButton("Cards Config", "t: Cards");
-                DrawButton("Heroes Config", "t: Heroes");
+                DrawButton("Heroes Config", "t: UnitsById Heroes");
+                DrawButton("Enemies Config", "t: UnitsById Enemies");
                 DrawButton("Effectors Config", "t: Effectors");
                 DrawButton("Levels Configs Manager", "t: LevelsConfigsManager");
             }

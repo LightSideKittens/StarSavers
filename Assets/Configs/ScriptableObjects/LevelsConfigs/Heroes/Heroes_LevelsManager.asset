@@ -9,35 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c90f4804b0b40d69a56b169ce5ff330, type: 3}
-  m_Name: Heroes_Group
+  m_Script: {fileID: 11500000, guid: 362aa72bd104402480d63d4a0574cb97, type: 3}
+  m_Name: Heroes_LevelsManager
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: -6750239444755058063, guid: 743f181f47da2574aafa01a293e298ca, type: 3}
-    - {fileID: -6750239444755058063, guid: 9a4423b52cdb6454f9c2d484a4fd8dfa, type: 3}
-    - {fileID: -6750239444755058063, guid: fab2dc5f53c33334381c0beffcfb338f, type: 3}
-    - {fileID: -6750239444755058063, guid: 7525a9bd299d8d54bb87b613e689b7c3, type: 3}
+    - {fileID: 11400000, guid: b1e4359f52d0a3f46954d5501f83cabc, type: 2}
+    - {fileID: 11400000, guid: 2774ab2a8087ca041b90f40e1f4aeb11, type: 2}
+    - {fileID: 11400000, guid: 046ba63c26ce6904381ec5787927e73a, type: 2}
+    - {fileID: 11400000, guid: cbb4c090e9ab5c84ba517eea57faf99e, type: 2}
+    - {fileID: 11400000, guid: fa71f3866f91e984695bdaa4c2deddf1, type: 2}
+    - {fileID: 11400000, guid: 270a1f554a30a194c91a89be5fba60d5, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: ids
+    - Name: Group
+      Entry: 10
+      Data: 0
+    - Name: CurrencyGroup
+      Entry: 10
+      Data: 1
+    - Name: levelsContainers
       Entry: 7
-      Data: 0|System.Collections.Generic.HashSet`1[[LSCore.Id, LSCore.IdGroupSystem]],
+      Data: 0|System.Collections.Generic.HashSet`1[[LevelsContainer, LSCore.LevelSystem]],
         System.Core
     - Name: 
       Entry: 12
-      Data: 8
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 1
+      Data: 4
     - Name: 
       Entry: 10
       Data: 2
@@ -46,20 +48,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 0
+      Data: 4
     - Name: 
       Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  includeAll: 1

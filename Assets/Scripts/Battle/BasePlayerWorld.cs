@@ -10,17 +10,7 @@ namespace Battle
     {
         private static Dictionary<Transform, Unit> units;
         public static int UnitCount => units.Count;
-        
-        public static IEnumerable<Unit> Units
-        {
-            get
-            {
-                foreach (var unit in units.Values)
-                {
-                    yield return unit;
-                }
-            }
-        }
+        public static IEnumerable<Unit> Units => units.Values;
         
         private string userId;
         protected bool IsOpponent { get; private set; }
@@ -31,7 +21,7 @@ namespace Battle
             set
             {
                 userId = value;
-                IsOpponent = UserId == "Opponent";
+                IsOpponent = value == "Opponent";
                 units ??= new Dictionary<Transform, Unit>();
                 if (!Unit.ByWorld.TryAdd(value, units))
                 {
@@ -60,12 +50,12 @@ namespace Battle
         
         protected virtual void OnBegin(){}
         protected virtual void OnStop(){}
-        
-        protected Unit Spawn(Unit prefab)
+
+        protected OnOffPool<Unit> CreatePool(Unit prefab)
         {
-            var unit = Instantiate(prefab);
-            InitUnit(unit);
-            return unit;
+            var pool = Unit.CreatePool(prefab);
+            pool.Created += InitUnit;
+            return pool;
         }
         
         private void InitUnit(Unit unit)

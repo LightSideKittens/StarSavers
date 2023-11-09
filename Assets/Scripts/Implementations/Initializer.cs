@@ -7,16 +7,19 @@ using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
-using static Sirenix.Serialization.UnitySerializationUtility;
+using Sirenix.Serialization;
+using static LSCore.UnitySerializationUtils;
 
 namespace BeatHeroes
 {
     [ShowOdinSerializedPropertiesInInspector]
     public class Initializer : BaseInitializer, ISerializationCallbackReceiver, ISupportsPrefabSerialization
     {
-        [SerializeField] private LevelsManager levelsManager;
-        
+        [SerializeField] private LevelsManager heroesLevelsManager;
+        [SerializeField] private LevelsManager enemiesLevelsManager;
+
         [Id("Heroes")] [SerializeField] private Id[] ids;
+        [Id("Enemies")] [SerializeField] private Id[] enemyIds;
         [OdinSerialize] private Funds funds;
 
         static Initializer()
@@ -43,7 +46,8 @@ namespace BeatHeroes
 #endif
             DOTween.SetTweensCapacity(200, 200);
             
-            levelsManager.Init();
+            heroesLevelsManager.Init();
+            enemiesLevelsManager.Init();
             const string ftKey = "Give funds and hero";
             
             if (FirstTime.IsNot(ftKey, out var pass))
@@ -51,7 +55,12 @@ namespace BeatHeroes
                 funds.Earn();
                 for (int i = 0; i < ids.Length; i++)
                 {
-                    levelsManager.UpgradeLevel(ids[i]);
+                    heroesLevelsManager.TryUpgradeLevel(ids[i]);
+                }
+                
+                for (int i = 0; i < enemyIds.Length; i++)
+                {
+                    enemiesLevelsManager.TryUpgradeLevel(enemyIds[i]);
                 }
 
                 pass();
@@ -64,7 +73,7 @@ namespace BeatHeroes
         
         [SerializeField, HideInInspector] private SerializationData serializationData;
         SerializationData ISupportsPrefabSerialization.SerializationData { get => serializationData; set => serializationData = value; }
-        void ISerializationCallbackReceiver.OnAfterDeserialize() => DeserializeUnityObject(this, ref serializationData);
-        void ISerializationCallbackReceiver.OnBeforeSerialize() => SerializeUnityObject(this, ref serializationData);
+        void ISerializationCallbackReceiver.OnAfterDeserialize() => Deserialize(this, ref serializationData);
+        void ISerializationCallbackReceiver.OnBeforeSerialize() => Serialize(this, ref serializationData);
     }
 }

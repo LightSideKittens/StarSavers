@@ -45,6 +45,8 @@ namespace Battle.Data
         
         public void Update()
         {
+            if(ByName.Count == 0) return;
+            
             toRemove.Clear();
             
             foreach (var (name, data) in ByName)

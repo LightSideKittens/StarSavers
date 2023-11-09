@@ -1,12 +1,12 @@
-﻿using System.Diagnostics;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using DG.Tweening;
 using Battle.Data;
 using LSCore;
 using LSCore.Async;
+using LSCore.Extensions;
 using LSCore.Extensions.Unity;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Battle
 {
@@ -14,70 +14,38 @@ namespace Battle
     {
         private const int MaxEnemyCount = 100;
         [SerializeField, Id("Enemies")] private Id[] enemyIds;
-        //[SerializeField] private Enemies enemies;
+        [SerializeField] private UnitsById enemies;
+        private List<OnOffPool<Unit>> pools = new();
         private Camera cam;
         private Tween spawnLoopTween;
         private static Rect cameraRect;
         
-        public static IObjectPool<Transform> Pool { get; private set; }
-                
-        private Transform CreatePooledItem()
-        {
-            cameraRect.center = cam.transform.position;
-            //return Spawn(Heroes.ByKey[enemyIds.Random()]).transform;;
-            return null;
-        }
-        
-        private static void OnTakeFromPool(Transform transform)
-        {
-            var unit = transform.Get<Unit>();
-            transform.position = cameraRect.RandomPointAroundRect(5);
-            unit.Reset();
-            unit.Enable();
-            OnChange();
-        }
-        
-        private static void OnReturnedToPool(Transform unit)
-        {
-            unit.Get<Unit>().Disable();
-            OnChange();
-        }
-
-        private static void OnDestroyPoolObject(Transform unit)
-        {
-            unit.Get<Unit>().Destroy();
-            OnChange();
-        }
-        
-        [Conditional("DEBUG")]
-        public static void OnChange()
-        {
-#if DEBUG
-            DebugData.OnChange();   
-#endif
-        }
-        
         protected override void OnBegin()
         {
             UserId = "Opponent";
-            //enemies.Init();
+            enemies.Init();
             cam = Camera.main;
             cameraRect = cam.GetRect();
-            Pool = new ObjectPool<Transform>(Instance.CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, 100, 500);
+            
+            foreach (var unit in enemies.ByKey.Values)
+            {
+                var pool = CreatePool(unit);
+                pool.Got += OnGot;
+                SubscribeOnChange(pool);
+                pools.Add(pool);
+            }
+            
             Spawn();
             spawnLoopTween = Wait.InfinityLoop(0.2f, Spawn);
         }
         
         protected override void OnStop()
         {
-            var units = Unit.ByWorld[UserId].Values.ToList();
-            
-            foreach (var unit in units)
+            foreach (var id in enemyIds)
             {
-                unit.Destroy();
+                Unit.ClearPool(id);
             }
             
-            Pool.Clear();
             spawnLoopTween.Kill();
         }
 
@@ -85,8 +53,24 @@ namespace Battle
         {
             if (UnitCount < MaxEnemyCount)
             {
-                Pool.Get();
+                pools.Random().Get();
             }
+        }
+                
+        private void OnGot(Unit unit)
+        {
+            cameraRect.center = cam.transform.position;
+            unit.transform.position = cameraRect.RandomPointAroundRect(5);
+        }
+
+        [Conditional("DEBUG")]
+        public static void SubscribeOnChange(OnOffPool<Unit> pool)
+        {
+#if DEBUG
+            pool.Got += OnChange;
+            pool.Released += OnChange;
+            pool.Destroyed += OnChange;
+#endif
         }
 
         private void OnDrawGizmosSelected()

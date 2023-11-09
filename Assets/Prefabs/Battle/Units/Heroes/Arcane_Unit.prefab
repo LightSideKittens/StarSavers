@@ -421,14 +421,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966563047313314867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
+  m_Script: {fileID: 11500000, guid: 08e94d39670540a2afa98286881c6f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 4824979834230396511, guid: be8b4ba52f0363f498b01d82d65840fc, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -436,23 +435,23 @@ MonoBehaviour:
     SerializationNodes:
     - Name: moveComponent
       Entry: 7
-      Data: 0|GameCore.Battle.Data.Components.HeroMoveComponent, GameCore.Battle
+      Data: 0|Battle.Data.Components.MoveComponent, Battle
     - Name: 
       Entry: 8
       Data: 
     - Name: findTargetComponent
       Entry: 7
-      Data: 1|GameCore.Battle.Data.Components.FindTargetComponent, GameCore.Battle
+      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
     - Name: providers
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[GameCore.Battle.Data.Components.TargetProviders.TargetProvider,
-        GameCore.Battle]], mscorlib
+      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
+        Battle]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 3|GameCore.Battle.Data.Components.TargetProviders.AllUnits, GameCore.Battle
+      Data: 3|Battle.Data.Components.TargetProviders.AllUnits, Battle
     - Name: 
       Entry: 8
       Data: 
@@ -467,19 +466,16 @@ MonoBehaviour:
       Data: 
     - Name: attackComponent
       Entry: 7
-      Data: 4|GameCore.Battle.Data.Components.ShootAttackComponent, GameCore.Battle
+      Data: 4|Battle.Data.Components.AttackComponent, Battle
     - Name: duration
       Entry: 4
       Data: 0.1
-    - Name: bulletPrefab
-      Entry: 10
-      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: healthComponent
       Entry: 7
-      Data: 5|GameCore.Battle.Data.Components.HealthComponent, GameCore.Battle
+      Data: 5|Battle.Data.Components.HealthComponent, Battle
     - Name: scale
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
@@ -509,11 +505,11 @@ MonoBehaviour:
       Data: 
     - Name: hitBoxComponent
       Entry: 7
-      Data: 6|GameCore.Battle.Data.Components.HitBox.ColiderHitBoxComponent, GameCore.Battle
+      Data: 6|Battle.Data.Components.HitBox.ColiderHitBoxComponent, Battle
     - Name: 
       Entry: 8
       Data: 
-  unitName: 0
+  id: {fileID: -6750239444755058063, guid: 743f181f47da2574aafa01a293e298ca, type: 3}
 --- !u!50 &754386383632478202
 Rigidbody2D:
   serializedVersion: 4

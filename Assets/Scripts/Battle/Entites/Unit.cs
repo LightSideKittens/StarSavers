@@ -8,9 +8,8 @@ using static Battle.ObjectsByTransfroms<Battle.Data.Unit>;
 
 namespace Battle.Data
 {
-    public class Unit : BaseUnit
+    public partial class Unit : BaseUnit
     {
-        public event Action Destroyed;
         public static Dictionary<string, Dictionary<Transform, Unit>> ByWorld { get; } = new();
 
         public static IEnumerable<Unit> All
@@ -26,7 +25,12 @@ namespace Battle.Data
                 }
             }
         }
-        
+
+#if UNITY_EDITOR
+        protected override string GroupName => "AllUnits";
+#endif
+        public event Action Destroyed;
+
         [OdinSerialize] private MoveComponent moveComponent = new();
         [OdinSerialize] private FindTargetComponent findTargetComponent = new ();
         [OdinSerialize] private AttackComponent attackComponent = new();
