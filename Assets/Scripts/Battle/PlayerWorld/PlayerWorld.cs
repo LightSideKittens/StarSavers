@@ -30,7 +30,7 @@ namespace Battle
 
         protected override void OnStop()
         {
-            hero.Destroy();
+            Unit.ClearPool(hero.Id);
         }
     }
 }

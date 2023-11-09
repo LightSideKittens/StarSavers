@@ -427,7 +427,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 4824979834230396511, guid: be8b4ba52f0363f498b01d82d65840fc, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -435,7 +436,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: moveComponent
       Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
+      Data: 0|Battle.Data.Components.HeroMoveComponent, Battle
     - Name: 
       Entry: 8
       Data: 
@@ -466,10 +467,13 @@ MonoBehaviour:
       Data: 
     - Name: attackComponent
       Entry: 7
-      Data: 4|Battle.Data.Components.AttackComponent, Battle
+      Data: 4|Battle.Data.Components.ShootAttackComponent, Battle
     - Name: duration
       Entry: 4
       Data: 0.1
+    - Name: bulletPrefab
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 

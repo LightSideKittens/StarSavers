@@ -1,11 +1,22 @@
 ﻿using System.Collections.Generic;
 using LSCore;
+using LSCore.ConfigModule;
 
 namespace Battle.Data
 {
     public partial class Unit
     {
         private static readonly Dictionary<Id, OnOffPool<Unit>> pools = new();
+
+        static Unit()
+        {
+            World.Destroyed += OnWorldDestroyed;
+        }
+
+        private static void OnWorldDestroyed()
+        {
+            pools.Clear();
+        }
 
         public static Unit Create(Unit prefab)
         {
@@ -20,11 +31,14 @@ namespace Battle.Data
         public static void Destroy(Unit unit) => pools[unit.Id].Release(unit);
         public static OnOffPool<Unit> CreatePool(Unit prefab, int capacity = 10)
         {
-            var pool = new OnOffPool<Unit>(prefab, capacity);
+            if (pools.TryGetValue(prefab.Id, out var pool)) return pool;
+            
+            pool = new OnOffPool<Unit>(prefab, capacity);
             pool.Got += OnGot;
             pool.Released += OnReleased;
             pool.Destroyed += OnDestroyed;
             pools.Add(prefab.Id, pool);
+
             return pool;
         }
 

@@ -145,7 +145,7 @@ namespace MusicEventSystem.Editor
 
                         var bpm = midi.GetTempoMap().Tempo.AtTime(1000).BeatsPerMinute;
                         MusicData.Config.bpmStep = 60f / bpm;
-                        ConfigUtils.Save<MusicData>();
+                        //ConfigUtils.Save<MusicData>(); //TODO: Refactor
                         AssetDatabase.Refresh();
                     }
                 }

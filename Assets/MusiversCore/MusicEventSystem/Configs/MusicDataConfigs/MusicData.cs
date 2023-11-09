@@ -6,6 +6,7 @@ using static SoundventTypes;
 
 namespace MusicEventSystem.Configs
 {
+    //TODO: Refactor for new Config logic
     public partial class MusicData : BaseResourcesConfig<MusicData>
     {
         protected override string FileName => configName;
@@ -24,7 +25,7 @@ namespace MusicEventSystem.Configs
             get => configName;
             set
             {
-                LoadOnNextAccess();
+                //LoadOnNextAccess();
                 configName = value;
             }
         }
@@ -32,8 +33,6 @@ namespace MusicEventSystem.Configs
         internal static float StartTime { get; set; }
         internal static float EndTime { get; set; } = DefaultEndTime;
         [JsonIgnore] internal float realEndTime;
-        [JsonIgnore] public string Name { get; private set; }
-
         [JsonProperty(Order = 0)] internal float bpmStep = -1;
         [JsonProperty(Order = 1)] public NoteMusicData<ShortNoteTrackData> shortNoteTrack = new();
         [JsonProperty(Order = 2)] public NoteMusicData<LongNoteTrackData> longNoteTrack = new();
@@ -66,7 +65,6 @@ namespace MusicEventSystem.Configs
         {
             base.OnLoading();
             MusicDataContractResolver.current = this;
-            Name = configName;
         }
 
         protected override void OnLoaded()
@@ -82,11 +80,11 @@ namespace MusicEventSystem.Configs
             var lastCfgName = configName;
             var lastStartTime = StartTime;
             var lastEndTime = EndTime;
-            var lastInstance = instance;
-            
-            SetConfig(new MusicData(), cfgName, startTime, endTime);
-            var config = Load();
-            SetConfig(lastInstance, lastCfgName, lastStartTime, lastEndTime);
+            //var lastInstance = instance;
+            var config = new MusicData();
+            SetConfig(config, cfgName, startTime, endTime);
+            config.Load();
+            //SetConfig(lastInstance, lastCfgName, lastStartTime, lastEndTime);
 
             return config;
         }
@@ -96,7 +94,7 @@ namespace MusicEventSystem.Configs
             configName = cfgName;
             StartTime = startTime;
             EndTime = endTime;
-            instance = musicData;
+            //instance = musicData;
         }
 
         internal static void Update(in float currentTime) => Config.Internal_Update(currentTime);
