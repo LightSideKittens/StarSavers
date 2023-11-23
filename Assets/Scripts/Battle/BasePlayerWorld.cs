@@ -8,9 +8,9 @@ namespace Battle
 {
     public abstract class BasePlayerWorld<T> : SingleService<T> where T : BasePlayerWorld<T>
     {
-        private static Dictionary<Transform, Unit> units;
+        private static HashSet<Unit> units;
         public static int UnitCount => units.Count;
-        public static IEnumerable<Unit> Units => units.Values;
+        public static IEnumerable<Unit> Units => units;
         
         private string userId;
         protected bool IsOpponent { get; private set; }
@@ -22,11 +22,7 @@ namespace Battle
             {
                 userId = value;
                 IsOpponent = value == "Opponent";
-                units ??= new Dictionary<Transform, Unit>();
-                if (!Unit.ByWorld.TryAdd(value, units))
-                {
-                    units.Clear();
-                }
+                units ??= new HashSet<Unit>();
             }
         }
 
@@ -51,21 +47,38 @@ namespace Battle
         protected virtual void OnBegin(){}
         protected virtual void OnStop(){}
 
+        protected override void DeInit()
+        {
+            foreach (var unit in units)
+            {
+                unit.Destroy();
+            }
+            
+            units.Clear();
+        }
+
         protected OnOffPool<Unit> CreatePool(Unit prefab)
         {
             var pool = Unit.CreatePool(prefab);
             pool.Created += InitUnit;
+            pool.Destroyed += OnUnitDestroyed;
             return pool;
         }
-        
+
+        private static void OnUnitDestroyed(Unit unit)
+        {
+            units.Remove(unit);
+        }
+
         private void InitUnit(Unit unit)
         {
             unit.Init(UserId);
+            units.Add(unit);
         }
 
         private void Update()
         {
-            foreach (var unit in units.Values)
+            foreach (var unit in units)
             {
                 unit.Run();
             }
@@ -73,7 +86,7 @@ namespace Battle
         
         private void FixedUpdate()
         {
-            foreach (var unit in units.Values)
+            foreach (var unit in units)
             {
                 unit.FixedRun();
             }

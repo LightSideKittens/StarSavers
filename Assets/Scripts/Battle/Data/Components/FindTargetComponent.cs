@@ -10,7 +10,7 @@ namespace Battle.Data.Components
     internal class FindTargetComponent
     {
         [NonSerialized] public bool isOpponent;
-        [OdinSerialize] private List<TargetProvider> providers = new() {new AllUnits()};
+        [OdinSerialize] private List<TargetProvider> providers = new() {new AllEnemies()};
         private Transform lastTarget;
         private Transform transform;
         private int frame;

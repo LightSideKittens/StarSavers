@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using LSCore;
-using LSCore.ConfigModule;
 
 namespace Battle.Data
 {
@@ -42,11 +41,15 @@ namespace Battle.Data
             return pool;
         }
 
-        public static void ClearPool(Id id) => pools[id].Clear();
-        
+        public static void DestroyPool(Id id)
+        {
+            pools[id].Clear();
+            pools.Remove(id);
+        }
+
         private static void OnGot(Unit unit)
         {
-            unit.Reset();
+            unit.Resett();
             unit.Enable();
         }
         

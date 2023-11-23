@@ -14,8 +14,7 @@ namespace Battle
         protected override void OnBegin()
         {
             UserId = "Player";
-            heroes.Init();
-            var prefab = heroes.ByKey[PlayerData.Config.SelectedHero];
+            var prefab = heroes.ById[PlayerData.Config.SelectedHero];
             var pool = CreatePool(prefab);
             pool.Released += OnHeroDied;
             hero = pool.Get();
@@ -30,7 +29,7 @@ namespace Battle
 
         protected override void OnStop()
         {
-            Unit.ClearPool(hero.Id);
+            Unit.DestroyPool(hero.Id);
         }
     }
 }

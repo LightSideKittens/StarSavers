@@ -1,4 +1,5 @@
-﻿using LSCore;
+﻿using DG.Tweening;
+using LSCore;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,7 @@ namespace Battle.Windows
 
         public static void Show(bool isWin)
         {
+            DOTween.KillAll();
             Show();
             PlayerWorld.Stop();
             OpponentWorld.Stop();

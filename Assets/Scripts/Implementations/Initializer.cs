@@ -7,7 +7,6 @@ using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
-using Sirenix.Serialization;
 using static LSCore.UnitySerializationUtils;
 
 namespace BeatHeroes
@@ -46,26 +45,26 @@ namespace BeatHeroes
 #endif
             DOTween.SetTweensCapacity(200, 200);
             
-            // heroesLevelsManager.Init();
-            // enemiesLevelsManager.Init();
-            // const string ftKey = "Give funds and hero";
-            //
-            // if (FirstTime.IsNot(ftKey, out var pass))
-            // {
-            //     funds.Earn();
-            //     for (int i = 0; i < ids.Length; i++)
-            //     {
-            //         heroesLevelsManager.TryUpgradeLevel(ids[i]);
-            //     }
-            //     
-            //     for (int i = 0; i < enemyIds.Length; i++)
-            //     {
-            //         enemiesLevelsManager.TryUpgradeLevel(enemyIds[i]);
-            //     }
-            //
-            //     pass();
-            // }
-            //
+            heroesLevelsManager.Init();
+            enemiesLevelsManager.Init();
+            const string ftKey = "Give funds and hero";
+            
+            if (FirstTime.IsNot(ftKey, out var pass))
+            {
+                funds.Earn();
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    heroesLevelsManager.TryUpgradeLevel(ids[i]);
+                }
+                
+                for (int i = 0; i < enemyIds.Length; i++)
+                {
+                    enemiesLevelsManager.TryUpgradeLevel(enemyIds[i]);
+                }
+            
+                pass();
+            }
+            
             onInit();
         }
         

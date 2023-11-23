@@ -23,7 +23,6 @@ namespace Battle
         protected override void OnBegin()
         {
             UserId = "Opponent";
-            enemies.Init();
             cam = Camera.main;
             cameraRect = cam.GetRect();
             
@@ -43,7 +42,7 @@ namespace Battle
         {
             foreach (var id in enemyIds)
             {
-                Unit.ClearPool(id);
+                Unit.DestroyPool(id);
             }
             
             spawnLoopTween.Kill();

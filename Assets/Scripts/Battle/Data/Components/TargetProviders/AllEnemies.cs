@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Battle.Data.Components.TargetProviders
 {
     [Serializable]
-    internal class AllUnits : TargetProvider
+    internal class AllEnemies : TargetProvider
     {
         public override IEnumerable<Transform> Targets 
         {
