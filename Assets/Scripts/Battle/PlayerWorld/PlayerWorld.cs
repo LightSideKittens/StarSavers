@@ -26,10 +26,5 @@ namespace Battle
         {
             MatchResultWindow.Show(false);
         }
-
-        protected override void OnStop()
-        {
-            Unit.DestroyPool(hero.Id);
-        }
     }
 }

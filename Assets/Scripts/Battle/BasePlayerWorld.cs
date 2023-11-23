@@ -55,6 +55,7 @@ namespace Battle
             }
             
             units.Clear();
+            Unit.DestroyAllPools();
         }
 
         protected OnOffPool<Unit> CreatePool(Unit prefab)

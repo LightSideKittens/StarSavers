@@ -40,11 +40,6 @@ namespace Battle
         
         protected override void OnStop()
         {
-            foreach (var id in enemyIds)
-            {
-                Unit.DestroyPool(id);
-            }
-            
             spawnLoopTween.Kill();
         }
 

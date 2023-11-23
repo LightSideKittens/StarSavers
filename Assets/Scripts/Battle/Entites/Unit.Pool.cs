@@ -46,6 +46,16 @@ namespace Battle.Data
             pools[id].Clear();
             pools.Remove(id);
         }
+        
+        public static void DestroyAllPools()
+        {
+            foreach (var pool in pools.Values)
+            {
+                pool.Clear();
+            }
+            
+            pools.Clear();
+        }
 
         private static void OnGot(Unit unit)
         {
