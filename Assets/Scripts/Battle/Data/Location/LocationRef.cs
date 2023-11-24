@@ -6,6 +6,9 @@ namespace Battle.Data
     [Serializable]
     public class LocationRef : AssetRef<Location>
     {
-        protected LocationRef(string guid) : base(guid) { }
+        public LocationRef(string guid) : base(guid)
+        {
+            
+        }
     }
 }

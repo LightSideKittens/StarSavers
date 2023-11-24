@@ -1,10 +1,11 @@
-﻿using System.Reflection;
+﻿#if UNITY_EDITOR
+using System.Reflection;
 using UnityEditor;
 
 namespace LSCore.LevelSystem
 {
     [InitializeOnLoad]
-    public class Initializer
+    internal class Initializer
     {
         static Initializer()
         {
@@ -12,3 +13,4 @@ namespace LSCore.LevelSystem
         }
     }
 }
+#endif
