@@ -6,8 +6,8 @@ namespace BeatHeroes.Windows
     public class BurgerPanel : BaseWindow<BurgerPanel>
     {
         [SerializeField] private RectTransform back;
-        [SerializeField] private Tab.Data buttonsTab;
-        [SerializeField] private Tab.Data[] tabs;
+        [SerializeReference] private Tab.BaseData buttonsTab;
+        [SerializeReference] private Tab.BaseData[] tabs;
         
         private Tab.Controller tabController;
 
@@ -17,22 +17,18 @@ namespace BeatHeroes.Windows
             tabController = new Tab.Controller(back);
             tabController.OnOpen(OnTabOpen);
             tabController.Add(buttonsTab);
-
-            for (int i = 0; i < tabs.Length; i++)
-            {
-                tabController.Register(tabs[i]);
-            }
+            tabController.Register(tabs);
         }
 
         private void OnTabOpen(Tab tab)
         {
             if (tab == buttonsTab.tabPrefab)
             {
-                BackButton.OnClick(Hide);
+                BackButton.Clicked = Hide;
             }
             else
             {
-                BackButton.OnClick(OpenButtonsTab);
+                BackButton.Clicked = OpenButtonsTab;
             }
         }
 

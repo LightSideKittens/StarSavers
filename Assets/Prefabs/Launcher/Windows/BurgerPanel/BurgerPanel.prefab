@@ -149,16 +149,31 @@ MonoBehaviour:
   <BackButton>k__BackingField: {fileID: 1779978662171654682}
   back: {fileID: 1598469234453208925}
   buttonsTab:
-    tabPrefab: {fileID: 1092336465857358703}
-    openButton: {fileID: 0}
-    reference: {fileID: 7449457741611168910}
+    rid: 4335190311982858244
   tabs:
-  - tabPrefab: {fileID: -8506106371364723312, guid: aba4eab3e802b4345bae5ceb826cd57f, type: 3}
-    openButton: {fileID: 8148247994721342193}
-    reference: {fileID: 22716502818492425}
-  - tabPrefab: {fileID: -8264446208159847249, guid: d05e4491da48b314ba179e9cb5ca0c1c, type: 3}
-    openButton: {fileID: 1244805688466435695}
-    reference: {fileID: 8516462449527378670}
+  - rid: 4335190311982858245
+  - rid: 4335190311982858246
+  references:
+    version: 2
+    RefIds:
+    - rid: 4335190311982858244
+      type: {class: LSButtonData, ns: LSCore, asm: LSCore.UIModule}
+      data:
+        tabPrefab: {fileID: 1092336465857358703}
+        reference: {fileID: 7449457741611168910}
+        openButton: {fileID: 0}
+    - rid: 4335190311982858245
+      type: {class: LSButtonData, ns: LSCore, asm: LSCore.UIModule}
+      data:
+        tabPrefab: {fileID: -8506106371364723312, guid: aba4eab3e802b4345bae5ceb826cd57f, type: 3}
+        reference: {fileID: 22716502818492425}
+        openButton: {fileID: 8148247994721342193}
+    - rid: 4335190311982858246
+      type: {class: LSButtonData, ns: LSCore, asm: LSCore.UIModule}
+      data:
+        tabPrefab: {fileID: -8264446208159847249, guid: d05e4491da48b314ba179e9cb5ca0c1c, type: 3}
+        reference: {fileID: 8516462449527378670}
+        openButton: {fileID: 1244805688466435695}
 --- !u!1 &1353188523520740978
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +267,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f4576f8d63c4c60b9e88e02e0e55703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animDuration: 0.2
+  anim:
+    rid: 4335190311982858251
+  references:
+    version: 2
+    RefIds:
+    - rid: 4335190311982858251
+      type: {class: ResizeTabAnim, ns: LightSideCore.Runtime.UIModule.TabAnimations, asm: LSCore.UIModule}
+      data:
+        duration: 0.2
+        group: {fileID: 0}
+        parent: {fileID: 0}
+        reference: {fileID: 0}
 --- !u!1 &1843405095230413196
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,39 +745,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-  gradientMode: 0
   rotateId: 0
   invert: 0
   gradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    keys:
+    - position: 0
+      color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  angle: 45
+  gradientStart: 0
+  gradientEnd: 0
   anim:
     isDisabled: 1
 --- !u!1 &8588077436251265193

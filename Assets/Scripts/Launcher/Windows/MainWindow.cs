@@ -1,8 +1,6 @@
 ﻿using LSCore;
-using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace BeatHeroes.Windows
 {
@@ -21,12 +19,12 @@ namespace BeatHeroes.Windows
         protected override void Init()
         {
             base.Init();
-            burgerButton.Listen(BurgerPanel.Show);
-            heroButton.Listen(HeroesGalleryWindow.Show);
-            clanButton.Listen(ClanWindow.Show);
-            questsButton.Listen(QuestsWindow.Show);
-            shopButton.Listen(ShopWindow.Show);
-            battleButton.Listen(LoadBattle);
+            burgerButton.Clicked += BurgerPanel.Show;
+            heroButton.Clicked += HeroesGalleryWindow.Show;
+            clanButton.Clicked += ClanWindow.Show;
+            questsButton.Clicked += QuestsWindow.Show;
+            shopButton.Clicked += ShopWindow.Show;
+            battleButton.Clicked += LoadBattle;
         }
 
         private static void LoadBattle() => SceneManager.LoadScene(1);

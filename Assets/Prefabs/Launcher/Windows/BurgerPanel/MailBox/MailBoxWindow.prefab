@@ -63,7 +63,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f4576f8d63c4c60b9e88e02e0e55703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animDuration: 0.2
+  anim:
+    rid: 4335190311982858248
+  references:
+    version: 2
+    RefIds:
+    - rid: 4335190311982858248
+      type: {class: ResizeTabAnim, ns: LightSideCore.Runtime.UIModule.TabAnimations, asm: LSCore.UIModule}
+      data:
+        duration: 0.2
+        group: {fileID: 0}
+        parent: {fileID: 0}
+        reference: {fileID: 0}
 --- !u!1 &1547575663801207781
 GameObject:
   m_ObjectHideFlags: 0

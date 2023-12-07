@@ -37,12 +37,12 @@ namespace BeatHeroes.Windows
             title.text =  reward.title;
             preview.sprite = reward.preview.Load();
             count.text = $"{reward.Fund.value}";
-            button.Listen(OnClaim);
+            button.Clicked += OnClaim;
         }
 
         private void Clear()
         {
-            button.UnListen(OnClaim);
+            button.Clicked -= OnClaim;
         }
 
         private void OnClaim()

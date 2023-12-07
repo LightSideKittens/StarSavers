@@ -75,39 +75,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.92
-  gradientMode: 0
   rotateId: 0
   invert: 1
   gradient:
-    serializedVersion: 2
-    key0: {r: 0.3507228, g: 0, b: 1, a: 0.5019608}
-    key1: {r: 0.9771824, g: 0, b: 1, a: 0}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    keys:
+    - position: 0
+      color: {r: 0, g: 0, b: 0, a: 0.3254902}
+  angle: 45
+  gradientStart: 0
+  gradientEnd: 0
 --- !u!1 &2294751154714626246
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,39 +302,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-  gradientMode: 2
   rotateId: 0
   invert: 0
   gradient:
-    serializedVersion: 2
-    key0: {r: 0.21226418, g: 0.47458035, b: 1, a: 1}
-    key1: {r: 0, g: 0.8002429, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 1}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 771
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 65535
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    keys:
+    - position: 0.010771993
+      color: {r: 0, g: 0.7249274, b: 1, a: 1}
+    - position: 1
+      color: {r: 0, g: 0.3012905, b: 1, a: 1}
+  angle: 270
+  gradientStart: 0
+  gradientEnd: 0
   anim:
     isDisabled: 0
 --- !u!114 &-2316662085516017183
@@ -374,8 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reward: {fileID: 8247961601089466468}
-  prices:
-  - {fileID: 6237944031230932522}
+  funds: []
 --- !u!114 &8247961601089466468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,17 +921,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
---- !u!114 &6237944031230932522 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3340384390342283925, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
-  m_PrefabInstance: {fileID: 8703994545875264703}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d309e88b08da4086abb9baface9a1fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7210634126418339417 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2079428708865426150, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}

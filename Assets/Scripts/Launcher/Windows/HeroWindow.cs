@@ -11,7 +11,7 @@ namespace BeatHeroes.Windows
         protected override void Init()
         {
             base.Init();
-            homeButton.Listen(OnHome);
+            homeButton.Clicked += OnHome;
         }
 
         private void OnHome()

@@ -14,7 +14,7 @@ namespace BeatHeroes.Windows
         private void Awake()
         {
             button = GetComponent<LSButton>();
-            button.Listen(Claim);
+            button.Clicked += Claim;
         }
 
         private void Claim()
