@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -375,6 +375,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3389438878708680199}
     m_Modifications:
+    - target: {fileID: -2316662085516017183, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
+      propertyPath: reward
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -2316662085516017183, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
+      propertyPath: funds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 437861566006103164, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -455,9 +463,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1213591111525269196, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2360494893039967177, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
       propertyPath: m_Name
       value: EliteCase
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404838852902584121, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233476739061505493, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208640552447710964, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7983313786623905049, guid: c8c13b0286ebc254ba91cdb951cc89fb, type: 3}
       propertyPath: m_AnchorMax.y

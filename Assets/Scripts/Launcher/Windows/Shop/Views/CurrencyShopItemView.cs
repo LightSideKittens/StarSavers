@@ -1,56 +1,41 @@
-﻿using System.Linq;
+﻿using System;
 using LSCore;
-using LSCore.AddressablesModule.AssetReferences;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace BeatHeroes.Windows
 {
-    public class CurrencyShopItemView : BaseShopItemView<CurrencyShopItemConfig>
+    public class CurrencyShopItemView : MonoBehaviour
     {
-        [SerializeField] private LSButton button;
-        [SerializeField] private LSText title;
-        [SerializeField] private Image preview;
-        [SerializeField] private LSText count;
-        
-        private CurrencyShopItemConfig config;
-        
-        public override void Setup(CurrencyShopItemConfig config)
+        [SerializeField] private Funds reward;
+        [SerializeField] private Funds cost;
+
+        private LSButton button;
+
+        private void Awake()
         {
-            this.config = config;
-            
-            if (this.config)
-            {
-                SetupView();
-            }
+            button = GetComponent<LSButton>();
+            button.Clicked += Claim;
         }
 
-        private void SetupView()
+        private void Claim()
         {
-            var reward = config.rewards.First() as CurrencyRewardConfig;
-            
-            if (!reward)
-            {
-                return;
-            }
-            
-            title.text =  reward.title;
-            preview.sprite = reward.preview.Load();
-            count.text = $"{reward.Fund.value}";
-            button.Clicked += OnClaim;
-        }
-
-        private void Clear()
-        {
-            button.Clicked -= OnClaim;
-        }
-
-        private void OnClaim()
-        {
-            if (config.Claim(out var claim))
+            if (Claim(out var claim))
             {
                 claim();
             }
+        }
+
+        private bool Claim(out Action claim)
+        {
+            if (cost.Spend(out var spend))
+            {
+                claim = reward.Earn;
+                spend();
+                return true;
+            }
+
+            claim = null;
+            return false;
         }
     }
 }

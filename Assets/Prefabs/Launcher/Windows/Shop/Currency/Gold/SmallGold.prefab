@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.19607843}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 3465616551811941864}
   - component: {fileID: 5730908569426791246}
   - component: {fileID: -2316662085516017183}
-  - component: {fileID: 8247961601089466468}
   m_Layer: 0
   m_Name: SmallGold
   m_TagString: Untagged
@@ -327,22 +326,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96319966d9d47569cf3a4296c51c3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: {fileID: 8247961601089466468}
-  funds: []
---- !u!114 &8247961601089466468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2360494893039967177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d309e88b08da4086abb9baface9a1fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
-  number: {fileID: 8805203096754531253}
+  reward:
+    funds:
+    - rid: 6306143441398005765
+  cost:
+    funds:
+    - rid: 6306143441398005766
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306143441398005765
+      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencySystem}
+      data:
+        id: {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
+        number: {fileID: 8805203096754531253}
+    - rid: 6306143441398005766
+      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencySystem}
+      data:
+        id: {fileID: -6750239444755058063, guid: 529de37825ef3ad4498a18d0705726b0, type: 3}
+        number: {fileID: 4207850232590805940}
 --- !u!1 &5249487981830477866
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -611,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -852,6 +854,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3340384390342283925, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 3340384390342283925, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
     - target: {fileID: 4026315334804532680, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -885,8 +891,16 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4805206191490436875, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805206191490436875, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
       propertyPath: <Number>k__BackingField
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613355129041497773, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7969870893073828078, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -921,6 +935,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
+--- !u!114 &4207850232590805940 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4805206191490436875, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
+  m_PrefabInstance: {fileID: 8703994545875264703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49e5375dc6d4ae8a398c5943985aece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7210634126418339417 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2079428708865426150, guid: 21eb62ab272d83c49956d1ad1748a1e1, type: 3}
