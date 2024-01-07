@@ -1,4 +1,5 @@
-﻿using Battle.Windows;
+﻿using System.Collections.Generic;
+using Battle.Windows;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using Battle.Data;
@@ -12,7 +13,11 @@ namespace Battle
     {
         [SerializeField] private Effectors effectors;
         [SerializeField] private RaidByHeroRank raids;
+        private Dictionary<Id, int> funds = new();
+        
+        public static Dictionary<Id, int> Funds => Instance.funds;
         public static RaidByHeroRank Raids => Instance.raids;
+        public static RaidConfig Raid => Instance.raids.Current;
         public static float TimeSinceStart { get; private set; }
         
         private void Start()
@@ -30,9 +35,12 @@ namespace Battle
         {
             effectors.Init();
             raids.Init();
+
+            Unit.Killed += OnUnitKilled;
             PlayerWorld.Begin();
             OpponentWorld.Begin();
             BattleWindow.Show();
+            funds.Clear();
             TimeSinceStart = 0;
             StartWave();
         }
@@ -46,6 +54,7 @@ namespace Battle
         {
             base.OnDestroy();
             DOTween.KillAll();
+            Unit.Killed -= OnUnitKilled;
             World.Updated -= UpdateTime;
             OpponentWorld.AllUnitsDestroyed -= StartBreak;
         }
@@ -54,8 +63,8 @@ namespace Battle
         {
             World.Updated += UpdateTime;
             OpponentWorld.Continue();
-            Wait.Delay(Raids.Current.GetWaveDuration(), PauseWave);
-            Raids.Current.CurrentWave++;
+            Wait.Delay(Raid.GetWaveDuration(), PauseWave);
+            Raid.CurrentWave++;
         }
 
         private static void PauseWave()
@@ -76,17 +85,11 @@ namespace Battle
         private static void StartBreak()
         {
             OpponentWorld.AllUnitsDestroyed -= StartBreak;
-            Wait.Delay(Raids.Current.BreakDuration, StartWave);
+            Wait.Delay(Raid.BreakDuration, StartWave);
         }
         
-        public static Id GetEnemyId()
-        {
-            return Raids.Current.GetEnemyId((int)TimeSinceStart);
-        }
-
-        public static float GetSpawnFrequency()
-        {
-            return Raids.Current.GetSpawnFrequency((int)TimeSinceStart);
-        }
+        public static Id GetEnemyId() => Raid.GetEnemyId((int)TimeSinceStart);
+        private static void OnUnitKilled(Unit unit) => Raid.OnEnemyKilled(unit.Id);
+        public static float GetSpawnFrequency() => Raid.GetSpawnFrequency((int)TimeSinceStart);
     }
 }

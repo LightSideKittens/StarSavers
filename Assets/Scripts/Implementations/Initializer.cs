@@ -54,12 +54,12 @@ namespace BeatHeroes
                 funds.Earn();
                 for (int i = 0; i < ids.Length; i++)
                 {
-                    heroesLevelsManager.TryUpgradeLevel(ids[i]);
+                    heroesLevelsManager.UpgradeLevel(ids[i]);
                 }
                 
                 for (int i = 0; i < enemyIds.Length; i++)
                 {
-                    enemiesLevelsManager.TryUpgradeLevel(enemyIds[i]);
+                    enemiesLevelsManager.UpgradeLevel(enemyIds[i]);
                 }
             
                 pass();

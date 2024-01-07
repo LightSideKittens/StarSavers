@@ -60,7 +60,7 @@ namespace Battle.Data.Components
             {
                 isKilled = true;
                 healthBar.Disable();
-                Unit.Destroy(transform.Get<Unit>());
+                transform.Get<Unit>().Kill();
             }
         }
     }

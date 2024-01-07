@@ -8,8 +8,9 @@ namespace Battle.Data
 {
     public partial class Unit : BaseUnit
     {
+        public static event Action<Unit> Killed;
         public event Action Destroyed;
-
+        
         [OdinSerialize] private MoveComponent moveComponent = new();
         [OdinSerialize] private FindTargetComponent findTargetComponent = new ();
         [OdinSerialize] private AttackComponent attackComponent = new();
@@ -61,6 +62,12 @@ namespace Battle.Data
             attackComponent.Disable();
         }
 
+        public void Kill()
+        {
+            Release(this);
+            Killed?.Invoke(this);
+        }
+        
         public override void Destroy()
         {
             base.Destroy();

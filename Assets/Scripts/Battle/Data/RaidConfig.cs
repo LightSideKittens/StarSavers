@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LSCore;
 using LSCore.AddressablesModule.AssetReferences;
+using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -15,16 +16,20 @@ namespace Battle.Data
         [Serializable]
         private struct EnemyData
         {
-            [Id("Enemies")] public Id id;
+            [ValueDropdown("Ids")] public Id id;
+            [BoxGroup] public InBattleFund reward;
+            public int level;
             [CustomValueDrawer("Editor_Draw")] public AnimationCurve spawnPossibility;
             
 #if UNITY_EDITOR
             private AnimationCurve Editor_Draw(AnimationCurve value, GUIContent content) => DrawCurve(value, content);
+            private IEnumerable<Id> Ids => currentInspected.levelsManager.Group;
 #endif
         }
         
         [field: SerializeField] public int Time { get; private set; } = 300;
         [SerializeField] private LocationRef locationRef;
+        [SerializeField] private LevelsManager levelsManager;
         [SerializeField] private EnemyData[] enemyData;
         
         [CustomValueDrawer("Editor_Draw")] 
@@ -32,7 +37,7 @@ namespace Battle.Data
         
         [field: SerializeField] public int BreakDuration { get; private set; } = 15;
         [SerializeField] private int[] waveDurations;
-
+        
         public int CurrentWave
         {
             get => currentWave;
@@ -50,6 +55,7 @@ namespace Battle.Data
         
         private int currentWave;
         private List<float> possibilities;
+        private readonly Dictionary<Id, EnemyData> enemyById = new();
         
         public void Init()
         {
@@ -58,7 +64,10 @@ namespace Battle.Data
             
             for (int i = 0; i < enemyData.Length; i++)
             {
+                var data = enemyData[i];
                 possibilities.Add(default);
+                enemyById.Add(data.id, data);
+                levelsManager.SetLevel(data.id, data.level);
             }
         }
 
@@ -71,6 +80,14 @@ namespace Battle.Data
         public int GetWaveDuration()
         {
             return waveDurations[currentWave];
+        }
+
+        public void OnEnemyKilled(Id id)
+        {
+            if (enemyById.TryGetValue(id, out var data))
+            {
+                data.reward.Earn();
+            }
         }
         
         public Id GetEnemyId(int time)
@@ -118,6 +135,8 @@ namespace Battle.Data
 
 #if UNITY_EDITOR
         private AnimationCurve Editor_Draw(AnimationCurve value, GUIContent content) => DrawCurve(value, content);
+        private static RaidConfig currentInspected;
+        [OnInspectorInit] private void Editor_Init() => currentInspected = this;
 #endif
         private static AnimationCurve DrawCurve(AnimationCurve value, GUIContent content)
         {
