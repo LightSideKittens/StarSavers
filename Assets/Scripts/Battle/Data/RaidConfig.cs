@@ -54,13 +54,14 @@ namespace Battle.Data
         }
         
         private int currentWave;
-        private List<float> possibilities;
+        private readonly List<float> possibilities = new();
         private readonly Dictionary<Id, EnemyData> enemyById = new();
         
         public void Init()
         {
             InstantiateLocation();
-            possibilities = new List<float>(enemyData.Length);
+            possibilities.Clear();
+            enemyById.Clear();
             
             for (int i = 0; i < enemyData.Length; i++)
             {
@@ -68,6 +69,7 @@ namespace Battle.Data
                 possibilities.Add(default);
                 enemyById.Add(data.id, data);
                 levelsManager.SetLevel(data.id, data.level);
+                BaseFund.Clear(data.reward.id);
             }
         }
 
@@ -132,12 +134,12 @@ namespace Battle.Data
             var location = locationRef.Load();
             location.Generate();
         }
-
+        
 #if UNITY_EDITOR
         private AnimationCurve Editor_Draw(AnimationCurve value, GUIContent content) => DrawCurve(value, content);
         private static RaidConfig currentInspected;
         [OnInspectorInit] private void Editor_Init() => currentInspected = this;
-#endif
+
         private static AnimationCurve DrawCurve(AnimationCurve value, GUIContent content)
         {
             EditorGUILayout.Space(10);
@@ -149,5 +151,6 @@ namespace Battle.Data
             EditorGUILayout.Space(10);
             return value;
         }
+#endif
     }
 }

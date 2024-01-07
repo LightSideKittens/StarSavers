@@ -13,10 +13,6 @@ namespace Battle
     {
         [SerializeField] private Effectors effectors;
         [SerializeField] private RaidByHeroRank raids;
-        private Dictionary<Id, int> funds = new();
-        
-        public static Dictionary<Id, int> Funds => Instance.funds;
-        public static RaidByHeroRank Raids => Instance.raids;
         public static RaidConfig Raid => Instance.raids.Current;
         public static float TimeSinceStart { get; private set; }
         
@@ -40,7 +36,6 @@ namespace Battle
             PlayerWorld.Begin();
             OpponentWorld.Begin();
             BattleWindow.Show();
-            funds.Clear();
             TimeSinceStart = 0;
             StartWave();
         }
