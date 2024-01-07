@@ -24,7 +24,7 @@ namespace Battle.Data
             for (int i = 0; i < byName.Count; i++)
             {
                 var pair = byName[i];
-                pair.effector.name = pair.effectorName;
+                pair.effector.id = pair.effectorName;
                 ByName.TryAdd(pair.effectorName, pair.effector);
             }
         }

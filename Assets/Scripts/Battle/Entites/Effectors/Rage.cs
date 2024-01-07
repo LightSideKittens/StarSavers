@@ -21,10 +21,9 @@ namespace Battle.Data
 
         protected override void OnInit()
         {
-            var props = EntiProps.Get("").GetProps(name);//TODO: Refactor
-            duration = props.GetValue<HealthGP>();
-            damageBuff = props.GetValue<DamageGP>() / 100;
-            moveSpeedBuff = props.GetValue<MoveSpeedGP>() / 100;
+            duration = GetValue<HealthGP>();
+            damageBuff = GetValue<DamageGP>() / 100;
+            moveSpeedBuff = GetValue<MoveSpeedGP>() / 100;
         }
 
         protected override void OnApply()

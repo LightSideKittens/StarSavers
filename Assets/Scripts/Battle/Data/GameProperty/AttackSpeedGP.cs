@@ -3,13 +3,12 @@
 namespace LSCore.LevelSystem
 {
     [Serializable]
-    public class AttackSpeedGP : FloatAndPercent
+    public class AttackSpeedGP : FloatGameProp
     {
 #if UNITY_EDITOR
         protected override Prop DrawFields()
         {
             prop.DrawSlider(ValueKey, 0.1f, 2f);
-            prop.DrawSlider(PercentKey, 0, 100);
             return prop;
         }
         protected override string IconName => "attack-speed-icon";

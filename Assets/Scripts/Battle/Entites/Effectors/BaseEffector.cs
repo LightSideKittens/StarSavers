@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LSCore.LevelSystem;
 using Battle.Data.Components;
 using LSCore;
@@ -11,7 +12,8 @@ namespace Battle.Data
     internal abstract class BaseEffector
     {
         [OdinSerialize] protected FindTargetComponent findTargetComponent;
-        [NonSerialized] public Id name;
+        [SerializeField] private LevelsManager levelsManager;
+        [NonSerialized] public Id id;
         protected float radius;
         protected bool isApplied;
         protected SpriteRenderer radiusRenderer;
@@ -19,11 +21,17 @@ namespace Battle.Data
         
         [field: SerializeField] public int Fund { get; private set; }
         protected virtual bool NeedFindOpponent => true;
+        private Dictionary<Type, Prop> props;
+        
+        protected float GetValue<T>() where T : FloatGameProp
+        {
+            return FloatGameProp.GetValue<T>(props);
+        }
 
         public void Init()
         {
-            var props = EntiProps.Get("").GetProps(name);//TODO: Refactor
-            radius = props.GetValue<RadiusGP>();
+            props = levelsManager.GetProps(id);
+            radius = GetValue<RadiusGP>();
             radiusRenderer = new GameObject($"{GetType().Name} Radius").AddComponent<SpriteRenderer>();
             radiusRenderer.sprite = circleSprite;
             var gameObject = radiusRenderer.gameObject;

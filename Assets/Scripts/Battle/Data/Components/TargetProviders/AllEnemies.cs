@@ -11,7 +11,7 @@ namespace Battle.Data.Components.TargetProviders
         {
             get
             {
-                foreach (var unit in OpponentWorld.Units)
+                foreach (var unit in OpponentWorld.ActiveUnits)
                 {
                     yield return unit.transform;
                 }

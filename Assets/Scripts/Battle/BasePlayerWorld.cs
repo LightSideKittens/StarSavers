@@ -8,9 +8,9 @@ namespace Battle
 {
     public abstract class BasePlayerWorld<T> : SingleService<T> where T : BasePlayerWorld<T>
     {
-        private static HashSet<Unit> units;
-        public static int UnitCount => units.Count;
-        public static IEnumerable<Unit> Units => units;
+        private static HashSet<Unit> activeUnits;
+        public static int UnitCount => activeUnits.Count;
+        public static IEnumerable<Unit> ActiveUnits => activeUnits;
         
         private string userId;
         protected bool IsOpponent { get; private set; }
@@ -22,7 +22,7 @@ namespace Battle
             {
                 userId = value;
                 IsOpponent = value == "Opponent";
-                units ??= new HashSet<Unit>();
+                activeUnits ??= new HashSet<Unit>();
             }
         }
 
@@ -39,7 +39,7 @@ namespace Battle
         
         public static void Stop()
         {
-            Debug.Log($"Stoped {typeof(T)}");
+            Debug.Log($"Stopped {typeof(T)}");
             Instance.enabled = false;
             Instance.OnStop();
         }
@@ -49,12 +49,12 @@ namespace Battle
 
         protected override void DeInit()
         {
-            foreach (var unit in units)
+            foreach (var unit in activeUnits)
             {
                 unit.Destroy();
             }
             
-            units.Clear();
+            activeUnits.Clear();
             Unit.DestroyAllPools();
         }
 
@@ -62,24 +62,23 @@ namespace Battle
         {
             var pool = Unit.CreatePool(prefab);
             pool.Created += InitUnit;
-            pool.Destroyed += OnUnitDestroyed;
+            pool.Got += OnUnitGot;
+            pool.Released += OnUnitReleased;
+            pool.Destroyed += OnUnitReleased;
             return pool;
-        }
-
-        private static void OnUnitDestroyed(Unit unit)
-        {
-            units.Remove(unit);
         }
 
         private void InitUnit(Unit unit)
         {
             unit.Init(UserId);
-            units.Add(unit);
         }
+
+        private static void OnUnitGot(Unit unit) => activeUnits.Add(unit);
+        private static void OnUnitReleased(Unit unit) => activeUnits.Remove(unit);
 
         private void Update()
         {
-            foreach (var unit in units)
+            foreach (var unit in activeUnits)
             {
                 unit.Run();
             }
@@ -87,7 +86,7 @@ namespace Battle
         
         private void FixedUpdate()
         {
-            foreach (var unit in units)
+            foreach (var unit in activeUnits)
             {
                 unit.FixedRun();
             }

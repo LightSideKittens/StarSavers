@@ -3,7 +3,7 @@
 namespace LSCore.LevelSystem
 {
     [Serializable]
-    public class RicochetGP : FloatAndPercent
+    public class RicochetGP : FloatGameProp
     {
 #if UNITY_EDITOR
         protected override string IconName => "ricochet-icon";

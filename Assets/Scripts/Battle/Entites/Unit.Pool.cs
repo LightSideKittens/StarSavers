@@ -43,7 +43,7 @@ namespace Battle.Data
 
         public static void DestroyPool(Id id)
         {
-            pools[id].Clear();
+            pools[id].Destroy();
             pools.Remove(id);
         }
         
@@ -51,7 +51,7 @@ namespace Battle.Data
         {
             foreach (var pool in pools.Values)
             {
-                pool.Clear();
+                pool.Destroy();
             }
             
             pools.Clear();

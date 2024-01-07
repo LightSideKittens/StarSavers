@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: upgrades
+    - Name: Props
       Entry: 7
       Data: 0|LSCore.LevelSystem.GameProps, LSCore.LevelSystem
     - Name: <Props>k__BackingField
@@ -33,13 +33,13 @@ MonoBehaviour:
       Data: 5
     - Name: 
       Entry: 7
-      Data: 2|LSCore.LevelSystem.HealthGP, Battle.GameProperty
+      Data: 2|LSCore.LevelSystem.AttackSpeedGP, Battle.GameProperty
     - Name: prop
       Entry: 7
       Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:100 '
+      Data: 'Value:0.5 '
     - Name: 
       Entry: 8
       Data: 
@@ -54,7 +54,7 @@ MonoBehaviour:
       Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:100 '
+      Data: 'Value:5 '
     - Name: 
       Entry: 8
       Data: 
@@ -63,13 +63,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|LSCore.LevelSystem.RadiusGP, Battle.GameProperty
+      Data: 4|LSCore.LevelSystem.HealthGP, Battle.GameProperty
     - Name: prop
       Entry: 7
       Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:2 '
+      Data: 'Value:20 '
     - Name: 
       Entry: 8
       Data: 
@@ -84,7 +84,7 @@ MonoBehaviour:
       Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Value:4 '
+      Data: 'Value:2 '
     - Name: 
       Entry: 8
       Data: 
@@ -93,13 +93,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 6|LSCore.LevelSystem.AttackSpeedGP, Battle.GameProperty
+      Data: 6|LSCore.LevelSystem.RadiusGP, Battle.GameProperty
     - Name: prop
       Entry: 7
       Data: LSCore.LevelSystem.Prop, LSCore.LevelSystem
     - Name: serializedValue
       Entry: 1
-      Data: 'Percent:0 Value:0.5 '
+      Data: 'Value:2 '
     - Name: 
       Entry: 8
       Data: 
@@ -115,7 +115,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: OtherUpgrades
+    - Name: OtherProps
       Entry: 7
       Data: 7|System.Collections.Generic.List`1[[LSCore.LevelSystem.GroupGameProps,
         LSCore.LevelSystem]], mscorlib
