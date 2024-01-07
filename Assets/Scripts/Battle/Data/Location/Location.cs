@@ -10,8 +10,6 @@ namespace Battle.Data
         [SerializeField] private GameObject prefab;
         [SerializeField] private GameObject[] chunks;
 
-        [Id("Enemies")] public int[] enemies;
-
         [Button]
         public void Generate()
         {

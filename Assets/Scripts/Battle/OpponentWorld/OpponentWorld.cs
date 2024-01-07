@@ -4,7 +4,6 @@ using DG.Tweening;
 using Battle.Data;
 using LSCore;
 using LSCore.Async;
-using LSCore.Extensions;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 
@@ -13,11 +12,11 @@ namespace Battle
     public partial class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
         private const int MaxEnemyCount = 100;
-        [SerializeField, Id("Enemies")] private Id[] enemyIds;
         [SerializeField] private UnitsById enemies;
-        private List<OnOffPool<Unit>> pools = new();
+        private Dictionary<Id, OnOffPool<Unit>> pools = new();
         private Camera cam;
         private Tween spawnLoopTween;
+        private RaidByHeroRank raids;
         private static Rect cameraRect;
         
         protected override void OnBegin()
@@ -31,11 +30,10 @@ namespace Battle
                 var pool = CreatePool(unit);
                 pool.Got += OnGot;
                 SubscribeOnChange(pool);
-                pools.Add(pool);
+                pools.Add(unit.Id, pool);
             }
             
             Spawn();
-            spawnLoopTween = Wait.InfinityLoop(0.2f, Spawn);
         }
         
         protected override void OnStop()
@@ -47,8 +45,10 @@ namespace Battle
         {
             if (UnitCount < MaxEnemyCount)
             {
-                pools.Random().Get();
+                pools[BattleWorld.GetEnemyId()].Get();
             }
+            
+            spawnLoopTween = Wait.Delay(BattleWorld.GetSpawnFrequency(), Spawn);
         }
                 
         private void OnGot(Unit unit)

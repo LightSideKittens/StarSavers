@@ -3,33 +3,20 @@ using BeatHeroes.Interfaces;
 using DG.Tweening;
 using Battle.Data;
 using LSCore;
-using LSCore.AddressablesModule.AssetReferences;
-using LSCore.Extensions;
 using UnityEngine;
 
 namespace Battle
 {
-    public class BattleWorld : ServiceManager
+    public class BattleWorld : ServiceManager<BattleWorld>
     {
         [SerializeField] private Effectors effectors;
-        [SerializeField] private Camera camera;
-        [SerializeField] private Locations locations;
-        private Location location;
-
+        [SerializeField] private RaidByHeroRank raids;
+        public static RaidByHeroRank Raids => Instance.raids;
+        public static float TimeSinceStart { get; private set; }
+        
         private void Start()
         {
             BaseInitializer.Initialize(OnInitialize);
-        }
-
-        private void InstatiateLocation()
-        {
-            var locationIndex = IListExtensions.ClosestBinarySearch(
-                index => locations[index].maxLevel,
-                locations.Length,
-                PlayerData.Config.Level);
-            var locationData = locations[locationIndex];
-            location = locationData.locationRef.Load();
-            location.Generate();
         }
         
         private void OnInitialize()
@@ -41,27 +28,34 @@ namespace Battle
         private void Init()
         {
             effectors.Init();
-            InstatiateLocation();
+            raids.Init();
             PlayerWorld.Begin();
             OpponentWorld.Begin();
-            MatchResultWindow.Showing += Unsubscribe;
             BattleWindow.Show();
+            TimeSinceStart = 0;
+            World.Updated += UpdateTime;
+        }
+
+        private static void UpdateTime()
+        {
+            TimeSinceStart += Time.deltaTime;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
             DOTween.KillAll();
+            World.Updated -= UpdateTime;
         }
 
-        private void Unsubscribe()
+        public static Id GetEnemyId()
         {
-            MatchResultWindow.Showing -= Unsubscribe;
+            return Raids.Current.GetEnemyId((int)TimeSinceStart);
         }
 
-        private void OnApplicationQuit()
+        public static float GetSpawnFrequency()
         {
-            Unsubscribe();
+            return Raids.Current.GetSpawnFrequency((int)TimeSinceStart);
         }
     }
 }
