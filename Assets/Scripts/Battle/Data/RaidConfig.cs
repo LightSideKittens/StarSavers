@@ -26,7 +26,29 @@ namespace Battle.Data
         [field: SerializeField] public int Time { get; private set; } = 300;
         [SerializeField] private LocationRef locationRef;
         [SerializeField] private EnemyData[] enemyData;
-        [SerializeField] [CustomValueDrawer("Editor_Draw")] private AnimationCurve spawnFrequency;
+        
+        [CustomValueDrawer("Editor_Draw")] 
+        [SerializeField] private AnimationCurve spawnFrequency;
+        
+        [field: SerializeField] public int BreakDuration { get; private set; } = 15;
+        [SerializeField] private int[] waveDurations;
+
+        public int CurrentWave
+        {
+            get => currentWave;
+            set
+            {
+                if (value >= waveDurations.Length)
+                {
+                    currentWave = waveDurations.Length - 1;
+                    return;
+                }
+                
+                currentWave = value;
+            }
+        }
+        
+        private int currentWave;
         private List<float> possibilities;
         
         public void Init()
@@ -44,6 +66,11 @@ namespace Battle.Data
         {
             var factor = (float)time / Time;
             return spawnFrequency.Evaluate(factor);
+        }
+
+        public int GetWaveDuration()
+        {
+            return waveDurations[currentWave];
         }
         
         public Id GetEnemyId(int time)

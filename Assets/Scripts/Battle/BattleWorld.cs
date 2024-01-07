@@ -3,6 +3,7 @@ using BeatHeroes.Interfaces;
 using DG.Tweening;
 using Battle.Data;
 using LSCore;
+using LSCore.Async;
 using UnityEngine;
 
 namespace Battle
@@ -33,7 +34,7 @@ namespace Battle
             OpponentWorld.Begin();
             BattleWindow.Show();
             TimeSinceStart = 0;
-            World.Updated += UpdateTime;
+            StartWave();
         }
 
         private static void UpdateTime()
@@ -46,8 +47,38 @@ namespace Battle
             base.OnDestroy();
             DOTween.KillAll();
             World.Updated -= UpdateTime;
+            OpponentWorld.AllUnitsDestroyed -= StartBreak;
         }
 
+        private static void StartWave()
+        {
+            World.Updated += UpdateTime;
+            OpponentWorld.Continue();
+            Wait.Delay(Raids.Current.GetWaveDuration(), PauseWave);
+            Raids.Current.CurrentWave++;
+        }
+
+        private static void PauseWave()
+        {
+            World.Updated -= UpdateTime;
+            OpponentWorld.Pause();
+                
+            if (OpponentWorld.UnitCount == 0)
+            {
+                StartBreak();
+            }
+            else
+            {
+                OpponentWorld.AllUnitsDestroyed += StartBreak;
+            }
+        }
+
+        private static void StartBreak()
+        {
+            OpponentWorld.AllUnitsDestroyed -= StartBreak;
+            Wait.Delay(Raids.Current.BreakDuration, StartWave);
+        }
+        
         public static Id GetEnemyId()
         {
             return Raids.Current.GetEnemyId((int)TimeSinceStart);

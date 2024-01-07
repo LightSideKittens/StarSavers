@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using DG.Tweening;
 using Battle.Data;
@@ -13,6 +14,7 @@ namespace Battle
     {
         private const int MaxEnemyCount = 100;
         [SerializeField] private UnitsById enemies;
+        
         private Dictionary<Id, OnOffPool<Unit>> pools = new();
         private Camera cam;
         private Tween spawnLoopTween;
@@ -32,10 +34,8 @@ namespace Battle
                 SubscribeOnChange(pool);
                 pools.Add(unit.Id, pool);
             }
-            
-            Spawn();
         }
-        
+
         protected override void OnStop()
         {
             spawnLoopTween.Kill();
@@ -56,6 +56,9 @@ namespace Battle
             cameraRect.center = cam.transform.position;
             unit.transform.position = cameraRect.RandomPointAroundRect(5);
         }
+        
+        public static void Continue() => Instance.Spawn();
+        public static void Pause() => Instance.spawnLoopTween.Kill();
 
         [Conditional("DEBUG")]
         public static void SubscribeOnChange(OnOffPool<Unit> pool)

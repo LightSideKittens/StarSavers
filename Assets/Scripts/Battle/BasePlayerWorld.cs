@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Battle.Data;
 using LSCore;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace Battle
 {
     public abstract class BasePlayerWorld<T> : SingleService<T> where T : BasePlayerWorld<T>
     {
+        public static event Action AllUnitsDestroyed;
+        
         private static HashSet<Unit> activeUnits;
         public static int UnitCount => activeUnits.Count;
         public static IEnumerable<Unit> ActiveUnits => activeUnits;
@@ -74,7 +77,15 @@ namespace Battle
         }
 
         private static void OnUnitGot(Unit unit) => activeUnits.Add(unit);
-        private static void OnUnitReleased(Unit unit) => activeUnits.Remove(unit);
+        private static void OnUnitReleased(Unit unit)
+        {
+            activeUnits.Remove(unit);
+
+            if (activeUnits.Count == 0)
+            {
+                AllUnitsDestroyed?.Invoke();
+            }
+        }
 
         private void Update()
         {
