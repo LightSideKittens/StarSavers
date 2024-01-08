@@ -62,6 +62,7 @@ namespace Battle.Data
             InstantiateLocation();
             possibilities.Clear();
             enemyById.Clear();
+            currentWave = 0;
             
             for (int i = 0; i < enemyData.Length; i++)
             {

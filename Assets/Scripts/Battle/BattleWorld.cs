@@ -14,7 +14,8 @@ namespace Battle
         [SerializeField] private Effectors effectors;
         [SerializeField] private RaidByHeroRank raids;
         public static RaidConfig Raid => Instance.raids.Current;
-        public static float TimeSinceStart { get; private set; }
+        private static float timeSinceStart;
+        private static int currentWave;
         
         private void Start()
         {
@@ -36,13 +37,14 @@ namespace Battle
             PlayerWorld.Begin();
             OpponentWorld.Begin();
             BattleWindow.Show();
-            TimeSinceStart = 0;
+            timeSinceStart = 0;
+            currentWave = 0;
             StartWave();
         }
 
         private static void UpdateTime()
         {
-            TimeSinceStart += Time.deltaTime;
+            timeSinceStart += Time.deltaTime;
         }
 
         protected override void OnDestroy()
@@ -58,15 +60,28 @@ namespace Battle
         {
             World.Updated += UpdateTime;
             OpponentWorld.Continue();
-            Wait.Delay(Raid.GetWaveDuration(), PauseWave);
+
+            currentWave++;
+            timeTextPrefix = $"Wave {currentWave}";
+            BattleWindow.SplashText($"WAVE {currentWave}");
+            Wait.TimerBack(Raid.GetWaveDuration(), UpdateTimeText).OnComplete(PauseWave);
+
             Raid.CurrentWave++;
         }
 
+        private static string timeTextPrefix;
+        private static int currentTime;
+        private static void UpdateTimeText(float time)
+        {
+            currentTime = (int)time;
+            BattleWindow.StatusText.text = $"{timeTextPrefix}: {currentTime}s\nEnemy Count: {OpponentWorld.UnitCount}";
+        }
+        
         private static void PauseWave()
         {
             World.Updated -= UpdateTime;
             OpponentWorld.Pause();
-                
+            
             if (OpponentWorld.UnitCount == 0)
             {
                 StartBreak();
@@ -80,11 +95,17 @@ namespace Battle
         private static void StartBreak()
         {
             OpponentWorld.AllUnitsDestroyed -= StartBreak;
-            Wait.Delay(Raid.BreakDuration, StartWave);
+            timeTextPrefix = "Break";
+            Wait.TimerBack(Raid.BreakDuration, UpdateTimeText).OnComplete(StartWave);
         }
         
-        public static Id GetEnemyId() => Raid.GetEnemyId((int)TimeSinceStart);
-        private static void OnUnitKilled(Unit unit) => Raid.OnEnemyKilled(unit.Id);
-        public static float GetSpawnFrequency() => Raid.GetSpawnFrequency((int)TimeSinceStart);
+        public static Id GetEnemyId() => Raid.GetEnemyId((int)timeSinceStart);
+        private static void OnUnitKilled(Unit unit)
+        {
+            UpdateTimeText(currentTime);
+            Raid.OnEnemyKilled(unit.Id);
+        }
+
+        public static float GetSpawnFrequency() => Raid.GetSpawnFrequency((int)timeSinceStart);
     }
 }
