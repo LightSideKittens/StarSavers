@@ -16,6 +16,7 @@ namespace BeatHeroes
     {
         [SerializeField] private LevelsManager heroesLevelsManager;
         [SerializeField] private LevelsManager enemiesLevelsManager;
+        [SerializeField] private ExchangeTable exchangeTable;
 
         [Id("Heroes")] [SerializeField] private Id[] ids;
         [Id("Enemies")] [SerializeField] private Id[] enemyIds;
@@ -47,6 +48,7 @@ namespace BeatHeroes
             
             heroesLevelsManager.Init();
             enemiesLevelsManager.Init();
+            exchangeTable.Init();
             const string ftKey = "Give funds and hero";
             
             if (FirstTime.IsNot(ftKey, out var pass))

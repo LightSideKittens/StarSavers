@@ -1,9 +1,9 @@
 ﻿using DG.Tweening;
 using LSCore;
-using LSCore.Extensions.Unity;
+using LSCore.AnimationsModule;
+using LSCore.AnimationsModule.Animations.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Battle.Windows
 {
@@ -11,8 +11,11 @@ namespace Battle.Windows
     {
         [SerializeField] private GameObject winState;
         [SerializeField] private GameObject loseState;
-        [SerializeField] private Button homeButton;
-
+        [SerializeField] private LSButton homeButton;
+        [SerializeField] private AnimSequencer fundTextAnim;
+        [SerializeField] [CurrencyId] private Id fundFrom;
+        [SerializeField] [CurrencyId] private Id fundTo;
+        
         public override int SortingOrder => 10;
 
         public static void Show(bool isWin)
@@ -29,7 +32,19 @@ namespace Battle.Windows
         {
             winState.SetActive(isWin);
             loseState.SetActive(!isWin);
-            homeButton.AddListener(OnHomeButton);
+            homeButton.Clicked += OnHomeButton;
+            
+            var fromAmount = Funds.GetValue(fundFrom);
+            var toAmount = ExchangeTable.Convert(fundFrom, fundTo, fromAmount);
+            Funds.Earn(fundTo, toAmount);
+            
+            var from = fundTextAnim.GetAnim<TextNumberAnim>("from");
+            from.startValue = fromAmount;
+            from.endValue = 0;
+            var to = fundTextAnim.GetAnim<TextNumberAnim>("to");
+            to.startValue = 0;
+            to.endValue = toAmount;
+            fundTextAnim.Animate();
         }
 
         private void OnHomeButton()
