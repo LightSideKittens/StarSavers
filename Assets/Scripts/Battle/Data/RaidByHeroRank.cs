@@ -18,10 +18,11 @@ namespace Battle.Data
         
         public void Init()
         {
+            PlayerData.TryGetSelectedHeroRank(out var rank);
             var index = IListExtensions.ClosestBinarySearch(
                 index => data[index].maxRank,
                 data.Length,
-                PlayerData.Config.Level);
+                rank);
             
             Current = data[index].raidConfig;
             Current.Init();

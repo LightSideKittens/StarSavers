@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Battle.Data;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using LSCore;
@@ -17,7 +19,7 @@ namespace BeatHeroes
         [SerializeField] private LevelsManager heroesLevelsManager;
         [SerializeField] private LevelsManager enemiesLevelsManager;
         [SerializeField] private ExchangeTable exchangeTable;
-
+        
         [Id("Heroes")] [SerializeField] private Id[] ids;
         [Id("Enemies")] [SerializeField] private Id[] enemyIds;
         [OdinSerialize] private Funds funds;
@@ -45,6 +47,13 @@ namespace BeatHeroes
             Application.targetFrameRate = 60;
 #endif
             DOTween.SetTweensCapacity(200, 200);
+
+            Id selectedHeroId = PlayerData.Config.SelectedHero;
+            if (!heroesLevelsManager.Group.Contains(selectedHeroId))
+            {
+                selectedHeroId = heroesLevelsManager.Group.First();
+                PlayerData.Config.SelectedHero = selectedHeroId;
+            }
             
             heroesLevelsManager.Init();
             enemiesLevelsManager.Init();
@@ -66,10 +75,13 @@ namespace BeatHeroes
             
                 pass();
             }
+            else if (!UnlockedLevels.TryGetLevel(selectedHeroId, out var level))
+            {
+                heroesLevelsManager.SetLevel(selectedHeroId, 1);
+            }
             
             onInit();
         }
-        
         
         
         [SerializeField, HideInInspector] private SerializationData serializationData;
