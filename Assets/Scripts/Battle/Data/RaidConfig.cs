@@ -70,7 +70,7 @@ namespace Battle.Data
                 possibilities.Add(default);
                 enemyById.Add(data.id, data);
                 levelsManager.SetLevel(data.id, data.level);
-                Funds.Clear(data.reward.id);
+                Funds.Clear(data.reward.Id);
             }
         }
 
