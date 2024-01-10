@@ -13,8 +13,8 @@ namespace Battle.Windows
         [SerializeField] private GameObject loseState;
         [SerializeField] private LSButton homeButton;
         [SerializeField] private AnimSequencer fundTextAnim;
-        [SerializeField] [CurrencyId] private Id fundFrom;
-        [SerializeField] [CurrencyId] private Id fundTo;
+        [SerializeField] [Id(typeof(CurrencyIdGroup))] private Id fundFrom;
+        [SerializeField] [Id(typeof(CurrencyIdGroup))] private Id fundTo;
         
         public override int SortingOrder => 10;
 
