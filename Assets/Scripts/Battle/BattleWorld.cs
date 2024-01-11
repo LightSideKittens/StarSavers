@@ -24,14 +24,14 @@ namespace Battle
         
         private void OnInitialize()
         {
-            Init();
+            Setup();
             enabled = true;
         }
 
-        private void Init()
+        private void Setup()
         {
             effectors.Init();
-            raids.Init();
+            raids.Setup();
 
             Unit.Killed += OnUnitKilled;
             PlayerWorld.Begin();

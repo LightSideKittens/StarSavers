@@ -57,7 +57,7 @@ namespace Battle.Data
         private readonly List<float> possibilities = new();
         private readonly Dictionary<Id, EnemyData> enemyById = new();
         
-        public void Init()
+        public void Setup()
         {
             InstantiateLocation();
             possibilities.Clear();

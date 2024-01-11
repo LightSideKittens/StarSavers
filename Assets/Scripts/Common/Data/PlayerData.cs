@@ -11,5 +11,6 @@ namespace Battle.Data
 
         public static bool TryGetRank(string heroId, out int rank) => Config.RankByHero.TryGetValue(heroId, out rank);
         public static bool TryGetSelectedHeroRank(out int rank) => Config.RankByHero.TryGetValue(Config.SelectedHero, out rank);
+        public static bool IsSelected(string id) => Config.SelectedHero == id;
     }
 }

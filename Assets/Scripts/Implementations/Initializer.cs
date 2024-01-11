@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Battle.Data;
+using BeatHeroes.Data;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using LSCore;
@@ -19,6 +20,7 @@ namespace BeatHeroes
         [SerializeField] private LevelsManager heroesLevelsManager;
         [SerializeField] private LevelsManager enemiesLevelsManager;
         [SerializeField] private ExchangeTable exchangeTable;
+        [SerializeField] private HeroRankIconsConfigs heroRankIconsConfigs;
         
         [Id("Heroes")] [SerializeField] private Id[] ids;
         [Id("Enemies")] [SerializeField] private Id[] enemyIds;
@@ -58,6 +60,7 @@ namespace BeatHeroes
             heroesLevelsManager.Init();
             enemiesLevelsManager.Init();
             exchangeTable.Init();
+            heroRankIconsConfigs.Init();
             const string ftKey = "Give funds and hero";
             
             if (FirstTime.IsNot(ftKey, out var pass))
