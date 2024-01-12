@@ -13,11 +13,7 @@ namespace BeatHeroes.Windows
         [SerializeField] private RectTransform back;
         [SerializeReference] private Tab.BaseData[] tabs;
         private Tab.Controller tabController;
-
-        protected override void OnShowing()
-        {
-            MainWindow.Hide();
-        }
+        protected override bool NeedHidePrevious => false;
 
         protected override void Init()
         {
@@ -30,12 +26,6 @@ namespace BeatHeroes.Windows
         private void OnEnable()
         {
             Wait.Frames(1, () => tabController?.Open(tabs[0]));
-        }
-
-        protected override void OnBackButton()
-        {
-            base.OnBackButton();
-            MainWindow.Show();
         }
 
         private void OnTabOpen(Tab tab) 

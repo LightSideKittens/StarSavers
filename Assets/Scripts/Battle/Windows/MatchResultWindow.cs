@@ -11,7 +11,6 @@ namespace Battle.Windows
     {
         [SerializeField] private GameObject winState;
         [SerializeField] private GameObject loseState;
-        [SerializeField] private LSButton homeButton;
         [SerializeField] private AnimSequencer fundTextAnim;
         [SerializeField] [Id(typeof(CurrencyIdGroup))] private Id fundFrom;
         [SerializeField] [Id(typeof(CurrencyIdGroup))] private Id fundTo;
@@ -32,7 +31,6 @@ namespace Battle.Windows
         {
             winState.SetActive(isWin);
             loseState.SetActive(!isWin);
-            homeButton.Clicked += OnHomeButton;
             
             var fromAmount = Funds.GetValue(fundFrom);
             var toAmount = ExchangeTable.Convert(fundFrom, fundTo, fromAmount);

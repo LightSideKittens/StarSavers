@@ -8,8 +8,10 @@ namespace BeatHeroes.Windows
         [SerializeField] private RectTransform back;
         [SerializeReference] private Tab.BaseData buttonsTab;
         [SerializeReference] private Tab.BaseData[] tabs;
-        
+        [SerializeField] private LSButton shopButton;
         private Tab.Controller tabController;
+        protected override bool NeedHidePrevious => false;
+        protected override bool NeedShowPrevious => true;
 
         protected override void Init()
         {
@@ -18,13 +20,14 @@ namespace BeatHeroes.Windows
             tabController.OnOpen(OnTabOpen);
             tabController.Add(buttonsTab);
             tabController.Register(tabs);
+            shopButton.Clicked += ShopWindow.Show;
         }
 
         private void OnTabOpen(Tab tab)
         {
             if (tab == buttonsTab.tabPrefab)
             {
-                BackButton.Clicked = Hide;
+                BackButton.Clicked = OnBackButton;
             }
             else
             {

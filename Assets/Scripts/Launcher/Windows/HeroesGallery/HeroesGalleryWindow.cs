@@ -27,17 +27,5 @@ namespace BeatHeroes.Windows
                 Instantiate(slot, parent);
             }
         }
-
-        protected override void OnShowing()
-        {
-            base.OnShowing();
-            MainWindow.Hide();
-        }
-
-        protected override void OnBackButton()
-        {
-            base.OnBackButton();
-            MainWindow.Show();
-        }
     }
 }

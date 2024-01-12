@@ -27,6 +27,12 @@ namespace BeatHeroes.Windows
             battleButton.Clicked += LoadBattle;
         }
 
+        protected override void OnShowing()
+        {
+            CurrentShowedWindowIndex = 0;
+            CurrentShowingWindowIndex = 0;
+        }
+
         private static void LoadBattle() => SceneManager.LoadScene(1);
     }
 }

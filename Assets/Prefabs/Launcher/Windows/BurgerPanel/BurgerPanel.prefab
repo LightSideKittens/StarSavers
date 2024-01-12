@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0.2
+  <HomeButton>k__BackingField: {fileID: 0}
   <BackButton>k__BackingField: {fileID: 1779978662171654682}
   back: {fileID: 1598469234453208925}
   buttonsTab:
@@ -153,6 +154,7 @@ MonoBehaviour:
   tabs:
   - rid: 4335190311982858245
   - rid: 4335190311982858246
+  shopButton: {fileID: 5411850868359842459}
   references:
     version: 2
     RefIds:
@@ -754,6 +756,7 @@ MonoBehaviour:
   angle: 45
   gradientStart: 0
   gradientEnd: 0
+  combineFilledWithSliced: 0
   anim:
     isDisabled: 1
 --- !u!1 &8588077436251265193
@@ -1139,6 +1142,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}
+--- !u!114 &5411850868359842459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 744263830359343244, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}
+  m_PrefabInstance: {fileID: 4705955618379778583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6708c6231b4c7fbe083ad45b3a9862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9142949008396525969 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4588233560610827142, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}

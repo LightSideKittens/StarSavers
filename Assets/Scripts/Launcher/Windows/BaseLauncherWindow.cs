@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using LSCore;
+using LSCore.Extensions.Unity;
 using UnityEngine;
 
 namespace BeatHeroes.Windows
@@ -16,6 +17,10 @@ namespace BeatHeroes.Windows
         protected override void Init()
         {
             base.Init();
+            var size = RectTransform.rect.size;
+            RectTransform.anchorMin = LSVector2.half;
+            RectTransform.anchorMax = LSVector2.half;
+            RectTransform.sizeDelta = size;
             startPivot = RectTransform.pivot;
         }
 
@@ -30,7 +35,7 @@ namespace BeatHeroes.Windows
             base.OnShowed();
             MainWindow.CurrentShowedWindowIndex = Internal_Index;
         }
-
+        
         protected override Tween ShowAnim
         {
             get
