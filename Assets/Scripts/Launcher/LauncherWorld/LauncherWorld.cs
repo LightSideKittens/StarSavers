@@ -15,7 +15,7 @@ namespace BeatHeroes.Launcher
         
         private void Init()
         {
-            WindowsData.SetHome<MainWindow>();
+            MainWindow.AsHome();
             MainWindow.Show();
         }
 
