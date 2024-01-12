@@ -21,6 +21,7 @@ namespace BeatHeroes
         [SerializeField] private LevelsManager enemiesLevelsManager;
         [SerializeField] private ExchangeTable exchangeTable;
         [SerializeField] private HeroRankIconsConfigs heroRankIconsConfigs;
+        [SerializeField] private Palette palette;
         
         [Id("Heroes")] [SerializeField] private Id[] ids;
         [Id("Enemies")] [SerializeField] private Id[] enemyIds;
@@ -61,6 +62,8 @@ namespace BeatHeroes
             enemiesLevelsManager.Init();
             exchangeTable.Init();
             heroRankIconsConfigs.Init();
+            palette.Init();
+            
             const string ftKey = "Give funds and hero";
             
             if (FirstTime.IsNot(ftKey, out var pass))
