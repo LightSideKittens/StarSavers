@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 8660671769077101938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8408513571808267312
@@ -46,87 +47,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindHeroComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.SelfDestroyAttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0.1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 7
-      Data: 5|Battle.Data.Components.HitBox.ColiderHitBoxComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 11400000, guid: a63ed3ff636fbb44fbaf166610abf8b8, type: 2}
+  moveComponent:
+    rid: 6306143700861321531
+  findTargetComponent:
+    rid: 6306143700861321566
+  attackComponent:
+    rid: 6306143700861321567
+  healthComponent:
+    rid: 6306143700861321534
+  hitBoxComponent:
+    rid: 6306143700861321535
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306143700861321531
+      type: {class: MoveComponent, ns: Battle.Data.Components, asm: Battle}
+      data: 
+    - rid: 6306143700861321534
+      type: {class: HealthComponent, ns: Battle.Data.Components, asm: Battle}
+      data:
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 2}
+        visualRoot: {fileID: 8660671769077101938}
+        renderer: {fileID: 0}
+    - rid: 6306143700861321535
+      type: {class: ColiderHitBoxComponent, ns: Battle.Data.Components.HitBox, asm: Battle}
+      data: 
+    - rid: 6306143700861321566
+      type: {class: FindHeroComponent, ns: Battle.Data.Components, asm: Battle}
+      data:
+        providers: []
+    - rid: 6306143700861321567
+      type: {class: SelfDestroyAttackComponent, ns: Battle.Data.Components, asm: Battle}
+      data:
+        duration: 0.1
 --- !u!50 &4573317970349082657
 Rigidbody2D:
   serializedVersion: 4
@@ -189,3 +145,34 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!1 &1202053651975538802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8660671769077101938}
+  m_Layer: 6
+  m_Name: VisualRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8660671769077101938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202053651975538802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 695009584646594854}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

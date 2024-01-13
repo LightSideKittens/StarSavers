@@ -19,11 +19,6 @@ namespace Animatable
         internal static HealthBar HealthBar => Instance.healthBar;
         internal static HealthBar OpponentHealthBar => Instance.opponentHealthBar;
         internal static Loader Loader => Instance.loader;
-
-        static AnimatableCanvas()
-        {
-            
-        }
         
         protected override void Init()
         {
@@ -31,9 +26,15 @@ namespace Animatable
             DontDestroyOnLoad(this);
             animText.Init();
             canvas = GetComponent<Canvas>();
-            SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
             canvas.worldCamera = Camera.main;
+            canvas.sortingOrder = 10;
+        }
+
+        protected override void DeInit()
+        {
+            base.DeInit();
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

@@ -2,6 +2,7 @@
 using Battle.Data.Components;
 using Battle.Data.Components.HitBox;
 using Sirenix.Serialization;
+using UnityEngine;
 using static Battle.ObjectsByTransfroms<Battle.Data.Unit>;
 
 namespace Battle.Data
@@ -11,11 +12,11 @@ namespace Battle.Data
         public static event Action<Unit> Killed;
         public event Action Destroyed;
         
-        [OdinSerialize] private MoveComponent moveComponent = new();
-        [OdinSerialize] private FindTargetComponent findTargetComponent = new ();
-        [OdinSerialize] private AttackComponent attackComponent = new();
-        [OdinSerialize] private HealthComponent healthComponent = new();
-        [OdinSerialize] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
+        [SerializeReference] private MoveComponent moveComponent = new();
+        [SerializeReference] private FindTargetComponent findTargetComponent = new ();
+        [SerializeReference] private AttackComponent attackComponent = new();
+        [SerializeReference] private HealthComponent healthComponent = new();
+        [SerializeReference] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
         
         private float radius;
 
@@ -25,7 +26,7 @@ namespace Battle.Data
             Add(transform, this);
             
             hitBoxComponent.Init(transform);
-            findTargetComponent.Init(transform, IsOpponent);
+            findTargetComponent.Init(transform);
             moveComponent.Init(transform, findTargetComponent);
             healthComponent.Init(transform, IsOpponent);
             attackComponent.Init(transform, findTargetComponent);

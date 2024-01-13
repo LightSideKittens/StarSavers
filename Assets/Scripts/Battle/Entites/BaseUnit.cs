@@ -8,7 +8,7 @@ using static Battle.ObjectsByTransfroms<Battle.Data.BaseUnit>;
 
 namespace Battle.Data
 {
-    public class BaseUnit : SerializedMonoBehaviour
+    public class BaseUnit : MonoBehaviour
     {
 #if UNITY_EDITOR
         protected IEnumerable<Id> Ids => manager.Group;

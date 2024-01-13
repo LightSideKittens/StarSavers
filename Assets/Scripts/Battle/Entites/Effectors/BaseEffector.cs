@@ -36,7 +36,7 @@ namespace Battle.Data
             radiusRenderer.sprite = circleSprite;
             var gameObject = radiusRenderer.gameObject;
             gameObject.SetActive(false);
-            findTargetComponent.Init(gameObject.transform, !NeedFindOpponent);
+            findTargetComponent.Init(gameObject.transform);
             OnInit();
         }
 

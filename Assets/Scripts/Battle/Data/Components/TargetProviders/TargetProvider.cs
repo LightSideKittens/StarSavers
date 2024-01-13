@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Battle.Data.Components.TargetProviders
 {
+    [Serializable]
     internal abstract class TargetProvider
     {
         [NonSerialized] public FindTargetComponent findTargetComponent;

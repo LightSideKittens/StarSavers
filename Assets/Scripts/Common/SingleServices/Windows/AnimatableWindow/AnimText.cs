@@ -30,7 +30,7 @@ namespace Animatable
             var text = template.pool.Get();
             var textTransfrom = text.transform;
             textTransfrom.SetParent(SpawnPoint, true);
-            textTransfrom.localPosition = pos;
+            textTransfrom.position = pos;
             textTransfrom.localScale = scale;
             text.text = message;
             var rect = (RectTransform) text.transform;
@@ -38,7 +38,7 @@ namespace Animatable
             rect.localScale = Vector3.zero;
             
             var sequence = DOTween.Sequence();
-            sequence.Insert(0, rect.DOAnchorPos(rect.anchoredPosition + template.animOffset, template.duration * 1.5f));
+            sequence.Insert(0, rect.DOMove(rect.position + (Vector3)template.animOffset, template.duration * 1.5f));
             sequence.Insert(0,rect.DOScale(1, template.duration * 0.2f));
             sequence.Insert(0,text.DOFade(0, template.duration).SetEase(Ease.InExpo));
             sequence.OnComplete(() => template.pool.Release(text));

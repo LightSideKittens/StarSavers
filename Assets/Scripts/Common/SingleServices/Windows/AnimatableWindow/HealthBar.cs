@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 using static Animatable.AnimatableCanvas;
 using Object = UnityEngine.Object;
 
@@ -9,21 +8,21 @@ namespace Animatable
     [Serializable]
     public class HealthBar
     {
-        [SerializeField] public Slider slider;
+        [SerializeField] public LSCore.HealthBar mainBar;
         private Transform target;
         private Vector3 offset;
 
         public void Reset()
         {
-            slider.gameObject.SetActive(true);
-            slider.value = slider.maxValue;
+            mainBar.gameObject.SetActive(true);
+            mainBar.value = mainBar.maxValue;
         }
         
         public static HealthBar Create(float maxValue, Transform target, Vector2 offset, Vector2 scale, bool isOpponent)
         {
             var template = isOpponent ? OpponentHealthBar : AnimatableCanvas.HealthBar;
             
-            var slider = Object.Instantiate(template.slider);
+            var slider = Object.Instantiate(template.mainBar);
             var sliderTransform = slider.transform;
             sliderTransform.SetParent(SpawnPoint, false);
             sliderTransform.localScale = scale;
@@ -34,23 +33,23 @@ namespace Animatable
             {
                 target = target,
                 offset = offset,
-                slider = slider,
+                mainBar = slider,
             };
         }
 
         public void Disable()
         { 
-            slider.gameObject.SetActive(false);
+            mainBar.gameObject.SetActive(false);
         }
 
         public void Update()
         {
-            slider.transform.localPosition = GetLocalPosition(target.position + offset);
+            mainBar.transform.localPosition = GetLocalPosition(target.position + offset);
         }
 
         public void SetValue(float value)
         {
-            slider.value = value;
+            mainBar.value = value;
         }
     }
 }

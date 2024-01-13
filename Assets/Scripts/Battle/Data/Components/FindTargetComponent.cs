@@ -9,17 +9,15 @@ namespace Battle.Data.Components
     [Serializable]
     internal class FindTargetComponent
     {
-        [NonSerialized] public bool isOpponent;
-        [OdinSerialize] private List<TargetProvider> providers = new() {new AllEnemies()};
+        [SerializeReference] private List<TargetProvider> providers;
         private Transform lastTarget;
         private Transform transform;
         private int frame;
         private bool IsFound => lastTarget != null;
 
-        public void Init(Transform transform, bool isOpponent)
+        public void Init(Transform transform)
         {
             this.transform = transform;
-            this.isOpponent = isOpponent;
             
             for (int i = 0; i < providers.Count; i++)
             {

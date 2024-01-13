@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 3.3591099, y: 3.3591099, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 3064913095866676413}
+  m_Father: {fileID: 6565415541246353641}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2275825102263567163
 SpriteRenderer:
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 273cf330975c7c943a3947d6f336520a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,19 +141,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6750239444755058063, guid: 2edf4044e5a849b459b7317da8f64735, type: 3}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.Prefab
+      propertyPath: managedReferences[6306143700861321332].renderer
       value: 
-      objectReference: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      objectReference: {fileID: 2275825102263567163}
+    - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[6306143700861321534].renderer
+      value: 
+      objectReference: {fileID: 2275825102263567163}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 695009584646594854, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2420265658701712677}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
---- !u!4 &3064913095866676413 stripped
+--- !u!4 &6565415541246353641 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 695009584646594854, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
   m_PrefabInstance: {fileID: 2534939108120810907}
   m_PrefabAsset: {fileID: 0}
