@@ -45,7 +45,7 @@ namespace Battle.Windows
             fundTextAnim.Animate();
         }
 
-        private void OnHomeButton()
+        protected override void OnHomeButton()
         {
             SceneManager.LoadScene(0);
         }

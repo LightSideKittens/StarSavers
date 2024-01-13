@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using Battle.Data;
 using LSCore;
@@ -34,10 +32,13 @@ namespace Battle
                 SubscribeOnChange(pool);
                 pools.Add(unit.Id, pool);
             }
+            
+            AddDebugData();
         }
 
         protected override void OnStop()
         {
+            RemoveDebugData();
             spawnLoopTween.Kill();
         }
 
@@ -60,16 +61,6 @@ namespace Battle
         public static void Continue() => Instance.Spawn();
         public static void Pause() => Instance.spawnLoopTween.Kill();
 
-        [Conditional("DEBUG")]
-        public static void SubscribeOnChange(OnOffPool<Unit> pool)
-        {
-#if DEBUG
-            pool.Got += OnChange;
-            pool.Released += OnChange;
-            pool.Destroyed += OnChange;
-#endif
-        }
-
         private void OnDrawGizmosSelected()
         {
             var oldColor = Gizmos.color;
@@ -77,5 +68,9 @@ namespace Battle
             Gizmos.DrawCube(cameraRect.center, cameraRect.size);
             Gizmos.color = oldColor;
         }
+
+        static partial void SubscribeOnChange(OnOffPool<Unit> pool);
+        static partial void AddDebugData();
+        static partial void RemoveDebugData();
     }
 }

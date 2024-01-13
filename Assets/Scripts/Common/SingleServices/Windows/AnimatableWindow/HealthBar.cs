@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using static Animatable.AnimatableWindow;
+using static Animatable.AnimatableCanvas;
 using Object = UnityEngine.Object;
 
 namespace Animatable
@@ -21,7 +21,7 @@ namespace Animatable
         
         public static HealthBar Create(float maxValue, Transform target, Vector2 offset, Vector2 scale, bool isOpponent)
         {
-            var template = isOpponent ? OpponentHealthBar : AnimatableWindow.HealthBar;
+            var template = isOpponent ? OpponentHealthBar : AnimatableCanvas.HealthBar;
             
             var slider = Object.Instantiate(template.slider);
             var sliderTransform = slider.transform;

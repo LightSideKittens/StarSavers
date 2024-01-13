@@ -28,10 +28,12 @@ namespace BeatHeroes.Windows
             Wait.Frames(1, () => tabController?.Open(tabs[0]));
         }
 
-        private void OnTabOpen(Tab tab) 
+        private void OnTabOpen(Tab tab)
         {
+            var clickable = tabController.CurrentData.Clickable;
+            clickable.Clicked += BurgerPanel.Show;
             scroller.content = tab.GetComponent<RectTransform>();
-            var buttonTransform = tabController.CurrentData.Clickable.Transform;
+            var buttonTransform = clickable.Transform;
             selectedTabPointer.position = buttonTransform.position;
         }
     }

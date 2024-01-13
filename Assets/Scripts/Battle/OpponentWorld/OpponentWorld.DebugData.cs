@@ -1,24 +1,34 @@
 ﻿#if DEBUG
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Battle.Data;
-using UnityEngine;
+using LSCore;
 using UnityEngine.Scripting;
 
 namespace Battle
 {
     public partial class OpponentWorld
     {
-        public class DebugData : INotifyPropertyChanged
+        static partial void SubscribeOnChange(OnOffPool<Unit> pool)
         {
-            private static readonly DebugData data = new();
-
-            [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-            public static void OnStartup()
-            {
-                SRDebug.Instance.AddOptionContainer(data);
-            }
+            pool.Got += OnChange;
+            pool.Released += OnChange;
+            pool.Destroyed += OnChange;
+        }
+        
+        static partial void AddDebugData()
+        {
+            SRDebug.Instance.AddOptionContainer(DebugData.data);
+        }
+        
+        static partial void RemoveDebugData()
+        {
+            SRDebug.Instance.RemoveOptionContainer(DebugData.data);
+        }
+        
+        private class DebugData : INotifyPropertyChanged
+        {
+            public static readonly DebugData data = new();
 
             public static void OnChange() => data.OnPropertyChanged(nameof(EnemyCount));
 

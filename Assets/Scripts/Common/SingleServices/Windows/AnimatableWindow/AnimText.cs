@@ -3,7 +3,7 @@ using DG.Tweening;
 using LSCore;
 using TMPro;
 using UnityEngine;
-using static Animatable.AnimatableWindow;
+using static Animatable.AnimatableCanvas;
 
 namespace Animatable
 {
@@ -19,7 +19,7 @@ namespace Animatable
 
         public static AnimText Create(string message, Vector2 pos = default, Vector2 offset = default, bool fromWorldSpace = false)
         {
-            var template = AnimatableWindow.AnimText;
+            var template = AnimatableCanvas.AnimText;
 
             if (fromWorldSpace)
             {
@@ -34,12 +34,14 @@ namespace Animatable
             textTransfrom.localScale = scale;
             text.text = message;
             var rect = (RectTransform) text.transform;
-            rect.DOAnchorPos(rect.anchoredPosition + template.animOffset, template.duration);
             text.alpha = 1;
-            text.DOFade(0, template.duration).OnComplete(() =>
-            {
-                template.pool.Release(text);
-            });
+            rect.localScale = Vector3.zero;
+            
+            var sequence = DOTween.Sequence();
+            sequence.Insert(0, rect.DOAnchorPos(rect.anchoredPosition + template.animOffset, template.duration * 1.5f));
+            sequence.Insert(0,rect.DOScale(1, template.duration * 0.2f));
+            sequence.Insert(0,text.DOFade(0, template.duration).SetEase(Ease.InExpo));
+            sequence.OnComplete(() => template.pool.Release(text));
 
             return new AnimText
             {

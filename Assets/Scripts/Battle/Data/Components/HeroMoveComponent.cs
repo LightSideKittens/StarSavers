@@ -17,7 +17,7 @@ namespace Battle.Data.Components
             var direction = joystick.Direction;
             rigidbody.position += direction * (speed * Time.fixedDeltaTime);
             var zAngle = Vector2.SignedAngle(Vector2.up, direction);
-            rigidbody.rotation = zAngle;
+            rigidbody.rotation = Mathf.Lerp(rigidbody.rotation, zAngle, Time.deltaTime * 10);
         }
     }
 }

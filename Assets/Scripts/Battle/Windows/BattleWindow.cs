@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using LSCore;
+﻿using LSCore;
 using LSCore.AnimationsModule;
 using UnityEngine;
 
@@ -15,11 +14,7 @@ namespace Battle.Windows
         public static Joystick Joystick => Instance.joystick;
         public static LSText StatusText => Instance.statusText;
 
-        protected override void OnBackButton()
-        {
-            base.OnBackButton();
-            MatchResultWindow.Show(false);
-        }
+        protected override void OnBackButton() => MatchResultWindow.Show(false);
 
         public static void SplashText(string text)
         {

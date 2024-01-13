@@ -30,16 +30,18 @@ namespace Battle
 
         private void Setup()
         {
+            BattleWindow.AsHome();
+            BattleWindow.Show();
+            
             effectors.Init();
             raids.Setup();
-
             Unit.Killed += OnUnitKilled;
             PlayerWorld.Begin();
             OpponentWorld.Begin();
-            BattleWindow.Show();
             timeSinceStart = 0;
             currentWave = 0;
             StartWave();
+            
         }
 
         private static void UpdateTime()

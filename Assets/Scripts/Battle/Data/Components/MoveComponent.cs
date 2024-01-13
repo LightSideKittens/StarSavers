@@ -1,4 +1,7 @@
 ﻿using System;
+using LSCore.Async;
+using LSCore.Extensions;
+using LSCore.Extensions.Unity;
 using LSCore.LevelSystem;
 using UnityEngine;
 using static Battle.ObjectsByTransfroms<Battle.Data.Components.MoveComponent>;
@@ -16,6 +19,7 @@ namespace Battle.Data.Components
         public float Speed => speed * Buffs;
         private static int mask = -1;
         private bool enabled = true;
+        private Collider2D lastObstacles;
         public Buffs Buffs { get; private set; }
 
         public void Init(Transform transform, FindTargetComponent findTargetComponent)
@@ -31,70 +35,113 @@ namespace Battle.Data.Components
             
             if (mask == -1)
             {
-                mask = LayerMask.GetMask("Cannon");
+                mask = LayerMask.GetMask("Obstacles");
             }
+
+            Wait.InfinityLoop(0.5f, () => lastObstacles = null);
+            lastObstacles = null;
         }
 
         public void SetEnabled(bool active)
         {
             enabled = active;
         }
-
-        private void TryByPass(ref Vector2 direction)
+        
+        private void TryByPass(Vector2 targetPos, ref Vector2 direction)
         {
             var pos = rigidbody.position;
             var trueRadius = collider.radius * rigidbody.transform.lossyScale.x;
-            var hit = Physics2D.Raycast(pos, direction, float.PositiveInfinity, mask);
-            var factor = -1;
 
-            if (hit.collider == null)
+            var distance = direction.magnitude;
+            direction = direction.normalized;
+            
+            if (lastObstacles != null)
             {
-                Vector2 right = Vector3.Cross(direction, Vector3.forward);
-                var newPos = pos + right.normalized * trueRadius;
-                hit = Physics2D.Raycast(newPos, direction, float.PositiveInfinity, mask);
-                right *= -1;
-                
-                if (hit.collider != null)
-                {
-                    var bounds = hit.collider.bounds;
-                    var coliderTransform = hit.collider.transform;
-                    var hypotenuse = Vector3.Distance(bounds.min, bounds.max);
-                    Vector2 point = (Vector2) coliderTransform.position + right.normalized * (hypotenuse + trueRadius * 2);
-                    direction = point - pos;
-                    return;
-                }
+                goto compute;
             }
             
-            if (hit.collider == null)
+            Vector2 perpendicular = Vector2.Perpendicular(direction) * trueRadius;
+            var sideDirs = new[] { perpendicular, -perpendicular};
+            
+            var sidePoss = new Vector2[]
             {
-                Vector2 left = Vector3.Cross(direction, -Vector3.forward);
-                var newPos = pos + left.normalized * trueRadius;
-                hit = Physics2D.Raycast(newPos, direction, float.PositiveInfinity, mask);
-                left *= -1;
+                pos,
+                pos + sideDirs[0],
+                pos + sideDirs[1],
+            };
 
-                if (hit.collider != null)
-                {
-                    var bounds = hit.collider.bounds;
-                    var coliderTransform = hit.collider.transform;
-                    var hypotenuse = Vector3.Distance(bounds.min, bounds.max);
-                    Vector2 point = (Vector2) coliderTransform.position + left.normalized * (hypotenuse + trueRadius * 2);
-                    direction = point - pos;
-                    return;
-                }
+            var dirs = new[]
+            {
+                direction * distance,
+                targetPos - sidePoss[1],
+                targetPos - sidePoss[2]
+            };
+            
+            var hits = new[]
+            {
+                Physics2D.Raycast(sidePoss[0], dirs[0], dirs[0].magnitude, mask),
+                Physics2D.Raycast(sidePoss[1], dirs[1], dirs[1].magnitude, mask),
+                Physics2D.Raycast(sidePoss[2], dirs[2], dirs[2].magnitude, mask),
+            };
+            
+            lastObstacles = hits.Min(x =>
+            {
+                if (x.collider == null) return float.MaxValue;
+                return x.distance;
+            }, out var index).collider;
+            
+            if (index == -1)
+            {
+                return;
             }
-
-            if (hit.collider != null)
+            
+            compute:
+            var bounds = lastObstacles.bounds;
+            Vector2 center = bounds.center;
+            var toObs = center - pos;
+            var obsRadius = bounds.CircumscribedCircleRadius();
+            var targetRadius = obsRadius + trueRadius;
+            var diff = targetRadius - toObs.magnitude;
+            var onLeft = PointLeftOrRight(pos, targetPos, center) < 0;
+            
+            if (diff >= 0)
             {
-                var bounds = hit.collider.bounds;
-                var coliderTransform = hit.collider.transform;
-                var hypotenuse = Vector3.Distance(bounds.min, bounds.max);
-                var tangent = Vector3.Cross(direction, hit.normal);
-                tangent = Vector3.Cross(direction, tangent) * factor;
-                Vector2 point = coliderTransform.position + tangent.normalized * (hypotenuse + trueRadius * 2);
-                direction = point - pos;
+                toObs = toObs.normalized;
+                perpendicular = Vector2.Perpendicular(toObs);
+                direction = onLeft ? perpendicular - toObs : -perpendicular - toObs;
+            }
+            else
+            {
+                var tangentPoint = FindTangentPoint(center, targetRadius, pos, onLeft);
+                direction = tangentPoint - pos;
             }
         }
+        
+        private static Vector2 FindTangentPoint(Vector2 circleCenter, float radius, Vector2 externalPoint, bool getLeft)
+        {
+            Vector2 centerToPoint = externalPoint - circleCenter;
+            float distanceToCenter = centerToPoint.magnitude;
+            float angleToExternalPoint = Mathf.Atan2(centerToPoint.y, centerToPoint.x);
+            float tangentAngle = Mathf.Acos(radius / distanceToCenter);
 
+            if (getLeft)
+            {
+                float angleToTangent2 = angleToExternalPoint - tangentAngle;
+                Vector2 left = circleCenter + new Vector2(Mathf.Cos(angleToTangent2), Mathf.Sin(angleToTangent2)) * radius;
+                return left;
+            }
+
+            float angleToTangent1 = angleToExternalPoint + tangentAngle;
+            Vector2 right = circleCenter + new Vector2(Mathf.Cos(angleToTangent1), Mathf.Sin(angleToTangent1)) * radius;
+            return right;
+        }
+        
+        private static float PointLeftOrRight(Vector2 a, Vector2 b, Vector2 c)
+        {
+            var value = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+            return value;
+        }
+        
         public virtual void Move()
         {
             if (enabled)
@@ -103,11 +150,14 @@ namespace Battle.Data.Components
                 if (findTargetComponent.Find(out var target))
                 {
                     var position = rigidbody.position;
-                    var direction = (Vector2)target.position - position;
-                    TryByPass(ref direction);
+                    var targetPos = (Vector2)target.position;
+                    var direction = targetPos - position;
+                    
+                    TryByPass(targetPos, ref direction);
+                    
                     direction = direction.normalized;
                     position += direction * (Speed * Time.deltaTime);
-                    transform.up = direction;
+                    transform.up = targetPos - position;
                     rigidbody.position = position;
                 }
             }
