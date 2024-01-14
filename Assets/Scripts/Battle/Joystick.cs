@@ -1,4 +1,5 @@
-﻿using LSCore.Extensions.Unity;
+﻿using System;
+using LSCore.Extensions.Unity;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,11 +11,14 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] private RectTransform handleArea;
     [SerializeField] private RectTransform handle;
     [SerializeField] private CanvasGroup group;
+    [SerializeField] private GameObject[] directions;
+
+    private int lastFactor;
     private float maxRadius;
     private Canvas canvas;
     private Vector2 startTouchPosition;
     private Vector2 handleAreaStartPosition;
-
+    
     protected virtual void Start()
     {
         var size = handleArea.rect;
@@ -38,6 +42,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         Direction = (eventData.position - startTouchPosition).normalized;
         var position = handleArea.GetLocalPositionByScreenPoint(eventData.position, canvas);
         handle.localPosition = Vector2.ClampMagnitude(position, maxRadius);
+        SetupDirections();
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -47,5 +52,16 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.localPosition = Vector3.zero;
         Direction = Vector2.zero;
         handleArea.localPosition = handleAreaStartPosition;
+        directions[lastFactor].SetActive(false);
+    }
+
+    private void SetupDirections()
+    {
+        var factor = Direction.DetermineQuadrant();
+        if (lastFactor == factor) return;
+        
+        directions[factor].SetActive(true);
+        directions[lastFactor].SetActive(false);
+        lastFactor = factor;
     }
 }
