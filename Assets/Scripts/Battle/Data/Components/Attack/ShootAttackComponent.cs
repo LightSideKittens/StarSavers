@@ -3,22 +3,22 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Scripting;
 using static UnityEngine.Object;
-using Object = UnityEngine.Object;
 
 namespace Battle.Data.Components
 {
     [Preserve, Serializable]
-    internal class ShootAttackComponent : AttackComponent
+    internal class ShootAttackComponent : AutoAttackComponent
     {
         [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private float bulletFlyDuration;
         [SerializeField] private GameObject explosionPrefab;
-        
-        protected override Tween AttackAnimation()
+
+        protected override void Attack(Transform target)
         {
             var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            return bullet.transform.DOMove(target.position, duration).OnComplete(() =>
+            bullet.transform.DOMove(target.position, bulletFlyDuration).OnComplete(() =>
             {
-                TryApplyDamage();
+                TryApplyDamage(target);
                 Instantiate(explosionPrefab, target.position, Quaternion.identity);
             });
         }

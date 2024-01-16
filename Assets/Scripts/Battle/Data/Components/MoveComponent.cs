@@ -42,9 +42,9 @@ namespace Battle.Data.Components
             lastObstacles = null;
         }
 
-        public void SetEnabled(bool active)
+        public void SetEnabled(bool enabled)
         {
-            enabled = active;
+            this.enabled = enabled;
         }
         
         private void TryByPass(Vector2 targetPos, ref Vector2 direction)

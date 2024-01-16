@@ -1,10 +1,10 @@
 ﻿using System;
+using Battle.Data.Components;
 using LSCore.LevelSystem;
 using DG.Tweening;
 using LSCore.Async;
 using UnityEngine;
 using Move = Battle.Data.Components.MoveComponent;
-using Attack = Battle.Data.Components.AttackComponent;
 
 namespace Battle.Data
 {
@@ -35,7 +35,7 @@ namespace Battle.Data
                 foreach (var target in findTargetComponent.FindAll(radius))
                 {
                     target.Get<Move>().Buffs.Set(Name, moveSpeedBuff, buffDuration);
-                    target.Get<Attack>().Buffs.Set(Name, damageBuff, buffDuration);
+                    target.Get<AutoAttackComponent>().Buffs.Set(Name, damageBuff, buffDuration);
                 }
             }).OnComplete(() =>
             {

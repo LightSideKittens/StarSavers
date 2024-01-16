@@ -1,14 +1,15 @@
 ﻿using System;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Scripting;
 using Health = Battle.Data.Components.HealthComponent;
 
 namespace Battle.Data.Components
 {
     [Preserve, Serializable]
-    internal class SelfDestroyAttackComponent : AttackComponent
+    internal class SelfDestroyAttackComponent : AutoAttackComponent
     {
-        protected override Tween AttackAnimation()
+        /*protected override Tween AttackAnimation()
         {
             attackLoopEmiter.Kill();
             return transform.DOMove(lastHitPoint, duration)
@@ -17,6 +18,10 @@ namespace Battle.Data.Components
                     TryApplyDamage();
                     if(transform.TryGet<Health>(out var health)) health.Kill();
                 });
+        }*/
+        protected override void Attack(Transform target)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -2,15 +2,20 @@
 
 namespace Battle.Data.Components
 {
-    internal class HeroAttackComponent : AttackComponent
+    internal class HeroAttackComponent : AutoAttackComponent
     {
-        [SerializeReference] private AttackComponent autoAttack;
-        [SerializeReference] private AttackComponent mainAttack;
+        [SerializeReference] private AutoAttackComponent autoAttack;
+        [SerializeReference] private AutoAttackComponent mainAttack;
         
         
         protected override void OnInit()
         {
             
+        }
+
+        protected override void Attack(Transform target)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

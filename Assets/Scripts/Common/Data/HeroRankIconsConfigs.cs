@@ -15,7 +15,7 @@ namespace BeatHeroes.Data
         public void Init() => instance = this;
         
 #if UNITY_EDITOR
-        protected override void SetupDataSelector(ValueDropdownList<Data> list) => SetupByGroup(group, list);
+        protected override void SetupDataSelector(ValueDropdownList<Entry> list) => SetupByGroup(group, list);
 #endif
     }
 }

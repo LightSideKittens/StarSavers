@@ -2,7 +2,6 @@
 using LSCore.LevelSystem;
 using LSCore.Async;
 using UnityEngine;
-using Attack = Battle.Data.Components.AttackComponent;
 using Health = Battle.Data.Components.HealthComponent;
 
 namespace Battle.Data

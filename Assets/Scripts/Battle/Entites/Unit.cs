@@ -1,7 +1,6 @@
 ﻿using System;
 using Battle.Data.Components;
 using Battle.Data.Components.HitBox;
-using Sirenix.Serialization;
 using UnityEngine;
 using static Battle.ObjectsByTransfroms<Battle.Data.Unit>;
 
@@ -14,7 +13,7 @@ namespace Battle.Data
         
         [SerializeReference] private MoveComponent moveComponent = new();
         [SerializeReference] private FindTargetComponent findTargetComponent = new ();
-        [SerializeReference] private AttackComponent attackComponent = new();
+        [SerializeReference] private BaseAttackComponent attackComponent;
         [SerializeReference] private HealthComponent healthComponent = new();
         [SerializeReference] private HitBoxComponent hitBoxComponent = new ColiderHitBoxComponent();
         
@@ -29,13 +28,12 @@ namespace Battle.Data
             findTargetComponent.Init(transform);
             moveComponent.Init(transform, findTargetComponent);
             healthComponent.Init(transform, IsOpponent);
-            attackComponent.Init(transform, findTargetComponent);
+            attackComponent.Init(transform);
         }
 
         public void Run()
         {
             attackComponent.Update();
-            moveComponent.SetEnabled(!attackComponent.IsInRadius);
             healthComponent.Update();
         }
 

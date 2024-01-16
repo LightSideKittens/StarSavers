@@ -10,7 +10,7 @@ namespace Battle.Data
         [SerializeField] private LevelIdGroup group;
 
 #if UNITY_EDITOR
-        protected override void SetupDataSelector(ValueDropdownList<Data> list) => SetupByGroup(group, list);
+        protected override void SetupDataSelector(ValueDropdownList<Entry> list) => SetupByGroup(group, list);
 #endif
     }
 }

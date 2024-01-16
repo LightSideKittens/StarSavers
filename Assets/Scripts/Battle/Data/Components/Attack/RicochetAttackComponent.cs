@@ -9,7 +9,7 @@ using Health = Battle.Data.Components.HealthComponent;
 namespace Battle.Data.Components
 {
     [Preserve, Serializable]
-    internal class RicochetAttackComponent : AttackComponent
+    internal class RicochetAttackComponent : AutoAttackComponent
     {
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private ParticleSystem deathFx;
@@ -26,7 +26,12 @@ namespace Battle.Data.Components
             hited = new HashSet<Transform>();
         }
 
-        protected override Tween AttackAnimation()
+        protected override void Attack(Transform target)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*protected override Tween AttackAnimation()
         {
             hited.Clear();
             tempDamage = Damage;
@@ -34,12 +39,12 @@ namespace Battle.Data.Components
             bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Attack();
             return DOTween.Sequence();
-        }
+        }*/
 
         private void Attack()
         {
             //lastTarget = findTargetComponent.target;
-            bullet.transform.DOMove(lastTarget.position, duration).OnComplete(Ricochet);
+            //bullet.transform.DOMove(lastTarget.position, duration).OnComplete(Ricochet);
         }
 
         private void Ricochet()
