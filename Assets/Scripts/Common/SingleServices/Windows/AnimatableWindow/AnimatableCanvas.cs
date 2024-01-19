@@ -7,13 +7,14 @@ namespace Animatable
 {
     public class AnimatableCanvas : SingleService<AnimatableCanvas>
     {
+        private static Canvas canvas;
+        private static Camera Cam => canvas.worldCamera;
+        
         [ColoredField, SerializeField] private AnimText animText;
         [ColoredField, SerializeField] private HealthBar healthBar;
         [ColoredField, SerializeField] private HealthBar opponentHealthBar;
-        [ColoredField, SerializeField] private Loader loader; 
-        private static Canvas canvas;
+        [ColoredField, SerializeField] private Loader loader;
 
-        public static Camera Cam => canvas.worldCamera;
         public static Transform SpawnPoint => Instance.transform;
         internal static AnimText AnimText => Instance.animText;
         internal static HealthBar HealthBar => Instance.healthBar;
@@ -26,9 +27,10 @@ namespace Animatable
             DontDestroyOnLoad(this);
             animText.Init();
             canvas = GetComponent<Canvas>();
-            SceneManager.sceneLoaded += OnSceneLoaded;
             canvas.worldCamera = Camera.main;
             canvas.sortingOrder = 10;
+            
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         protected override void DeInit()

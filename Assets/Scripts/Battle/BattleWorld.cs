@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Battle.Windows;
+﻿using Battle.Windows;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using Battle.Data;

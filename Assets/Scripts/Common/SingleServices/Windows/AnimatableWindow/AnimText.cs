@@ -10,6 +10,7 @@ namespace Animatable
     [Serializable]
     public class AnimText
     {
+        
         [SerializeField] private TMP_Text text;
         [SerializeField] private Vector2 animOffset = new Vector2(0, 100);
         [SerializeField] private float duration = 1;
