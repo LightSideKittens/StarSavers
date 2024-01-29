@@ -14,8 +14,6 @@ namespace Battle.Windows
         [SerializeField] private AnimSequencer fundTextAnim;
         [SerializeField] [Id(typeof(CurrencyIdGroup))] private Id fundFrom;
         [SerializeField] [Id(typeof(CurrencyIdGroup))] private Id fundTo;
-        
-        public override int SortingOrder => 10;
 
         public static void Show(bool isWin)
         {

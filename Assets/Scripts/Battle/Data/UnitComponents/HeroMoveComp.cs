@@ -1,12 +1,13 @@
 ﻿using System;
 using Battle.Windows;
+using LSCore.BattleModule;
 using UnityEngine;
 using UnityEngine.Scripting;
 
 namespace Battle.Data.Components
 {
     [Preserve, Serializable]
-    internal class HeroMoveComponent : MoveComponent
+    internal class HeroMoveComp : MoveComp
     {
         public override void Move()
         {

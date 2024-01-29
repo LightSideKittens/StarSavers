@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Battle.Data;
 using LSCore;
+using LSCore.BattleModule;
 using UnityEngine.Scripting;
 
 namespace Battle

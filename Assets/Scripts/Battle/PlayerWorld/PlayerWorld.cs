@@ -1,5 +1,6 @@
 ﻿using Battle.Windows;
 using Battle.Data;
+using LSCore.BattleModule;
 using UnityEngine;
 
 namespace Battle
@@ -10,10 +11,12 @@ namespace Battle
         [SerializeField] private Vector3 cameraOffset;
         public static Transform HeroTransform { get; private set; }
         private Unit hero;
-        
+
+        public override string UserId => BattlePlayerData.UserId;
+        public override string TeamId => BattlePlayerData.TeamId;
+
         protected override void OnBegin()
         {
-            UserId = "Player";
             var prefab = heroes.ById[PlayerData.Config.SelectedHero];
             var pool = CreatePool(prefab);
             pool.Released += OnHeroDied;

@@ -3,6 +3,7 @@ using DG.Tweening;
 using Battle.Data;
 using LSCore;
 using LSCore.Async;
+using LSCore.BattleModule;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 
@@ -18,10 +19,12 @@ namespace Battle
         private Tween spawnLoopTween;
         private RaidByHeroRank raids;
         private static Rect cameraRect;
-        
+
+        public override string UserId => "Opponent";
+        public override string TeamId => "Opponent's Team";
+
         protected override void OnBegin()
         {
-            UserId = "Opponent";
             cam = Camera.main;
             cameraRect = cam.GetRect();
             

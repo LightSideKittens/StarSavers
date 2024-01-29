@@ -1,12 +1,12 @@
-﻿using Battle.Windows;
+﻿using Battle;
+using Battle.Windows;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using Battle.Data;
-using LSCore;
 using LSCore.Async;
 using UnityEngine;
 
-namespace Battle
+namespace LSCore.BattleModule
 {
     public class BattleWorld : ServiceManager<BattleWorld>
     {

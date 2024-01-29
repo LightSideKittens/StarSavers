@@ -29,7 +29,7 @@ namespace BeatHeroes
 
         static Initializer()
         {
-            World.Destroyed += () => isInited = false;
+            World.Created += () => isInited = false;
         }
         
         private static bool isInited;

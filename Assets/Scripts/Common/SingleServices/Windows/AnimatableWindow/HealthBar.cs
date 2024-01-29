@@ -22,19 +22,21 @@ namespace Animatable
         {
             var template = isOpponent ? OpponentHealthBar : AnimatableCanvas.HealthBar;
             
-            var slider = Object.Instantiate(template.mainBar);
-            var sliderTransform = slider.transform;
-            sliderTransform.SetParent(SpawnPoint, false);
-            sliderTransform.localScale = scale;
-            slider.maxValue = maxValue;
-            slider.value = maxValue;
-
-            return new HealthBar
+            var bar = Object.Instantiate(template.mainBar);
+            var barTransform = bar.transform;
+            barTransform.SetParent(SpawnPoint, false);
+            barTransform.localScale = scale;
+            bar.maxValue = maxValue;
+            bar.value = maxValue;
+            
+            var result = new HealthBar
             {
                 target = target,
                 offset = offset,
-                mainBar = slider,
+                mainBar = bar,
             };
+
+            return result;
         }
 
         public void Disable()

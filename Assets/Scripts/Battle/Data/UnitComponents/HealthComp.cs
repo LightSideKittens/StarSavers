@@ -1,12 +1,13 @@
 ﻿using System;
 using Animatable;
 using DG.Tweening;
+using LSCore.BattleModule;
 using UnityEngine;
 
 namespace Battle.Data.Components
 {
     [Serializable]
-    public class HealthComponent : BaseHealthComponent
+    public class HealthComp : BaseHealthComp
     {
         [SerializeField] private Vector2 scale = new Vector2(1, 1);
         [SerializeField] private Vector2 offset;
@@ -16,22 +17,18 @@ namespace Battle.Data.Components
         private HealthBar healthBar;
         private static readonly int exposure = Shader.PropertyToID("_Exposure");
 
-        public override void Init(Transform transform, bool isOpponent)
+        public override void Init(CompData data)
         {
-            base.Init(transform, isOpponent);
-            healthBar = HealthBar.Create(health, transform, offset, scale, isOpponent);
+            base.Init(data);
+            healthBar = HealthBar.Create(health, transform, offset, scale, affiliation == AffiliationType.Enemy);
+            data.update += healthBar.Update;
             expose = renderer.material;
         }
 
-        public override void Reset()
+        protected override void Reset()
         {
             base.Reset();
             healthBar.Reset();
-        }
-
-        public override void Update()
-        {
-            healthBar.Update();
         }
 
         protected override void OnDamageTaken(float damage)

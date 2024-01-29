@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LSCore.BattleModule;
 using UnityEngine;
 
 namespace Battle.Data.Components.TargetProviders
