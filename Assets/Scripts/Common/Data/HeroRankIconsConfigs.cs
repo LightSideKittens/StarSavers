@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BeatHeroes.Data
 {
-    public class HeroRankIconsConfigs : ValuesById<HeroRankIconsRef>
+    public class HeroRankIconsConfigs : ValueById<HeroRankIconsRef>
     {
         [SerializeField] [IdGroup] private LevelIdGroup group;
         private static HeroRankIconsConfigs instance;

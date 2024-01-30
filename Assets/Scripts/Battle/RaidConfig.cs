@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using LSCore;
-using LSCore.AddressablesModule.AssetReferences;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using UnityEditor;

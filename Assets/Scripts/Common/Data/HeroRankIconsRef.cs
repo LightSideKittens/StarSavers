@@ -1,11 +1,8 @@
 ﻿using System;
-using LSCore.AddressablesModule.AssetReferences;
+using LSCore;
 
 namespace BeatHeroes.Data
 {
     [Serializable]
-    public class HeroRankIconsRef : AssetRef<HeroRankIcons>
-    {
-        public HeroRankIconsRef(string guid) : base(guid) { }
-    }
+    public class HeroRankIconsRef : AssetRef<HeroRankIcons> { }
 }

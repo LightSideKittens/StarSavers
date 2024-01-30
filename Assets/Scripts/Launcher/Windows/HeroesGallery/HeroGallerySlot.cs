@@ -1,7 +1,7 @@
 ﻿using Battle.Data;
 using BeatHeroes.Data;
 using LSCore;
-using LSCore.AddressablesModule.AssetReferences;
+using LSCore;
 using LSCore.Extensions;
 using LSCore.LevelSystem;
 using UnityEngine;

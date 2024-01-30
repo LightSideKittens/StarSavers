@@ -4631,90 +4631,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830617
+  - rid: 6306144045691830618
+  - rid: 6306144045691830619
+  - rid: 6306144045691830620
+  - rid: 6306144045691830621
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830617
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830618
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830619
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830620
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830621
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &74024486
 Transform:
   m_ObjectHideFlags: 0
@@ -6187,90 +6133,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830667
+  - rid: 6306144045691830668
+  - rid: 6306144045691830669
+  - rid: 6306144045691830670
+  - rid: 6306144045691830671
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830667
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830668
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830669
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830670
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830671
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &104451907
 Transform:
   m_ObjectHideFlags: 0
@@ -10013,90 +9905,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830532
+  - rid: 6306144045691830533
+  - rid: 6306144045691830534
+  - rid: 6306144045691830535
+  - rid: 6306144045691830536
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830532
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830533
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830534
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830535
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830536
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &213749258
 Transform:
   m_ObjectHideFlags: 0
@@ -10265,90 +10103,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830642
+  - rid: 6306144045691830643
+  - rid: 6306144045691830644
+  - rid: 6306144045691830645
+  - rid: 6306144045691830646
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830642
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830643
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830644
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830645
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830646
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &215070139
 Transform:
   m_ObjectHideFlags: 0
@@ -10556,90 +10340,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830807
+  - rid: 6306144045691830808
+  - rid: 6306144045691830809
+  - rid: 6306144045691830810
+  - rid: 6306144045691830811
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830807
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830808
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830809
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830810
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830811
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &216272408
 Transform:
   m_ObjectHideFlags: 0
@@ -11762,90 +11492,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830542
+  - rid: 6306144045691830543
+  - rid: 6306144045691830544
+  - rid: 6306144045691830545
+  - rid: 6306144045691830546
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830542
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830543
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830544
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830545
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830546
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &237024178
 Transform:
   m_ObjectHideFlags: 0
@@ -12099,90 +11775,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830512
+  - rid: 6306144045691830513
+  - rid: 6306144045691830514
+  - rid: 6306144045691830515
+  - rid: 6306144045691830516
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830512
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830513
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830514
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830515
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830516
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &241684464
 Transform:
   m_ObjectHideFlags: 0
@@ -14499,90 +14121,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830762
+  - rid: 6306144045691830763
+  - rid: 6306144045691830764
+  - rid: 6306144045691830765
+  - rid: 6306144045691830766
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830762
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830763
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830764
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830765
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830766
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &296862385
 Transform:
   m_ObjectHideFlags: 0
@@ -15091,90 +14659,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830552
+  - rid: 6306144045691830553
+  - rid: 6306144045691830554
+  - rid: 6306144045691830555
+  - rid: 6306144045691830556
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830552
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830553
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830554
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830555
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830556
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &306164485
 Transform:
   m_ObjectHideFlags: 0
@@ -15466,90 +14980,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830582
+  - rid: 6306144045691830583
+  - rid: 6306144045691830584
+  - rid: 6306144045691830585
+  - rid: 6306144045691830586
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830582
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830583
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830584
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830585
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830586
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &314796887
 Transform:
   m_ObjectHideFlags: 0
@@ -15678,90 +15138,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830622
+  - rid: 6306144045691830623
+  - rid: 6306144045691830624
+  - rid: 6306144045691830625
+  - rid: 6306144045691830626
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830622
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830623
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830624
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830625
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830626
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &316172340
 Transform:
   m_ObjectHideFlags: 0
@@ -15885,90 +15291,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830627
+  - rid: 6306144045691830628
+  - rid: 6306144045691830629
+  - rid: 6306144045691830630
+  - rid: 6306144045691830631
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830627
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830628
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830629
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830630
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830631
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &316841185
 Transform:
   m_ObjectHideFlags: 0
@@ -16410,7 +15762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &328855099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16916,90 +16268,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830557
+  - rid: 6306144045691830558
+  - rid: 6306144045691830559
+  - rid: 6306144045691830560
+  - rid: 6306144045691830561
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830557
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830558
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830559
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830560
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830561
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &332259136
 Transform:
   m_ObjectHideFlags: 0
@@ -17937,90 +17235,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830587
+  - rid: 6306144045691830588
+  - rid: 6306144045691830589
+  - rid: 6306144045691830590
+  - rid: 6306144045691830591
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830587
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830588
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830589
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830590
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830591
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &361873237
 Transform:
   m_ObjectHideFlags: 0
@@ -20826,90 +20070,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830777
+  - rid: 6306144045691830778
+  - rid: 6306144045691830779
+  - rid: 6306144045691830780
+  - rid: 6306144045691830781
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830777
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830778
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830779
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830780
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830781
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &409491888
 Transform:
   m_ObjectHideFlags: 0
@@ -22839,90 +22029,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830657
+  - rid: 6306144045691830658
+  - rid: 6306144045691830659
+  - rid: 6306144045691830660
+  - rid: 6306144045691830661
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830657
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830658
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830659
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830660
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830661
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &453747201
 Transform:
   m_ObjectHideFlags: 0
@@ -25630,90 +24766,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830732
+  - rid: 6306144045691830733
+  - rid: 6306144045691830734
+  - rid: 6306144045691830735
+  - rid: 6306144045691830736
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830732
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830733
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830734
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830735
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830736
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &540413780
 Transform:
   m_ObjectHideFlags: 0
@@ -29245,90 +28327,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830602
+  - rid: 6306144045691830603
+  - rid: 6306144045691830604
+  - rid: 6306144045691830605
+  - rid: 6306144045691830606
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830602
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830603
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830604
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830605
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830606
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &614335460
 Transform:
   m_ObjectHideFlags: 0
@@ -31049,90 +30077,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830527
+  - rid: 6306144045691830528
+  - rid: 6306144045691830529
+  - rid: 6306144045691830530
+  - rid: 6306144045691830531
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830527
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830528
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830529
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830530
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830531
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &656718740
 Transform:
   m_ObjectHideFlags: 0
@@ -32132,7 +31106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &676247339
 Rigidbody2D:
   serializedVersion: 4
@@ -33506,90 +32480,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830767
+  - rid: 6306144045691830768
+  - rid: 6306144045691830769
+  - rid: 6306144045691830770
+  - rid: 6306144045691830771
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830767
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830768
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830769
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830770
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830771
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &715156523
 Transform:
   m_ObjectHideFlags: 0
@@ -34842,90 +33762,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830782
+  - rid: 6306144045691830783
+  - rid: 6306144045691830784
+  - rid: 6306144045691830785
+  - rid: 6306144045691830786
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830782
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830783
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830784
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830785
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830786
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &732212591
 Transform:
   m_ObjectHideFlags: 0
@@ -38157,90 +37023,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830802
+  - rid: 6306144045691830803
+  - rid: 6306144045691830804
+  - rid: 6306144045691830805
+  - rid: 6306144045691830806
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830802
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830803
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830804
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830805
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830806
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &833452341
 Transform:
   m_ObjectHideFlags: 0
@@ -39782,90 +38594,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830707
+  - rid: 6306144045691830708
+  - rid: 6306144045691830709
+  - rid: 6306144045691830710
+  - rid: 6306144045691830711
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830707
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830708
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830709
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830710
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830711
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &864265066
 Transform:
   m_ObjectHideFlags: 0
@@ -41097,90 +39855,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830547
+  - rid: 6306144045691830548
+  - rid: 6306144045691830549
+  - rid: 6306144045691830550
+  - rid: 6306144045691830551
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830547
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830548
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830549
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830550
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830551
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &888928039
 Transform:
   m_ObjectHideFlags: 0
@@ -41885,90 +40589,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830772
+  - rid: 6306144045691830773
+  - rid: 6306144045691830774
+  - rid: 6306144045691830775
+  - rid: 6306144045691830776
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830772
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830773
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830774
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830775
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830776
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &911055470
 Transform:
   m_ObjectHideFlags: 0
@@ -42671,90 +41321,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830687
+  - rid: 6306144045691830688
+  - rid: 6306144045691830689
+  - rid: 6306144045691830690
+  - rid: 6306144045691830691
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830687
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830688
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830689
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830690
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830691
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &930819253
 Transform:
   m_ObjectHideFlags: 0
@@ -42923,90 +41519,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830752
+  - rid: 6306144045691830753
+  - rid: 6306144045691830754
+  - rid: 6306144045691830755
+  - rid: 6306144045691830756
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830752
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830753
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830754
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830755
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830756
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &933664629
 Transform:
   m_ObjectHideFlags: 0
@@ -44017,90 +42559,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830572
+  - rid: 6306144045691830573
+  - rid: 6306144045691830574
+  - rid: 6306144045691830575
+  - rid: 6306144045691830576
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830572
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830573
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830574
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830575
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830576
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &962556960
 Transform:
   m_ObjectHideFlags: 0
@@ -48170,90 +46658,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830567
+  - rid: 6306144045691830568
+  - rid: 6306144045691830569
+  - rid: 6306144045691830570
+  - rid: 6306144045691830571
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830567
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830568
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830569
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830570
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830571
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1044802142
 Transform:
   m_ObjectHideFlags: 0
@@ -49213,90 +47647,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830632
+  - rid: 6306144045691830633
+  - rid: 6306144045691830634
+  - rid: 6306144045691830635
+  - rid: 6306144045691830636
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830632
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830633
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830634
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830635
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830636
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1063774166
 Transform:
   m_ObjectHideFlags: 0
@@ -59928,90 +58308,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830747
+  - rid: 6306144045691830748
+  - rid: 6306144045691830749
+  - rid: 6306144045691830750
+  - rid: 6306144045691830751
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830747
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830748
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830749
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830750
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830751
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1334691792
 Transform:
   m_ObjectHideFlags: 0
@@ -60135,90 +58461,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830637
+  - rid: 6306144045691830638
+  - rid: 6306144045691830639
+  - rid: 6306144045691830640
+  - rid: 6306144045691830641
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830637
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830638
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830639
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830640
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830641
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1335034905
 Transform:
   m_ObjectHideFlags: 0
@@ -61602,90 +59874,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830727
+  - rid: 6306144045691830728
+  - rid: 6306144045691830729
+  - rid: 6306144045691830730
+  - rid: 6306144045691830731
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830727
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830728
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830729
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830730
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830731
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1360340848
 Transform:
   m_ObjectHideFlags: 0
@@ -62649,90 +60867,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830662
+  - rid: 6306144045691830663
+  - rid: 6306144045691830664
+  - rid: 6306144045691830665
+  - rid: 6306144045691830666
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830662
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830663
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830664
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830665
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830666
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1381987371
 Transform:
   m_ObjectHideFlags: 0
@@ -63321,90 +61485,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830682
+  - rid: 6306144045691830683
+  - rid: 6306144045691830684
+  - rid: 6306144045691830685
+  - rid: 6306144045691830686
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830682
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830683
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830684
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830685
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830686
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1392571689
 Transform:
   m_ObjectHideFlags: 0
@@ -64381,90 +62491,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830737
+  - rid: 6306144045691830738
+  - rid: 6306144045691830739
+  - rid: 6306144045691830740
+  - rid: 6306144045691830741
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830737
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830738
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830739
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830740
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830741
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1414200144
 Transform:
   m_ObjectHideFlags: 0
@@ -65092,90 +63148,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830697
+  - rid: 6306144045691830698
+  - rid: 6306144045691830699
+  - rid: 6306144045691830700
+  - rid: 6306144045691830701
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830697
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830698
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830699
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830700
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830701
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1424043846
 Transform:
   m_ObjectHideFlags: 0
@@ -65299,90 +63301,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830797
+  - rid: 6306144045691830798
+  - rid: 6306144045691830799
+  - rid: 6306144045691830800
+  - rid: 6306144045691830801
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830797
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830798
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830799
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830800
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830801
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1426920850
 Transform:
   m_ObjectHideFlags: 0
@@ -67344,90 +65292,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830647
+  - rid: 6306144045691830648
+  - rid: 6306144045691830649
+  - rid: 6306144045691830650
+  - rid: 6306144045691830651
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830647
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830648
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830649
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830650
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830651
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1458574011
 Transform:
   m_ObjectHideFlags: 0
@@ -67635,90 +65529,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830562
+  - rid: 6306144045691830563
+  - rid: 6306144045691830564
+  - rid: 6306144045691830565
+  - rid: 6306144045691830566
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830562
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830563
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830564
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830565
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830566
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1462267463
 Transform:
   m_ObjectHideFlags: 0
@@ -67842,90 +65682,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830652
+  - rid: 6306144045691830653
+  - rid: 6306144045691830654
+  - rid: 6306144045691830655
+  - rid: 6306144045691830656
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830652
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830653
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830654
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830655
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830656
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1462359072
 Transform:
   m_ObjectHideFlags: 0
@@ -68968,90 +66754,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830612
+  - rid: 6306144045691830613
+  - rid: 6306144045691830614
+  - rid: 6306144045691830615
+  - rid: 6306144045691830616
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830612
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830613
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830614
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830615
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830616
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1484301614
 Transform:
   m_ObjectHideFlags: 0
@@ -69259,90 +66991,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830592
+  - rid: 6306144045691830593
+  - rid: 6306144045691830594
+  - rid: 6306144045691830595
+  - rid: 6306144045691830596
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830592
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830593
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830594
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830595
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830596
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1485246791
 Transform:
   m_ObjectHideFlags: 0
@@ -76414,90 +74092,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830742
+  - rid: 6306144045691830743
+  - rid: 6306144045691830744
+  - rid: 6306144045691830745
+  - rid: 6306144045691830746
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830742
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830743
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830744
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830745
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830746
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1614964211
 Transform:
   m_ObjectHideFlags: 0
@@ -76912,90 +74536,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830712
+  - rid: 6306144045691830713
+  - rid: 6306144045691830714
+  - rid: 6306144045691830715
+  - rid: 6306144045691830716
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830712
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830713
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830714
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830715
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830716
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1623850775
 Transform:
   m_ObjectHideFlags: 0
@@ -79198,90 +76768,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830692
+  - rid: 6306144045691830693
+  - rid: 6306144045691830694
+  - rid: 6306144045691830695
+  - rid: 6306144045691830696
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830692
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830693
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830694
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830695
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830696
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1689273374
 Transform:
   m_ObjectHideFlags: 0
@@ -80453,90 +77969,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830792
+  - rid: 6306144045691830793
+  - rid: 6306144045691830794
+  - rid: 6306144045691830795
+  - rid: 6306144045691830796
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830792
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830793
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830794
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830795
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830796
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1718232217
 Transform:
   m_ObjectHideFlags: 0
@@ -82701,90 +80163,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830717
+  - rid: 6306144045691830718
+  - rid: 6306144045691830719
+  - rid: 6306144045691830720
+  - rid: 6306144045691830721
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830717
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830718
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830719
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830720
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830721
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1771096727
 Transform:
   m_ObjectHideFlags: 0
@@ -84755,90 +82163,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830702
+  - rid: 6306144045691830703
+  - rid: 6306144045691830704
+  - rid: 6306144045691830705
+  - rid: 6306144045691830706
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830702
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830703
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830704
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830705
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830706
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1815580795
 Transform:
   m_ObjectHideFlags: 0
@@ -86860,7 +84214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1855159048
 Rigidbody2D:
   serializedVersion: 4
@@ -89992,90 +87346,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830607
+  - rid: 6306144045691830608
+  - rid: 6306144045691830609
+  - rid: 6306144045691830610
+  - rid: 6306144045691830611
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830607
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830608
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830609
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830610
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830611
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1930041024
 Transform:
   m_ObjectHideFlags: 0
@@ -91062,90 +88362,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830757
+  - rid: 6306144045691830758
+  - rid: 6306144045691830759
+  - rid: 6306144045691830760
+  - rid: 6306144045691830761
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830757
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830758
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830759
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830760
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830761
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1959499279
 Transform:
   m_ObjectHideFlags: 0
@@ -91353,90 +88599,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830537
+  - rid: 6306144045691830538
+  - rid: 6306144045691830539
+  - rid: 6306144045691830540
+  - rid: 6306144045691830541
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830537
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830538
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830539
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830540
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830541
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1960673290
 Transform:
   m_ObjectHideFlags: 0
@@ -93048,90 +90240,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830677
+  - rid: 6306144045691830678
+  - rid: 6306144045691830679
+  - rid: 6306144045691830680
+  - rid: 6306144045691830681
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830677
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830678
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830679
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830680
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830681
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1988247997
 Transform:
   m_ObjectHideFlags: 0
@@ -93453,90 +90591,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830522
+  - rid: 6306144045691830523
+  - rid: 6306144045691830524
+  - rid: 6306144045691830525
+  - rid: 6306144045691830526
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830522
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830523
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830524
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830525
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830526
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &1996429907
 Transform:
   m_ObjectHideFlags: 0
@@ -94565,90 +91649,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830597
+  - rid: 6306144045691830598
+  - rid: 6306144045691830599
+  - rid: 6306144045691830600
+  - rid: 6306144045691830601
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830597
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830598
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830599
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830600
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830601
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &2026812493
 Transform:
   m_ObjectHideFlags: 0
@@ -96227,90 +93257,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830672
+  - rid: 6306144045691830673
+  - rid: 6306144045691830674
+  - rid: 6306144045691830675
+  - rid: 6306144045691830676
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830672
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830673
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830674
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830675
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830676
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &2051963563
 Transform:
   m_ObjectHideFlags: 0
@@ -98084,90 +95060,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830517
+  - rid: 6306144045691830518
+  - rid: 6306144045691830519
+  - rid: 6306144045691830520
+  - rid: 6306144045691830521
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830517
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830518
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830519
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830520
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830521
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &2081457510
 Transform:
   m_ObjectHideFlags: 0
@@ -98517,90 +95439,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830577
+  - rid: 6306144045691830578
+  - rid: 6306144045691830579
+  - rid: 6306144045691830580
+  - rid: 6306144045691830581
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830577
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830578
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830579
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830580
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830581
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &2086717022
 Transform:
   m_ObjectHideFlags: 0
@@ -99534,90 +96402,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830787
+  - rid: 6306144045691830788
+  - rid: 6306144045691830789
+  - rid: 6306144045691830790
+  - rid: 6306144045691830791
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830787
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830788
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830789
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830790
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830791
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &2100724829
 Transform:
   m_ObjectHideFlags: 0
@@ -100260,90 +97074,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69503376089d46ae9217aef3a079cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: moveComponent
-      Entry: 7
-      Data: 0|Battle.Data.Components.MoveComponent, Battle
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: findTargetComponent
-      Entry: 7
-      Data: 1|Battle.Data.Components.FindTargetComponent, Battle
-    - Name: providers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[Battle.Data.Components.TargetProviders.TargetProvider,
-        Battle]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: attackComponent
-      Entry: 7
-      Data: 3|Battle.Data.Components.AttackComponent, Battle
-    - Name: duration
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: healthComponent
-      Entry: 7
-      Data: 4|Battle.Data.Components.HealthComponent, Battle
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: offset
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: hitBoxComponent
-      Entry: 6
-      Data: 
   id: {fileID: 0}
   manager: {fileID: 0}
+  comps:
+  - rid: 6306144045691830722
+  - rid: 6306144045691830723
+  - rid: 6306144045691830724
+  - rid: 6306144045691830725
+  - rid: 6306144045691830726
+  references:
+    version: 2
+    RefIds:
+    - rid: 6306144045691830722
+      type: {class: BaseHealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830723
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers: []
+    - rid: 6306144045691830724
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830725
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data: 
+    - rid: 6306144045691830726
+      type: {class: ShootAttackComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        bulletPrefab: {fileID: 0}
+        bulletFlyDuration: 0
+        explosionPrefab: {fileID: 0}
 --- !u!4 &2118467915
 Transform:
   m_ObjectHideFlags: 0
