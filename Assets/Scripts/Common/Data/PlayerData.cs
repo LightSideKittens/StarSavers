@@ -5,7 +5,7 @@ namespace Battle.Data
 {
     public class PlayerData : BaseConfig<PlayerData>
     {
-        public string SelectedHero { get; set; }
+        public string SelectedHero { get; set; } = string.Empty;
         public int Rank { get; set; }
         public Dictionary<string, int> RankByHero { get; } = new();
 
