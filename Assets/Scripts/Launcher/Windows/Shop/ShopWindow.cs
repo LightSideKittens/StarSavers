@@ -13,7 +13,7 @@ namespace BeatHeroes.Windows
         [SerializeField] private RectTransform back;
         [SerializeReference] private Tab.BaseData[] tabs;
         private Tab.Controller tabController;
-        protected override bool NeedHidePrevious => false;
+        protected override bool NeedHideAllPrevious => false;
 
         protected override void Init()
         {
