@@ -1,4 +1,5 @@
-﻿using Battle;
+﻿using System.Collections.Generic;
+using Battle;
 using Battle.Windows;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
@@ -101,6 +102,7 @@ namespace LSCore.BattleModule
         }
         
         public static Id GetEnemyId() => Raid.GetEnemyId((int)timeSinceStart);
+        public static IEnumerable<Id> EnemyIds => Raid.EnemyIds;
         private static void OnUnitKilled(Unit unit)
         {
             UpdateTimeText(currentTime);

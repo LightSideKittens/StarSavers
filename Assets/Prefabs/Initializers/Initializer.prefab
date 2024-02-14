@@ -57,21 +57,20 @@ MonoBehaviour:
   - {fileID: -6750239444755058063, guid: f5eae45c23b172e48a59d044e34bdad3, type: 3}
   - {fileID: -6750239444755058063, guid: 618f3e2831b93dc4ebb134adaeed59a6, type: 3}
   - {fileID: -6750239444755058063, guid: 91b36cd705d17db4c91168b22e3ced31, type: 3}
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: funds
-      Entry: 7
-      Data: 0|LSCore.Funds, LSCore.CurrencySystem
-    - Name: funds
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+  funds:
+    funds:
+    - rid: 8885881579968397312
+    - rid: 8885881579968397313
+  references:
+    version: 2
+    RefIds:
+    - rid: 8885881579968397312
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
+        <Value>k__BackingField: 10000
+    - rid: 8885881579968397313
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 529de37825ef3ad4498a18d0705726b0, type: 3}
+        <Value>k__BackingField: 1000

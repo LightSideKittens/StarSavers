@@ -5,17 +5,16 @@ using BeatHeroes.Data;
 using BeatHeroes.Interfaces;
 using DG.Tweening;
 using LSCore;
+using LSCore.BattleModule;
 using LSCore.ConfigModule;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
-using static LSCore.UnitySerializationUtils;
 
 namespace BeatHeroes
 {
     [ShowOdinSerializedPropertiesInInspector]
-    public class Initializer : BaseInitializer, ISerializationCallbackReceiver, ISupportsPrefabSerialization
+    public class Initializer : BaseInitializer
     {
         [SerializeField] private LevelsManager heroesLevelsManager;
         [SerializeField] private LevelsManager enemiesLevelsManager;
@@ -25,7 +24,7 @@ namespace BeatHeroes
         
         [Id("Heroes")] [SerializeField] private Id[] ids;
         [Id("Enemies")] [SerializeField] private Id[] enemyIds;
-        [OdinSerialize] private Funds funds;
+        [SerializeField] private Funds funds;
 
         static Initializer()
         {
@@ -86,13 +85,11 @@ namespace BeatHeroes
                 heroesLevelsManager.SetLevel(selectedHeroId, 1);
             }
             
+            var unit = heroesLevelsManager.GetComponentByCurrentLevel<Unit>(selectedHeroId);
+            unit.RegisterComps();
+            Debug.Log(unit.GetComp<BaseHealthComp>().Health);
+            
             onInit();
         }
-        
-        
-        [SerializeField, HideInInspector] private SerializationData serializationData;
-        SerializationData ISupportsPrefabSerialization.SerializationData { get => serializationData; set => serializationData = value; }
-        void ISerializationCallbackReceiver.OnAfterDeserialize() => Deserialize(this, ref serializationData);
-        void ISerializationCallbackReceiver.OnBeforeSerialize() => Serialize(this, ref serializationData);
     }
 }

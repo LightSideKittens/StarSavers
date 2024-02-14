@@ -36,6 +36,8 @@ namespace Battle.Data
         
         [field: SerializeField] public int BreakDuration { get; private set; } = 15;
         [SerializeField] private int[] waveDurations;
+
+        public IEnumerable<Id> EnemyIds => enemyData.Select(x => x.id); 
         
         public int CurrentWave
         {

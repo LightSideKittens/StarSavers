@@ -5,6 +5,7 @@ using LSCore;
 using LSCore.Async;
 using LSCore.BattleModule;
 using LSCore.Extensions.Unity;
+using LSCore.LevelSystem;
 using UnityEngine;
 
 namespace Battle
@@ -12,12 +13,11 @@ namespace Battle
     public partial class OpponentWorld : BasePlayerWorld<OpponentWorld>
     {
         private const int MaxEnemyCount = 100;
-        [SerializeField] private UnitsById enemies;
+        [SerializeField] private LevelsManager enemies;
         
         private Dictionary<Id, OnOffPool<Unit>> pools = new();
         private Camera cam;
         private Tween spawnLoopTween;
-        private RaidByHeroRank raids;
         private static Rect cameraRect;
 
         public override string UserId => "Opponent";
@@ -27,9 +27,10 @@ namespace Battle
         {
             cam = Camera.main;
             cameraRect = cam.GetRect();
-            
-            foreach (var unit in enemies.ByKey.Values)
+
+            foreach (var id in BattleWorld.EnemyIds)
             {
+                var unit = enemies.GetComponentByCurrentLevel<Unit>(id);
                 var pool = CreatePool(unit);
                 pool.Got += OnGot;
                 SubscribeOnChange(pool);

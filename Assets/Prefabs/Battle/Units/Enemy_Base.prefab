@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 695009584646594854}
-  - component: {fileID: 8408513571808267312}
+  - component: {fileID: 8478420817228375073}
   - component: {fileID: 4573317970349082657}
   - component: {fileID: -6763652745144591957}
   m_Layer: 6
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 8660671769077101938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8408513571808267312
+--- !u!114 &8478420817228375073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,40 +49,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: {fileID: 0}
   manager: {fileID: 11400000, guid: a63ed3ff636fbb44fbaf166610abf8b8, type: 2}
-  moveComponent:
-    rid: 6306143700861321531
-  findTargetComponent:
-    rid: 6306143700861321566
-  attackComponent:
-    rid: 6306143700861321567
-  healthComponent:
-    rid: 6306143700861321534
-  hitBoxComponent:
-    rid: 6306143700861321535
+  comps:
+  - rid: 8885881579968397431
+  - rid: 8885881579968397432
+  - rid: 8885881579968397433
+  - rid: 8885881579968397434
+  - rid: 8885881579968397435
   references:
     version: 2
     RefIds:
-    - rid: 6306143700861321531
-      type: {class: MoveComponent, ns: Battle.Data.Components, asm: Battle}
-      data: 
-    - rid: 6306143700861321534
-      type: {class: HealthComponent, ns: Battle.Data.Components, asm: Battle}
+    - rid: 8885881579968397431
+      type: {class: HealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
+        health: 100
         scale: {x: 1, y: 1}
-        offset: {x: 0, y: 2}
+        offset: {x: 0, y: 0}
         visualRoot: {fileID: 8660671769077101938}
         renderer: {fileID: 0}
-    - rid: 6306143700861321535
-      type: {class: ColiderHitBoxComponent, ns: Battle.Data.Components.HitBox, asm: Battle}
+    - rid: 8885881579968397432
+      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        providers:
+        - rid: 8885881579968397793
+    - rid: 8885881579968397433
+      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        speed: 1
+    - rid: 8885881579968397434
+      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data: 
-    - rid: 6306143700861321566
-      type: {class: FindHeroComponent, ns: Battle.Data.Components, asm: Battle}
+    - rid: 8885881579968397435
+      type: {class: AutoAttackComponent, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
-        providers: []
-    - rid: 6306143700861321567
-      type: {class: SelfDestroyAttackComponent, ns: Battle.Data.Components, asm: Battle}
-      data:
-        duration: 0.1
+        impactObject: {fileID: 0}
+    - rid: 8885881579968397793
+      type: {class: AllEnemies, ns: Battle.Data.Components.TargetProviders, asm: Battle}
+      data: 
 --- !u!50 &4573317970349082657
 Rigidbody2D:
   serializedVersion: 4
