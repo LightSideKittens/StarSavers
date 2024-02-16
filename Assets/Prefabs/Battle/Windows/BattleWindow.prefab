@@ -263,6 +263,9 @@ MonoBehaviour:
     - timeOffset: 0.8
       anim:
         rid: 6306143568870244365
+  mainButton: {fileID: 0}
+  ultimateButton: {fileID: 0}
+  skillButton: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -318,7 +321,6 @@ GameObject:
   - component: {fileID: 7882034840209085014}
   - component: {fileID: 6031794439493346569}
   - component: {fileID: 4994777401060659595}
-  - component: {fileID: 5258338768937250427}
   m_Layer: 5
   m_Name: RightButtons
   m_TagString: Untagged
@@ -386,27 +388,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5258338768937250427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386161713755020623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9fca4100a7477741b3973b4ff2c405f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  area: {fileID: 7882034840209085014}
-  handleArea: {fileID: 0}
-  handle: {fileID: 0}
-  group: {fileID: 0}
-  directions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &3944902508533168694
 GameObject:
   m_ObjectHideFlags: 0
