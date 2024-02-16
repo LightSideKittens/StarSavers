@@ -54,7 +54,6 @@ MonoBehaviour:
   - rid: 8885881579968397657
   - rid: 8885881579968397658
   - rid: 8885881579968397659
-  - rid: 8885881579968397660
   - rid: 8885881579968397661
   references:
     version: 2
@@ -65,27 +64,30 @@ MonoBehaviour:
         health: 1000
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
-        visualRoot: {fileID: 0}
+        visualRoot: {fileID: 4144509317128272308}
         renderer: {fileID: 0}
     - rid: 8885881579968397658
       type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
-        providers:
-        - rid: 8885881579968397677
+        checkers:
+          rid: 8885881703874167212
+        mask:
+          serializedVersion: 2
+          m_Bits: 64
     - rid: 8885881579968397659
       type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
         speed: 4
-    - rid: 8885881579968397660
-      type: {class: ColliderHitBoxComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
-      data: 
     - rid: 8885881579968397661
       type: {class: AutoAttackComponent, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
         impactObject: {fileID: 0}
-    - rid: 8885881579968397677
-      type: {class: AllEnemies, ns: Battle.Data.Components.TargetProviders, asm: Battle}
-      data: 
+        attackSpeed: 0.5
+        radius: 10
+    - rid: 8885881703874167212
+      type: {class: IsEnemy, ns: Battle.Data.Components.TargetProviders, asm: Battle}
+      data:
+        type: 0
 --- !u!50 &754386383632478202
 Rigidbody2D:
   serializedVersion: 4

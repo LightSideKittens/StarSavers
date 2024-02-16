@@ -30,7 +30,7 @@ namespace Battle
 
             foreach (var id in BattleWorld.EnemyIds)
             {
-                var unit = enemies.GetComponentByCurrentLevel<Unit>(id);
+                var unit = enemies.GetCurrentLevel<Unit>(id);
                 var pool = CreatePool(unit);
                 pool.Got += OnGot;
                 SubscribeOnChange(pool);

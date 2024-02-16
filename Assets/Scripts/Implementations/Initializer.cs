@@ -85,7 +85,7 @@ namespace BeatHeroes
                 heroesLevelsManager.SetLevel(selectedHeroId, 1);
             }
             
-            var unit = heroesLevelsManager.GetComponentByCurrentLevel<Unit>(selectedHeroId);
+            var unit = heroesLevelsManager.GetCurrentLevel<Unit>(selectedHeroId);
             unit.RegisterComps();
             Debug.Log(unit.GetComp<BaseHealthComp>().Health);
             
