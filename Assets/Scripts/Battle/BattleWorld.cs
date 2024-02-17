@@ -5,6 +5,7 @@ using BeatHeroes.Interfaces;
 using DG.Tweening;
 using Battle.Data;
 using LSCore.Async;
+using LSCore.Extensions.Unity;
 using UnityEngine;
 
 namespace LSCore.BattleModule
@@ -30,6 +31,7 @@ namespace LSCore.BattleModule
 
         private void Setup()
         {
+            Physics2DExt.SetHitCollidersSize(100);
             BattleWindow.AsHome();
             BattleWindow.Show();
             

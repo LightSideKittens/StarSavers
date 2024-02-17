@@ -52,7 +52,6 @@ MonoBehaviour:
   manager: {fileID: 11400000, guid: a63ed3ff636fbb44fbaf166610abf8b8, type: 2}
   comps:
   - rid: 8885881579968397431
-  - rid: 8885881579968397432
   - rid: 8885881579968397433
   - rid: 8885881579968397435
   references:
@@ -66,25 +65,33 @@ MonoBehaviour:
         offset: {x: 0, y: 0}
         visualRoot: {fileID: 8660671769077101938}
         renderer: {fileID: 0}
-    - rid: 8885881579968397432
-      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
-      data:
-        checkers:
-          rid: 8885881703874167249
-        mask:
-          serializedVersion: 2
-          m_Bits: 64
     - rid: 8885881579968397433
       type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
         speed: 3
+        findTargetComp:
+          checkers:
+            rid: 8885881707997954233
+          mask:
+            serializedVersion: 2
+            m_Bits: 64
     - rid: 8885881579968397435
       type: {class: AutoAttackComponent, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
         impactObject: {fileID: 2475992814432109501}
-        attackSpeed: 1
-        radius: 5
-    - rid: 8885881703874167249
+        attackSpeed: 3
+        radius: 8
+        findTargetComp:
+          checkers:
+            rid: 8885881707997954208
+          mask:
+            serializedVersion: 2
+            m_Bits: 64
+    - rid: 8885881707997954208
+      type: {class: IsEnemy, ns: Battle.Data.Components.TargetProviders, asm: Battle}
+      data:
+        type: 0
+    - rid: 8885881707997954233
       type: {class: IsEnemy, ns: Battle.Data.Components.TargetProviders, asm: Battle}
       data:
         type: 0
@@ -207,19 +214,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4864805282391739316, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999213
       objectReference: {fileID: 0}
     - target: {fileID: 4864805282391739316, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4864805282391739316, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4864805282391739316, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0125454115
       objectReference: {fileID: 0}
     - target: {fileID: 4864805282391739316, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -231,6 +238,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4864805282391739316, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: handlers.Array.data[0]
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: handlers.Array.data[1]
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: triggerHandler.ignoredCollider
+      value: 
+      objectReference: {fileID: -6763652745144591957}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: managedReferences[8885881723286454622]
+      value: LSCore.BattleModule LSCore.TriggerHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: managedReferences[8885881723286454622].type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: managedReferences[8885881723286454622].mask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: managedReferences[8885881723286454622].ignoredCollider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: managedReferences[8885881723286454622].handlers.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

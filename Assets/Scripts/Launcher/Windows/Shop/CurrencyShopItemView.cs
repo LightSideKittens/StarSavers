@@ -1,6 +1,7 @@
 ﻿using System;
 using LSCore;
 using UnityEngine;
+using Action = System.Action;
 
 namespace BeatHeroes.Windows
 {

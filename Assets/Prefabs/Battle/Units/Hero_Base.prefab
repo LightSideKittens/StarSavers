@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6663806722790344465}
-  - component: {fileID: 463086963427357214}
+  - component: {fileID: 7178401505943615757}
   - component: {fileID: 754386383632478202}
   - component: {fileID: 5202710251623668231}
   - component: {fileID: 7714106524654452839}
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 1466369611488825158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &463086963427357214
+--- !u!114 &7178401505943615757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,14 +52,13 @@ MonoBehaviour:
   id: {fileID: 0}
   manager: {fileID: 11400000, guid: 5e66bb9bfd8051542b5b643eec359e2d, type: 2}
   comps:
-  - rid: 8885881579968397657
-  - rid: 8885881579968397658
-  - rid: 8885881579968397659
-  - rid: 8885881579968397661
+  - rid: 8885881579968397431
+  - rid: 8885881723286454386
+  - rid: 8885881579968397435
   references:
     version: 2
     RefIds:
-    - rid: 8885881579968397657
+    - rid: 8885881579968397431
       type: {class: HealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
         health: 1000
@@ -67,25 +66,33 @@ MonoBehaviour:
         offset: {x: 0, y: 0}
         visualRoot: {fileID: 4144509317128272308}
         renderer: {fileID: 0}
-    - rid: 8885881579968397658
-      type: {class: FindTargetComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
-      data:
-        checkers:
-          rid: 8885881703874167212
-        mask:
-          serializedVersion: 2
-          m_Bits: 64
-    - rid: 8885881579968397659
-      type: {class: MoveComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
-      data:
-        speed: 5
-    - rid: 8885881579968397661
+    - rid: 8885881579968397435
       type: {class: AutoAttackComponent, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
         impactObject: {fileID: 4098855913684664910}
-        attackSpeed: 0.5
-        radius: 5
-    - rid: 8885881703874167212
+        attackSpeed: 1
+        radius: 8
+        findTargetComp:
+          checkers:
+            rid: 8885881707997954208
+          mask:
+            serializedVersion: 2
+            m_Bits: 64
+    - rid: 8885881707997954208
+      type: {class: IsEnemy, ns: Battle.Data.Components.TargetProviders, asm: Battle}
+      data:
+        type: 0
+    - rid: 8885881723286454386
+      type: {class: HeroMoveComp, ns: Battle.Data.Components, asm: Battle}
+      data:
+        speed: 5
+        findTargetComp:
+          checkers:
+            rid: 8885881723286454387
+          mask:
+            serializedVersion: 2
+            m_Bits: 64
+    - rid: 8885881723286454387
       type: {class: IsEnemy, ns: Battle.Data.Components.TargetProviders, asm: Battle}
       data:
         type: 0
@@ -246,6 +253,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
+      propertyPath: triggerHandler.ignoredCollider
+      value: 
+      objectReference: {fileID: 5202710251623668231}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

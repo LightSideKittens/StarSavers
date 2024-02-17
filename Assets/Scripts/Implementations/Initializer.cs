@@ -10,6 +10,7 @@ using LSCore.ConfigModule;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Action = System.Action;
 
 namespace BeatHeroes
 {
