@@ -11,6 +11,8 @@ namespace Battle.Data.Components
     {
         public override void Move()
         {
+            if(!Enabled) return;
+            
             CameraMover.Move();
             var joystick = BattleWindow.Joystick;
             if (!joystick.IsUsing) return;
