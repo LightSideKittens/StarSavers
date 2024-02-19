@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1064903889723170037}
   - component: {fileID: 8014395754375300796}
   m_Layer: 9
-  m_Name: StunImpact
+  m_Name: FoxyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.75
+      scalar: 1.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4929,8 +4929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impacts:
-  - rid: 8885881753644564801
-  - rid: 8885881753644564813
+  - rid: 8885881753644565323
   paticleIniters: []
   particleHandlers: []
   triggerHandler:
@@ -4939,58 +4938,37 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 320
     particleHandlers:
-    - rid: 8885881753644565242
+    - rid: 8885881753644565077
     ignoredCollider: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 8885881753644564801
-      type: {class: HandlerImpact, ns: LSCore, asm: LSCore.BattleModule}
-      data:
-        impact:
-          rid: 8885881753644564805
-        handler:
-          rid: 8885881753644564806
-    - rid: 8885881753644564805
-      type: {class: Damage, ns: LSCore, asm: LSCore.BattleModule}
-      data:
-        damage: 20
-    - rid: 8885881753644564806
-      type: {class: Kill, ns: LSCore, asm: LSCore.BattleModule}
-      data: 
-    - rid: 8885881753644564813
-      type: {class: ConditionImpact, ns: LSCore, asm: LSCore.BattleModule}
-      data:
-        impact:
-          rid: 8885881753644564817
-        condition:
-          rid: 8885881753644564818
-    - rid: 8885881753644564817
-      type: {class: Stun, ns: LSCore, asm: LSCore.BattleModule}
-      data:
-        time: 0.5
-    - rid: 8885881753644564818
-      type: {class: GroupCondition, ns: LSCore, asm: LSCore.BattleModule}
-      data:
-        type: 0
-        group: {fileID: 11400000, guid: 8b5aece928283654a827b29534820ed9, type: 2}
-    - rid: 8885881753644565242
+    - rid: 8885881753644565077
       type: {class: ConditionHandler, ns: LSCore, asm: LSCore.BattleModule}
       data:
         condition:
-          rid: 8885881753644565243
+          rid: 8885881753644565105
         handler:
-          rid: 8885881753644565244
-    - rid: 8885881753644565243
+          rid: 8885881753644565214
+    - rid: 8885881753644565105
       type: {class: LayerMaskCondition, ns: LSCore, asm: LSCore.BattleModule}
       data:
         type: 0
         mask:
           serializedVersion: 2
           m_Bits: 256
-    - rid: 8885881753644565244
+    - rid: 8885881753644565214
       type: {class: Kill, ns: LSCore, asm: LSCore.BattleModule}
       data: 
+    - rid: 8885881753644565323
+      type: {class: ParticleImpact, ns: LSCore, asm: LSCore.BattleModule}
+      data:
+        impact:
+          rid: 8885881753644565324
+    - rid: 8885881753644565324
+      type: {class: Damage, ns: LSCore, asm: LSCore.BattleModule}
+      data:
+        damage: 20
 --- !u!1001 &2567734024450826640
 PrefabInstance:
   m_ObjectHideFlags: 0
