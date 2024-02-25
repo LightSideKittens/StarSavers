@@ -148,7 +148,12 @@ namespace Battle.Data
             EditorGUILayout.BeginHorizontal();
             EditorGUI.LabelField(EditorGUILayout.GetControlRect(GUILayout.MaxWidth(120)), content);
             var rect = EditorGUILayout.GetControlRect(GUILayout.Height(50));
+            EditorGUI.BeginChangeCheck();
             value = EditorGUI.CurveField(rect, value);
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(currentInspected);
+            }
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space(10);
             return value;
