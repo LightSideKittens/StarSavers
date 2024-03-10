@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     internal class MainWindow : BaseWindow<MainWindow>
     {

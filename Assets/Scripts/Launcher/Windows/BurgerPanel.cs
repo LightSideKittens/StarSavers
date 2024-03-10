@@ -1,7 +1,7 @@
 ﻿using LSCore;
 using UnityEngine;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     public class BurgerPanel : BaseWindow<BurgerPanel>
     {

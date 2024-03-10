@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Battle;
 using Battle.Windows;
-using BeatHeroes.Interfaces;
+using MultiWars.Interfaces;
 using DG.Tweening;
 using Battle.Data;
 using LSCore.Async;

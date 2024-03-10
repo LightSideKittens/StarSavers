@@ -3,7 +3,7 @@ using LSCore;
 using UnityEngine;
 using Action = System.Action;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     public class CurrencyShopItemView : MonoBehaviour
     {

@@ -1,9 +1,9 @@
-﻿using BeatHeroes.Interfaces;
-using BeatHeroes.Windows;
+﻿using MultiWars.Interfaces;
+using MultiWars.Windows;
 using LSCore;
 using Sirenix.OdinInspector;
 
-namespace BeatHeroes.Launcher
+namespace MultiWars.Launcher
 {
     public class LauncherWorld : ServiceManager<LauncherWorld>
     {

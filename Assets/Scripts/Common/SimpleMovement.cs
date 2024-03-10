@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     [RequireComponent(typeof(WASDEvents))]
     public class SimpleMovement : MonoBehaviour

@@ -3,7 +3,7 @@ using LSCore;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     public class BaseLauncherWindow<T> : BaseWindow<T> where T : BaseLauncherWindow<T>
     {

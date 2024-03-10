@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     public class TransformScaler : BaseScreenScaler
     {

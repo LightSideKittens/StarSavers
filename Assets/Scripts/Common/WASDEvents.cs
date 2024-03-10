@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     public class WASDEvents : MonoBehaviour
     {

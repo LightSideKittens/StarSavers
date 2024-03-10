@@ -1,7 +1,7 @@
 ﻿using System;
 using LSCore;
 
-namespace BeatHeroes.Data
+namespace MultiWars.Data
 {
     [Serializable]
     public class HeroRankIconsRef : AssetRef<HeroRankIcons> { }

@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine.U2D;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     public partial class SpriteAtlasSequencer
     {

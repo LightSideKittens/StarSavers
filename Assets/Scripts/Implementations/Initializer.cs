@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Battle.Data;
-using BeatHeroes.Data;
-using BeatHeroes.Interfaces;
+using MultiWars.Data;
+using MultiWars.Interfaces;
 using DG.Tweening;
 using LSCore;
 using LSCore.BattleModule;
@@ -12,7 +12,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Action = System.Action;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     [ShowOdinSerializedPropertiesInInspector]
     public class Initializer : BaseInitializer

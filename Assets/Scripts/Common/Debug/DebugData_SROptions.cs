@@ -3,7 +3,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     public partial class DebugData
     {

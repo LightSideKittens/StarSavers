@@ -3,7 +3,7 @@ using LSCore.Async;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     public class ShopWindow : BaseWindow<ShopWindow>
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using static BeatHeroes.DebugData;
+using static MultiWars.DebugData;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     public static partial class ToolBar
     {

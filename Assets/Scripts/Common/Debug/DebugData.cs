@@ -1,7 +1,7 @@
 ﻿using LSCore;
 using LSCore.ConfigModule;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     public partial class DebugData : BaseDebugData<DebugData>
     {

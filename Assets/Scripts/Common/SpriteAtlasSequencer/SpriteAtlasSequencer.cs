@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public partial class SpriteAtlasSequencer : MonoBehaviour

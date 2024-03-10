@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     public class HeroesGalleryWindow : BaseLauncherWindow<HeroesGalleryWindow>
     {

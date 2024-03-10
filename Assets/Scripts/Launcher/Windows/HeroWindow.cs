@@ -1,4 +1,4 @@
-﻿namespace BeatHeroes.Windows
+﻿namespace MultiWars.Windows
 {
     public class HeroWindow : BaseLauncherWindow<HeroWindow>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using LSCore;
 
-namespace BeatHeroes.Interfaces
+namespace MultiWars.Interfaces
 {
     public abstract class BaseInitializer : SingleService<BaseInitializer>
     {

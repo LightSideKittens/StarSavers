@@ -5,7 +5,7 @@ using UnityToolbarExtender;
 using static EditorUtils;
 using static UnityEditor.AssetDatabase;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     [InitializeOnLoad]
     public static partial class ToolBar

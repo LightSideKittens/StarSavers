@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BeatHeroes
+namespace MultiWars
 {
     [ExecuteAlways]
     public abstract class BaseScreenScaler : MonoBehaviour

@@ -1,12 +1,12 @@
 ﻿using Battle.Data;
-using BeatHeroes.Data;
+using MultiWars.Data;
 using LSCore;
 using LSCore;
 using LSCore.Extensions;
 using LSCore.LevelSystem;
 using UnityEngine;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     public class HeroGallerySlot : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using LSCore;
 
-namespace BeatHeroes.Windows
+namespace MultiWars.Windows
 {
     public class ClanWindow : BaseWindow<ClanWindow>
     {
