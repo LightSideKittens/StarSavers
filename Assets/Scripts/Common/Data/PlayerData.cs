@@ -3,7 +3,7 @@ using LSCore.ConfigModule;
 
 namespace Battle.Data
 {
-    public class PlayerData : BaseConfig<PlayerData>
+    public class PlayerData : BaseSingleConfig<PlayerData>
     {
         public string SelectedHero { get; set; }
         public int Rank { get; set; }
