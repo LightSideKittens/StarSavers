@@ -1,7 +1,6 @@
 ﻿using Battle.Data;
 using MultiWars.Data;
 using LSCore;
-using LSCore;
 using LSCore.Extensions;
 using LSCore.LevelSystem;
 using UnityEngine;
