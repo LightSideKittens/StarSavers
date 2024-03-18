@@ -26,12 +26,12 @@ Transform:
   m_GameObject: {fileID: 36646885490380424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -18.8, z: 0}
+  m_LocalPosition: {x: 0.02, y: -13.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.8425927}
 --- !u!212 &4697428379338947481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -110,12 +110,12 @@ Transform:
   m_GameObject: {fileID: 313680073640419247}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.9999995, z: 0}
+  m_LocalPosition: {x: 0, y: -13.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -6.724537}
 --- !u!212 &7908609912062506272
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4463730062105841468}
   - component: {fileID: 3695808085713424355}
   m_Layer: 0
-  m_Name: Hand
+  m_Name: Right_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,12 +194,12 @@ Transform:
   m_GameObject: {fileID: 1651164543094628509}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.6, y: 1.9000012, z: 0}
+  m_LocalPosition: {x: 19.36, y: -2.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.734375}
 --- !u!212 &3695808085713424355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 4220970115816586578}
   - component: {fileID: 5454488377450195106}
   m_Layer: 0
-  m_Name: Hand_Left
+  m_Name: Left_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,12 +278,12 @@ Transform:
   m_GameObject: {fileID: 5043121772628891620}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.6, y: 1.9000012, z: 0}
+  m_LocalPosition: {x: -19.36, y: -2.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.734375}
 --- !u!212 &5454488377450195106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 695009584646594854, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695009584646594854, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -447,8 +447,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4220970115816586578}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1202053651975538802, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5413108974688964511}
   m_SourcePrefab: {fileID: 100100000, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+--- !u!1 &3711921419647442409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1202053651975538802, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+  m_PrefabInstance: {fileID: 2534939108120810907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &5413108974688964511
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711921419647442409}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 42d8f7407c1e23344a38d14aa397e422, type: 2}
+  - {fileID: 7400000, guid: 1d578030421e5764e8cb5498259bc4f5, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &6565415541246353641 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
