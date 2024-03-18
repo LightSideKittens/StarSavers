@@ -65,7 +65,6 @@ namespace MultiWars
             palette.Init();
             
             const string ftKey = "Give funds and hero";
-            
             if (FirstTime.IsNot(ftKey, out var pass))
             {
                 funds.Earn();
