@@ -26,9 +26,9 @@ Transform:
   m_GameObject: {fileID: 1869565250637138808}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.35, z: 0}
+  m_LocalPosition: {x: 0, y: -0.07343769, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1882940398026803772}
   m_Father: {fileID: 1570817265892586518}
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 2383901836047077949}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.0099995, z: 0}
+  m_LocalPosition: {x: 0, y: -0.172, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -195,9 +195,9 @@ Transform:
   m_GameObject: {fileID: 5380305589299987246}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.26, y: 6.36, z: 0}
+  m_LocalPosition: {x: -0.44562495, y: 0.19874954, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1570817265892586518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 42.767998}
@@ -279,9 +279,9 @@ Transform:
   m_GameObject: {fileID: 6312122639593574711}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.26, y: 6.36, z: 0}
+  m_LocalPosition: {x: 0.44562495, y: 0.19874954, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1570817265892586518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -363,9 +363,9 @@ Transform:
   m_GameObject: {fileID: 6790712626832048029}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.3099995, z: 0}
+  m_LocalPosition: {x: 0, y: -0.07218742, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1570817265892586518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
@@ -494,6 +494,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6750239444755058063, guid: 19e5f85d545cc8645a2460fbcff86dde, type: 3}
     - target: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -501,21 +513,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -8.3
       objectReference: {fileID: 0}
+    - target: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1435838808683137183}
-    - targetCorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4989340858666557601}
+      addedObject: {fileID: 4079312892946521854}
     - targetCorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3654119220380640625}
     - targetCorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4079312892946521854}
+      addedObject: {fileID: 4989340858666557601}
+    - targetCorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1435838808683137183}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1202053651975538802, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       insertIndex: -1

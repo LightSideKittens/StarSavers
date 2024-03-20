@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -6.724537}
 --- !u!212 &1468677351766370655
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -6.724537}
 --- !u!212 &2044770925280697459
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.8425927}
 --- !u!212 &2275825102263567163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -262,8 +262,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1732352838315088127}
   - component: {fileID: 2008898693334216455}
-  - component: {fileID: 4640818142688551937}
-  - component: {fileID: 2904060472845495548}
   m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
@@ -280,12 +278,12 @@ Transform:
   m_GameObject: {fileID: 7733283132595566371}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 89.29047, y: -0.3296876, z: 0}
+  m_LocalPosition: {x: -0.009, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6565415541246353641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -6.724537}
 --- !u!212 &2008898693334216455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -338,355 +336,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4640818142688551937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7733283132595566371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3810eb12fcfc04198982804799db2a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsLegacy: 0
-  PlaybackMode: 0
-  _debugEnabled: 0
-  EditorShowUI: 1
-  UpdateMethod: 0
-  TrackActivated: 0
-  ForceFramerate: 15
-  TimeInterval: 0.1
-  LinkedBehaviors: []
-  DefaultValue: 0
-  MinValue: 0
-  MaxValue: 1
-  _UpdateFrequency: 0
-  _UpdateAfter: {fileID: 0}
-  _CurrentTime: 0.90000004
-  _TimeOffset: 0
-  EditorShowTime: 0
-  EditorShowChannels: 1
-  CanDragTimeOffset: 0
-  Track:
-    legacyIsColor: 0
-    legacyIsInt: 0
-    legacyIsBool: 0
-    legacyIsVector: 0
-    IsLegacy: 0
-    IsNameCustom: 1
-    _SortOrder: 200
-    Keys:
-    - IsLegacy: 0
-      IsLegacyColor: 0
-      legacyKeyColor: {r: 0, g: 0, b: 0, a: 1}
-      legacyIsColor: 0
-      legacyIsVector: 0
-      IsKeyEnabled: 1
-      KeyString: 
-      KeyComponent: {fileID: 0}
-      KeyGameObject: {fileID: 0}
-      IsCustomType: 0
-      Hold: 0
-      Linear: 0
-      IsAutoTangents: 1
-      UnifyTangents: 1
-      UnifyTangentLengths: 1
-      UnifyTangentLengthRatio: 0
-      UseKeyColor: 0
-      ExposedID: 0
-      _KeyVector: {x: 0, y: 0, z: 0, w: 0}
-      _VectorInTangent: {x: -1, y: 0, z: 0}
-      _VectorOutTangent: {x: 1, y: 0, z: 0}
-      CustomKey:
-        rid: -2
-      _KeyValue: 10
-      _KeyTime: 0
-      _LockValue: 1
-      _LockTime: 1
-      _PropertyType: 0
-      _InTangent: {x: -0.5, y: 0}
-      _OutTangent: {x: 0.5, y: 0}
-      _InTangent1: {x: -0.5, y: 0}
-      _OutTangent1: {x: 0.5, y: 0}
-      _InTangent2: {x: -0.5, y: 0}
-      _OutTangent2: {x: 0.5, y: 0}
-      _InTangent3: {x: -0.5, y: 0}
-      _OutTangent3: {x: 0.5, y: 0}
-      ShowTangents: 1
-    CanAddRemoveKeys: 1
-    ToProperty:
-      IsLegacy: 0
-      legacyMaterialName: 
-      legacyAttributeIndex: -1
-      IsEnabled: 1
-      CanBeAssigned: 1
-      IsDataOnly: 0
-      EnableHandlers: 1
-      Component: {fileID: 0}
-      ShowComponentName: 0
-      Attribute: -1
-      ForcePropertyType: 0
-      PropertyFilter: 0
-      LinkID: 
-      _Name: 
-      _DisplayName: 
-      _DebugEnabled: 0
-      _IsMaterial: 0
-      _PropertyType: 0
-      _DataTypeName: 
-      _Handler:
-        rid: -2
-    Link:
-      rid: -2
-    LimitValue: 0
-    MinValue: {x: 0, y: 0, z: 0, w: 0}
-    MaxValue: {x: 0, y: 0, z: 0, w: 0}
-    SetGlobalShaderProperty: 0
-    GlobalShaderProperty: 
-    LoopStart: 0
-    LoopEnd: 0
-    LoopLimit: 0
-    LoopPingPong: 0
-    LoopMatchEnds: 0
-    EnableAutoLoop: 0
-    EnableLoopIn: 0
-    EnableLoopOut: 0
-    VectorLength: 0
-    IsVectorLoop: 0
-    IsVectorExtended: 0
-    AlwaysUpdate: 0
-    IsUpdated: 1
-    LegacyVisibility: 
-    ShowValue: 0
-    ShowColor: 0
-    ShowVector: 0
-    ShowComponent: 0
-    ShowGameObject: 0
-    ShowString: 0
-    SortingMode: 1
-    _DebugEnabled: 0
-    _IsLoopSupported: 0
-    _IsEnabled: 0
-    __Name: Track
-    _TimeOffset: 0
-    _EnableLoop: 0
-    _HasProperty: 0
-    _IsCustomType: 0
-    _Interpolation: 0
-    _UniqueID: 2105ee18-a787-40a3-a79c-a91320f16104
-    _PropertyType: 0
-    DisplayChannel: 0
-    DisplayChannelSolo: 0
-    EditorShowChannel: 0
-    EditorShowKeys: 0
-    ShowTangents: 0
-    GraphFloatValueOnly: 0
-    ExportEveryFrame: 0
-    _GUIColor: {r: 0.3717998, g: 0.8125, b: 0.203125, a: 1}
-    GUIHandles: {r: 0, g: 0, b: 0, a: 0}
-    GUICanDraw: 0
-    DrawPath: 0
-    GUIHeightOffset: 0
-    IsHiddenInGraph: 0
-    _IsHidden: 0
-    _IsLocked: 0
-    _IsGraphLocked: 0
-    IsSearchDisplayed: 0
-    VisibilityMode: 0
-    ViewObjects: []
-    _AutoFullLength: 0
-    AutoSetWorkArea: 0
-  UpdateAnimation: 1
-  AnimationSpeed: 1
-  AnimationOffset: 0
-  AnimationRand: 0
-  _SortOrder: 101
-  _ShowChildren: 1
-  IsLocked: 0
-  EditorShowObject: 0
-  EditorShowTrack: 0
-  EditorShowTrackKeys: 0
-  EditorShowViewOptions: 0
-  EditorShowBehaviors: 0
-  DisplayChannels: 1
-  DisplaySolo: 0
-  _IsCollapsed: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
---- !u!114 &2904060472845495548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7733283132595566371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22a06021b22148c282c5688b5df756d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsLegacy: 0
-  PlaybackMode: 0
-  _debugEnabled: 0
-  EditorShowUI: 1
-  UpdateMethod: 0
-  TrackActivated: 0
-  ForceFramerate: 15
-  TimeInterval: 0.1
-  LinkedBehaviors: []
-  DefaultValue: 0
-  MinValue: 0
-  MaxValue: 1
-  _UpdateFrequency: 0
-  _UpdateAfter: {fileID: 0}
-  _CurrentTime: 0.90000004
-  _TimeOffset: 0
-  EditorShowTime: 0
-  EditorShowChannels: 1
-  CanDragTimeOffset: 0
-  KeyChannels:
-  - legacyIsColor: 0
-    legacyIsInt: 0
-    legacyIsBool: 0
-    legacyIsVector: 0
-    IsLegacy: 0
-    IsNameCustom: 0
-    _SortOrder: 100
-    Keys:
-    - IsLegacy: 0
-      IsLegacyColor: 0
-      legacyKeyColor: {r: 0, g: 0, b: 0, a: 1}
-      legacyIsColor: 0
-      legacyIsVector: 0
-      IsKeyEnabled: 1
-      KeyString: 
-      KeyComponent: {fileID: 0}
-      KeyGameObject: {fileID: 0}
-      IsCustomType: 0
-      Hold: 0
-      Linear: 0
-      IsAutoTangents: 0
-      UnifyTangents: 1
-      UnifyTangentLengths: 1
-      UnifyTangentLengthRatio: 0
-      UseKeyColor: 0
-      ExposedID: 0
-      _KeyVector: {x: 0, y: 0, z: 0, w: 0}
-      _VectorInTangent: {x: -1, y: 0, z: 0}
-      _VectorOutTangent: {x: 1, y: 0, z: 0}
-      CustomKey:
-        rid: -2
-      _KeyValue: 89.29047
-      _KeyTime: 1.1500001
-      _LockValue: 0
-      _LockTime: 0
-      _PropertyType: 3
-      _InTangent: {x: -0.8466443, y: -0.00000011920929}
-      _OutTangent: {x: 0.8466443, y: 0.00000011920929}
-      _InTangent1: {x: -0.5, y: 0}
-      _OutTangent1: {x: 0.5, y: 0}
-      _InTangent2: {x: -0.5, y: 0}
-      _OutTangent2: {x: 0.5, y: 0}
-      _InTangent3: {x: -0.5, y: 0}
-      _OutTangent3: {x: 0.5, y: 0}
-      ShowTangents: 1
-    CanAddRemoveKeys: 1
-    ToProperty:
-      IsLegacy: 0
-      legacyMaterialName: 
-      legacyAttributeIndex: -1
-      IsEnabled: 1
-      CanBeAssigned: 1
-      IsDataOnly: 0
-      EnableHandlers: 1
-      Component: {fileID: 1732352838315088127}
-      ShowComponentName: 0
-      Attribute: 0
-      ForcePropertyType: 0
-      PropertyFilter: 0
-      LinkID: 
-      _Name: Local Position
-      _DisplayName: Local Position X
-      _DebugEnabled: 0
-      _IsMaterial: 0
-      _PropertyType: 5
-      _DataTypeName: Vector3
-      _Handler:
-        rid: 5416760947890192507
-    Link:
-      rid: -2
-    LimitValue: 0
-    MinValue: {x: 0, y: 0, z: 0, w: 0}
-    MaxValue: {x: 1, y: 1, z: 1, w: 1}
-    SetGlobalShaderProperty: 0
-    GlobalShaderProperty: 
-    LoopStart: 0
-    LoopEnd: 1.1500001
-    LoopLimit: 0
-    LoopPingPong: 0
-    LoopMatchEnds: 0
-    EnableAutoLoop: 1
-    EnableLoopIn: 1
-    EnableLoopOut: 1
-    VectorLength: 0
-    IsVectorLoop: 0
-    IsVectorExtended: 0
-    AlwaysUpdate: 0
-    IsUpdated: 1
-    LegacyVisibility: 
-    ShowValue: 1
-    ShowColor: 0
-    ShowVector: 0
-    ShowComponent: 0
-    ShowGameObject: 0
-    ShowString: 0
-    SortingMode: 1
-    _DebugEnabled: 0
-    _IsLoopSupported: 1
-    _IsEnabled: 1
-    __Name: Local Position X
-    _TimeOffset: 0
-    _EnableLoop: 0
-    _HasProperty: 1
-    _IsCustomType: 0
-    _Interpolation: 2
-    _UniqueID: 26c0af73-ca21-43d5-b02c-1d94db9a665b
-    _PropertyType: 5
-    DisplayChannel: 1
-    DisplayChannelSolo: 0
-    EditorShowChannel: 0
-    EditorShowKeys: 0
-    ShowTangents: 1
-    GraphFloatValueOnly: 0
-    ExportEveryFrame: 1
-    _GUIColor: {r: 0.3717998, g: 0.8125, b: 0.203125, a: 1}
-    GUIHandles: {r: 1, g: 0, b: 0, a: 1}
-    GUICanDraw: 1
-    DrawPath: 0
-    GUIHeightOffset: 0
-    IsHiddenInGraph: 0
-    _IsHidden: 0
-    _IsLocked: 0
-    _IsGraphLocked: 0
-    IsSearchDisplayed: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5416760947890192507
-      type: {class: PropertiesOfTransform, ns: AxonGenesis, asm: AxonGenesis}
-      data:
-        _Name: Local Position
-        _Object: {fileID: 1732352838315088127}
-        Obj: {fileID: 1732352838315088127}
-        PropertyMode: 1
-        _Rotate: {fileID: 0}
 --- !u!1001 &2534939108120810907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -858,307 +507,31 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1202053651975538802, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7520490123543512004}
+      addedObject: {fileID: 8557949747985419554}
   m_SourcePrefab: {fileID: 100100000, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
 --- !u!1 &3711921419647442409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1202053651975538802, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
   m_PrefabInstance: {fileID: 2534939108120810907}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7520490123543512004
-MonoBehaviour:
+--- !u!111 &8557949747985419554
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3711921419647442409}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e5c02f54f7054e1ca3dcc937178db52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsLegacy: 0
-  PlaybackMode: 0
-  _debugEnabled: 0
-  EditorShowUI: 1
-  UpdateMethod: 0
-  TrackActivated: 0
-  ForceFramerate: 15
-  TimeInterval: 0.1
-  LinkedBehaviors: []
-  DefaultValue: 0
-  MinValue: 0
-  MaxValue: 1
-  _UpdateFrequency: 0
-  _UpdateAfter: {fileID: 0}
-  _CurrentTime: 0.90000004
-  _TimeOffset: 0
-  EditorShowTime: 0
-  EditorShowChannels: 1
-  CanDragTimeOffset: 0
-  Track:
-    legacyIsColor: 0
-    legacyIsInt: 0
-    legacyIsBool: 0
-    legacyIsVector: 0
-    IsLegacy: 0
-    IsNameCustom: 1
-    _SortOrder: 100
-    Keys:
-    - IsLegacy: 0
-      IsLegacyColor: 0
-      legacyKeyColor: {r: 0, g: 0, b: 0, a: 1}
-      legacyIsColor: 0
-      legacyIsVector: 0
-      IsKeyEnabled: 1
-      KeyString: 
-      KeyComponent: {fileID: 0}
-      KeyGameObject: {fileID: 0}
-      IsCustomType: 0
-      Hold: 0
-      Linear: 0
-      IsAutoTangents: 1
-      UnifyTangents: 1
-      UnifyTangentLengths: 1
-      UnifyTangentLengthRatio: 0
-      UseKeyColor: 0
-      ExposedID: 0
-      _KeyVector: {x: 0, y: 0, z: 0, w: 0}
-      _VectorInTangent: {x: -1, y: 0, z: 0}
-      _VectorOutTangent: {x: 1, y: 0, z: 0}
-      CustomKey:
-        rid: -2
-      _KeyValue: 10
-      _KeyTime: 0
-      _LockValue: 1
-      _LockTime: 1
-      _PropertyType: 0
-      _InTangent: {x: -0.5, y: 0}
-      _OutTangent: {x: 0.5, y: 0}
-      _InTangent1: {x: -0.5, y: 0}
-      _OutTangent1: {x: 0.5, y: 0}
-      _InTangent2: {x: -0.5, y: 0}
-      _OutTangent2: {x: 0.5, y: 0}
-      _InTangent3: {x: -0.5, y: 0}
-      _OutTangent3: {x: 0.5, y: 0}
-      ShowTangents: 1
-    CanAddRemoveKeys: 1
-    ToProperty:
-      IsLegacy: 0
-      legacyMaterialName: 
-      legacyAttributeIndex: -1
-      IsEnabled: 1
-      CanBeAssigned: 1
-      IsDataOnly: 0
-      EnableHandlers: 1
-      Component: {fileID: 0}
-      ShowComponentName: 0
-      Attribute: -1
-      ForcePropertyType: 0
-      PropertyFilter: 0
-      LinkID: 
-      _Name: 
-      _DisplayName: 
-      _DebugEnabled: 0
-      _IsMaterial: 0
-      _PropertyType: 0
-      _DataTypeName: 
-      _Handler:
-        rid: -2
-    Link:
-      rid: -2
-    LimitValue: 0
-    MinValue: {x: 0, y: 0, z: 0, w: 0}
-    MaxValue: {x: 0, y: 0, z: 0, w: 0}
-    SetGlobalShaderProperty: 0
-    GlobalShaderProperty: 
-    LoopStart: 0
-    LoopEnd: 0
-    LoopLimit: 0
-    LoopPingPong: 0
-    LoopMatchEnds: 0
-    EnableAutoLoop: 0
-    EnableLoopIn: 0
-    EnableLoopOut: 0
-    VectorLength: 0
-    IsVectorLoop: 0
-    IsVectorExtended: 0
-    AlwaysUpdate: 0
-    IsUpdated: 1
-    LegacyVisibility: 
-    ShowValue: 0
-    ShowColor: 0
-    ShowVector: 0
-    ShowComponent: 0
-    ShowGameObject: 0
-    ShowString: 0
-    SortingMode: 1
-    _DebugEnabled: 0
-    _IsLoopSupported: 0
-    _IsEnabled: 0
-    __Name: Track
-    _TimeOffset: 0
-    _EnableLoop: 0
-    _HasProperty: 0
-    _IsCustomType: 0
-    _Interpolation: 0
-    _UniqueID: 112bc5a1-f263-4244-b970-2a6e31787ffa
-    _PropertyType: 0
-    DisplayChannel: 0
-    DisplayChannelSolo: 0
-    EditorShowChannel: 0
-    EditorShowKeys: 0
-    ShowTangents: 0
-    GraphFloatValueOnly: 0
-    ExportEveryFrame: 0
-    _GUIColor: {r: 0, g: 0.6, b: 1, a: 1}
-    GUIHandles: {r: 0, g: 0, b: 0, a: 0}
-    GUICanDraw: 0
-    DrawPath: 0
-    GUIHeightOffset: 0
-    IsHiddenInGraph: 0
-    _IsHidden: 0
-    _IsLocked: 0
-    _IsGraphLocked: 0
-    IsSearchDisplayed: 0
-    VisibilityMode: 0
-    ViewObjects: []
-    _AutoFullLength: 1
-    AutoSetWorkArea: 0
-  UpdateAnimation: 1
-  AnimationSpeed: 1
-  AnimationOffset: 0
-  AnimationRand: 0
-  _SortOrder: 100
-  _ShowChildren: 1
-  IsLocked: 0
-  EditorShowObject: 0
-  EditorShowTrack: 0
-  EditorShowTrackKeys: 0
-  EditorShowViewOptions: 0
-  EditorShowBehaviors: 0
-  DisplayChannels: 1
-  DisplaySolo: 0
-  _IsCollapsed: 0
-  TimeflowParent: {fileID: 7520490123543512004}
-  LockParent: 0
-  ResetObjects: 0
-  Objects:
-  - {fileID: 4640818142688551937}
-  EditorShowObjects: 0
-  Preferences: {fileID: 11400000, guid: ddec13a35193cca4b9a89e8be0f49db8, type: 2}
-  LoopInParent: 0
-  HideObjectOnPlay: {fileID: 0}
-  Audio: {fileID: 0}
-  Displays: []
-  AutoSaveDisplay: 0
-  EditorShowSettings: 0
-  EditorShowTimeSettings: 1
-  EditorShowParentSettings: 1
-  EditorShowPlaySettings: 1
-  EditorShowMarkers: 0
-  EditorShowOptions: 1
-  EditorShowAudio: 0
-  EditorShowDisplayLists: 0
-  EditorShowTools: 0
-  EditorShowTimeflowObj: 1
-  IsEditingMarkerIndices: 0
-  View:
-    _isInitialized: 1
-    _IsGraphMode: 1
-    GridEnabled: 1
-    GridTimeDisplay: 0
-    Layout:
-      ShowSwitches: 1
-      ShowValues: 0
-      ShowOffsets: 0
-      _h1: 350
-      _h2: 510
-      _h3: 670
-    Display:
-      SearchTerm: 
-      _ObjectMode: 5
-      _ChannelMode: 0
-      _VisibleOnly: 0
-      _UnlockedOnly: 0
-      _LockedOnly: 0
-      _EnabledOnly: 0
-      _Index: -1
-    FollowPlayhead: 0
-    _ScrollScale: 377.9177
-    _ScrollOffset: {x: -0, y: 0}
-    _ScrollInPoint: 0
-    _ScrollOutPoint: 0.3644844
-    SelectionMode: 0
-    _BPMSnap: 4
-    TimeDisplay: 0
-    TimeDisplay2nd: 1
-    UseFractionalTime: 1
-    UseMusicalTiming: 0
-    LockDuration: 0
-  _IsLastActive: 1
-  RootObjects:
-  - {fileID: 7520490123543512004}
-  MarkerList: []
-  _ShowMarkers: 0
-  AutoGenerateMarkersEvery: 60
-  NameMarkersWithTimecode: 0
-  AutoPlay: 1
-  ContinuousPlay: 0
-  PlayFromStart: 1
-  PlayPastEnd: 0
-  _LoopEnabled: 1
-  QuickSelectObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  EditorShowQuickSelect: 0
-  EditorViewQuickSelect: 0
-  SetShaderTime: 0
-  ShaderTimeName: _TimeflowTime
-  SetShaderFrame: 0
-  ShaderFrameName: _TimeflowFrame
-  _StartTime: 0
-  _EndTime: 10
-  _FPS: 60
-  _BPM: 120
-  _BeatsPerBar: 4
-  _BeatNoteSize: 4
-  Director: {fileID: 0}
-  DirectorSyncEnabled: 0
-  DirectorIsPlaying: 0
-  DirectorTime: 0
-  DirectorTimeStart: 0
-  DirectorTimeEnd: 0
-  IsDirectorInControl: 0
-  TitleMode: 1
-  TitlePrefab: {fileID: 0}
-  TitleContainer: {fileID: 0}
-  TitleRainbow: 0
-  IsTitleUI: 1
-  EditorTool: 0
-  ScaleToolValue: 1
-  AddEndKeysOnCrop: 1
-  WorkAreaStart: 0
-  WorkAreaEnd: 0
-  WorkAreaDisableOnStart: 1
-  WorkAreaAllowsLeadIn: 0
-  WorkAreaLocked: 0
-  _WorkAreaEnabled: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 42d8f7407c1e23344a38d14aa397e422, type: 2}
+  - {fileID: 7400000, guid: ef33bc02f55203149a0a545b41a3b315, type: 2}
+  - {fileID: 7400000, guid: 7dad2d166f6cdf043a34583fad56a9b3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &6565415541246353641 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8660671769077101938, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
