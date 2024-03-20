@@ -50,19 +50,19 @@ namespace MultiWars
             Application.targetFrameRate = 60;
 #endif
             DOTween.SetTweensCapacity(200, 200);
-
-            Id selectedHeroId = PlayerData.Config.SelectedHero;
-            if (!heroesLevelsManager.Group.Contains(selectedHeroId))
-            {
-                selectedHeroId = heroesLevelsManager.Group.First();
-                PlayerData.Config.SelectedHero = selectedHeroId;
-            }
             
             heroesLevelsManager.Init();
             enemiesLevelsManager.Init();
             exchangeTable.Init();
             heroRankIconsConfigs.Init();
             palette.Init();
+            
+            Id selectedHeroId = PlayerData.Config.SelectedHero;
+            if (!heroesLevelsManager.AddedIds.Contains(selectedHeroId))
+            {
+                selectedHeroId = heroesLevelsManager.AddedIds.First();
+                PlayerData.Config.SelectedHero = selectedHeroId;
+            }
             
             const string ftKey = "Give funds and hero";
             if (FirstTime.IsNot(ftKey, out var pass))
