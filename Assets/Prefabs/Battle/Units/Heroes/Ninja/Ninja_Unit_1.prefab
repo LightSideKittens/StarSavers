@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7749870259690457320}
   - component: {fileID: 4438885359999389412}
   m_Layer: 0
-  m_Name: body
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 959128474054175571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.209375, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dda1cc023a0effb4897b441b23ef7cbf, type: 3}
+  m_Sprite: {fileID: -2005383728, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8999627474675339352}
   - component: {fileID: 2407897234592351598}
   m_Layer: 0
-  m_Name: hand-left
+  m_Name: Left_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,12 +110,12 @@ Transform:
   m_GameObject: {fileID: 1974015148727104880}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4146875, y: 0.33656257, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3681837114319935013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2}
 --- !u!212 &2407897234592351598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -157,9 +157,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 01b817ea36296b14bbafbc91a052949d, type: 3}
+  m_Sprite: {fileID: 245015807, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 23.625, y: 31.6875}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4347001848757529463}
   - component: {fileID: 120568385819636401}
   m_Layer: 0
-  m_Name: head
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 3420733017730247529}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.41812497, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 65c687e97e75cf84e8f2658f4f1ee7dd, type: 3}
+  m_Sprite: {fileID: -1633945976, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 7906884515398079470}
   - component: {fileID: 7086131461220856710}
   m_Layer: 0
-  m_Name: hand-right
+  m_Name: Right_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 8823557358093886597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2740625, y: 0.33656257, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -325,7 +325,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 42dfd9c1bc230704fbbf313360814861, type: 3}
+  m_Sprite: {fileID: 1391890522, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -364,13 +364,29 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5003945510024630327, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003945510024630327, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 42d8f7407c1e23344a38d14aa397e422, type: 2}
+    - target: {fileID: 5003945510024630327, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 9ab1dd233dd679d4e9d12f89f94b5d30, type: 2}
+    - target: {fileID: 5003945510024630327, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: m_Animations.Array.data[2]
+      value: 
+      objectReference: {fileID: 7400000, guid: 373f5ba9258b02c45a3b2bd262c3bc39, type: 2}
     - target: {fileID: 5202710251623668231, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: m_Radius
-      value: 19
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5202710251623668231, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: m_Offset.y
-      value: -6.08
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6663806722790344465, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: m_LocalPosition.x
