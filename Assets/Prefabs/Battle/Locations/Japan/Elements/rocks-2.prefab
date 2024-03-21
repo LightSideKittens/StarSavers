@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5223343043585119910}
   - component: {fileID: 45568954022516433}
-  - component: {fileID: 3715383439740724551}
+  - component: {fileID: 4930813838640509192}
   m_Layer: 0
   m_Name: rocks-2
   m_TagString: Untagged
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3715383439740724551
-PolygonCollider2D:
+--- !u!58 &4930813838640509192
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,21 +117,6 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.5, y: 12.5}
-    newSize: {x: 12.5, y: 12.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.6034012, y: -5.3947554}
-      - {x: 6.5034485, y: -0.7562628}
-      - {x: 2.6298141, y: 5.680601}
-      - {x: -4.0004196, y: 4.8108826}
-      - {x: -5.596844, y: -2.813241}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: 0.01, y: 0.02}
+  serializedVersion: 2
+  m_Radius: 0.14
