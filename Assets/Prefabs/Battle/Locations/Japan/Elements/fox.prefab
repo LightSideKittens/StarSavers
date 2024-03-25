@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7943278138349364633}
   - component: {fileID: 3150098619516604041}
-  - component: {fileID: 5631065359406954217}
-  m_Layer: 0
+  - component: {fileID: 4243127420111327879}
+  m_Layer: 8
   m_Name: fox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &5631065359406954217
-PolygonCollider2D:
+--- !u!61 &4243127420111327879
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,7 +117,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03144145, y: -0.13223873}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -127,13 +127,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.2402976, y: 0.106913686}
-      - {x: -0.2833925, y: -0.26659888}
-      - {x: -0.07976974, y: -0.48491606}
-      - {x: 0.04198407, y: -0.4828168}
-      - {x: 0.24980521, y: -0.27499568}
-      - {x: 0.22251558, y: 0.12175381}
-      - {x: 0, y: 0.35266623}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5043365, y: 0.4248081}
+  m_EdgeRadius: 0

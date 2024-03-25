@@ -77,11 +77,11 @@ MonoBehaviour:
           mask:
             serializedVersion: 2
             m_Bits: 64
-        disableMoveCompOnTargetInRadius: 0
+        stillMoveIfTargetInRadius: 1
     - rid: 8885881723286454386
       type: {class: HeroMoveComp, ns: Battle.Data.Components, asm: Battle}
       data:
-        speed: 5
+        speed: 3
         findTargetComp:
           checker:
             rid: 8885881776975642738

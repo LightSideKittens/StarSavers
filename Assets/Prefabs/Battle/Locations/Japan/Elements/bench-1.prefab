@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6425566422657213892}
   - component: {fileID: 4408985788989791318}
-  - component: {fileID: 2628736064590853067}
-  m_Layer: 0
+  - component: {fileID: 7659696576217751560}
+  m_Layer: 8
   m_Name: bench-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2628736064590853067
-PolygonCollider2D:
+--- !u!61 &7659696576217751560
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,7 +117,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0018677413, y: -0.1288725}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -127,13 +127,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.36185765, y: -0.0897499}
-      - {x: -0.28583884, y: 0.20181605}
-      - {x: 0.003189534, y: 0.34585047}
-      - {x: 0.2986995, y: 0.16512743}
-      - {x: 0.36343718, y: -0.10379787}
-      - {x: 0.26230043, y: -0.27745438}
-      - {x: -0.24587607, y: -0.27797842}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6301915, y: 0.27906033}
+  m_EdgeRadius: 0

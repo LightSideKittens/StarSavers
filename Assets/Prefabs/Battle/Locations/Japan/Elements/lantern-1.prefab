@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5933818720906756588}
   - component: {fileID: 2495474268000273161}
-  - component: {fileID: 8481702925131291915}
+  - component: {fileID: 8339960016744005201}
   m_Layer: 0
   m_Name: lantern-1
   m_TagString: Untagged
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8481702925131291915
-PolygonCollider2D:
+--- !u!58 &8339960016744005201
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,22 +117,6 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 32, y: 32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.17635524, y: -0.3310055}
-      - {x: -0.23333177, y: 0.26860282}
-      - {x: 0.26046333, y: 0.27131602}
-      - {x: 0.44111818, y: -0.2412978}
-      - {x: 0.30658704, y: -0.44224504}
-      - {x: 0.016278893, y: -0.4748029}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: -0.05, y: -0.23}
+  serializedVersion: 2
+  m_Radius: 0.06

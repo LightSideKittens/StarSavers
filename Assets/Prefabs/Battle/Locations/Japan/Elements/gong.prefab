@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7897205073361351716}
   - component: {fileID: 3258052360209505949}
-  - component: {fileID: 3077307910122686929}
-  m_Layer: 0
+  - component: {fileID: 7127250174929845886}
+  m_Layer: 8
   m_Name: gong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3077307910122686929
-PolygonCollider2D:
+--- !u!61 &7127250174929845886
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,7 +117,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.003658414, y: -0.2438938}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -127,11 +127,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.39110622, y: -0.044486023}
-      - {x: -0.012975087, y: 0.07785052}
-      - {x: 0.3911062, y: -0.06302186}
-      - {x: 0.26876968, y: -0.3132557}
-      - {x: -0.27618402, y: -0.31881645}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.60733104, y: 0.12198222}
+  m_EdgeRadius: 0
