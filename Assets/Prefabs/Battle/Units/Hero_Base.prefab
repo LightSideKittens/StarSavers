@@ -69,15 +69,15 @@ MonoBehaviour:
       type: {class: AutoAttackComponent, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
         impactObjectPrefab: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
-        attackSpeed: 1
-        radius: 10
         findTargetComp:
           checker:
             rid: 8885881776975642739
           mask:
             serializedVersion: 2
             m_Bits: 64
-        stillMoveIfTargetInRadius: 1
+        attackSpeed: 1
+        manualMoveCompControl: 1
+        radius: 10
     - rid: 8885881723286454386
       type: {class: HeroMoveComp, ns: Battle.Data.Components, asm: Battle}
       data:

@@ -9,14 +9,17 @@ namespace Battle.Data.Components
     [Preserve, Serializable]
     internal class HeroMoveComp : MoveComp
     {
-        public override void Move()
+        protected override void Init()
         {
-            if(!enabled) return;
-            
+            base.Init();
+            var joystick = BattleWindow.Joystick;
+            joystick.IsUsing.Changed += SetIsRunning;
+        }
+        
+        protected override void Move()
+        {
             CameraMover.Move();
             var joystick = BattleWindow.Joystick;
-            if (!joystick.IsUsing) return;
-
             var direction = joystick.Direction;
             rigidbody.position += direction * (speed * Time.fixedDeltaTime);
             var zAngle = Vector2.SignedAngle(Vector2.up, direction);

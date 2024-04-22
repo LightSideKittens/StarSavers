@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2005383728, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 245015807, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -239,7 +239,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -1633945976, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -323,7 +323,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 1391890522, guid: 43afd2418ea31cf4aabf6d54136b230d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -433,6 +433,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6750239444755058063, guid: 6914d376a7dd0484aa5ffcf2b8e9f935, type: 3}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: comps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: comps.Array.data[3]
+      value: 54366942246207526
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[54366942246207526]
+      value: Battle LSCore.BattleModule.HeroSkillAttackComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[54366942246207563]
+      value: LSCore.BattleModule LSCore.BattleModule.IsEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[54366942246207563].type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[54366942246207526].attackSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[54366942246207526].impactObjectPrefab
+      value: 
+      objectReference: {fileID: 8014395754375300796, guid: 118b17dc4f8f8f0448999782573c9d4c, type: 3}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[54366942246207526].findTargetComp.checker
+      value: 54366942246207563
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: managedReferences[8885881579968397431].renderers.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -452,6 +488,10 @@ PrefabInstance:
       propertyPath: managedReferences[8885881579968397431].renderers.Array.data[3]
       value: 
       objectReference: {fileID: 4438885359999389412}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[54366942246207526].findTargetComp.mask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -467,29 +507,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4144509317128272308, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7749870259690457320}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1966563047313314867, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -6142299164128556040}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
---- !u!1 &1285321082216954786 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1966563047313314867, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-  m_PrefabInstance: {fileID: 764699457032400785}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-6142299164128556040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285321082216954786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbe046cea0c40e4f975e3fe2c115aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layer: Unit
 --- !u!4 &3681837114319935013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4144509317128272308, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}

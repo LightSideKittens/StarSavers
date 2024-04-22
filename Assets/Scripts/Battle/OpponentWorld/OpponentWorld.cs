@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
-using Battle.Data;
 using LSCore;
 using LSCore.Async;
 using LSCore.BattleModule;

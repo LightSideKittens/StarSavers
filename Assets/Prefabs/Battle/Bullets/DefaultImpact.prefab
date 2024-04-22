@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3477350951158636851}
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -753,7 +753,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.28386402
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -1032,7 +1032,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 2
+      cycleCount: 1
       repeatInterval: 0.5
       probability: 1
   SizeModule:
@@ -1040,25 +1040,25 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
+          value: 0.19271342
+          inSlope: 1.0936872
+          outSlope: 1.0936872
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.080952376
         - serializedVersion: 3
           time: 1
           value: 1
           inSlope: 1
-          outSlope: 0
+          outSlope: 1
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
@@ -1554,8 +1554,8 @@ ParticleSystem:
     enabled: 0
     x:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1563,6 +1563,15 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
+          inSlope: 10.572917
+          outSlope: 10.572917
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.14398865
+        - serializedVersion: 3
+          time: 0.09842223
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1570,15 +1579,24 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
+          time: 0.29310268
+          value: -0.96875
+          inSlope: -0.17473319
+          outSlope: -0.17473319
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
-        m_PreInfinity: 2
+          outWeight: 0.17263159
+        - serializedVersion: 3
+          time: 0.45555556
+          value: 0.09895833
+          inSlope: 7.258519
+          outSlope: 7.258519
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.12675935
+          outWeight: 0.251876
+        m_PreInfinity: 1
         m_PostInfinity: 2
         m_RotationOrder: 4
       minCurve:
@@ -1607,8 +1625,8 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1660,8 +1678,8 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4928,18 +4946,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e836e7aa1b4c89ab8c14cb4247dd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleIniters: []
+  particleHandlers: []
+  particleDeathHandlers: []
   impacts:
   - rid: 8885881753644564825
-  paticleIniters: []
-  particleHandlers: []
   triggerHandler:
     type: 2
     mask:
       serializedVersion: 2
       m_Bits: 320
-    particleHandlers:
-    - rid: 8885881753644565077
+    handlers: []
     ignoredCollider: {fileID: 0}
+  preview: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -4955,23 +4974,6 @@ MonoBehaviour:
       data:
         damage: 20
     - rid: 8885881753644564828
-      type: {class: Kill, ns: LSCore, asm: LSCore.BattleModule}
-      data: 
-    - rid: 8885881753644565077
-      type: {class: ConditionHandler, ns: LSCore, asm: LSCore.BattleModule}
-      data:
-        condition:
-          rid: 8885881753644565105
-        handler:
-          rid: 8885881753644565214
-    - rid: 8885881753644565105
-      type: {class: LayerMaskCondition, ns: LSCore, asm: LSCore.BattleModule}
-      data:
-        type: 0
-        mask:
-          serializedVersion: 2
-          m_Bits: 256
-    - rid: 8885881753644565214
       type: {class: Kill, ns: LSCore, asm: LSCore.BattleModule}
       data: 
 --- !u!1001 &2567734024450826640
