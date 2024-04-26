@@ -10,12 +10,12 @@ namespace Battle.Windows
         [SerializeField] private LSText statusText;
         [SerializeField] private LSText splashText;
         [SerializeField] private AnimSequencer splash;
-        [SerializeField] private Joystick ultimateJoystick;
-        [SerializeField] private Joystick skillJoystick;
+        [SerializeField] private ProgressJoystick ultimateJoystick;
+        [SerializeField] private ProgressJoystick skillJoystick;
         
         public static Joystick Joystick => Instance.joystick;
-        public static Joystick UltimateJoystick => Instance.ultimateJoystick;
-        public static Joystick SkillJoystick => Instance.skillJoystick;
+        public static ProgressJoystick UltimateJoystick => Instance.ultimateJoystick;
+        public static ProgressJoystick SkillJoystick => Instance.skillJoystick;
         public static LSText StatusText => Instance.statusText;
 
         protected override void OnBackButton() => MatchResultWindow.Show(false);

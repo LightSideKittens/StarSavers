@@ -1,5 +1,6 @@
 ﻿using System;
 using Battle.Windows;
+using DG.Tweening;
 using LSCore.Async;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -10,16 +11,18 @@ namespace LSCore.BattleModule
     public class HeroSkillAttackComp : BaseAttackComponent
     {
         private bool canAttack = true;
-        private Joystick joystick;
+        private ProgressJoystick joystick;
+        protected virtual ProgressJoystick Joystick => BattleWindow.SkillJoystick;
         public void SetActivePreview(bool active) => impactObject.SetActivePreview(active);
         public void LookAt(in Vector3 direction) => impactObject.LookAt(direction);
 
         protected override void Init()
         {
             base.Init();
-            joystick = BattleWindow.SkillJoystick;
+            joystick = Joystick;
             joystick.IsUsing.Changed += SetIsRunning;
             joystick.IsUsing.Changed += OnJoystickUsing;
+            joystick.Progress = 1;
             impactObject.SetActivePreview(false);
         }
 
@@ -43,9 +46,14 @@ namespace LSCore.BattleModule
             if (canAttack)
             {
                 canAttack = false;
-                Wait.Delay(attackSpeed, AllowAttack);
+                Wait.Run(attackSpeed, SetProgress).OnComplete(AllowAttack);
                 impactObject.Emit();
             }
+        }
+
+        private void SetProgress(float value)
+        {
+            joystick.Progress = value;
         }
 
         private void AllowAttack() => canAttack = true;
