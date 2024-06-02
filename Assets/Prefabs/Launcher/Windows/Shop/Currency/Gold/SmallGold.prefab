@@ -84,6 +84,7 @@ MonoBehaviour:
   angle: 45
   gradientStart: 0
   gradientEnd: 0
+  combineFilledWithSliced: 0
 --- !u!1 &2294751154714626246
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +313,7 @@ MonoBehaviour:
   angle: 270
   gradientStart: 0
   gradientEnd: 0
+  combineFilledWithSliced: 0
   anim:
     isDisabled: 0
 --- !u!114 &-2316662085516017183
@@ -328,22 +330,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reward:
     funds:
-    - rid: 6306143617900085249
+    - rid: 3882657097333604352
   cost:
     funds:
-    - rid: 6306143617900085250
+    - rid: 3882657097333604353
   references:
     version: 2
     RefIds:
-    - rid: 6306143617900085249
-      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencySystem}
+    - rid: 3882657097333604352
+      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencyModule}
       data:
         fundText: {fileID: 8805203096754531253}
         changeTextColorIfNotEnough: 0
         notEnoughColorId: {fileID: 0}
         enoughColorId: {fileID: 0}
-    - rid: 6306143617900085250
-      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencySystem}
+    - rid: 3882657097333604353
+      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencyModule}
       data:
         fundText: {fileID: 4207850232590805940}
         changeTextColorIfNotEnough: 1

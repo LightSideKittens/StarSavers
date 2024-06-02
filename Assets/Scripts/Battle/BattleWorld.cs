@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Animatable;
 using Battle;
 using Battle.Windows;
 using MultiWars.Interfaces;
@@ -32,6 +33,7 @@ namespace LSCore.BattleModule
         private void Setup()
         {
             Physics2DExt.SetHitCollidersSize(100);
+            AnimatableCanvas.SortingOrder = -1;
             BattleWindow.AsHome();
             BattleWindow.Show();
             

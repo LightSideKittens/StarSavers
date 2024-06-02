@@ -13,8 +13,7 @@ namespace MultiWars.Windows
         [SerializeField] private RectTransform back;
         [SerializeReference] private Tab.BaseData[] tabs;
         private Tab.Controller tabController;
-        protected override bool NeedHideAllPrevious => false;
-
+    
         protected override void Init()
         {
             base.Init();

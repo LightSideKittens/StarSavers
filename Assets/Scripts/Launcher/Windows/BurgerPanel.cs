@@ -10,7 +10,6 @@ namespace MultiWars.Windows
         [SerializeReference] private Tab.BaseData[] tabs;
         [SerializeField] private LSButton shopButton;
         private Tab.Controller tabController;
-        protected override bool NeedHideAllPrevious => true;
 
         protected override void Init()
         {
