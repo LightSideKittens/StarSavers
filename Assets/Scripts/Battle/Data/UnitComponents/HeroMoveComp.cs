@@ -12,6 +12,7 @@ namespace Battle.Data.Components
         protected override void Init()
         {
             base.Init();
+            ShouldLookAtTarget = false;
             var joystick = BattleWindow.Joystick;
             joystick.IsUsing.Changed += SetIsRunning;
         }

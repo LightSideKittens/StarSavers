@@ -30,7 +30,6 @@ namespace MultiWars.Windows
         private void OnTabOpen(Tab tab)
         {
             var clickable = tabController.CurrentData.Clickable;
-            clickable.Clicked += BurgerPanel.Show;
             scroller.content = tab.GetComponent<RectTransform>();
             var buttonTransform = clickable.Transform;
             selectedTabPointer.position = buttonTransform.position;

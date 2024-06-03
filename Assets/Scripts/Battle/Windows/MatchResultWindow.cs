@@ -2,6 +2,7 @@
 using LSCore;
 using LSCore.AnimationsModule;
 using LSCore.AnimationsModule.Animations.Text;
+using LSCore.Async;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,7 +41,8 @@ namespace Battle.Windows
             var to = fundTextAnim.GetAnim<TextNumberAnim>("to");
             to.startValue = 0;
             to.endValue = toAmount;
-            fundTextAnim.Animate();
+            fundTextAnim.InitAllAnims();
+            Wait.Delay(1, () => fundTextAnim.Animate());
         }
 
         protected override void OnHomeButton()
