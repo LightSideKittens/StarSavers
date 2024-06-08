@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 60032113434006996}
   - component: {fileID: 60032113434006995}
   - component: {fileID: 60032113434006993}
-  - component: {fileID: 5773853356482329092}
   - component: {fileID: 1585972119723843683}
   m_Layer: 0
   m_Name: BattleWindow
@@ -216,23 +215,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5773853356482329092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60032113434007007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 55
 --- !u!114 &1585972119723843683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +230,7 @@ MonoBehaviour:
   fadeSpeed: 0.2
   <HomeButton>k__BackingField: {fileID: 0}
   <BackButton>k__BackingField: {fileID: 8887205097149548414}
+  <NeedHideAllPrevious>k__BackingField: 0
   joystick: {fileID: 1949762949977864890}
   statusText: {fileID: 1155589908278415780}
   splashText: {fileID: 5058815307351301425}
@@ -263,8 +246,8 @@ MonoBehaviour:
     - timeOffset: 0.8
       anim:
         rid: 6306143568870244365
-  ultimateJoystick: {fileID: 5966771900033627001}
-  skillJoystick: {fileID: 8104334867794222050}
+  ultimateJoystick: {fileID: 8104334867794222050}
+  skillJoystick: {fileID: 5966771900033627001}
   references:
     version: 2
     RefIds:

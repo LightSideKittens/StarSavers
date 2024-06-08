@@ -18,10 +18,10 @@ namespace Battle
         private Camera cam;
         private Tween spawnLoopTween;
         private static Rect cameraRect;
-
+        
         public override string UserId => "Opponent";
         public override string TeamId => "Opponent's Team";
-
+        
         protected override void OnBegin()
         {
             cam = Camera.main;

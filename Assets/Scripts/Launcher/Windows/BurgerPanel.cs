@@ -8,7 +8,6 @@ namespace MultiWars.Windows
         [SerializeField] private RectTransform back;
         [SerializeReference] private Tab.BaseData buttonsTab;
         [SerializeReference] private Tab.BaseData[] tabs;
-        [SerializeField] private LSButton shopButton;
         private Tab.Controller tabController;
 
         protected override void Init()
@@ -18,7 +17,6 @@ namespace MultiWars.Windows
             tabController.OnOpen(OnTabOpen);
             tabController.Add(buttonsTab);
             tabController.Register(tabs);
-            shopButton.Clicked += ShopWindow.Show;
         }
 
         private void OnTabOpen(Tab tab)
