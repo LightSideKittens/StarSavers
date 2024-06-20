@@ -1,7 +1,10 @@
-﻿using LSCore;
+﻿using System.Collections.Generic;
+using System.Text;
+using LSCore;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static EmojiRenderer;
 
 namespace MultiWars.Windows
 {
@@ -26,16 +29,6 @@ namespace MultiWars.Windows
             questsButton.Clicked += QuestsWindow.Show;
             shopButton.Clicked += ShopWindow.Show;
             battleButton.Clicked += LoadBattle;
-        }
-        
-        public RawImage emojiImage;
-
-        void Start()
-        {
-            if (EmojiRenderer.TryRenderEmoji("❤", 128, out var texture))
-            {
-                emojiImage.texture = texture;
-            }
         }
 
         protected override void OnShowing()

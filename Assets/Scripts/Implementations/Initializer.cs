@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Battle.Data;
 using MultiWars.Data;
 using MultiWars.Interfaces;

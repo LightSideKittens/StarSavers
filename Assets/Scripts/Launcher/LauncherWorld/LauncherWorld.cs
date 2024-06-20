@@ -1,7 +1,6 @@
 ﻿using MultiWars.Interfaces;
 using MultiWars.Windows;
 using LSCore;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MultiWars.Launcher
@@ -18,7 +17,6 @@ namespace MultiWars.Launcher
         {
             MainWindow.AsHome();
             MainWindow.Show();
-            Debug.Log(EmojiRenderer.ExtractEmojis("🧑🏼‍🧑🏽‍🧒🏿⚽❤️").Count);
         }
 
         /*[Button] private void Create(string clanName) => Clan.Create(clanName).OnComplete(task => Burger.Log($"[Clan] Create {clanName} {task.IsSuccess} {task.Exception}"));
