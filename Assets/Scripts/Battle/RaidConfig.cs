@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using LSCore;
+using LSCore.AnimationsModule;
+using LSCore.AnimationsModule.Animations.Text;
+using LSCore.BattleModule;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using UnityEditor;
@@ -12,6 +16,24 @@ namespace Battle.Data
 {
     public class RaidConfig : ScriptableObject
     {
+        public class AnimCamera : LSAction
+        {
+            public AnimSequencer animation;
+            public override void Action()
+            {
+                var from = animation.GetAnim<CameraSizeAnim>();
+                from.target = BattleWorld.Camera;
+                animation.Animate();
+            }
+        }
+        
+        [Serializable]
+        public class WaveData
+        {
+            public int duration;
+            [SerializeReference] public LSAction onStart;
+        }
+
         [Serializable]
         private struct EnemyData
         {
@@ -35,7 +57,7 @@ namespace Battle.Data
         [SerializeField] private AnimationCurve spawnFrequency;
         
         [field: SerializeField] public int BreakDuration { get; private set; } = 15;
-        [SerializeField] private int[] waveDurations;
+        [SerializeField] private WaveData[] waveDurations;
 
         public IEnumerable<Id> EnemyIds => enemyData.Select(x => x.id); 
         
@@ -81,7 +103,7 @@ namespace Battle.Data
             return spawnFrequency.Evaluate(factor);
         }
 
-        public int GetWaveDuration()
+        public WaveData GetWave()
         {
             return waveDurations[currentWave];
         }

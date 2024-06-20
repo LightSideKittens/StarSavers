@@ -23,7 +23,7 @@ namespace Battle
             pool.Released += OnHeroDied;
             hero = pool.Get();
             HeroTransform = hero.transform;
-            CameraMover.Init(Camera.main, HeroTransform, cameraOffset);
+            CameraMover.Init(BattleWorld.Camera, HeroTransform, cameraOffset);
         }
 
         private void OnHeroDied(Unit unit)

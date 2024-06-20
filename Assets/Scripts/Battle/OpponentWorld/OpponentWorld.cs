@@ -15,7 +15,6 @@ namespace Battle
         [SerializeField] private LevelsManager enemies;
         
         private Dictionary<Id, OnOffPool<Unit>> pools = new();
-        private Camera cam;
         private Tween spawnLoopTween;
         private static Rect cameraRect;
         
@@ -24,8 +23,7 @@ namespace Battle
         
         protected override void OnBegin()
         {
-            cam = Camera.main;
-            cameraRect = cam.GetRect();
+            cameraRect = BattleWorld.Camera.GetRect();
 
             foreach (var id in BattleWorld.EnemyIds)
             {
@@ -57,7 +55,7 @@ namespace Battle
                 
         private void OnGot(Unit unit)
         {
-            cameraRect.center = cam.transform.position;
+            cameraRect.center = BattleWorld.Camera.transform.position;
             unit.transform.position = cameraRect.RandomPointAroundRect(5);
         }
         

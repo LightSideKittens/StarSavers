@@ -170,4 +170,73 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   <BreakDuration>k__BackingField: 5
-  waveDurations: 0a0000000f0000001e000000
+  waveDurations:
+  - duration: 15
+    onStart:
+      rid: 3882657456865935594
+  - duration: 20
+    onStart:
+      rid: 3882657456865935599
+  - duration: 25
+    onStart:
+      rid: 3882657456865935601
+  references:
+    version: 2
+    RefIds:
+    - rid: 3882657456865935594
+      type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
+      data:
+        animation:
+          options: []
+          animsData:
+          - timeOffset: 0
+            anim:
+              rid: 3882657456865935596
+    - rid: 3882657456865935596
+      type: {class: CameraSizeAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        needInit: 1
+        duration: 1
+        startValue: 10
+        endValue: 6
+        target: {fileID: 0}
+    - rid: 3882657456865935599
+      type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
+      data:
+        animation:
+          options: []
+          animsData:
+          - timeOffset: 0
+            anim:
+              rid: 3882657456865935600
+    - rid: 3882657456865935600
+      type: {class: CameraSizeAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        needInit: 0
+        duration: 1
+        startValue: 0
+        endValue: 7
+        target: {fileID: 0}
+    - rid: 3882657456865935601
+      type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
+      data:
+        animation:
+          options: []
+          animsData:
+          - timeOffset: 0
+            anim:
+              rid: 3882657456865935602
+    - rid: 3882657456865935602
+      type: {class: CameraSizeAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        needInit: 0
+        duration: 1
+        startValue: 0
+        endValue: 8
+        target: {fileID: 0}

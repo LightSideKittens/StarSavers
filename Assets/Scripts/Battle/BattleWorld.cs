@@ -18,7 +18,14 @@ namespace LSCore.BattleModule
         public static RaidConfig Raid => Instance.raids.Current;
         private static float timeSinceStart;
         private static int currentWave;
-        
+        public static Camera Camera { get; private set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Camera = Camera.main;
+        }
+
         private void Start()
         {
             BaseInitializer.Initialize(OnInitialize);
@@ -70,7 +77,9 @@ namespace LSCore.BattleModule
             currentWave++;
             timeTextPrefix = $"Wave {currentWave}";
             BattleWindow.SplashText($"WAVE {currentWave}");
-            Wait.TimerBack(Raid.GetWaveDuration(), UpdateTimeText).OnComplete(PauseWave);
+            var wave = Raid.GetWave();
+            wave.onStart.Action();
+            Wait.TimerBack(wave.duration, UpdateTimeText).OnComplete(PauseWave);
 
             Raid.CurrentWave++;
         }
