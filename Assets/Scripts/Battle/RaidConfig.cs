@@ -19,7 +19,7 @@ namespace Battle.Data
         public class AnimCamera : LSAction
         {
             public AnimSequencer animation;
-            public override void Action()
+            public override void Invoke()
             {
                 var from = animation.GetAnim<CameraSizeAnim>();
                 from.target = BattleWorld.Camera;

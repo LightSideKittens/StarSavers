@@ -78,7 +78,7 @@ namespace LSCore.BattleModule
             timeTextPrefix = $"Wave {currentWave}";
             BattleWindow.SplashText($"WAVE {currentWave}");
             var wave = Raid.GetWave();
-            wave.onStart.Action();
+            wave.onStart.Invoke();
             Wait.TimerBack(wave.duration, UpdateTimeText).OnComplete(PauseWave);
 
             Raid.CurrentWave++;
