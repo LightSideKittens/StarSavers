@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using LSCore;
+using LSCore.AnimationsModule.Animations;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 
@@ -18,13 +19,15 @@ namespace MultiWars.Windows
         private float XShow => LauncherWindowsData.CurrentShowedWindowIndex > Internal_Index ? x : -x;
         private float XHide => LauncherWindowsData.CurrentShowingWindowIndex > Internal_Index ? x : -x;
         protected override ShowWindowOption ShowOption => ShowWindowOption.HideAllPrevious;
-        protected override float DefaultAlpha => 1;
+        protected override bool UseDefaultAnimation => false;
         private Vector2 startPivot;
         private float x;
+        private PivotPosXAnim anim;
 
         protected override void Init()
         {
             base.Init();
+            anim = animation.GetAnim<PivotPosXAnim>();
             var rect = RectTransform.rect;
             x = ((RectTransform)Canvas.rootCanvas.transform).rect.width / rect.width;
             var size = rect.size;
@@ -52,10 +55,9 @@ namespace MultiWars.Windows
             {
                 var pivot = startPivot;
                 pivot.x += XShow;
-                RectTransform.pivot = pivot;
-                var sequence = DOTween.Sequence()
-                    .Insert(0, RectTransform.DOPivotX(startPivot.x, animDuration));
-                return sequence;
+                anim.startValue = pivot.x;
+                anim.endValue = startPivot.x;
+                return animation.Animate();
             }
         }
 
@@ -63,10 +65,8 @@ namespace MultiWars.Windows
         {
             get
             {
-                var sequence = DOTween.Sequence()
-                    .Insert(0, RectTransform.DOPivotX(startPivot.x + XHide, animDuration));
-            
-                return sequence;
+                anim.endValue = startPivot.x + XHide;
+                return animation.Animate();
             }
         }
     }
