@@ -362,11 +362,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1079404954527943290}
+  - component: {fileID: -1458953139633258488}
   - component: {fileID: 6134276069661270145}
   - component: {fileID: 1187764046698972512}
   - component: {fileID: 9124787576713323532}
-  - component: {fileID: 2900594810041160360}
-  - component: {fileID: -1458953139633258488}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -390,10 +389,109 @@ RectTransform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.903809, y: 2.4284668}
-  m_SizeDelta: {x: 413.5, y: -96.2144}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 473.5, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &-1458953139633258488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7155795414469427473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf27d99893cb484db4b964e9e11a6cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animation:
+    options: []
+    animsData:
+    - timeOffset: 0
+      anim:
+        rid: 3882657565817439043
+    - timeOffset: 0
+      anim:
+        rid: 3882657583162720288
+  clickActions:
+  - rid: 3882657583162720276
+  - rid: 3882657583162720281
+  <HomeButton>k__BackingField: {fileID: 0}
+  <BackButton>k__BackingField: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3882657565817439043
+      type: {class: AnchorPosAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        <NeedInit>k__BackingField: 1
+        <Duration>k__BackingField: 0.1
+        startValue: {x: 388, y: 0}
+        endValue: {x: 0, y: 0}
+        useMultiple: 1
+        target: {fileID: 1111056913706725106}
+        targets:
+        - {fileID: 2721562694602618198}
+        - {fileID: 3451254514900551081}
+        - {fileID: 3847729602963633816}
+        - {fileID: 5845504593021623842}
+        - {fileID: 6140647083787160070}
+        timeOffsetPerTarget: 0.04
+    - rid: 3882657583162720276
+      type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
+      data:
+        action:
+          rid: 3882657583162720278
+        button: {fileID: 6975921768580669708}
+    - rid: 3882657583162720278
+      type: {class: CreateOrShowUIViewAction, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        action:
+          viewPrefab: {fileID: 3820585858121548723, guid: d05e4491da48b314ba179e9cb5ca0c1c, type: 3}
+          parent: {fileID: 1079404954527943290}
+          parentOffset: 1
+          option: 1
+    - rid: 3882657583162720281
+      type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
+      data:
+        action:
+          rid: 3882657583162720282
+        button: {fileID: 44305575300865426}
+    - rid: 3882657583162720282
+      type: {class: CreateOrShowUIViewAction, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        action:
+          viewPrefab: {fileID: 8727265988743854583, guid: aba4eab3e802b4345bae5ceb826cd57f, type: 3}
+          parent: {fileID: 1079404954527943290}
+          parentOffset: 1
+          option: 1
+    - rid: 3882657583162720288
+      type: {class: AlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        canvasGroupAnim:
+          rid: 3882657583162720290
+        graphicAnim:
+          rid: -2
+    - rid: 3882657583162720290
+      type: {class: CanvasGroupAlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        <NeedInit>k__BackingField: 1
+        <Duration>k__BackingField: 0.1
+        startValue: 0
+        endValue: 1
+        useMultiple: 0
+        target: {fileID: 1187764046698972512}
+        targets: []
+        timeOffsetPerTarget: 0.1
 --- !u!114 &6134276069661270145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,7 +499,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7155795414469427473}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -460,71 +558,6 @@ MonoBehaviour:
         group: {fileID: 0}
         parent: {fileID: 0}
         reference: {fileID: 0}
---- !u!223 &2900594810041160360
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155795414469427473}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!114 &-1458953139633258488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155795414469427473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf27d99893cb484db4b964e9e11a6cb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animation:
-    options: []
-    animsData:
-    - timeOffset: 0
-      anim:
-        rid: 3882657565817439043
-  clickActions: []
-  <HomeButton>k__BackingField: {fileID: 0}
-  <BackButton>k__BackingField: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: 3882657565817439043
-      type: {class: AnchorPosAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
-      data:
-        id: 
-        options: []
-        <NeedInit>k__BackingField: 1
-        <Duration>k__BackingField: 0.1
-        startValue: {x: 388, y: 0}
-        endValue: {x: 0, y: 0}
-        useMultiple: 1
-        target: {fileID: 1111056913706725106}
-        targets:
-        - {fileID: 2721562694602618198}
-        - {fileID: 3451254514900551081}
-        - {fileID: 3847729602963633816}
-        - {fileID: 5845504593021623842}
-        - {fileID: 6140647083787160070}
-        timeOffsetPerTarget: 0.04
 --- !u!1 &7501894048913659631
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +714,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}
+--- !u!114 &44305575300865426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 744263830359343244, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}
+  m_PrefabInstance: {fileID: 777240016066518302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6708c6231b4c7fbe083ad45b3a9862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3847729602963633816 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4588233560610827142, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}
@@ -1154,6 +1198,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4588233560610827142, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}
   m_PrefabInstance: {fileID: 7681834615070777728}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6975921768580669708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 744263830359343244, guid: b2ac371f441d8824a920d35f17ca91b1, type: 3}
+  m_PrefabInstance: {fileID: 7681834615070777728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6708c6231b4c7fbe083ad45b3a9862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7976940821994550692
 PrefabInstance:
   m_ObjectHideFlags: 0

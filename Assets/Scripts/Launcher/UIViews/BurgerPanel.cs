@@ -33,7 +33,6 @@ namespace MultiWars.Windows
             base.OnShowing();
             buttonsView ??= Instantiate(buttonsPrefab, content.transform);
             buttonsView.Show();
-            content.Show();
         }
 
         protected override Tween HideAnim => content.Hide();
