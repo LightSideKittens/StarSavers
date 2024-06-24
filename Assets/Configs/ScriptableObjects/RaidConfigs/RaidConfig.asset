@@ -197,11 +197,14 @@ MonoBehaviour:
       data:
         id: 
         options: []
-        needInit: 1
-        duration: 1
+        <NeedInit>k__BackingField: 1
+        <Duration>k__BackingField: 1
         startValue: 10
         endValue: 6
+        useMultiple: 0
         target: {fileID: 0}
+        targets: []
+        timeOffsetPerTarget: 0.1
     - rid: 3882657456865935599
       type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
       data:
@@ -216,11 +219,14 @@ MonoBehaviour:
       data:
         id: 
         options: []
-        needInit: 0
-        duration: 1
+        <NeedInit>k__BackingField: 0
+        <Duration>k__BackingField: 1
         startValue: 0
         endValue: 7
+        useMultiple: 0
         target: {fileID: 0}
+        targets: []
+        timeOffsetPerTarget: 0.1
     - rid: 3882657456865935601
       type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
       data:
@@ -235,8 +241,11 @@ MonoBehaviour:
       data:
         id: 
         options: []
-        needInit: 0
-        duration: 1
+        <NeedInit>k__BackingField: 0
+        <Duration>k__BackingField: 1
         startValue: 0
         endValue: 8
+        useMultiple: 0
         target: {fileID: 0}
+        targets: []
+        timeOffsetPerTarget: 0.1
