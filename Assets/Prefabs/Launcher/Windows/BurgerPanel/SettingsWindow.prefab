@@ -825,7 +825,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1011038207463600818}
   - component: {fileID: 1011038207463600823}
-  - component: {fileID: -8264446208159847249}
   - component: {fileID: 3820585858121548723}
   m_Layer: 0
   m_Name: SettingsWindow
@@ -868,30 +867,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &-8264446208159847249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011038207463600825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4576f8d63c4c60b9e88e02e0e55703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim:
-    rid: 4335190311982858247
-  references:
-    version: 2
-    RefIds:
-    - rid: 4335190311982858247
-      type: {class: ResizeTabAnim, ns: LightSideCore.Runtime.UIModule.TabAnimations, asm: LSCore.UIModule}
-      data:
-        duration: 0.2
-        group: {fileID: 0}
-        parent: {fileID: 0}
-        reference: {fileID: 0}
 --- !u!114 &3820585858121548723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,42 +879,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf27d99893cb484db4b964e9e11a6cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animation:
-    options: []
-    animsData:
-    - timeOffset: 0
-      anim:
-        rid: 3882657583162720279
+  showHideAnim:
+    rid: 3882657616904847382
   clickActions: []
   <HomeButton>k__BackingField: {fileID: 0}
   <BackButton>k__BackingField: {fileID: 0}
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 3882657583162720279
-      type: {class: AlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
+    - rid: 3882657616904847382
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
       data:
-        id: 
-        options: []
-        canvasGroupAnim:
-          rid: 3882657583162720280
-        graphicAnim:
-          rid: -2
-    - rid: 3882657583162720280
-      type: {class: CanvasGroupAlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
-      data:
-        id: 
-        options: []
-        <NeedInit>k__BackingField: 1
-        <Duration>k__BackingField: 0.2
-        startValue: 0
-        endValue: 1
-        useMultiple: 0
-        target: {fileID: 1011038207463600823}
-        targets: []
-        timeOffsetPerTarget: 0.1
+        canvasGroup: {fileID: 1011038207463600823}
+        duration: 0.2
 --- !u!1 &2178514168286911106
 GameObject:
   m_ObjectHideFlags: 0

@@ -399,10 +399,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b913b455d446bc837af056ff3e3b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 0.2
+  showHideAnim:
+    rid: 1000
+  clickActions: []
   <HomeButton>k__BackingField: {fileID: 4142356122797064999}
   <BackButton>k__BackingField: {fileID: 4603564408106930536}
-  <NeedHideAllPrevious>k__BackingField: 0
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1000
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        canvasGroup: {fileID: 1011038207463600823}
+        duration: 0.2
 --- !u!1 &1214563989083344191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,13 +1236,6 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
   rotateId: 0
   invert: 0
-  gradient:
-    keys:
-    - position: 0
-      color: {r: 1, g: 1, b: 1, a: 1}
-  angle: 45
-  gradientStart: 0
-  gradientEnd: 0
   combineFilledWithSliced: 0
   anim:
     isDisabled: 0
@@ -6859,13 +6865,6 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
   rotateId: 0
   invert: 0
-  gradient:
-    keys:
-    - position: 0
-      color: {r: 1, g: 1, b: 1, a: 1}
-  angle: 45
-  gradientStart: 0
-  gradientEnd: 0
   combineFilledWithSliced: 0
   anim:
     isDisabled: 0

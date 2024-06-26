@@ -41,7 +41,7 @@ namespace Battle.Windows
             var to = fundTextAnim.GetAnim<TextNumberAnim>("to");
             to.startValue = 0;
             to.endValue = toAmount;
-            fundTextAnim.InitAllAnims();
+            fundTextAnim.Init();
             Wait.Delay(1, () => fundTextAnim.Animate());
         }
 

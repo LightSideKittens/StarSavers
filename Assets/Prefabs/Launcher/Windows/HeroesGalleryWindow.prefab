@@ -255,14 +255,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5737a8017e1e4ee8a503a9ad26534865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 0.2
+  showHideAnim:
+    rid: 1000
+  clickActions: []
   <HomeButton>k__BackingField: {fileID: 908996169368922040}
   <BackButton>k__BackingField: {fileID: 0}
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
   slots:
   - {fileID: 1076780567091517725, guid: 72ae9547c2b1303469f6bb39cd1e08ea, type: 3}
   - {fileID: 1076780567091517725, guid: 500b06e08a9e3f6409af204b09f6a939, type: 3}
   unlocked: {fileID: 7674628467783921690}
   locked: {fileID: 3741921334553131448}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1000
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        canvasGroup: {fileID: 1011038207463600823}
+        duration: 0.2
 --- !u!1 &1693222018221022536
 GameObject:
   m_ObjectHideFlags: 0

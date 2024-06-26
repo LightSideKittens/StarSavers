@@ -308,14 +308,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86e9b0c05084adf8074becc40a4d2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animation:
-    options: []
-    animsData:
-    - timeOffset: 0
-      anim:
-        rid: 3882657565817438993
+  showHideAnim:
+    rid: 1000
+  clickActions: []
   <HomeButton>k__BackingField: {fileID: 0}
   <BackButton>k__BackingField: {fileID: 0}
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
   buttonActions:
   - rid: 3882657554612355095
   - rid: 3882657562812481539
@@ -326,18 +327,23 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1000
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        canvasGroup: {fileID: 1011038207463600823}
+        duration: 0.2
     - rid: 3882657554612355095
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
-        button: {fileID: 3014326333898602895}
         action:
           rid: 3882657565817439003
+        button: {fileID: 3014326333898602895}
     - rid: 3882657562812481539
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
-        button: {fileID: 8971297233364196705}
         action:
           rid: 3882657562812481541
+        button: {fileID: 8971297233364196705}
     - rid: 3882657562812481541
       type: {class: ShowWindow, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -346,9 +352,9 @@ MonoBehaviour:
     - rid: 3882657562812481542
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
-        button: {fileID: 1760466894463079392}
         action:
           rid: 3882657562812481543
+        button: {fileID: 1760466894463079392}
     - rid: 3882657562812481543
       type: {class: ShowWindow, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -357,9 +363,9 @@ MonoBehaviour:
     - rid: 3882657562812481544
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
-        button: {fileID: 6247062586941885814}
         action:
           rid: 3882657562812481545
+        button: {fileID: 6247062586941885814}
     - rid: 3882657562812481545
       type: {class: ShowWindow, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -368,9 +374,9 @@ MonoBehaviour:
     - rid: 3882657562812481546
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
-        button: {fileID: 2052974570907107523}
         action:
           rid: 3882657562812481547
+        button: {fileID: 2052974570907107523}
     - rid: 3882657562812481547
       type: {class: ShowWindow, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -379,30 +385,20 @@ MonoBehaviour:
     - rid: 3882657562812481548
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
-        button: {fileID: 8490734453314567869}
         action:
           rid: 3882657562812481550
+        button: {fileID: 8490734453314567869}
     - rid: 3882657562812481550
       type: {class: LoadScene, ns: , asm: LSCore.LSDelegates}
       data:
         sceneToLoad: Battle
-    - rid: 3882657565817438993
-      type: {class: AlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
-      data:
-        id: 
-        options: []
-        needInit: 1
-        duration: 0.2
-        startValue: 0
-        endValue: 1
-        useCanvasGroup: 1
-        target: {fileID: 0}
-        canvasGroup: {fileID: 1011038207463600823}
     - rid: 3882657565817439003
       type: {class: CreateOrShowCanvasViewAction, ns: LSCore, asm: LSCore.WindowModule}
       data:
         action:
-          viewPrefab: {fileID: 9182168701677578731, guid: bfe175cd0eebbb84797b314f06948cce, type: 3}
+          viewPrefab: {fileID: 7220788932915382964, guid: bfe175cd0eebbb84797b314f06948cce, type: 3}
+          parent: {fileID: 0}
+          parentOffset: 0
           option: 0
 --- !u!223 &1011038207463600821
 Canvas:

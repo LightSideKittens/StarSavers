@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using LSCore;
+using LSCore.AnimationsModule;
 using LSCore.AnimationsModule.Animations;
 using LSCore.Extensions.Unity;
 using UnityEngine;
@@ -19,14 +20,15 @@ namespace MultiWars.Windows
         private float XShow => LauncherWindowsData.CurrentShowedWindowIndex > Internal_Index ? x : -x;
         private float XHide => LauncherWindowsData.CurrentShowingWindowIndex > Internal_Index ? x : -x;
         protected override ShowWindowOption ShowOption => ShowWindowOption.HideAllPrevious;
-        protected override bool UseDefaultAnimation => false;
         private Vector2 startPivot;
         private float x;
+        private AnimSequencer animation;
         private PivotPosXAnim anim;
 
         protected override void Init()
         {
             base.Init();
+            animation = ((InOutShowHideAnim)showHideAnim).animation;
             anim = animation.GetAnim<PivotPosXAnim>();
             var rect = RectTransform.rect;
             x = ((RectTransform)Canvas.rootCanvas.transform).rect.width / rect.width;
