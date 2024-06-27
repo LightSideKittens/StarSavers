@@ -107,30 +107,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b054673ed5d4980a08996c32a4532cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 0.2
+  showHideAnim:
+    rid: 3882657626990837861
+  clickActions: []
   <HomeButton>k__BackingField: {fileID: 4142356122797064999}
   <BackButton>k__BackingField: {fileID: 4603564408106930536}
-  scroller: {fileID: 1261458863836146884}
-  selectedTabPointer: {fileID: 657684760100671705}
-  back: {fileID: 1570445645211571983}
-  tabs:
-  - rid: 4335190311982858242
-  - rid: 4335190311982858243
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
+  onGoingBack: []
   references:
     version: 2
     RefIds:
-    - rid: 4335190311982858242
-      type: {class: LSTextData, ns: LSCore, asm: LSCore.UIModule}
+    - rid: 3882657626990837861
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
       data:
-        tabPrefab: {fileID: 4268978084245989854, guid: e039924334a8f06449a836e663ba9e01, type: 3}
-        reference: {fileID: 1570445645211571983}
-        openButton: {fileID: 8511265623780682616}
-    - rid: 4335190311982858243
-      type: {class: LSTextData, ns: LSCore, asm: LSCore.UIModule}
-      data:
-        tabPrefab: {fileID: 4776240072996196956, guid: 5778cac3e2894784fbf0bef911e6febd, type: 3}
-        reference: {fileID: 1570445645211571983}
-        openButton: {fileID: 4458057256265985861}
+        canvasGroup: {fileID: 1011038207463600823}
+        duration: 0.2
 --- !u!1 &1499739576339909298
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6944227268343340811
@@ -305,7 +299,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 105.8
+  m_fontSize: 130
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -756,13 +750,6 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
   rotateId: 1
   invert: 0
-  gradient:
-    keys:
-    - position: 0
-      color: {r: 1, g: 1, b: 1, a: 1}
-  angle: 45
-  gradientStart: 0
-  gradientEnd: 0
   combineFilledWithSliced: 0
   anim:
     isDisabled: 0
@@ -900,17 +887,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8884151118277822423, guid: 2253c6013e911e24f88dfa44a22e9f2c, type: 3}
   m_PrefabInstance: {fileID: 4558895633177400101}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8511265623780682616 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5285648789907880029, guid: 2253c6013e911e24f88dfa44a22e9f2c, type: 3}
-  m_PrefabInstance: {fileID: 4558895633177400101}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77111c2a33b443a0b262654d312e5cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7692121904918864864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1473,14 +1449,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8884151118277822423, guid: 2253c6013e911e24f88dfa44a22e9f2c, type: 3}
   m_PrefabInstance: {fileID: 8395931149254825752}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4458057256265985861 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5285648789907880029, guid: 2253c6013e911e24f88dfa44a22e9f2c, type: 3}
-  m_PrefabInstance: {fileID: 8395931149254825752}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77111c2a33b443a0b262654d312e5cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
