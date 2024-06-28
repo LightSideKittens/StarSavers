@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -853089255, guid: 9ce6c205fe627ac47a636d93f5372ab8, type: 3}
+  m_Sprite: {fileID: -649157678, guid: 9ce6c205fe627ac47a636d93f5372ab8, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 1011038207463600818}
   - component: {fileID: 1011038207463600823}
   - component: {fileID: 8727265988743854583}
+  - component: {fileID: 6257557522501828959}
   m_Layer: 0
   m_Name: MailBoxWindow
   m_TagString: Untagged
@@ -155,6 +156,22 @@ MonoBehaviour:
       data:
         canvasGroup: {fileID: 1011038207463600823}
         duration: 0.2
+--- !u!114 &6257557522501828959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011038207463600825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34599f7d912e41e2bd561207477b0d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
+  externalMasks: []
+  pathToObject: 
 --- !u!1 &1547575663801207781
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +207,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75, y: -29.225769}
-  m_SizeDelta: {x: -210, y: -161.5485}
+  m_AnchoredPosition: {x: -60, y: -29.225769}
+  m_SizeDelta: {x: -180, y: -161.5485}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4269158724039773084
 MonoBehaviour:
@@ -488,7 +505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4202185031357775800}
-  - component: {fileID: 3462909487575026985}
+  - component: {fileID: 4044796576476262809}
   m_Layer: 0
   m_Name: Viewport
   m_TagString: Untagged
@@ -516,7 +533,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3462909487575026985
+--- !u!114 &4044796576476262809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -525,11 +542,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8519546640617714149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Script: {fileID: 11500000, guid: 34599f7d912e41e2bd561207477b0d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 50}
+  externalMasks: []
+  pathToObject: 
 --- !u!1001 &402806003222478737
 PrefabInstance:
   m_ObjectHideFlags: 0
