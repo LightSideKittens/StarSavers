@@ -193,10 +193,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96708fdd01844709a2faeee80e1f4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 0.2
+  showHideAnim:
+    rid: 3882657706503569414
+  clickActions: []
   <HomeButton>k__BackingField: {fileID: 0}
   <BackButton>k__BackingField: {fileID: 8887205097149548414}
-  <NeedHideAllPrevious>k__BackingField: 0
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
   joystick: {fileID: 1949762949977864890}
   statusText: {fileID: 1155589908278415780}
   splashText: {fileID: 5058815307351301425}
@@ -217,41 +222,49 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3882657706503569414
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        canvasGroup: {fileID: 60032113434006993}
+        duration: 0.2
     - rid: 6306143568870244363
       type: {class: AlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
       data:
         id: 
         options: []
-        needInit: 1
-        duration: 0.2
-        startValue: 0
-        endValue: 1
-        useCanvasGroup: 0
-        target: {fileID: 5058815307351301425}
-        canvasGroup: {fileID: 0}
+        canvasGroupAnim:
+          rid: -2
+        graphicAnim:
+          rid: -2
     - rid: 6306143568870244364
       type: {class: ScaleAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
       data:
         id: 
         options:
         - rid: 6306143568870244366
-        needInit: 1
-        duration: 0.3
+        <NeedInit>k__BackingField: 0
+        <Duration>k__BackingField: 0
         startValue: {x: 2, y: 2, z: 2}
         endValue: {x: 1, y: 1, z: 1}
+        useTargetPath: 0
+        useMultiple: 0
         target: {fileID: 572240282900237156}
+        targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
+        timeOffsetPerTarget: 0.1
     - rid: 6306143568870244365
       type: {class: AlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
       data:
         id: 
         options: []
-        needInit: 0
-        duration: 0.4
-        startValue: 1
-        endValue: 0
-        useCanvasGroup: 0
-        target: {fileID: 5058815307351301425}
-        canvasGroup: {fileID: 0}
+        canvasGroupAnim:
+          rid: -2
+        graphicAnim:
+          rid: -2
     - rid: 6306143568870244366
       type: {class: EaseOption, ns: LSCore.AnimationsModule.Animations.Options, asm: LSCore.AnimationsModule}
       data:

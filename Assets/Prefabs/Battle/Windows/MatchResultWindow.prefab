@@ -1213,10 +1213,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82427c57fc3e4a7dbfbde62f82d991cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 0.2
+  showHideAnim:
+    rid: 3882657706503569416
+  clickActions: []
   <HomeButton>k__BackingField: {fileID: 6176812873387061441}
   <BackButton>k__BackingField: {fileID: 0}
-  <NeedHideAllPrevious>k__BackingField: 0
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
   winState: {fileID: 5029270028825898006}
   loseState: {fileID: 5174303019179915409}
   fundTextAnim:
@@ -1233,26 +1238,45 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 3882657706503569416
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        canvasGroup: {fileID: 1523071801144971996}
+        duration: 0.2
     - rid: 6306143568870244367
       type: {class: TextNumberAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
       data:
         id: from
         options: []
-        needInit: 1
-        duration: 1
+        <NeedInit>k__BackingField: 0
+        <Duration>k__BackingField: 0
         startValue: 0
         endValue: 0
+        useTargetPath: 0
+        useMultiple: 0
         target: {fileID: 1265793734460952881}
+        targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
+        timeOffsetPerTarget: 0.1
     - rid: 6306143568870244368
       type: {class: TextNumberAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
       data:
         id: to
         options: []
-        needInit: 1
-        duration: 1
+        <NeedInit>k__BackingField: 0
+        <Duration>k__BackingField: 0
         startValue: 0
         endValue: 0
+        useTargetPath: 0
+        useMultiple: 0
         target: {fileID: 5244028416378918007}
+        targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
+        timeOffsetPerTarget: 0.1
 --- !u!223 &1523071801144971985
 Canvas:
   m_ObjectHideFlags: 0

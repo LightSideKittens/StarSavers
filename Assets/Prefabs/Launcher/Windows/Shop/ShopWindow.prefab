@@ -61,7 +61,7 @@ MonoBehaviour:
   - rid: 3882657697031782442
   - rid: 3882657697031782444
   <HomeButton>k__BackingField: {fileID: 4142356122797064999}
-  <BackButton>k__BackingField: {fileID: 4603564408106930536}
+  <BackButton>k__BackingField: {fileID: 0}
   onShowing:
   - rid: 3882657626990838256
   onHiding: []
@@ -277,8 +277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.002319336, y: 451.72998}
-  m_SizeDelta: {x: 0, y: -903.45996}
+  m_AnchoredPosition: {x: -0.001159668, y: 451.72998}
+  m_SizeDelta: {x: -0.0023193, y: -903.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3378663634193427308
 CanvasRenderer:
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 130
+  m_fontSize: 105.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1279,24 +1279,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4034227766775555082, guid: 38395a873166bbc4c8334708b63313a4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38395a873166bbc4c8334708b63313a4, type: 3}
 --- !u!114 &4142356122797064999 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6035794285688479943, guid: 38395a873166bbc4c8334708b63313a4, type: 3}
-  m_PrefabInstance: {fileID: 7692121904918864864}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a6708c6231b4c7fbe083ad45b3a9862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4603564408106930536 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6151017063720219272, guid: 38395a873166bbc4c8334708b63313a4, type: 3}
   m_PrefabInstance: {fileID: 7692121904918864864}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
