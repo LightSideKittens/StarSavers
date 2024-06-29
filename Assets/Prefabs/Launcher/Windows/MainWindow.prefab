@@ -353,13 +353,8 @@ MonoBehaviour:
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
         action:
-          rid: 3882657562812481543
+          rid: 3882657626990838269
         button: {fileID: 1760466894463079392}
-    - rid: 3882657562812481543
-      type: {class: ShowWindow, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        window: MultiWars.Windows.ShopWindow
-        option: 0
     - rid: 3882657562812481544
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
@@ -397,9 +392,17 @@ MonoBehaviour:
       data:
         action:
           viewPrefab: {fileID: 7220788932915382964, guid: bfe175cd0eebbb84797b314f06948cce, type: 3}
-          parent: {fileID: 0}
-          parentOffset: 0
+          root: {fileID: 0}
+          pathToObject: 
           option: 0
+    - rid: 3882657626990838269
+      type: {class: CreateOrShowCanvasViewAction, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        action:
+          viewPrefab: {fileID: 8901135552760020856, guid: 686b9546d5005fb4ea918a31b0023537, type: 3}
+          root: {fileID: 0}
+          pathToObject: 
+          option: 2
 --- !u!223 &1011038207463600821
 Canvas:
   m_ObjectHideFlags: 0

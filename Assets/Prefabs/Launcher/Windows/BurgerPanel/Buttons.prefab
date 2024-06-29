@@ -518,6 +518,7 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: {x: 348, y: 0}
         endValue: {x: 0, y: 0}
+        useTargetPath: 0
         useMultiple: 1
         target: {fileID: 1111056913706725106}
         targets:
@@ -526,17 +527,20 @@ MonoBehaviour:
         - {fileID: 3847729602963633816}
         - {fileID: 5845504593021623842}
         - {fileID: 6140647083787160070}
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.04
     - rid: 3882657626990838090
-      type: {class: ActionsIfCondition, ns: , asm: LSCore.LSDelegates}
+      type: {class: ActionsIfCondition, ns: , asm: LSCore.ConditionModule}
       data:
+        conditions:
+          rid: 3882657626990838095
         ifActions:
         - rid: 3882657626990838117
         elseActions:
         - rid: 3882657626990838113
         - rid: 3882657626990838180
-        conditions:
-          rid: 3882657626990838095
     - rid: 3882657626990838095
       type: {class: IsGoBack, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -575,8 +579,10 @@ MonoBehaviour:
             anim:
               rid: 3882657626990838129
     - rid: 3882657626990838122
-      type: {class: ActionsIfCondition, ns: , asm: LSCore.LSDelegates}
+      type: {class: ActionsIfCondition, ns: , asm: LSCore.ConditionModule}
       data:
+        conditions:
+          rid: 3882657626990838125
         ifActions:
         - rid: 3882657626990838145
         - rid: 3882657626990838141
@@ -586,8 +592,6 @@ MonoBehaviour:
         - rid: 3882657626990838144
         - rid: 3882657626990838142
         - rid: 3882657626990838124
-        conditions:
-          rid: 3882657626990838125
     - rid: 3882657626990838123
       type: {class: SetShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -634,6 +638,7 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: {x: 400, y: 0}
         endValue: {x: 0, y: 0}
+        useTargetPath: 0
         useMultiple: 1
         target: {fileID: 1111056913706725106}
         targets:
@@ -643,6 +648,9 @@ MonoBehaviour:
         - {fileID: 3847729602963633816}
         - {fileID: 5845504593021623842}
         - {fileID: 6140647083787160070}
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.04
     - rid: 3882657626990838131
       type: {class: AnchorPosAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
@@ -653,6 +661,7 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: {x: 0, y: 0}
         endValue: {x: 400, y: 0}
+        useTargetPath: 0
         useMultiple: 1
         target: {fileID: 1111056913706725106}
         targets:
@@ -662,6 +671,9 @@ MonoBehaviour:
         - {fileID: 3847729602963633816}
         - {fileID: 5845504593021623842}
         - {fileID: 6140647083787160070}
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.04
     - rid: 3882657626990838141
       type: {class: SetBool, ns: LSCore, asm: LSCore.WindowModule}
@@ -698,9 +710,13 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: {x: 0, y: 0}
         endValue: {x: -260, y: 0}
+        useTargetPath: 0
         useMultiple: 0
         target: {fileID: 4728535906284775912}
         targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.1
     - rid: 3882657626990838161
       type: {class: SizeDeltaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
@@ -711,9 +727,13 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: {x: 0, y: 0}
         endValue: {x: 0, y: 0}
+        useTargetPath: 0
         useMultiple: 0
         target: {fileID: 4728535906284775912}
         targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.1
     - rid: 3882657626990838180
       type: {class: SetPivot, ns: LSCore, asm: LSCore.WindowModule}
