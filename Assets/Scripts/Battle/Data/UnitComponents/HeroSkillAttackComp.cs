@@ -12,6 +12,9 @@ namespace LSCore.BattleModule
     {
         private bool canAttack = true;
         private ProgressJoystick joystick;
+        public float joystickMagnitudeThreshold = 1;
+        private bool isCancelled;
+        private bool isAim;
         protected virtual ProgressJoystick Joystick => BattleWindow.SkillJoystick;
         public void SetActivePreview(bool active) => impactObject.SetActivePreview(active);
         public void LookAt(in Vector3 direction) => impactObject.LookAt(direction);
@@ -22,17 +25,44 @@ namespace LSCore.BattleModule
             joystick = Joystick;
             joystick.IsUsing.Changed += SetIsRunning;
             joystick.IsUsing.Changed += OnJoystickUsing;
+            joystick.Magnitude.Changed += OnJoystickMagnitudeChanged;
             joystick.Progress = 1;
             impactObject.SetActivePreview(false);
         }
 
+        private void OnJoystickMagnitudeChanged(float value)
+        {
+            bool isThreshold = value > joystickMagnitudeThreshold;
+            impactObject.SetActivePreview(isThreshold);
+            
+            if (isThreshold)
+            {
+                isAim = true;
+                isCancelled = false;
+            }
+            else if(isAim)
+            {
+                isCancelled = true;
+            }
+        }
+
         private void OnJoystickUsing(bool isUsing)
         {
-            impactObject.SetActivePreview(isUsing);
-            if (!isUsing)
+            if (!isUsing && !isCancelled)
             {
+                if (!isAim)
+                {
+                    if (findTargetComp.Find(out var target))
+                    {
+                        impactObject.LookAt(target);
+                    }
+                }
+                
                 Attack();
             }
+
+            isAim = false;
+            isCancelled = false;
         }
 
         protected override void Update()
