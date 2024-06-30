@@ -1004,6 +1004,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98a97c5ed014ba9b29e9618012d16f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keysData:
+    Up: 0
+    Right: 0
+    Down: 0
+    Left: 0
   area: {fileID: 5855087450175051651}
   handleArea: {fileID: 8549868247791782872}
   handle: {fileID: 140426423745259177}
@@ -1263,6 +1268,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98a97c5ed014ba9b29e9618012d16f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keysData:
+    Up: 0
+    Right: 0
+    Down: 0
+    Left: 0
   area: {fileID: 8356193753210208024}
   handleArea: {fileID: 6057729827893666627}
   handle: {fileID: 2541367088644918834}
@@ -1781,6 +1791,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 60032113434006996}
     m_Modifications:
+    - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
+      propertyPath: keysData.Up
+      value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
+      propertyPath: keysData.Down
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
+      propertyPath: keysData.Left
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
+      propertyPath: keysData.Right
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3377513229888471298, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
       propertyPath: m_Pivot.x
       value: 0

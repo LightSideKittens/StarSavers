@@ -535,33 +535,12 @@ MonoBehaviour:
       type: {class: ActionsIfCondition, ns: , asm: LSCore.ConditionModule}
       data:
         conditions:
-          rid: 3882657626990838095
+          rid: 3882657712757276677
         ifActions:
         - rid: 3882657626990838117
-        elseActions:
-        - rid: 3882657626990838113
         - rid: 3882657626990838180
-    - rid: 3882657626990838095
-      type: {class: IsGoBack, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        type: 0
-        value: 0
-    - rid: 3882657626990838113
-      type: {class: SetShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        obj: {fileID: -1458953139633258488}
-        value:
-          rid: 3882657626990838114
-        method: SetAnimation
-    - rid: 3882657626990838114
-      type: {class: OneShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        animation:
-          options: []
-          animsData:
-          - timeOffset: 0
-            anim:
-              rid: 3882657626990838161
+        - rid: 3882657626990838144
+        elseActions: []
     - rid: 3882657626990838117
       type: {class: SetShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -578,20 +557,21 @@ MonoBehaviour:
           - timeOffset: 0
             anim:
               rid: 3882657626990838129
+          - timeOffset: 0
+            anim:
+              rid: 3882657712757276705
     - rid: 3882657626990838122
       type: {class: ActionsIfCondition, ns: , asm: LSCore.ConditionModule}
       data:
         conditions:
-          rid: 3882657626990838125
+          rid: 3882657712757276675
         ifActions:
         - rid: 3882657626990838145
         - rid: 3882657626990838141
         - rid: 3882657626990838123
         - rid: 3882657626990838181
         elseActions:
-        - rid: 3882657626990838144
         - rid: 3882657626990838142
-        - rid: 3882657626990838124
     - rid: 3882657626990838123
       type: {class: SetShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -599,18 +579,6 @@ MonoBehaviour:
         value:
           rid: 3882657626990838126
         method: SetAnimation
-    - rid: 3882657626990838124
-      type: {class: SetShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        obj: {fileID: -1458953139633258488}
-        value:
-          rid: 3882657626990838127
-        method: SetAnimation
-    - rid: 3882657626990838125
-      type: {class: IsGoBack, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        type: 0
-        value: 0
     - rid: 3882657626990838126
       type: {class: OneShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -620,15 +588,6 @@ MonoBehaviour:
           - timeOffset: 0
             anim:
               rid: 3882657626990838154
-    - rid: 3882657626990838127
-      type: {class: OneShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        animation:
-          options: []
-          animsData:
-          - timeOffset: 0
-            anim:
-              rid: 3882657626990838131
     - rid: 3882657626990838129
       type: {class: AnchorPosAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
       data:
@@ -638,29 +597,6 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: {x: 400, y: 0}
         endValue: {x: 0, y: 0}
-        useTargetPath: 0
-        useMultiple: 1
-        target: {fileID: 1111056913706725106}
-        targets:
-        - {fileID: 1079404954527943290}
-        - {fileID: 2721562694602618198}
-        - {fileID: 3451254514900551081}
-        - {fileID: 3847729602963633816}
-        - {fileID: 5845504593021623842}
-        - {fileID: 6140647083787160070}
-        root: {fileID: 0}
-        targetPath: 
-        targetsPaths: []
-        timeOffsetPerTarget: 0.04
-    - rid: 3882657626990838131
-      type: {class: AnchorPosAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
-      data:
-        id: 
-        options: []
-        <NeedInit>k__BackingField: 0
-        <Duration>k__BackingField: 0.2
-        startValue: {x: 0, y: 0}
-        endValue: {x: 400, y: 0}
         useTargetPath: 0
         useMultiple: 1
         target: {fileID: 1111056913706725106}
@@ -718,7 +654,29 @@ MonoBehaviour:
         targetPath: 
         targetsPaths: []
         timeOffsetPerTarget: 0.1
-    - rid: 3882657626990838161
+    - rid: 3882657626990838180
+      type: {class: SetPivot, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        rectTransform: {fileID: 1079404954527943290}
+        pivot: {x: 0, y: 0.5}
+        savePosition: 1
+    - rid: 3882657626990838181
+      type: {class: SetPivot, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        rectTransform: {fileID: 1079404954527943290}
+        pivot: {x: 1, y: 0.5}
+        savePosition: 1
+    - rid: 3882657712757276675
+      type: {class: IsHideAllPrevious, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        type: 0
+        value: 0
+    - rid: 3882657712757276677
+      type: {class: IsHideAllPrevious, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        type: 0
+        value: 0
+    - rid: 3882657712757276705
       type: {class: SizeDeltaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
       data:
         id: 
@@ -735,18 +693,6 @@ MonoBehaviour:
         targetPath: 
         targetsPaths: []
         timeOffsetPerTarget: 0.1
-    - rid: 3882657626990838180
-      type: {class: SetPivot, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        rectTransform: {fileID: 1079404954527943290}
-        pivot: {x: 0, y: 0.5}
-        savePosition: 1
-    - rid: 3882657626990838181
-      type: {class: SetPivot, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        rectTransform: {fileID: 1079404954527943290}
-        pivot: {x: 1, y: 0.5}
-        savePosition: 1
 --- !u!114 &6134276069661270145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,7 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Padding: {x: 0, y: 0, z: 5.61, w: 0}
   m_Softness: {x: 0, y: 0}
 --- !u!1001 &777240016066518302
 PrefabInstance:

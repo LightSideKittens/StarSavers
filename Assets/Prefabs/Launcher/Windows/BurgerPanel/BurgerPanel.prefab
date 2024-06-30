@@ -109,8 +109,8 @@ MonoBehaviour:
   showHideAnim:
     rid: 3882657626990837763
   clickActions: []
-  <HomeButton>k__BackingField: {fileID: 0}
-  <BackButton>k__BackingField: {fileID: 1779978662171654682}
+  <HomeButton>k__BackingField: {fileID: 1779978662171654682}
+  <BackButton>k__BackingField: {fileID: 0}
   onShowing:
   - rid: 3882657616904847369
   onHiding: []
@@ -154,9 +154,13 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: 0
         endValue: 1
+        useTargetPath: 0
         useMultiple: 0
         target: {fileID: 1011038207463600823}
         targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.1
     - rid: 3882657626990837771
       type: {class: TweenGetterAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
@@ -178,9 +182,13 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: 1
         endValue: 0
+        useTargetPath: 0
         useMultiple: 0
         target: {fileID: 1011038207463600823}
         targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.1
 --- !u!114 &2029488687996576790
 MonoBehaviour:
@@ -261,6 +269,7 @@ MonoBehaviour:
     - timeOffset: 0
       anim:
         rid: 3882657565817439013
+  offset: 50
   references:
     version: 2
     RefIds:
@@ -273,9 +282,13 @@ MonoBehaviour:
         <Duration>k__BackingField: 0.2
         startValue: {x: 0, y: 0}
         endValue: {x: 0, y: 0}
+        useTargetPath: 0
         useMultiple: 0
         target: {fileID: 1598469234453208925}
         targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
         timeOffsetPerTarget: 0.1
 --- !u!114 &7803018919530404782
 MonoBehaviour:

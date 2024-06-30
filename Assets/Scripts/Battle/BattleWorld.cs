@@ -30,7 +30,7 @@ namespace LSCore.BattleModule
         {
             BaseInitializer.Initialize(OnInitialize);
         }
-        
+
         private void OnInitialize()
         {
             Setup();
