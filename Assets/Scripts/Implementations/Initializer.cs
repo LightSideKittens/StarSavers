@@ -46,7 +46,7 @@ namespace MultiWars
 #if UNITY_EDITOR
             Application.targetFrameRate = 1000;
 #else
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 120;
 #endif
             DOTween.SetTweensCapacity(200, 200);
             
