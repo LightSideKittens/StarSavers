@@ -48,17 +48,21 @@ namespace LSCore.BattleModule
 
         private void OnJoystickUsing(bool isUsing)
         {
-            if (!isUsing && !isCancelled)
+            if (!isUsing)
             {
-                if (!isAim)
+                impactObject.SetActivePreview(false);
+                if (!isCancelled)
                 {
-                    if (findTargetComp.Find(out var target))
+                    if (!isAim)
                     {
-                        impactObject.LookAt(target);
+                        if (findTargetComp.Find(out var target))
+                        {
+                            impactObject.LookAt(target);
+                        }
                     }
-                }
                 
-                Attack();
+                    Attack();
+                }
             }
 
             isAim = false;

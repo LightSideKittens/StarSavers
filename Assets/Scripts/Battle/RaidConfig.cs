@@ -124,7 +124,7 @@ namespace Battle.Data
             for (int i = 0; i < enemyData.Length; i++)
             {
                 var value =  enemyData[i].spawnPossibility.Evaluate(factor);
-                possibilities[i] = value;
+                possibilities[i] = value; 
                 total += value;
             }
             

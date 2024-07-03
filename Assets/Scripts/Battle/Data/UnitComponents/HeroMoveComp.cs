@@ -7,12 +7,11 @@ using UnityEngine.Scripting;
 namespace Battle.Data.Components
 {
     [Preserve, Serializable]
-    internal class HeroMoveComp : MoveComp
+    internal class HeroMoveComp : BaseMoveComp
     {
         protected override void Init()
         {
             base.Init();
-            ShouldLookAtTarget = false;
             var joystick = BattleWindow.Joystick;
             joystick.IsUsing.Changed += SetIsRunning;
         }

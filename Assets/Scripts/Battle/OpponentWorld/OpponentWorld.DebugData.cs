@@ -14,7 +14,7 @@ namespace Battle
         {
             pool.Got += OnChange;
             pool.Released += OnChange;
-            pool.Destroyed += OnChange;
+            pool.Removed += OnChange;
         }
         
         static partial void AddDebugData()

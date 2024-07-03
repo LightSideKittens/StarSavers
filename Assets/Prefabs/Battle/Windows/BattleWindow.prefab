@@ -108,15 +108,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -660,15 +662,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1004,6 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98a97c5ed014ba9b29e9618012d16f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useKeys: 0
   keysData:
     Up: 0
     Right: 0
@@ -1268,6 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98a97c5ed014ba9b29e9618012d16f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useKeys: 0
   keysData:
     Up: 0
     Right: 0
@@ -1406,6 +1412,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 104673417779281639, guid: d47c9d6168153374f9023958c88af127, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104673417779281639, guid: d47c9d6168153374f9023958c88af127, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 104673417779281639, guid: d47c9d6168153374f9023958c88af127, type: 3}
@@ -1625,6 +1635,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4284914596471488394, guid: d47c9d6168153374f9023958c88af127, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284914596471488394, guid: d47c9d6168153374f9023958c88af127, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1665,12 +1679,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5492186226179110233, guid: d47c9d6168153374f9023958c88af127, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492186226179110233, guid: d47c9d6168153374f9023958c88af127, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5492186226179110233, guid: d47c9d6168153374f9023958c88af127, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535196494608445106, guid: d47c9d6168153374f9023958c88af127, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 6747897929778828299, guid: d47c9d6168153374f9023958c88af127, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1792,20 +1814,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 60032113434006996}
     m_Modifications:
     - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
+      propertyPath: useKeys
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
       propertyPath: keysData.Up
-      value: 119
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
       propertyPath: keysData.Down
-      value: 115
+      value: 83
       objectReference: {fileID: 0}
     - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
       propertyPath: keysData.Left
-      value: 97
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 3265142779255072248, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
       propertyPath: keysData.Right
-      value: 100
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 3377513229888471298, guid: d56b81affbb5c6c47af259438f572ac8, type: 3}
       propertyPath: m_Pivot.x
