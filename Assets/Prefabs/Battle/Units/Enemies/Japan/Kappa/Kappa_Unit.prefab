@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 260310382, guid: 7ae78fd9291eb3c45b7f5c0d7188ceb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 260310382, guid: 7ae78fd9291eb3c45b7f5c0d7188ceb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -239,7 +239,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1314891146, guid: 7ae78fd9291eb3c45b7f5c0d7188ceb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -323,7 +323,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 97536874, guid: 7ae78fd9291eb3c45b7f5c0d7188ceb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -409,9 +409,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6750239444755058063, guid: 618f3e2831b93dc4ebb134adaeed59a6, type: 3}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643001].speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643000].health
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643002].radius
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: managedReferences[8885881776975643000].renderer
       value: 
       objectReference: {fileID: 7013840708880869915}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643002].attackSpeed
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643002].impactObjectPrefab
+      value: 
+      objectReference: {fileID: 8014395754375300796, guid: f4d822b38f22a35429565ebd388191d6, type: 3}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: managedReferences[8885881776975643000].renderers.Array.size
       value: 4

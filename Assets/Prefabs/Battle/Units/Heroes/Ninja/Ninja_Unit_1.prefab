@@ -49,6 +49,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,6 +136,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -217,6 +223,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -301,6 +310,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -369,15 +381,15 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5003945510024630327, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: m_Animations.Array.data[0]
+      propertyPath: 'm_Animations.Array.data[0]'
       value: 
       objectReference: {fileID: 7400000, guid: 42d8f7407c1e23344a38d14aa397e422, type: 2}
     - target: {fileID: 5003945510024630327, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: m_Animations.Array.data[1]
+      propertyPath: 'm_Animations.Array.data[1]'
       value: 
       objectReference: {fileID: 7400000, guid: 9ab1dd233dd679d4e9d12f89f94b5d30, type: 2}
     - target: {fileID: 5003945510024630327, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: m_Animations.Array.data[2]
+      propertyPath: 'm_Animations.Array.data[2]'
       value: 
       objectReference: {fileID: 7400000, guid: 373f5ba9258b02c45a3b2bd262c3bc39, type: 2}
     - target: {fileID: 5202710251623668231, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
@@ -437,31 +449,31 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: comps.Array.data[3]
+      propertyPath: 'comps.Array.data[3]'
       value: 54366942246207526
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: comps.Array.data[4]
+      propertyPath: 'comps.Array.data[4]'
       value: 54366967754391584
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[-2]
+      propertyPath: 'managedReferences[-2]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[54366942246207526]
+      propertyPath: 'managedReferences[54366942246207526]'
       value: Battle LSCore.BattleModule.HeroSkillAttackComp
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[54366942246207563]
+      propertyPath: 'managedReferences[54366942246207563]'
       value: LSCore.BattleModule LSCore.BattleModule.IsEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[54366967754391584]
+      propertyPath: 'managedReferences[54366967754391584]'
       value: Battle Battle.Data.UnitComponents.HeroUltimateAttackComp
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[54366967754391585]
+      propertyPath: 'managedReferences[54366967754391585]'
       value: LSCore.BattleModule LSCore.BattleModule.IsEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
@@ -471,6 +483,14 @@ PrefabInstance:
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: managedReferences[54366967754391585].type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[8885881723286454386].speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[8885881579968397431].health
+      value: 279
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: managedReferences[8885881579968397431].offset.y
@@ -483,6 +503,10 @@ PrefabInstance:
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: managedReferences[54366967754391584].attackSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
+      propertyPath: managedReferences[8885881579968397435].attackSpeed
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
       propertyPath: managedReferences[54366942246207526].impactObjectPrefab
@@ -505,19 +529,19 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[8885881579968397431].renderers.Array.data[0]
+      propertyPath: 'managedReferences[8885881579968397431].renderers.Array.data[0]'
       value: 
       objectReference: {fileID: 120568385819636401}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[8885881579968397431].renderers.Array.data[1]
+      propertyPath: 'managedReferences[8885881579968397431].renderers.Array.data[1]'
       value: 
       objectReference: {fileID: 2407897234592351598}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[8885881579968397431].renderers.Array.data[2]
+      propertyPath: 'managedReferences[8885881579968397431].renderers.Array.data[2]'
       value: 
       objectReference: {fileID: 7086131461220856710}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
-      propertyPath: managedReferences[8885881579968397431].renderers.Array.data[3]
+      propertyPath: 'managedReferences[8885881579968397431].renderers.Array.data[3]'
       value: 
       objectReference: {fileID: 4438885359999389412}
     - target: {fileID: 7178401505943615757, guid: bcdd3c3cffd65d04b88d435a82447475, type: 3}
