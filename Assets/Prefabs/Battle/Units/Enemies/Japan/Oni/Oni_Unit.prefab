@@ -49,6 +49,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -71,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1564681733, guid: 48f615f04cc772d4abc11a0c362e6718, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -133,6 +136,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -155,7 +161,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -1906524421, guid: 48f615f04cc772d4abc11a0c362e6718, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -217,6 +223,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -239,7 +248,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 553121714, guid: 48f615f04cc772d4abc11a0c362e6718, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -301,6 +310,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -323,7 +335,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -575684747
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -68767584, guid: 48f615f04cc772d4abc11a0c362e6718, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -409,27 +421,47 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6750239444755058063, guid: f5eae45c23b172e48a59d044e34bdad3, type: 3}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643001].speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643000].health
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643002].radius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: managedReferences[8885881776975643000].renderer
       value: 
       objectReference: {fileID: 4509638738109502143}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643002].attackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
+      propertyPath: managedReferences[8885881776975643002].impactObjectPrefab
+      value: 
+      objectReference: {fileID: 8014395754375300796, guid: 3456e82afab182f478d14fec378c2e62, type: 3}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: managedReferences[8885881776975643000].renderers.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[0]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[0]'
       value: 
       objectReference: {fileID: 4509638738109502143}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[1]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[1]'
       value: 
       objectReference: {fileID: 7383884097795613511}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[2]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[2]'
       value: 
       objectReference: {fileID: 5808104686307809314}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[3]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[3]'
       value: 
       objectReference: {fileID: 4239942725839942076}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
@@ -449,7 +481,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[6306143700861321608]
+      propertyPath: 'managedReferences[6306143700861321608]'
       value: Battle Battle.Data.Components.ShootAttackComponent
       objectReference: {fileID: 0}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
@@ -469,20 +501,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8351702343739116620, guid: 3d948d5498476764d9ee2357a183838b, type: 3}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      propertyPath: 'serializationData.PrefabModifications.Array.data[0]'
       value: '"path":"attackComponent","value":{"$id":0,"$type":"Battle.Data.Components.ShootAttackComponent,
         Battle","duration":0.1,"bulletPrefab":$eref:0}'
       objectReference: {fileID: 0}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      propertyPath: 'serializationData.PrefabModifications.Array.data[1]'
       value: '"path":"attackComponent.bulletPrefab","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
+      propertyPath: 'serializationData.PrefabModifications.Array.data[2]'
       value: '"path":"healthComponent.renderer","value":$eref:1'
       objectReference: {fileID: 0}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
+      propertyPath: 'serializationData.PrefabModifications.Array.data[3]'
       value: '"path":"healthComponent.visualRoot","value":$eref:2'
       objectReference: {fileID: 0}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
@@ -494,15 +526,15 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      propertyPath: 'serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]'
       value: 
       objectReference: {fileID: 8003541396490395842, guid: 6c59284b98e765547b0c00181bbd2b05, type: 3}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
+      propertyPath: 'serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]'
       value: 
       objectReference: {fileID: 4509638738109502143}
     - target: {fileID: 8408513571808267312, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[2]
+      propertyPath: 'serializationData.PrefabModificationsReferencedUnityObjects.Array.data[2]'
       value: 
       objectReference: {fileID: 6565415541246353641}
     - target: {fileID: 8478420817228375073, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
@@ -562,7 +594,7 @@ Animation:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3711921419647442409}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: dc4c712dc0224c64f955021166cec76e, type: 2}
@@ -571,6 +603,7 @@ Animation:
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
+  m_UpdateMode: 0
   m_CullingType: 0
 --- !u!4 &6565415541246353641 stripped
 Transform:
