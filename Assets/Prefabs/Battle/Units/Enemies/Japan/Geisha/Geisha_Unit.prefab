@@ -49,6 +49,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,6 +136,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -217,6 +223,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -301,6 +310,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -429,27 +441,23 @@ PrefabInstance:
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643002].impactObjectPrefab
-      value: 
-      objectReference: {fileID: 8014395754375300796, guid: 5088f68e6c050c648b5fcfe946dc7e92, type: 3}
-    - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
       propertyPath: managedReferences[8885881776975643000].renderers.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[0]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[0]'
       value: 
       objectReference: {fileID: 2275825102263567163}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[1]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[1]'
       value: 
       objectReference: {fileID: 2044770925280697459}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[2]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[2]'
       value: 
       objectReference: {fileID: 1468677351766370655}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881776975643000].renderers.Array.data[3]
+      propertyPath: 'managedReferences[8885881776975643000].renderers.Array.data[3]'
       value: 
       objectReference: {fileID: 2008898693334216455}
     - target: {fileID: 2416899232937265081, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
@@ -473,7 +481,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6750239444755058063, guid: 2edf4044e5a849b459b7317da8f64735, type: 3}
     - target: {fileID: 8478420817228375073, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
-      propertyPath: managedReferences[8885881723286454436]
+      propertyPath: 'managedReferences[8885881723286454436]'
       value: Battle Battle.Data.Components.TargetProviders.IsEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 8478420817228375073, guid: cfc54d844664ef24c87af285a00cbca5, type: 3}
@@ -542,7 +550,7 @@ Animation:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3711921419647442409}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: 42d8f7407c1e23344a38d14aa397e422, type: 2}
@@ -551,6 +559,7 @@ Animation:
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
+  m_UpdateMode: 0
   m_CullingType: 0
 --- !u!4 &6565415541246353641 stripped
 Transform:
