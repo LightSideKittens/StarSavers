@@ -28,7 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.6765862, y: -3.9083235, z: 0.06194252}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 8663343817688084060, guid: c8e7961b6cafcab4d9467d8ae26ea8c2, type: 3}
   onAwake:
   - rid: 6272343366259966666
+  - rid: 6272343463963656472
   references:
     version: 2
     RefIds:
@@ -66,3 +67,36 @@ MonoBehaviour:
           loop: 1
           clip: {fileID: 8300000, guid: 4928e581fa9e89c408b3ee581dffe2e2, type: 3}
           group: {fileID: -1021249835221574111, guid: 8383ae84074f35d4091308cc1fef9455, type: 2}
+    - rid: 6272343463963656472
+      type: {class: AnimAction, ns: LSCore.AnimationsModule, asm: LSCore.AnimationsModule}
+      data:
+        anim:
+          options: []
+          animsData:
+          - timeOffset: 0
+            anim:
+              rid: 6272343463963656520
+    - rid: 6272343463963656520
+      type: {class: CameraSizeAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options:
+        - rid: 6272343463963656521
+        <NeedInit>k__BackingField: 1
+        <Duration>k__BackingField: 3
+        startValue: -117
+        endValue: 5
+        useTargetPath: 0
+        useMultiple: 0
+        target: {fileID: 0}
+        targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
+        timeOffsetPerTarget: 0.1
+    - rid: 6272343463963656521
+      type: {class: EaseOption, ns: LSCore.AnimationsModule.Animations.Options, asm: LSCore.AnimationsModule}
+      data:
+        useCustom: 0
+        curveName: 
+        ease: 27
