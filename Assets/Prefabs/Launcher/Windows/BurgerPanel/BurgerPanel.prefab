@@ -112,21 +112,13 @@ MonoBehaviour:
   <HomeButton>k__BackingField: {fileID: 1779978662171654682}
   <BackButton>k__BackingField: {fileID: 0}
   onShowing:
-  - rid: 3882657616904847369
+  - rid: 6272343463963656596
   onHiding: []
   onShowed: []
   onHidden: []
   references:
     version: 2
     RefIds:
-    - rid: 3882657616904847369
-      type: {class: CreateOrShowUIViewAction, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        action:
-          viewPrefab: {fileID: -1458953139633258488, guid: e2201c12e1580db439fb2463b39157cc, type: 3}
-          root: {fileID: 6233158468556592764}
-          pathToObject: 
-          option: 0
     - rid: 3882657626990837763
       type: {class: TwoShowHidAnim, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -190,6 +182,19 @@ MonoBehaviour:
         targetPath: 
         targetsPaths: []
         timeOffsetPerTarget: 0.1
+    - rid: 6272343463963656596
+      type: {class: CreateOrShowUIView, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        prefab: {fileID: -1458953139633258488, guid: e2201c12e1580db439fb2463b39157cc, type: 3}
+        transformActions:
+        - rid: 6272343463963656621
+        option: 0
+    - rid: 6272343463963656621
+      type: {class: SetParentAction, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        root: {fileID: 6233158468556592764}
+        pathToObject: 
+        worldPositionStays: 0
 --- !u!114 &2029488687996576790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,3 +499,8 @@ MonoBehaviour:
   combineFilledWithSliced: 0
   anim:
     isDisabled: 1
+  clickActions: []
+  isClickSoundOverride: 0
+  references:
+    version: 2
+    RefIds: []

@@ -476,30 +476,14 @@ MonoBehaviour:
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
         action:
-          rid: 3882657583162720278
+          rid: 6272343463963656598
         button: {fileID: 6975921768580669708}
-    - rid: 3882657583162720278
-      type: {class: CreateOrShowUIViewAction, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        action:
-          viewPrefab: {fileID: 3820585858121548723, guid: d05e4491da48b314ba179e9cb5ca0c1c, type: 3}
-          root: {fileID: 1079404954527943290}
-          pathToObject: ..
-          option: 1
     - rid: 3882657583162720281
       type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
       data:
         action:
-          rid: 3882657583162720282
+          rid: 6272343463963656599
         button: {fileID: 44305575300865426}
-    - rid: 3882657583162720282
-      type: {class: CreateOrShowUIViewAction, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        action:
-          viewPrefab: {fileID: 8727265988743854583, guid: aba4eab3e802b4345bae5ceb826cd57f, type: 3}
-          root: {fileID: 1079404954527943290}
-          pathToObject: ..
-          option: 1
     - rid: 3882657626990837845
       type: {class: InOutShowHideAnim, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -693,6 +677,26 @@ MonoBehaviour:
         targetPath: 
         targetsPaths: []
         timeOffsetPerTarget: 0.1
+    - rid: 6272343463963656598
+      type: {class: CreateOrShowUIView, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        prefab: {fileID: 3820585858121548723, guid: d05e4491da48b314ba179e9cb5ca0c1c, type: 3}
+        transformActions:
+        - rid: 6272343463963656616
+        option: 1
+    - rid: 6272343463963656599
+      type: {class: CreateOrShowUIView, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        prefab: {fileID: 8727265988743854583, guid: aba4eab3e802b4345bae5ceb826cd57f, type: 3}
+        transformActions:
+        - rid: 6272343463963656616
+        option: 1
+    - rid: 6272343463963656616
+      type: {class: SetParentAction, ns: LSCore, asm: LSCore.WindowModule}
+      data:
+        root: {fileID: 1079404954527943290}
+        pathToObject: ..
+        worldPositionStays: 0
 --- !u!114 &6134276069661270145
 MonoBehaviour:
   m_ObjectHideFlags: 0
