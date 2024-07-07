@@ -13,13 +13,13 @@ namespace MultiWars
             if (DrawToggle("Server Enabled", "Server Disabled", serverEnabled))
             {
                 Config.serverEnabled = !serverEnabled;
-                Save();
+                Savee();
             }
 
             if (DrawToggle("Radius Showed", "Radius Hidden", needShowRadius))
             {
                 Config.needShowRadius = !needShowRadius;
-                Save();
+                Savee();
             }
         }
 

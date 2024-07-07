@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb42da7420d44e0bd1ec23b5493150f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraRectExpand: 5
   contactFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -250,12 +251,21 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 192
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
   cam: {fileID: 519420031}
+  onIn: []
+  onOut:
+  - rid: 6272343463963656265
+  references:
+    version: 2
+    RefIds:
+    - rid: 6272343463963656265
+      type: {class: OpponentWorld/MoveBehindCamera, ns: Battle, asm: Battle}
+      data: 
 --- !u!114 &1009600343 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4859229776357192111, guid: 7967b04580ff5cb46aeb1119a1c2420a, type: 3}
@@ -362,6 +372,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4859229776357192111, guid: 7967b04580ff5cb46aeb1119a1c2420a, type: 3}
+      propertyPath: cameraTrigger
+      value: 
+      objectReference: {fileID: 519420035}
     - target: {fileID: 9212033839673880494, guid: 7967b04580ff5cb46aeb1119a1c2420a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

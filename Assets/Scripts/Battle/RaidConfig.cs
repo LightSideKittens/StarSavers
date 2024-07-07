@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using LSCore;
 using LSCore.AnimationsModule;
 using LSCore.AnimationsModule.Animations.Text;
@@ -153,15 +152,19 @@ namespace Battle.Data
             return enemyData[indexedList[^1].index].id;
         }
 
+        private Location location;
         private void InstantiateLocation()
         {
-            var location = locationRef.Load();
+            location = locationRef.Load();
             location.Generate();
         }
+
+        public void Dispose() => location.Dispose();
         
 #if UNITY_EDITOR
         private AnimationCurve Editor_Draw(AnimationCurve value, GUIContent content) => DrawCurve(value, content);
         private static RaidConfig currentInspected;
+
         [OnInspectorInit] private void Editor_Init() => currentInspected = this;
 
         private static AnimationCurve DrawCurve(AnimationCurve value, GUIContent content)

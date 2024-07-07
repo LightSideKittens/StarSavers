@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Animatable;
 using Battle;
 using Battle.Windows;
@@ -19,16 +20,34 @@ namespace LSCore.BattleModule
         private static float timeSinceStart;
         private static int currentWave;
         public static Camera Camera { get; private set; }
+        public static Rect CameraRect { get; private set; }
+
 
         protected override void Awake()
         {
             base.Awake();
             Camera = Camera.main;
+            CameraRect = Camera.GetRect();
         }
 
         private void Start()
         {
             BaseInitializer.Initialize(OnInitialize);
+        }
+
+        private void OnEnable()
+        {
+            World.Updated += Run;
+        }
+
+        private void OnDisable()
+        {
+            World.Updated -= Run;
+        }
+
+        private void Run()
+        {
+           CameraRect = Camera.GetRect();
         }
 
         private void OnInitialize()
@@ -63,6 +82,7 @@ namespace LSCore.BattleModule
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            Raid.Dispose();
             DOTween.KillAll();
             Unit.Killed -= OnUnitKilled;
             World.Updated -= UpdateTime;

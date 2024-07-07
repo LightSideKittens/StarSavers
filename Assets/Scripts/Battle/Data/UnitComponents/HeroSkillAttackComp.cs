@@ -17,7 +17,7 @@ namespace LSCore.BattleModule
         private bool isAim;
         protected virtual ProgressJoystick Joystick => BattleWindow.SkillJoystick;
         public void SetActivePreview(bool active) => impactObject.SetActivePreview(active);
-        public void LookAt(in Vector3 direction) => impactObject.LookAt(direction);
+        public void LookAt(in Vector2 direction) => impactObject.LookAt(direction);
 
         protected override void Init()
         {
