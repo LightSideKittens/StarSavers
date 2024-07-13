@@ -15,9 +15,9 @@ MonoBehaviour:
   m_DefaultGroup: afd6c21c5db430540a409a132a6eaed9
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 333b9237f846960024733172881ed468
   m_OptimizeCatalogSize: 0
-  m_BuildRemoteCatalog: 0
+  m_BuildRemoteCatalog: 1
   m_CatalogRequestsTimeout: 0
   m_DisableCatalogUpdateOnStart: 0
   m_InternalIdNamingMode: 0
@@ -59,9 +59,14 @@ MonoBehaviour:
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: 
   m_GroupAssets:
+  - {fileID: 11400000, guid: dd3bc15a2ef44984fb662ce2a83c02cd, type: 2}
+  - {fileID: 11400000, guid: ce6a4fe518701fd45aac634943cc113e, type: 2}
+  - {fileID: 11400000, guid: c293b956fd46741458b0fec3a3c7424f, type: 2}
   - {fileID: 11400000, guid: 287de5a42ee95a841bdd3ed79c4c10c0, type: 2}
   - {fileID: 11400000, guid: 568a2cbeb18be284f86b46fef518e477, type: 2}
   - {fileID: 11400000, guid: 845118f5b19410a40a645c6bf171349c, type: 2}
+  - {fileID: 11400000, guid: 74390691d479c17489bc1bdc3086a590, type: 2}
+  - {fileID: 11400000, guid: 3677f77a83eebfd41892c3bf7fa461f5, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
     m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
@@ -73,17 +78,22 @@ MonoBehaviour:
       m_Values:
       - m_Id: 4786e674b93861d45af4cb447fb0f995
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 5b9bf87d2359c32459e69d91cc571746
+        m_Value: 'Addressables/[BuildTarget]'
       - m_Id: b8ace91f6ac9440428be3e79e57561f4
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: c597ed96dd39a9544afd33c59c33a8a4
-        m_Value: 'http://[PrivateIpAddress]:[HostingServicePort]'
+        m_Value: 'https://storage.googleapis.com/multiwars/[Path]'
       - m_Id: d370a1f16bfab614e974ddcf874b8d4a
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: fb4f3354dad19e84b876b5acc0324564
-        m_Value: Addressables
+        m_Value: '[Path]'
     m_ProfileEntryNames:
     - m_Id: 4786e674b93861d45af4cb447fb0f995
       m_Name: BuildTarget
+      m_InlineUsage: 0
+    - m_Id: 5b9bf87d2359c32459e69d91cc571746
+      m_Name: Path
       m_InlineUsage: 0
     - m_Id: b8ace91f6ac9440428be3e79e57561f4
       m_Name: Local.BuildPath
@@ -101,6 +111,10 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Locale
+    - Locale-en
+    - Locale-fr
+    - Preload
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 8bee3faf33f77624d911ac9bda2ee15f, type: 2}
