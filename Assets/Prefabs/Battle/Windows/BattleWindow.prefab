@@ -136,8 +136,8 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
-  anim:
-    isDisabled: 0
+  localizationKey: 
+  tableData: {fileID: 0}
 --- !u!1 &60032113434007007
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +271,12 @@ MonoBehaviour:
       type: {class: EaseOption, ns: LSCore.AnimationsModule.Animations.Options, asm: LSCore.AnimationsModule}
       data:
         useCustom: 0
-        curveName: 
+        curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
         ease: 8
 --- !u!223 &60032113434006995
 Canvas:
@@ -690,8 +695,8 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
-  anim:
-    isDisabled: 0
+  localizationKey: 
+  tableData: {fileID: 0}
 --- !u!1 &4316225057936239982
 GameObject:
   m_ObjectHideFlags: 0

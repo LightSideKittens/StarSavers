@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: afd6c21c5db430540a409a132a6eaed9
   m_currentHash:
     serializedVersion: 2
-    Hash: 333b9237f846960024733172881ed468
+    Hash: 85df02c552d4c248407f0715144592c2
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_CatalogRequestsTimeout: 0
@@ -42,13 +42,13 @@ MonoBehaviour:
   m_SharedBundleSettings: 0
   m_SharedBundleSettingsCustomGroupIndex: 0
   m_ContiguousBundles: 1
-  m_StripUnityVersionFromBundleBuild: 0
+  m_StripUnityVersionFromBundleBuild: 1
   m_DisableVisibleSubAssetRepresentations: 0
   m_BuiltInBundleNaming: 2
   mBuiltInBundleCustomNaming: shaders
-  m_MonoScriptBundleNaming: 0
+  m_MonoScriptBundleNaming: 2
   m_CheckForContentUpdateRestrictionsOption: 0
-  m_MonoScriptBundleCustomNaming: 
+  m_MonoScriptBundleCustomNaming: multiwars
   m_RemoteCatalogBuildPath:
     m_Id: fb4f3354dad19e84b876b5acc0324564
   m_RemoteCatalogLoadPath:
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
-  m_overridePlayerVersion: 
+  m_overridePlayerVersion: 1
   m_GroupAssets:
   - {fileID: 11400000, guid: dd3bc15a2ef44984fb662ce2a83c02cd, type: 2}
   - {fileID: 11400000, guid: ce6a4fe518701fd45aac634943cc113e, type: 2}
@@ -80,10 +80,12 @@ MonoBehaviour:
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: 5b9bf87d2359c32459e69d91cc571746
         m_Value: 'Addressables/[BuildTarget]'
+      - m_Id: b5ebd1eb13ceff9499090902a6e29271
+        m_Value: http://192.168.31.52:8000
       - m_Id: b8ace91f6ac9440428be3e79e57561f4
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: c597ed96dd39a9544afd33c59c33a8a4
-        m_Value: 'https://storage.googleapis.com/multiwars/[Path]'
+        m_Value: '[CDN]/[Path]'
       - m_Id: d370a1f16bfab614e974ddcf874b8d4a
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: fb4f3354dad19e84b876b5acc0324564
@@ -94,6 +96,9 @@ MonoBehaviour:
       m_InlineUsage: 0
     - m_Id: 5b9bf87d2359c32459e69d91cc571746
       m_Name: Path
+      m_InlineUsage: 0
+    - m_Id: b5ebd1eb13ceff9499090902a6e29271
+      m_Name: CDN
       m_InlineUsage: 0
     - m_Id: b8ace91f6ac9440428be3e79e57561f4
       m_Name: Local.BuildPath
@@ -126,5 +131,5 @@ MonoBehaviour:
   m_DataBuilders:
   - {fileID: 11400000, guid: be95477c736c7a743a5b8706feba914d, type: 2}
   - {fileID: 11400000, guid: 22198c5ff441b554f891712a4a433689, type: 2}
-  - {fileID: 11400000, guid: 5325b54fa401a964fa736c6c05f3e370, type: 2}
+  - {fileID: 11400000, guid: 266d41e75d7a93b46ae27d68ac33d66b, type: 2}
   m_ActiveProfileId: bc7f6be6e504e884faff209e5c25eaed
