@@ -1,8 +1,10 @@
 ﻿using DG.Tweening;
 using LSCore;
 using LSCore.AnimationsModule.Animations;
+using LSCore.Async;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 namespace MultiWars
 {
@@ -16,7 +18,10 @@ namespace MultiWars
         {
             base.Awake();
             tween = sliderAnim.Animate();
-            Addressables.LoadSceneAsync("Launcher").OnSuccess(OnSuccess).OnError(OnError);
+            Wait.Delay(5, () =>
+            {
+                SceneManager.LoadScene("Launcher");
+            });
             
             return;
 
