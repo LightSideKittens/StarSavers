@@ -20,6 +20,8 @@ namespace MultiWars
             tween = sliderAnim.Animate();
             Wait.Delay(1, () =>
             {
+                SingleAsset<ExchangeTable>.Get("ExchangeTable");
+                SingleAsset<Sprite>.Get("back-01");
                 Palette.TryGet("Red", out var color);
                 Debug.Log(color);
             });
