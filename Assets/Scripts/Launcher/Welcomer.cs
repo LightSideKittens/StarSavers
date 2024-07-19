@@ -18,9 +18,15 @@ namespace MultiWars
         {
             base.Awake();
             tween = sliderAnim.Animate();
-            Wait.Delay(5, () =>
+            Wait.Delay(1, () =>
             {
-                SceneManager.LoadScene("Launcher");
+                Palette.TryGet("Red", out var color);
+                Debug.Log(color);
+            });
+            
+            Wait.Delay(2, () =>
+            {
+                SceneManager.LoadSceneAsync("Launcher");
             });
             
             return;

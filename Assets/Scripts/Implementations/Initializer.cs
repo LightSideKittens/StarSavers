@@ -20,7 +20,6 @@ namespace MultiWars
         [SerializeField] private LevelsManager enemiesLevelsManager;
         [SerializeField] private ExchangeTable exchangeTable;
         [SerializeField] private HeroRankIconsConfigs heroRankIconsConfigs;
-        [SerializeField] private Palette palette;
         
         [Id("Heroes")] [SerializeField] private Id[] ids;
         [Id("Enemies")] [SerializeField] private Id[] enemyIds;
@@ -54,7 +53,6 @@ namespace MultiWars
             enemiesLevelsManager.Init();
             exchangeTable.Init();
             heroRankIconsConfigs.Init();
-            palette.Init();
             
             Id selectedHeroId = PlayerData.Config.SelectedHero;
             if (!heroesLevelsManager.AddedIds.Contains(selectedHeroId))
