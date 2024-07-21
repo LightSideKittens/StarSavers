@@ -4,7 +4,6 @@ using LSCore.AnimationsModule;
 using LSCore.AnimationsModule.Animations.Text;
 using LSCore.Async;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Battle.Windows
 {
@@ -43,11 +42,6 @@ namespace Battle.Windows
             to.endValue = toAmount;
             fundTextAnim.Init();
             Wait.Delay(1, () => fundTextAnim.Animate());
-        }
-
-        protected override void OnHomeButton()
-        {
-            SceneManager.LoadScene(0);
         }
     }
 }

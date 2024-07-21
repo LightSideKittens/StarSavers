@@ -211,6 +211,8 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  localizationKey: 
+  tableData: {fileID: 0}
 --- !u!1 &296633200953151082
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +384,8 @@ MonoBehaviour:
       type: {class: LoadScene, ns: , asm: LSCore.LSDelegates}
       data:
         sceneToLoad: Battle
+        useAddressables: 1
+        async: 1
     - rid: 6272343463963656590
       type: {class: CreateOrShowCanvasView, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -588,6 +592,8 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  localizationKey: 
+  tableData: {fileID: 0}
 --- !u!1 &1842176362072383349
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,8 +804,9 @@ MonoBehaviour:
   combineFilledWithSliced: 0
   anim:
     isDisabled: 1
-  clickActions: []
-  isClickSoundOverride: 0
+  clickActions:
+    actions: []
+    isClickSoundOverride: 0
   references:
     version: 2
     RefIds: []
@@ -922,8 +929,9 @@ MonoBehaviour:
   combineFilledWithSliced: 0
   anim:
     isDisabled: 0
-  clickActions: []
-  isClickSoundOverride: 0
+  clickActions:
+    actions: []
+    isClickSoundOverride: 0
   references:
     version: 2
     RefIds: []
@@ -1344,8 +1352,9 @@ MonoBehaviour:
   combineFilledWithSliced: 0
   anim:
     isDisabled: 0
-  clickActions: []
-  isClickSoundOverride: 0
+  clickActions:
+    actions: []
+    isClickSoundOverride: 0
   references:
     version: 2
     RefIds: []
@@ -1485,6 +1494,8 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  localizationKey: 
+  tableData: {fileID: 0}
 --- !u!1 &9212898690627752406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,8 +1578,9 @@ MonoBehaviour:
   combineFilledWithSliced: 0
   anim:
     isDisabled: 0
-  clickActions: []
-  isClickSoundOverride: 0
+  clickActions:
+    actions: []
+    isClickSoundOverride: 0
   references:
     version: 2
     RefIds: []

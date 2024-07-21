@@ -34,6 +34,7 @@ namespace MultiWars
 
         protected override void Internal_Initialize(Action onInit)
         {
+            DontDestroyOnLoad(gameObject);
             if (isInited)
             {
                 onInit();
