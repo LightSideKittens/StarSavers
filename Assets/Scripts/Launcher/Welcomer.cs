@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Threading.Tasks;
+using DG.Tweening;
 using LSCore;
 using LSCore.AnimationsModule.Animations;
 using LSCore.Async;
@@ -12,10 +13,11 @@ namespace MultiWars
         [SerializeField] private SliderAnim sliderAnim;
         private Tween tween;
         
-        protected override void Awake()
+        protected override async void Awake()
         {
             base.Awake();
             tween = sliderAnim.Animate();
+            await Task.Delay(5000);
             Addressables.LoadSceneAsync("Launcher").OnSuccess(OnSuccess).OnError(OnError);
             
             return;
