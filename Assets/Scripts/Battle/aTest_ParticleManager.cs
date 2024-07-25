@@ -2,50 +2,24 @@ using UnityEngine;
 
 public class aTest_ParticleManager : MonoBehaviour
 {
-    public GameObject hitEffectPrefab;
-    public GameObject smokeEffectPrefab;
-    public GameObject asdf;
+    public ParticleSystem hitEffect;
+    public ParticleSystem smokeEffect;
+    public ParticleSystem[] Claws;
     
-    public Transform hitEffectPosition;
-    public Transform smokeEffectPosition;
-
-    public float particleSize = 2f;
-
-    public void PlayHitEffect()
+    private int currentIndex = 0;
+    
+    public void PlayHitEffect() => hitEffect.Play();
+    public void PlaySmokeEffect() => smokeEffect.Play();
+    public void PlayClawsEffect()
     {
-        if (hitEffectPrefab != null && hitEffectPosition != null)
+        if (currentIndex < Claws.Length)
         {
-            GameObject hitEffectInstance = Instantiate(hitEffectPrefab, 
-                hitEffectPosition.position, Quaternion.identity);
-            Destroy(hitEffectInstance, 1.0f);
-        }
-        else
-        {
-            Debug.LogWarning("Hit Effect Prefab or Hit Effect Position is not assigned!");
+            Claws[currentIndex].Play();
+            currentIndex++;
         }
     }
-    
-    public void PlaySmokeEffect()
+    public void ResetIndex()
     {
-        if (smokeEffectPrefab != null && smokeEffectPosition != null)
-        {
-            GameObject smokeEffectInstance = Instantiate(smokeEffectPrefab, 
-                smokeEffectPosition.position, Quaternion.identity);
-            
-            // Увеличиваем масштаб частиц дыма в 3 раза
-            smokeEffectInstance.transform.localScale = 
-                new Vector3(particleSize, particleSize, particleSize);
-            HideObject();
-            Destroy(smokeEffectInstance, 2.0f);
-        }
-        else
-        {
-            Debug.LogWarning("Smoke Effect Prefab or Smoke Effect Position is not assigned!");
-        }
-    }
-    
-    public void HideObject()
-    {
-        gameObject.SetActive(false);
+        currentIndex = 0;
     }
 }
