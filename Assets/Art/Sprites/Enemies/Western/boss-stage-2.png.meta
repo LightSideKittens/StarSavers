@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 7b6ab965a0d8d6d45aa3db29ad05b295
+guid: add8aa69ec491e34d968bc6cad560bb6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3789319181994331882
-    second: boss-phase-1_0
+      213: -6913918634983774232
+    second: boss-phase-2_0
   - first:
-      213: -6006659889385689771
-    second: boss-phase-1_1
+      213: 7537227857597361791
+    second: boss-phase-2_1
   - first:
-      213: 1128498019655534289
-    second: boss-phase-1_2
+      213: -4087468622013998116
+    second: boss-phase-2_2
   - first:
-      213: 1188347522184004169
-    second: boss-phase-1_3
+      213: 9092392423320950339
+    second: boss-phase-2_3
   - first:
-      213: 4091777991243778453
-    second: boss-phase-1_4
+      213: -6180476620209132389
+    second: boss-phase-2_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -141,54 +141,27 @@ TextureImporter:
       name: body
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1287
-        width: 1125
-        height: 758
+        x: 293
+        y: 1269
+        width: 1149
+        height: 777
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -562.5, y: 235.5}
-        - {x: -76.5, y: -379}
-        - {x: 93.5, y: -379}
-        - {x: 562.5, y: 242}
-        - {x: 562.5, y: 379}
-        - {x: -562.5, y: 379}
+      - - {x: -574.5, y: 247.5}
+        - {x: -307.5, y: -46.5}
+        - {x: -108.5, y: -388.5}
+        - {x: 94.5, y: -388.5}
+        - {x: 574.5, y: 257.5}
+        - {x: 574.5, y: 388.5}
+        - {x: -574.5, y: 388.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70f70a16d1fa4104f88c462d29b9a1c4
-      internalID: -3789319181994331882
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: horse-body
-      rect:
-        serializedVersion: 2
-        x: 1399
-        y: 1271
-        width: 642
-        height: 770
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline:
-      - - {x: -321, y: 154}
-        - {x: -321, y: -185}
-        - {x: -132, y: -385}
-        - {x: 321, y: -385}
-        - {x: 321, y: 385}
-        - {x: -209, y: 385}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc598a7e69fe3ff438fded45229590fb
-      internalID: -1151800248
+      spriteID: 8e7a6db02a3dc00a0800000000000000
+      internalID: -6913918634983774232
       vertices: []
       indices: 
       edges: []
@@ -197,25 +170,57 @@ TextureImporter:
       name: horse-head
       rect:
         serializedVersion: 2
-        x: 26
-        y: 882
-        width: 665
-        height: 829
+        x: 24
+        y: 842
+        width: 703
+        height: 902
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -332.5, y: -414.5}
-        - {x: 332.5, y: -414.5}
-        - {x: 332.5, y: -7.5}
-        - {x: 149.5, y: 414.5}
-        - {x: -332.5, y: 414.5}
+      - - {x: -273.5, y: -86}
+        - {x: -351.5, y: -149}
+        - {x: -351.5, y: -451}
+        - {x: 327.5, y: -451}
+        - {x: 351.5, y: -295}
+        - {x: 351.5, y: -151}
+        - {x: 271.5, y: 76}
+        - {x: 111.5, y: 451}
+        - {x: -222.5, y: 451}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9a8192f62d9da343a3dfc2668e2546c
-      internalID: 971330412
+      spriteID: f7ee4437dcc999860800000000000000
+      internalID: 7537227857597361791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-body
+      rect:
+        serializedVersion: 2
+        x: 1388
+        y: 1254
+        width: 655
+        height: 789
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -327.5, y: 170.5}
+        - {x: -327.5, y: -177.5}
+        - {x: -133.5, y: -394.5}
+        - {x: 327.5, y: -394.5}
+        - {x: 327.5, y: 394.5}
+        - {x: -204.5, y: 394.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdbdc42d1f46647c0800000000000000
+      internalID: -4087468622013998116
       vertices: []
       indices: 
       edges: []
@@ -224,57 +229,78 @@ TextureImporter:
       name: left-hand
       rect:
         serializedVersion: 2
-        x: 977
-        y: 1071
-        width: 631
-        height: 464
+        x: 969
+        y: 1056
+        width: 643
+        height: 474
       alignment: 9
-      pivot: {x: 0.90398353, y: 0.06270573}
+      pivot: {x: 0.94495636, y: 0.06658987}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -315.5, y: -14}
-        - {x: -315.5, y: -141}
-        - {x: -171.5, y: -232}
-        - {x: 315.5, y: -232}
-        - {x: 314.5, y: -56}
-        - {x: 52.5, y: 232}
-        - {x: -129.5, y: 232}
+      - - {x: -321.5, y: -28}
+        - {x: -321.5, y: -237}
+        - {x: 321.5, y: -237}
+        - {x: 321.5, y: -100}
+        - {x: 67.5, y: 237}
+        - {x: -165.5, y: 237}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c258eff4e473af4293b3c587dc46165
-      internalID: -1104920759
+      spriteID: 3469f764cbaae2e70800000000000000
+      internalID: 9092392423320950339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: head
+      name: tear
       rect:
         serializedVersion: 2
-        x: 654
-        y: 9
-        width: 1387
-        height: 1064
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1854
+        y: 122
+        width: 88
+        height: 72
+      alignment: 9
+      pivot: {x: 0.07802651, y: 0.18846025}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -693.5, y: 341}
-        - {x: -693.5, y: -532}
-        - {x: 693.5, y: -532}
-        - {x: 693.5, y: 532}
-        - {x: 303.5, y: 532}
-        - {x: 230.5, y: 519}
-        - {x: 56.5, y: 532}
-        - {x: -522.5, y: 532}
+      - - {x: -44, y: -36}
+        - {x: 44, y: -36}
+        - {x: 44, y: 36}
+        - {x: -44, y: 36}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b21558a679e50b4387a07740726392b
-      internalID: -1610899504
+      spriteID: b9ce3dd62498a3aa0800000000000000
+      internalID: -6180476620209132389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sweat
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 661
+        width: 140
+        height: 132
+      alignment: 9
+      pivot: {x: 0.06, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -70, y: -66}
+        - {x: 70, y: -66}
+        - {x: 70, y: 66}
+        - {x: -70, y: 66}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a679a109e7a2bfe458869d41750131d3
+      internalID: -39375614
       vertices: []
       indices: 
       edges: []
@@ -283,24 +309,57 @@ TextureImporter:
       name: right-hand
       rect:
         serializedVersion: 2
-        x: 167
-        y: 94
-        width: 445
-        height: 744
+        x: 53
+        y: 93
+        width: 609
+        height: 511
       alignment: 9
-      pivot: {x: 0.06531633, y: 0.04024831}
+      pivot: {x: 0.051689487, y: 0.9024066}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -222.5, y: -372}
-        - {x: 222.5, y: -372}
-        - {x: 222.5, y: 372}
-        - {x: -222.5, y: 372}
+      - - {x: -304.5, y: -255.5}
+        - {x: 304.5, y: -255.5}
+        - {x: 304.5, y: 52.5}
+        - {x: 127.5, y: 255.5}
+        - {x: -304.5, y: 255.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b416e3a3cab9d34b8e966acc52e9851
-      internalID: -1085637130
+      spriteID: 7e6cf514c69d9164f8ac9c1e96183b0a
+      internalID: 51699069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 6
+        width: 1416
+        height: 1033
+      alignment: 9
+      pivot: {x: 0.509, y: 0.6700001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -708, y: 260.5}
+        - {x: -708, y: -55.5}
+        - {x: -560, y: -324.5}
+        - {x: -339, y: -181.5}
+        - {x: -286, y: -516.5}
+        - {x: 300, y: -516.5}
+        - {x: 416, y: -275.5}
+        - {x: 708, y: -285.5}
+        - {x: 708, y: 516.5}
+        - {x: -462, y: 516.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5590dc774ef14e47b84fbbdad153b86
+      internalID: -176719326
       vertices: []
       indices: 
       edges: []
@@ -309,7 +368,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7099af2a7c3da9042ae610bc0a2da5c2
+    spriteID: 1791baf3e93213a4689319a27709b355
     internalID: 0
     vertices: []
     indices: 
@@ -319,47 +378,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      body: -3789319181994331882
-      boss-phase-1_1: -6006659889385689771
-      boss-phase-1_10: -1589811330
-      boss-phase-1_13: 383376464
-      boss-phase-1_14: 1829057737
-      boss-phase-1_15: -462784939
-      boss-phase-1_17: 1981583465
-      boss-phase-1_18: -184708738
-      boss-phase-1_19: -9218621
-      boss-phase-1_2: 1128498019655534289
-      boss-phase-1_20: -1279488264
-      boss-phase-1_21: -1416683354
-      boss-phase-1_22: -1885059980
-      boss-phase-1_23: -1666301171
-      boss-phase-1_24: 1645949240
-      boss-phase-1_25: 462784633
-      boss-phase-1_26: -1477011929
-      boss-phase-1_27: 611497033
-      boss-phase-1_29: -1164190257
-      boss-phase-1_3: 1188347522184004169
-      boss-phase-1_30: -1971607831
-      boss-phase-1_31: -139601428
-      boss-phase-1_32: 1843298093
-      boss-phase-1_33: 565184730
-      boss-phase-1_34: 1051650212
-      boss-phase-1_35: 824153452
-      boss-phase-1_36: -1063623519
-      boss-phase-1_37: 264763773
-      boss-phase-1_38: -903355392
-      boss-phase-1_39: 1774983641
-      boss-phase-1_4: 4091777991243778453
-      boss-phase-1_40: 882524309
-      boss-phase-1_6: -1911934517
-      boss-phase-1_7: 674351988
-      boss-phase-1_8: -1201227623
-      boss-phase-1_9: -496953124
-      head: -271865482
-      horse-body: -1151800248
-      horse-head: -1171831504
-      left-hand: -1104920759
-      right-hand: -1085637130
+      body: -6913918634983774232
+      boss-phase-2_6: 791613358
+      boss-phase-2_8: 1352115106
+      head: -176719326
+      horse-body: -4087468622013998116
+      horse-head: 7537227857597361791
+      left-hand: 9092392423320950339
+      right-hand: 51699069
+      sweat: -39375614
+      tear: -6180476620209132389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

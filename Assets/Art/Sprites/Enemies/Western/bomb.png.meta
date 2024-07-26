@@ -129,20 +129,25 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bomb_0
+      name: hand
       rect:
         serializedVersion: 2
-        x: 11
-        y: 388
-        width: 1396
-        height: 1651
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 26
+        y: 1213
+        width: 787
+        height: 803
+      alignment: 9
+      pivot: {x: 0.10910907, y: 0.9448247}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -393.5, y: -401.5}
+        - {x: 212.5, y: -401.5}
+        - {x: 393.5, y: -160.5}
+        - {x: 393.5, y: 401.5}
+        - {x: -393.5, y: 401.5}
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 26ce5c404e0ebbbd0800000000000000
       internalID: -2613247888821195678
@@ -151,22 +156,56 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bomb_1
+      name: leg
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 33
-        width: 788
-        height: 801
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1530
+        y: 50
+        width: 416
+        height: 348
+      alignment: 9
+      pivot: {x: 0.21413392, y: 0.063709654}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -208, y: -174}
+        - {x: 208, y: -174}
+        - {x: 208, y: 174}
+        - {x: -23, y: 174}
+        - {x: -208, y: 33}
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 36b11d32877577a80800000000000000
+      spriteID: cd59d02b3392c41418ef64fd969e6791
+      internalID: -400580093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: body
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 8
+        width: 1400
+        height: 1654
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -700, y: 435}
+        - {x: -700, y: -827}
+        - {x: 48, y: -827}
+        - {x: 258, y: -493}
+        - {x: 700, y: -305}
+        - {x: 700, y: 827}
+        - {x: -326, y: 827}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55d97b872a1765c40a4eaf3368d9a221
       internalID: -8469204400738329757
       vertices: []
       indices: 
@@ -176,7 +215,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e66163883721d02449fa381348f84752
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +225,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bomb_0: -2613247888821195678
-      bomb_1: -8469204400738329757
+      body: -8469204400738329757
+      hand: -2613247888821195678
+      leg: -400580093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
