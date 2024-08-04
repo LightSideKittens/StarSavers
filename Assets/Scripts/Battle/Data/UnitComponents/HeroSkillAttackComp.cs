@@ -19,9 +19,11 @@ namespace LSCore.BattleModule
         public void SetActivePreview(bool active) => impactObject.SetActivePreview(active);
         public void LookAt(in Vector2 direction) => impactObject.LookAt(direction);
 
-        protected override void Init()
+        protected override void OnInit()
         {
-            base.Init();
+            base.OnInit();
+            useUpdate = true;
+            IsRunning = true;
             joystick = Joystick;
             joystick.IsUsing.Changed += SetIsRunning;
             joystick.IsUsing.Changed += OnJoystickUsing;
