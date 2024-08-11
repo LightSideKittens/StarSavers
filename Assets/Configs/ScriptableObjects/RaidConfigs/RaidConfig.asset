@@ -208,93 +208,22 @@ MonoBehaviour:
     m_RotationOrder: 4
   <BreakDuration>k__BackingField: 5
   waveDurations:
-  - duration: 30
-    onStart:
-      rid: 3882657456865935594
-  - duration: 45
-    onStart:
-      rid: 3882657456865935599
-  - duration: 60
-    onStart:
-      rid: 3882657456865935601
+  - actions:
+    - rid: 1284473905119494213
+  - actions:
+    - rid: 1284473905119494214
+  isInfinity: 0
   references:
     version: 2
     RefIds:
-    - rid: 3882657456865935594
-      type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
+    - rid: 1284473905119494213
+      type: {class: BattleWorld/RegularWave, ns: LSCore.BattleModule, asm: Battle}
       data:
-        animation:
-          options: []
-          animsData:
-          - timeOffset: 0
-            anim:
-              rid: 3882657456865935596
-    - rid: 3882657456865935596
-      type: {class: CameraSizeAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
+        duration: 5
+    - rid: 1284473905119494214
+      type: {class: BattleWorld/BossWave, ns: LSCore.BattleModule, asm: Battle}
       data:
-        id: 
-        options: []
-        <NeedInit>k__BackingField: 1
-        <Duration>k__BackingField: 1
-        startValue: 10
-        endValue: 6
-        useTargetPath: 0
-        useMultiple: 0
-        target: {fileID: 0}
-        targets: []
-        root: {fileID: 0}
-        targetPath: 
-        targetsPaths: []
-        timeOffsetPerTarget: 0.1
-    - rid: 3882657456865935599
-      type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
-      data:
-        animation:
-          options: []
-          animsData:
-          - timeOffset: 0
-            anim:
-              rid: 3882657456865935600
-    - rid: 3882657456865935600
-      type: {class: CameraSizeAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
-      data:
-        id: 
-        options: []
-        <NeedInit>k__BackingField: 0
-        <Duration>k__BackingField: 1
-        startValue: 0
-        endValue: 7
-        useTargetPath: 0
-        useMultiple: 0
-        target: {fileID: 0}
-        targets: []
-        root: {fileID: 0}
-        targetPath: 
-        targetsPaths: []
-        timeOffsetPerTarget: 0.1
-    - rid: 3882657456865935601
-      type: {class: RaidConfig/AnimCamera, ns: Battle.Data, asm: Battle}
-      data:
-        animation:
-          options: []
-          animsData:
-          - timeOffset: 0
-            anim:
-              rid: 3882657456865935602
-    - rid: 3882657456865935602
-      type: {class: CameraSizeAnim, ns: LSCore.AnimationsModule.Animations.Text, asm: LSCore.AnimationsModule}
-      data:
-        id: 
-        options: []
-        <NeedInit>k__BackingField: 0
-        <Duration>k__BackingField: 1
-        startValue: 0
-        endValue: 8
-        useTargetPath: 0
-        useMultiple: 0
-        target: {fileID: 0}
-        targets: []
-        root: {fileID: 0}
-        targetPath: 
-        targetsPaths: []
-        timeOffsetPerTarget: 0.1
+        bossData:
+          stageIds:
+          - {fileID: -6750239444755058063, guid: 19e5f85d545cc8645a2460fbcff86dde, type: 3}
+          - {fileID: -6750239444755058063, guid: a9bc2fe74ef6c1a458e4c9f703118724, type: 3}

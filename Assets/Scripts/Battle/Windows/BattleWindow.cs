@@ -12,11 +12,18 @@ namespace Battle.Windows
         [SerializeField] private AnimSequencer splash;
         [SerializeField] private ProgressJoystick ultimateJoystick;
         [SerializeField] private ProgressJoystick skillJoystick;
+        [SerializeField] private HealthBar bossHealth;
         
         public static Joystick Joystick => Instance.joystick;
         public static ProgressJoystick UltimateJoystick => Instance.ultimateJoystick;
         public static ProgressJoystick SkillJoystick => Instance.skillJoystick;
         public static LSText StatusText => Instance.statusText;
+        public static HealthBar BossHealth => Instance.bossHealth;
+
+        public static bool IsBossMode
+        {
+            set => BossHealth.gameObject.SetActive(value);
+        }
 
         protected override void OnBackButton() => MatchResultWindow.Show(false);
 

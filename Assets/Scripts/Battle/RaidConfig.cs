@@ -4,6 +4,7 @@ using System.Linq;
 using LSCore;
 using LSCore.AnimationsModule;
 using LSCore.AnimationsModule.Animations.Text;
+using LSCore.Attributes;
 using LSCore.BattleModule;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
@@ -15,10 +16,19 @@ namespace Battle.Data
 {
     public class RaidConfig : ScriptableObject
     {
-        public class AnimCamera : LSAction
+        [Serializable]
+        [HideReferenceObjectPicker]
+        [TypeFrom]
+        public abstract class WaveAction
+        {
+            public abstract void OnStart();
+            public virtual void OnComplete(){}
+        }
+        
+        public class AnimCamera : WaveAction
         {
             public AnimSequencer animation;
-            public override void Invoke()
+            public override void OnStart()
             {
                 var from = animation.GetAnim<CameraSizeAnim>();
                 from.target = BattleWorld.Camera;
@@ -29,8 +39,17 @@ namespace Battle.Data
         [Serializable]
         public class WaveData
         {
-            public int duration;
-            [SerializeReference] public LSAction onStart;
+            [SerializeReference] public List<WaveAction> actions;
+        }
+        
+        [Serializable]
+        public class BossData
+        {
+            [ValueDropdown("Ids")] public Id[] stageIds;
+            
+#if UNITY_EDITOR
+            private IEnumerable<Id> Ids => currentInspected.levelsManager.Group;
+#endif
         }
 
         [Serializable]
@@ -52,27 +71,25 @@ namespace Battle.Data
         [SerializeField] private LevelsManager levelsManager;
         [SerializeField] private EnemyData[] enemyData;
         
-        [CustomValueDrawer("Editor_Draw")] 
+        [CustomValueDrawer("Editor_Draw")]
         [SerializeField] private AnimationCurve spawnFrequency;
         
         [field: SerializeField] public int BreakDuration { get; private set; } = 15;
         [SerializeField] private WaveData[] waveDurations;
-
-        public IEnumerable<Id> EnemyIds => enemyData.Select(x => x.id); 
+        public bool isInfinity;
         
-        public int CurrentWave
+        public IEnumerable<Id> EnemyIds => enemyData.Select(x => x.id);
+
+        public bool MoveNextWave()
         {
-            get => currentWave;
-            set
+            currentWave++;
+            if (currentWave >= waveDurations.Length)
             {
-                if (value >= waveDurations.Length)
-                {
-                    currentWave = waveDurations.Length - 1;
-                    return;
-                }
-                
-                currentWave = value;
+                currentWave = waveDurations.Length - 1;
+                return isInfinity;
             }
+
+            return true;
         }
         
         private int currentWave;

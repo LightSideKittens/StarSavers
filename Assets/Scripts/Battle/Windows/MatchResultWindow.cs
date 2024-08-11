@@ -21,7 +21,7 @@ namespace Battle.Windows
             Show();
             PlayerWorld.Stop();
             OpponentWorld.Stop();
-            Debug.Log("Stoped");
+            Debug.Log("Stopped");
             Instance.Internal_Show(isWin);
         }
 
