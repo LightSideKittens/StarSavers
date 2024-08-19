@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: 57faed946a4fd484ca570a5068f0b1b9
+guid: 644a900c064d1d248949bbec7630eeb7
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2997806567000437355
+    second: jack_topview_0
+  - first:
+      213: -5960611141136278996
+    second: jack_topview_1
+  - first:
+      213: 2937313107452578761
+    second: jack_topview_2
+  - first:
+      213: -1334779558041302222
+    second: jack_topview_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -21,7 +33,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -94,7 +106,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -107,7 +119,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,56 +135,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: body
+      name: right-hand
       rect:
         serializedVersion: 2
-        x: 859
-        y: 0
-        width: 1189
-        height: 1251
+        x: 244
+        y: 1216
+        width: 602
+        height: 693
       alignment: 9
-      pivot: {x: 0.5, y: 0.7079789}
+      pivot: {x: 0.74420714, y: 0.028322779}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -436.5, y: 261.5}
-        - {x: -384.5, y: 164.5}
-        - {x: -594.5, y: -122.5}
-        - {x: -594.5, y: -625.5}
-        - {x: 594.5, y: -625.5}
-        - {x: 594.5, y: 625.5}
-        - {x: -284.5, y: 625.5}
+      - - {x: -301, y: -346.5}
+        - {x: 301, y: -346.5}
+        - {x: 301, y: 346.5}
+        - {x: -301, y: 346.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d3692f9d2777614d9973280703ae363
-      internalID: 1255814747
+      spriteID: b62f46b80395a9920800000000000000
+      internalID: 2997806567000437355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: left-hand
+      name: body
       rect:
         serializedVersion: 2
-        x: 335
-        y: 204
-        width: 267
-        height: 357
+        x: 984
+        y: 615
+        width: 1061
+        height: 1431
       alignment: 9
-      pivot: {x: 0.48690623, y: 0.023187077}
+      pivot: {x: 0.5, y: 0.64}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -133.5, y: -178.5}
-        - {x: 133.5, y: -178.5}
-        - {x: 133.5, y: 178.5}
-        - {x: -133.5, y: 178.5}
+      - - {x: -530.5, y: -171.5}
+        - {x: -19.5, y: -715.5}
+        - {x: 166.5, y: -715.5}
+        - {x: 530.5, y: -577.5}
+        - {x: 530.5, y: 715.5}
+        - {x: -530.5, y: 715.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ad8581874c4f0f4882d267c109642c9
-      internalID: -438212586
+      spriteID: c2a16507fb7a74da0800000000000000
+      internalID: -5960611141136278996
       vertices: []
       indices: 
       edges: []
@@ -181,55 +192,52 @@ TextureImporter:
       name: head
       rect:
         serializedVersion: 2
-        x: 0
-        y: 687
-        width: 1148
-        height: 1016
+        x: 10
+        y: 3
+        width: 1404
+        height: 1127
       alignment: 9
-      pivot: {x: 0.5, y: 0.6510024}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -574, y: -508}
-        - {x: 426, y: -508}
-        - {x: 495, y: -404}
-        - {x: 440.313, y: -293.41687}
-        - {x: 574, y: 52}
-        - {x: 574, y: 459}
-        - {x: 244, y: 508}
-        - {x: -574, y: 508}
+      - - {x: -702, y: -563.5}
+        - {x: 702, y: -563.5}
+        - {x: 702, y: 93.5}
+        - {x: 356, y: 563.5}
+        - {x: -702, y: 563.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d57cf9a60dfe83458dd122af45bd5b9
-      internalID: 610318634
+      spriteID: 9cb4fcb65be63c820800000000000000
+      internalID: 2937313107452578761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: right-hand
+      name: left-hand
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1493
-        width: 1368
-        height: 539
+        x: 1543
+        y: 58
+        width: 439
+        height: 565
       alignment: 9
-      pivot: {x: 0.25673714, y: 0.9845931}
+      pivot: {x: 0.3387337, y: 0.02122006}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline:
-      - - {x: -684, y: -6.5}
-        - {x: 281, y: -269.5}
-        - {x: 684, y: -269.5}
-        - {x: 684, y: 269.5}
-        - {x: -684, y: 269.5}
+      - - {x: -219.5, y: 201.5}
+        - {x: -219.5, y: -282.5}
+        - {x: 219.5, y: -282.5}
+        - {x: 219.5, y: 282.5}
+        - {x: -11.5, y: 282.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42d87b62563524441bfd9333c8e5b857
-      internalID: 1300980944
+      spriteID: 23bce7d5019e97de0800000000000000
+      internalID: -1334779558041302222
       vertices: []
       indices: 
       edges: []
@@ -238,7 +246,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 8a2dd43a44af75547b1aaaac4c2d7ee2
     internalID: 0
     vertices: []
     indices: 
@@ -248,10 +256,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      body: 1255814747
-      head: 610318634
-      left-hand: -438212586
-      right-hand: 1300980944
+      body: -5960611141136278996
+      head: 2937313107452578761
+      left-hand: -1334779558041302222
+      right-hand: 2997806567000437355
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
