@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Battle.Data;
 using DG.Tweening;
 using LSCore;
 using LSCore.Async;
@@ -33,17 +34,17 @@ namespace Battle
         
         protected override void OnBegin()
         {
-            foreach (var id in BattleWorld.EnemyIds)
-            {
-                var unit = enemies.GetCurrentLevel<Unit>(id);
-                var pool = CreatePool(unit);
-                pool.Got += OnGot;
-                pool.Released += OnReleased;
-                SubscribeOnChange(pool);
-                pools.Add(unit.Id, pool);
-            }
-            
             AddDebugData();
+        }
+
+        private OnOffPool<Unit> CreatePoolById(Id id)
+        {
+            var unit = enemies.GetCurrentLevel<Unit>(id);
+            var pool = CreatePool(unit);
+            pool.Got += OnGot;
+            pool.Released += OnReleased;
+            SubscribeOnChange(pool);
+            return pool;
         }
 
         protected override void OnStop()
@@ -56,10 +57,21 @@ namespace Battle
         {
             if (UnitCount < MaxEnemyCount)
             {
-                pools[BattleWorld.GetEnemyId()].Get();
+                Get(BattleWorld.GetEnemyId());
             }
             
             spawnLoopTween = Wait.Delay(BattleWorld.GetSpawnFrequency(), Spawn);
+        }
+
+        private Unit Get(Id id)
+        {
+            if (!pools.TryGetValue(id, out var pool))
+            {
+                pool = CreatePoolById(id);
+                pools.Add(id, pool);
+            }
+            
+            return pool.Get();
         }
 
         protected override void InitUnit(Unit unit)
@@ -98,5 +110,55 @@ namespace Battle
         static partial void SubscribeOnChange(OnOffPool<Unit> pool);
         static partial void AddDebugData();
         static partial void RemoveDebugData();
+
+        public static int GetBossHealth(RaidConfig.BossData bossData)
+        {
+            return Instance.Internal_GetBossHealth(bossData);
+        }
+
+        private int Internal_GetBossHealth(RaidConfig.BossData bossData)
+        {
+            var health = 0;
+
+            foreach (var id in bossData.stageIds)
+            {
+                var unit = enemies.GetCurrentLevel<Unit>(id);
+                unit.RegisterComps();
+                health += unit.transform.Get<BaseHealthComp>().Health;
+            }
+
+            return health;
+        }
+
+        public static void UnleashKraken(RaidConfig.BossData bossData, Action onBossDefeated)
+        {
+            Instance.Internal_UnleashKraken(bossData, onBossDefeated);
+        }
+
+        private void Internal_UnleashKraken(RaidConfig.BossData bossData, Action onBossDefeated)
+        {
+            int stageIndex = 0;
+            Unleash();
+
+            return;
+
+            void Unleash()
+            {
+                var unit = Get(bossData.stageIds[stageIndex]);
+                unit.Released += OnReleased;
+                return;
+
+                void OnReleased()
+                {
+                    stageIndex++;
+                    if (stageIndex >= bossData.stageIds.Length)
+                    {
+                        onBossDefeated();
+                        return;
+                    }
+                    Unleash();
+                }
+            }
+        }
     }
 }

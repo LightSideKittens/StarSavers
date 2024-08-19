@@ -14,11 +14,57 @@ namespace LSCore.BattleModule
 {
     public class BattleWorld : ServiceManager<BattleWorld>
     {
+        [Serializable]
+        public class RegularWave : RaidConfig.WaveAction
+        {
+            public float duration;
+            
+            public override void OnStart()
+            {
+                World.Updated += UpdateTime;
+                OpponentWorld.Continue();
+
+                currentWave++;
+                timeTextPrefix = $"Wave {currentWave}";
+                BattleWindow.SplashText($"WAVE {currentWave}");
+
+                Wait.TimerBack(duration, UpdateTimeText).OnComplete(OnWaveCompleted);
+            }
+
+            public override void OnComplete()
+            {
+                base.OnComplete();
+                World.Updated -= UpdateTime;
+                OpponentWorld.Pause();
+            }
+        }
+        
+        [Serializable]
+        public class BossWave : RaidConfig.WaveAction
+        {
+            public RaidConfig.BossData bossData;
+            
+            public override void OnStart()
+            {
+                BattleWindow.BossHealth.maxValue = OpponentWorld.GetBossHealth(bossData);
+                BattleWindow.IsBossMode = true;
+                OpponentWorld.UnleashKraken(bossData, OnWaveCompleted);
+            }
+
+            public override void OnComplete()
+            {
+                base.OnComplete();
+                BattleWindow.IsBossMode = false;
+            }
+        }
+        
         [SerializeField] private Effectors effectors;
         [SerializeField] private RaidByHeroRank raids;
         public static RaidConfig Raid => Instance.raids.Current;
         private static float timeSinceStart;
         private static int currentWave;
+        private static RaidConfig.WaveData wave;
+        private static bool isLastWave;
         public static Camera Camera { get; private set; }
         public static Rect CameraRect { get; private set; }
 
@@ -65,7 +111,7 @@ namespace LSCore.BattleModule
             
             effectors.Init();
             raids.Setup();
-            Unit.Killed += OnUnitKilled;
+            Unit.Releasedd += OnUnitReleasedd;
             PlayerWorld.Begin();
             OpponentWorld.Begin();
             timeSinceStart = 0;
@@ -84,24 +130,19 @@ namespace LSCore.BattleModule
             base.OnDestroy();
             Raid.Dispose();
             DOTween.KillAll();
-            Unit.Killed -= OnUnitKilled;
+            Unit.Releasedd -= OnUnitReleasedd;
             World.Updated -= UpdateTime;
-            OpponentWorld.AllUnitsDestroyed -= StartBreak;
+            OpponentWorld.AllUnitsReleased -= StartBreak;
         }
 
         private static void StartWave()
         {
-            World.Updated += UpdateTime;
-            OpponentWorld.Continue();
-
-            currentWave++;
-            timeTextPrefix = $"Wave {currentWave}";
-            BattleWindow.SplashText($"WAVE {currentWave}");
-            var wave = Raid.GetWave();
-            wave.onStart.Invoke();
-            Wait.TimerBack(wave.duration, UpdateTimeText).OnComplete(PauseWave);
-
-            Raid.CurrentWave++;
+            wave = Raid.GetWave();
+            isLastWave = !Raid.MoveNextWave();
+            foreach (var action in wave.actions)
+            {
+                action.OnStart();
+            }
         }
 
         private static string timeTextPrefix;
@@ -112,31 +153,45 @@ namespace LSCore.BattleModule
             BattleWindow.StatusText.text = $"{timeTextPrefix}: {currentTime}s\nEnemy Count: {OpponentWorld.UnitCount}";
         }
         
-        private static void PauseWave()
+        private static void OnWaveCompleted()
         {
-            World.Updated -= UpdateTime;
-            OpponentWorld.Pause();
+            foreach (var action in wave.actions)
+            {
+                action.OnComplete();
+            }
+            
+            Action onAllUnitKilled = StartBreak;
+            if (isLastWave)
+            {
+                onAllUnitKilled = Win;
+            }
             
             if (OpponentWorld.UnitCount == 0)
             {
-                StartBreak();
+                onAllUnitKilled();
             }
             else
             {
-                OpponentWorld.AllUnitsDestroyed += StartBreak;
+                OpponentWorld.AllUnitsReleased += onAllUnitKilled;
             }
+        }
+
+        private static void Win()
+        {
+            OpponentWorld.AllUnitsReleased -= Win;
+            MatchResultWindow.Show(true);
         }
 
         private static void StartBreak()
         {
-            OpponentWorld.AllUnitsDestroyed -= StartBreak;
+            OpponentWorld.AllUnitsReleased -= StartBreak;
             timeTextPrefix = "Break";
             Wait.TimerBack(Raid.BreakDuration, UpdateTimeText).OnComplete(StartWave);
         }
         
         public static Id GetEnemyId() => Raid.GetEnemyId((int)timeSinceStart);
         public static IEnumerable<Id> EnemyIds => Raid.EnemyIds;
-        private static void OnUnitKilled(Unit unit)
+        private static void OnUnitReleasedd(Unit unit)
         {
             UpdateTimeText(currentTime);
             Raid.OnEnemyKilled(unit.Id);
