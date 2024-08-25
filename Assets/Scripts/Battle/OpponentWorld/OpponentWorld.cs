@@ -125,7 +125,7 @@ namespace Battle
         
         public static int GetBossHealth(RaidConfig.BossData bossData)
         {
-            return Instance.Internal_GetFullBossHealth(bossData);
+            return Instance.Internal_GetBossHealth(bossData);
         }
 
         private int Internal_GetBossHealth(RaidConfig.BossData bossData)

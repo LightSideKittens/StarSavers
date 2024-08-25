@@ -29,6 +29,7 @@ namespace LSCore.BattleModule
                 {
                     timeGetter = time;
                     this.onComplete = onComplete;
+                    spawnedCount = 0;
                     Spawn();
                 }
 
@@ -79,6 +80,7 @@ namespace LSCore.BattleModule
                 
                 allActions.OnComplete(() =>
                 {
+                    Debug.Log("On All Action Completed");
                     if (waitAllUnitsAreKilled && OpponentWorld.UnitCount > 0)
                     {
                         OpponentWorld.AllUnitsReleased += WaitForAllUnitsAreKilled;

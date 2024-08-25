@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75b698575e74573b39e2f30f74b70f0, type: 3}
   m_Name: JapanRaidConfig_1
   m_EditorClassIdentifier: 
-  levelsManager: {fileID: 11400000, guid: a63ed3ff636fbb44fbaf166610abf8b8, type: 2}
+  levelsManager: {fileID: 11400000, guid: 1c57c63c1194b0e45ba8552403086881, type: 2}
   location: {fileID: 11400000, guid: d11414f9bff75154fbdb11bc06ebe918, type: 2}
   bossStages:
   - {fileID: -6750239444755058063, guid: 19e5f85d545cc8645a2460fbcff86dde, type: 3}
@@ -26,6 +26,10 @@ MonoBehaviour:
     - rid: 1284474248984526919
   - actions:
     - rid: 1284474248984526924
+  - actions:
+    - rid: 1284474248984526928
+  - actions:
+    - rid: 1284474248984526929
   isInfinity: 0
   references:
     version: 2
@@ -323,6 +327,18 @@ MonoBehaviour:
       data:
         bossData:
           fromTo: {x: 0, y: 1}
+          stageIds:
+          - {fileID: -6750239444755058063, guid: 19e5f85d545cc8645a2460fbcff86dde, type: 3}
+          - {fileID: -6750239444755058063, guid: a9bc2fe74ef6c1a458e4c9f703118724, type: 3}
+    - rid: 1284474248984526928
+      type: {class: BattleWorld/Break, ns: LSCore.BattleModule, asm: Battle}
+      data:
+        duration: 5
+    - rid: 1284474248984526929
+      type: {class: BattleWorld/BossWave, ns: LSCore.BattleModule, asm: Battle}
+      data:
+        bossData:
+          fromTo: {x: 1, y: 2}
           stageIds:
           - {fileID: -6750239444755058063, guid: 19e5f85d545cc8645a2460fbcff86dde, type: 3}
           - {fileID: -6750239444755058063, guid: a9bc2fe74ef6c1a458e4c9f703118724, type: 3}

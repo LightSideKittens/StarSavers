@@ -90,6 +90,7 @@ namespace LSCore.BattleModule
         
         private static void OnWaveCompleted()
         {
+            Debug.Log("Wave Completed");
             foreach (var action in wave.actions)
             {
                 action.OnComplete();

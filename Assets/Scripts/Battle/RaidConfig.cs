@@ -72,7 +72,7 @@ namespace Battle.Data
             }
             
 #if UNITY_EDITOR
-            private IEnumerable<Id> Ids => currentInspected.levelsManager.Group;
+            private IEnumerable<Id> Ids => currentInspected.levelsManager.Ids;
 #endif
         }
         
@@ -91,7 +91,7 @@ namespace Battle.Data
         [SerializeField] private bool isInfinity;
 
 #if UNITY_EDITOR
-        private IEnumerable<Id> Ids => currentInspected.levelsManager.Group;
+        private IEnumerable<Id> Ids => currentInspected.levelsManager.Ids;
 #endif
         
         public bool MoveNextWave()
