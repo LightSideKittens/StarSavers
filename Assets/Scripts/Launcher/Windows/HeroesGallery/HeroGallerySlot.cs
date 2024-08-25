@@ -27,10 +27,10 @@ namespace MultiWars.Windows
             {
                 rankSlider.gameObject.SetActive(true);
                 icons.Load().Icons.TryGet(id, out var data);
-                var (sprite, rank, maxRank) = data;
+                var (sprite, rank, intervalData) = data;
                 rankSlider.Icon.sprite = sprite;
                 rankSlider.value = rank;
-                rankSlider.maxValue = maxRank;
+                rankSlider.maxValue = intervalData.to;
             }
             else
             {
