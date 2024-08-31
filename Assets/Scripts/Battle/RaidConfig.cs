@@ -110,6 +110,7 @@ namespace Battle.Data
         
         public void Setup(int enemiesLevel)
         {
+            levelsManager.Init();
             OpponentWorld.Enemies = levelsManager;
             levelsManager.SetLevel(enemiesLevel);
             InstantiateLocation();

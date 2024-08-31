@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Battle.Data;
-using DG.Tweening;
 using LSCore;
-using LSCore.Async;
 using LSCore.BattleModule;
 using LSCore.Extensions.Unity;
 using LSCore.LevelSystem;

@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: -6750239444755058063, guid: a9bc2fe74ef6c1a458e4c9f703118724, type: 3}
   waves:
   - actions:
+    - rid: 1284474248984526944
+  - actions:
     - rid: 1284474184135868485
   - actions:
     - rid: 1284474248984526918
@@ -342,3 +344,40 @@ MonoBehaviour:
           stageIds:
           - {fileID: -6750239444755058063, guid: 19e5f85d545cc8645a2460fbcff86dde, type: 3}
           - {fileID: -6750239444755058063, guid: a9bc2fe74ef6c1a458e4c9f703118724, type: 3}
+    - rid: 1284474248984526944
+      type: {class: BattleWorld/RegularWave, ns: LSCore.BattleModule, asm: Battle}
+      data:
+        data:
+        - spawner:
+            rid: 1284474248984526945
+          spawnCount: 1
+          timeRef: 12
+          spawnFrequency:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 34
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 34
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+        waitAllUnitsAreKilled: 1
+    - rid: 1284474248984526945
+      type: {class: RaidConfig/GroupSpawner, ns: Battle.Data, asm: Battle}
+      data:
+        spawner: {fileID: 1928599703336538832, guid: 2ee3481608fed3c4d91ebfb4bc36ec45, type: 3}

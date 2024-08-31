@@ -17,7 +17,6 @@ namespace MultiWars
     public class Initializer : BaseInitializer
     {
         [SerializeField] private LevelsManager heroesLevelsManager;
-        [SerializeField] private LevelsManager enemiesLevelsManager;
         [SerializeField] private ExchangeTable exchangeTable;
         [SerializeField] private HeroRankIconsConfigs heroRankIconsConfigs;
         
@@ -51,7 +50,6 @@ namespace MultiWars
             DOTween.SetTweensCapacity(200, 200);
             
             heroesLevelsManager.Init();
-            enemiesLevelsManager.Init();
             exchangeTable.Init();
             heroRankIconsConfigs.Init();
             
@@ -69,11 +67,6 @@ namespace MultiWars
                 for (int i = 0; i < ids.Length; i++)
                 {
                     heroesLevelsManager.UpgradeLevel(ids[i]);
-                }
-                
-                for (int i = 0; i < enemyIds.Length; i++)
-                {
-                    enemiesLevelsManager.UpgradeLevel(enemyIds[i]);
                 }
             
                 pass();
