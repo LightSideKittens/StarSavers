@@ -4,7 +4,7 @@ using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MultiWars.Data
+namespace StarSavers.Data
 {
     public class HeroRankIconsConfigs : ValueById<HeroRankIconsRef>
     {

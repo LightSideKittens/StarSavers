@@ -1,11 +1,11 @@
 ﻿using Battle.Data;
-using MultiWars.Data;
+using StarSavers.Data;
 using LSCore;
 using LSCore.Extensions;
 using LSCore.LevelSystem;
 using UnityEngine;
 
-namespace MultiWars.Windows
+namespace StarSavers.Windows
 {
     public class HeroGallerySlot : MonoBehaviour
     {

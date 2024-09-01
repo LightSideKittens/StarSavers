@@ -3,7 +3,7 @@ using LSCore;
 using UnityEngine;
 using Action = System.Action;
 
-namespace MultiWars.Windows
+namespace StarSavers.Windows
 {
     public class CurrencyShopItemView : MonoBehaviour
     {

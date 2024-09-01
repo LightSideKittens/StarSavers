@@ -1,8 +1,8 @@
-﻿using MultiWars.Interfaces;
-using MultiWars.Windows;
+﻿using StarSavers.Interfaces;
+using StarSavers.Windows;
 using LSCore;
 
-namespace MultiWars.Launcher
+namespace StarSavers.Launcher
 {
     public class LauncherWorld : ServiceManager<LauncherWorld>
     {

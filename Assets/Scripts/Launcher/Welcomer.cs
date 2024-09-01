@@ -5,7 +5,7 @@ using LSCore.AnimationsModule.Animations;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace MultiWars
+namespace StarSavers
 {
     public class Welcomer : ServiceManager<Welcomer>
     {

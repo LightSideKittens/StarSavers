@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Battle.Data;
-using MultiWars.Data;
-using MultiWars.Interfaces;
+using StarSavers.Data;
+using StarSavers.Interfaces;
 using DG.Tweening;
 using LSCore;
 using LSCore.BattleModule;
@@ -11,7 +11,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Action = System.Action;
 
-namespace MultiWars
+namespace StarSavers
 {
     [ShowOdinSerializedPropertiesInInspector]
     public class Initializer : BaseInitializer

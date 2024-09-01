@@ -1,7 +1,7 @@
 ﻿using Animatable;
 using Battle;
 using Battle.Windows;
-using MultiWars.Interfaces;
+using StarSavers.Interfaces;
 using DG.Tweening;
 using Battle.Data;
 using LSCore.Extensions.Unity;

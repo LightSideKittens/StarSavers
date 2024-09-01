@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using static MultiWars.DebugData;
+using static StarSavers.DebugData;
 
-namespace MultiWars
+namespace StarSavers
 {
     public static partial class ToolBar
     {

@@ -1,7 +1,7 @@
 ﻿using LSCore;
 using LSCore.ConfigModule;
 
-namespace MultiWars
+namespace StarSavers
 {
     public partial class DebugData : BaseDebugData<DebugData>
     {

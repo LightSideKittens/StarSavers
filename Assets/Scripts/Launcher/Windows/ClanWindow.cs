@@ -1,6 +1,6 @@
 ﻿using LSCore;
 
-namespace MultiWars.Windows
+namespace StarSavers.Windows
 {
     public class ClanWindow : BaseWindow<ClanWindow>
     {

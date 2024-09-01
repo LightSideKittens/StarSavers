@@ -3,7 +3,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace MultiWars
+namespace StarSavers
 {
     public partial class DebugData
     {

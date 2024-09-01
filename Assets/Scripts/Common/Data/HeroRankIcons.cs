@@ -1,7 +1,7 @@
 ﻿using Common.Data;
 using UnityEngine;
 
-namespace MultiWars.Data
+namespace StarSavers.Data
 {
     public class HeroRankIcons : ScriptableObject
     {
