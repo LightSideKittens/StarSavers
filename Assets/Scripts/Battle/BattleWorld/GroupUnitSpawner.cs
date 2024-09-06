@@ -5,9 +5,12 @@ using Battle;
 using LSCore.Extensions.Unity;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+using Sirenix.OdinInspector.Editor;
+#endif
 
 namespace LSCore.BattleModule
 {
