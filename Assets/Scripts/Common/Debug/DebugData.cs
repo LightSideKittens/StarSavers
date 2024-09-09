@@ -1,5 +1,6 @@
 ﻿using LSCore;
 using LSCore.ConfigModule;
+using LSCore.ConfigModule.Old;
 
 namespace StarSavers
 {

@@ -1,4 +1,5 @@
 ﻿using LSCore.ConfigModule;
+using LSCore.ConfigModule.Old;
 using Newtonsoft.Json;
 using UnityEngine.Localization.Settings;
 

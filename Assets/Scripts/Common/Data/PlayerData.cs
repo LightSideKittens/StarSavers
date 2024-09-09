@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using LSCore.ConfigModule;
+using LSCore.ConfigModule.Old;
 
 namespace Battle.Data
 {
