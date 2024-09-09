@@ -1,11 +1,10 @@
 ﻿using LSCore.ConfigModule;
-using LSCore.ConfigModule.Old;
 using Newtonsoft.Json;
 using UnityEngine.Localization.Settings;
 
 namespace Common.Data
 {
-    public class Settings : BaseSingleConfig<Settings>
+    public class Settings : GameSingleConfig<Settings>
     {
         [JsonProperty] private string languageCode;
         

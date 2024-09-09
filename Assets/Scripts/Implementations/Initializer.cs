@@ -5,7 +5,7 @@ using StarSavers.Interfaces;
 using DG.Tweening;
 using LSCore;
 using LSCore.BattleModule;
-using LSCore.ConfigModule.Old;
+using LSCore.ConfigModule;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
