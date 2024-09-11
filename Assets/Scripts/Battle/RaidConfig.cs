@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using LSCore;
 using LSCore.AnimationsModule;
 using LSCore.AnimationsModule.Animations.Text;
@@ -8,12 +7,13 @@ using LSCore.Attributes;
 using LSCore.BattleModule;
 using LSCore.LevelSystem;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Battle.Data
 {
+    [Serializable]
+    public class RaidConfigRef : AssetRef<RaidConfig> { }
+    
     public class RaidConfig : ScriptableObject
     {
         [Serializable]
@@ -25,6 +25,7 @@ namespace Battle.Data
             public virtual void OnComplete(){}
         }
         
+        [Serializable]
         public class AnimCamera : WaveAction
         {
             public AnimSequencer animation;
@@ -37,7 +38,7 @@ namespace Battle.Data
         }
         
         [Serializable]
-        public class WaveData
+        public class Wave
         {
             [SerializeReference] public List<WaveAction> actions;
         }
@@ -45,47 +46,60 @@ namespace Battle.Data
         [Serializable]
         public class BossData
         {
-            [ValueDropdown("Ids")] public Id[] stageIds;
+            [MinMaxSlider(0, "Max")] public Vector2Int fromTo;
+            [HideInInspector] public Id[] stageIds;
             
 #if UNITY_EDITOR
-            private IEnumerable<Id> Ids => currentInspected.levelsManager.Group;
+            private int Max
+            {
+                get
+                {
+                    stageIds = currentInspected.bossStages;
+                    return stageIds.Length;
+                }
+            }
 #endif
         }
-
+        
         [Serializable]
-        private struct EnemyData
+        public class SingleSpawner : Spawner
         {
             [ValueDropdown("Ids")] public Id id;
-            [BoxGroup] public InBattleFund reward;
-            public int level;
-            [CustomValueDrawer("Editor_Draw")] public AnimationCurve spawnPossibility;
+        
+            public override void Spawn()
+            {
+                OpponentWorld.Spawn(id);
+            }
             
 #if UNITY_EDITOR
-            private AnimationCurve Editor_Draw(AnimationCurve value, GUIContent content) => DrawCurve(value, content);
-            private IEnumerable<Id> Ids => currentInspected.levelsManager.Group;
+            private IEnumerable<Id> Ids => currentInspected.levelsManager.Ids;
 #endif
         }
         
-        [field: SerializeField] public int Time { get; private set; } = 300;
-        [SerializeField] private LocationRef locationRef;
-        [SerializeField] private LevelsManager levelsManager;
-        [SerializeField] private EnemyData[] enemyData;
+        [Serializable]
+        public class GroupSpawner : Spawner
+        {
+            public GroupUnitSpawner spawner;
         
-        [CustomValueDrawer("Editor_Draw")]
-        [SerializeField] private AnimationCurve spawnFrequency;
-        
-        [field: SerializeField] public int BreakDuration { get; private set; } = 15;
-        [SerializeField] private WaveData[] waveDurations;
-        public bool isInfinity;
-        
-        public IEnumerable<Id> EnemyIds => enemyData.Select(x => x.id);
+            public override void Spawn() => spawner.Spawn();
+        }
 
+        [SerializeField] private LevelsManager levelsManager;
+        [SerializeField] private Location location;
+        [SerializeField] [ValueDropdown("Ids")] private Id[] bossStages;
+        [SerializeField] private Wave[] waves;
+        [SerializeField] private bool isInfinity;
+
+#if UNITY_EDITOR
+        private IEnumerable<Id> Ids => currentInspected.levelsManager.Ids;
+#endif
+        
         public bool MoveNextWave()
         {
             currentWave++;
-            if (currentWave >= waveDurations.Length)
+            if (currentWave >= waves.Length)
             {
-                currentWave = waveDurations.Length - 1;
+                currentWave = waves.Length - 1;
                 return isInfinity;
             }
 
@@ -93,113 +107,31 @@ namespace Battle.Data
         }
         
         private int currentWave;
-        private readonly List<float> possibilities = new();
-        private readonly Dictionary<Id, EnemyData> enemyById = new();
         
-        public void Setup()
+        public void Setup(int enemiesLevel)
         {
+            levelsManager.Init();
+            OpponentWorld.Enemies = levelsManager;
+            levelsManager.SetLevel(enemiesLevel);
             InstantiateLocation();
-            possibilities.Clear();
-            enemyById.Clear();
             currentWave = 0;
-            
-            for (int i = 0; i < enemyData.Length; i++)
-            {
-                var data = enemyData[i];
-                possibilities.Add(default);
-                enemyById.Add(data.id, data);
-                levelsManager.SetLevel(data.id, data.level);
-                Funds.Remove(data.reward.Id);
-            }
         }
 
-        public float GetSpawnFrequency(int time)
+        public Wave GetWave()
         {
-            var factor = (float)time / Time;
-            return spawnFrequency.Evaluate(factor);
-        }
-
-        public WaveData GetWave()
-        {
-            return waveDurations[currentWave];
-        }
-
-        public void OnEnemyKilled(Id id)
-        {
-            if (enemyById.TryGetValue(id, out var data))
-            {
-                data.reward.Earn();
-            }
+            return waves[currentWave];
         }
         
-        public Id GetEnemyId(int time)
-        {
-            var factor = (float)time / Time;
-            var total = 0f;
-
-            for (int i = 0; i < enemyData.Length; i++)
-            {
-                var value =  enemyData[i].spawnPossibility.Evaluate(factor);
-                possibilities[i] = value; 
-                total += value;
-            }
-            
-            for (int i = 0; i < enemyData.Length; i++)
-            {
-                possibilities[i] /= total;
-            }
-            
-            var indexedList = possibilities.Select((value, index) => (value, index)).ToList();
-            indexedList.Sort((pair1, pair2) => pair1.value.CompareTo(pair2.value));
-
-            factor = Random.value;
-            total = 0f;
-            
-            for (int i = 0; i < indexedList.Count; i++)
-            {
-                var pair = indexedList[i];
-                total += pair.value;
-                
-                if (factor < total)
-                {
-                    return enemyData[pair.index].id;
-                }
-            }
-            
-            return enemyData[indexedList[^1].index].id;
-        }
-
-        private Location location;
         private void InstantiateLocation()
         {
-            location = locationRef.Load();
             location.Generate();
         }
 
         public void Dispose() => location.Dispose();
         
 #if UNITY_EDITOR
-        private AnimationCurve Editor_Draw(AnimationCurve value, GUIContent content) => DrawCurve(value, content);
         private static RaidConfig currentInspected;
-
         [OnInspectorInit] private void Editor_Init() => currentInspected = this;
-
-        private static AnimationCurve DrawCurve(AnimationCurve value, GUIContent content)
-        {
-            EditorGUILayout.Space(10);
-            EditorGUILayout.BeginHorizontal();
-            EditorGUI.LabelField(EditorGUILayout.GetControlRect(GUILayout.MaxWidth(120)), content);
-            var rect = EditorGUILayout.GetControlRect(GUILayout.Height(50));
-            EditorGUI.BeginChangeCheck();
-            value = EditorGUI.CurveField(rect, value);
-            if (EditorGUI.EndChangeCheck())
-            {
-                EditorUtility.SetDirty(currentInspected);
-            }
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space(10);
-            return value;
-        }
 #endif
     }
 }

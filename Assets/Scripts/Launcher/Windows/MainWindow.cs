@@ -1,7 +1,7 @@
 ﻿using LSCore;
 using UnityEngine;
 
-namespace MultiWars.Windows
+namespace StarSavers.Windows
 {
     internal class MainWindow : BaseWindow<MainWindow>
     {

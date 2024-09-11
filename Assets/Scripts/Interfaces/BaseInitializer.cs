@@ -1,7 +1,7 @@
 ﻿using System;
 using LSCore;
 
-namespace MultiWars.Interfaces
+namespace StarSavers.Interfaces
 {
     public abstract class BaseInitializer : SingleService<BaseInitializer>
     {

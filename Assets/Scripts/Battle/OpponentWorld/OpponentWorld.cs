@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Battle.Data;
-using DG.Tweening;
 using LSCore;
-using LSCore.Async;
 using LSCore.BattleModule;
 using LSCore.Extensions.Unity;
 using LSCore.LevelSystem;
@@ -21,13 +19,18 @@ namespace Battle
                 value.transform.position = BattleWorld.CameraRect.RandomPointAroundRect(2);
             }
         }
-        
-        private const int MaxEnemyCount = 100;
-        [SerializeField] private LevelsManager enemies;
+
         [SerializeField] private CameraCollider2DTrigger cameraTrigger;
         
+        [NonSerialized] private LevelsManager enemies;
+
+        public static LevelsManager Enemies
+        {
+            get => Instance.enemies;
+            set => Instance.enemies = value;
+        }
+
         private Dictionary<Id, OnOffPool<Unit>> pools = new();
-        private Tween spawnLoopTween;
         
         public override string UserId => "Opponent";
         public override string TeamId => "Opponent's Team";
@@ -50,19 +53,10 @@ namespace Battle
         protected override void OnStop()
         {
             RemoveDebugData();
-            spawnLoopTween.Kill();
         }
 
-        private void Spawn()
-        {
-            if (UnitCount < MaxEnemyCount)
-            {
-                Get(BattleWorld.GetEnemyId());
-            }
-            
-            spawnLoopTween = Wait.Delay(BattleWorld.GetSpawnFrequency(), Spawn);
-        }
-
+        public static Unit Spawn(Id id) => Instance.Get(id);
+        
         private Unit Get(Id id)
         {
             if (!pools.TryGetValue(id, out var pool))
@@ -95,9 +89,6 @@ namespace Battle
         {
             unit.transform.position = BattleWorld.CameraRect.RandomPointAroundRect(2);
         }
-        
-        public static void Continue() => Instance.Spawn();
-        public static void Pause() => Instance.spawnLoopTween.Kill();
 
         private void OnDrawGizmosSelected()
         {
@@ -111,12 +102,12 @@ namespace Battle
         static partial void AddDebugData();
         static partial void RemoveDebugData();
 
-        public static int GetBossHealth(RaidConfig.BossData bossData)
+        public static int GetFullBossHealth(RaidConfig.BossData bossData)
         {
-            return Instance.Internal_GetBossHealth(bossData);
+            return Instance.Internal_GetFullBossHealth(bossData);
         }
 
-        private int Internal_GetBossHealth(RaidConfig.BossData bossData)
+        private int Internal_GetFullBossHealth(RaidConfig.BossData bossData)
         {
             var health = 0;
 
@@ -129,6 +120,26 @@ namespace Battle
 
             return health;
         }
+        
+        public static int GetBossHealth(RaidConfig.BossData bossData)
+        {
+            return Instance.Internal_GetBossHealth(bossData);
+        }
+
+        private int Internal_GetBossHealth(RaidConfig.BossData bossData)
+        {
+            var health = Internal_GetFullBossHealth(bossData);
+
+            for (int i = 0; i < bossData.fromTo.x; i++)
+            {
+                var id = bossData.stageIds[i];
+                var unit = enemies.GetCurrentLevel<Unit>(id);
+                unit.RegisterComps();
+                health -= unit.transform.Get<BaseHealthComp>().Health;
+            }
+
+            return health;
+        }
 
         public static void UnleashKraken(RaidConfig.BossData bossData, Action onBossDefeated)
         {
@@ -137,7 +148,8 @@ namespace Battle
 
         private void Internal_UnleashKraken(RaidConfig.BossData bossData, Action onBossDefeated)
         {
-            int stageIndex = 0;
+            int stageIndex = bossData.fromTo.x;
+            
             Unleash();
 
             return;
@@ -151,7 +163,7 @@ namespace Battle
                 void OnReleased()
                 {
                     stageIndex++;
-                    if (stageIndex >= bossData.stageIds.Length)
+                    if (stageIndex >= bossData.fromTo.y)
                     {
                         onBossDefeated();
                         return;

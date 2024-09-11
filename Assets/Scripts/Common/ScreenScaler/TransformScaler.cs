@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MultiWars
+namespace StarSavers
 {
     public class TransformScaler : BaseScreenScaler
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MultiWars
+namespace StarSavers
 {
     [ExecuteAlways]
     public abstract class BaseScreenScaler : MonoBehaviour

@@ -1,11 +1,11 @@
 ﻿using Battle.Data;
-using MultiWars.Data;
+using StarSavers.Data;
 using LSCore;
 using LSCore.Extensions;
 using LSCore.LevelSystem;
 using UnityEngine;
 
-namespace MultiWars.Windows
+namespace StarSavers.Windows
 {
     public class HeroGallerySlot : MonoBehaviour
     {
@@ -27,10 +27,10 @@ namespace MultiWars.Windows
             {
                 rankSlider.gameObject.SetActive(true);
                 icons.Load().Icons.TryGet(id, out var data);
-                var (sprite, rank, maxRank) = data;
+                var (sprite, rank, intervalData) = data;
                 rankSlider.Icon.sprite = sprite;
                 rankSlider.value = rank;
-                rankSlider.maxValue = maxRank;
+                rankSlider.maxValue = intervalData.to;
             }
             else
             {

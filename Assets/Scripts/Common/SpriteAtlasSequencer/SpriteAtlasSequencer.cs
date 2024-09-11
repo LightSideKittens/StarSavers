@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace MultiWars
+namespace StarSavers
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public partial class SpriteAtlasSequencer : MonoBehaviour

@@ -1,4 +1,4 @@
-﻿namespace MultiWars.Windows
+﻿namespace StarSavers.Windows
 {
     public class HeroWindow : BaseLauncherWindow<HeroWindow>
     {

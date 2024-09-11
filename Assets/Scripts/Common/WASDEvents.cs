@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MultiWars
+namespace StarSavers
 {
     public class WASDEvents : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MultiWars.Windows
+namespace StarSavers.Windows
 {
     public class HeroesGalleryWindow : BaseLauncherWindow<HeroesGalleryWindow>
     {

@@ -228,6 +228,40 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 1284474248984527004
+      type: {class: GraphicAlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        <NeedInit>k__BackingField: 0
+        <Duration>k__BackingField: 0.3
+        startValue: 0
+        endValue: 0
+        useTargetPath: 0
+        useMultiple: 0
+        target: {fileID: 5058815307351301425}
+        targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
+        timeOffsetPerTarget: 0.1
+    - rid: 1284474248984527012
+      type: {class: GraphicAlphaAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
+      data:
+        id: 
+        options: []
+        <NeedInit>k__BackingField: 0
+        <Duration>k__BackingField: 0.3
+        startValue: 0
+        endValue: 1
+        useTargetPath: 0
+        useMultiple: 0
+        target: {fileID: 5058815307351301425}
+        targets: []
+        root: {fileID: 0}
+        targetPath: 
+        targetsPaths: []
+        timeOffsetPerTarget: 0.1
     - rid: 3882657706503569414
       type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
       data:
@@ -241,15 +275,15 @@ MonoBehaviour:
         canvasGroupAnim:
           rid: -2
         graphicAnim:
-          rid: -2
+          rid: 1284474248984527012
     - rid: 6306143568870244364
       type: {class: ScaleAnim, ns: LSCore.AnimationsModule.Animations, asm: LSCore.AnimationsModule}
       data:
         id: 
         options:
         - rid: 6306143568870244366
-        <NeedInit>k__BackingField: 0
-        <Duration>k__BackingField: 0
+        <NeedInit>k__BackingField: 1
+        <Duration>k__BackingField: 0.3
         startValue: {x: 2, y: 2, z: 2}
         endValue: {x: 1, y: 1, z: 1}
         useTargetPath: 0
@@ -268,7 +302,7 @@ MonoBehaviour:
         canvasGroupAnim:
           rid: -2
         graphicAnim:
-          rid: -2
+          rid: 1284474248984527004
     - rid: 6306143568870244366
       type: {class: EaseOption, ns: LSCore.AnimationsModule.Animations.Options, asm: LSCore.AnimationsModule}
       data:

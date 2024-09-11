@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using LSCore.ConfigModule;
+using LSCore.ConfigModule;
 
 namespace Battle.Data
 {
-    public class PlayerData : BaseSingleConfig<PlayerData>
+    public class PlayerData : GameSingleConfig<PlayerData>
     {
         public string SelectedHero { get; set; }
         public int Rank { get; set; }

@@ -5,7 +5,7 @@ using LSCore.AnimationsModule.Animations;
 using LSCore.Extensions.Unity;
 using UnityEngine;
 
-namespace MultiWars.Windows
+namespace StarSavers.Windows
 {
     public struct LauncherWindowsData
     {

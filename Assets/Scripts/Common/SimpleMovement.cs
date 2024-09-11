@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MultiWars
+namespace StarSavers
 {
     [RequireComponent(typeof(WASDEvents))]
     public class SimpleMovement : MonoBehaviour

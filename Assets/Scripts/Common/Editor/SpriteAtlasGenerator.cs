@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEditor.U2D;
 using UnityEngine.U2D;
 
-namespace MultiWars
+namespace StarSavers
 {
     public class SpriteAtlasGenerator
     {
