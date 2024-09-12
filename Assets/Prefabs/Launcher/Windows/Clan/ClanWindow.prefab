@@ -74,7 +74,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4823614130434511948
 MonoBehaviour:
@@ -318,6 +318,12 @@ MonoBehaviour:
   combineFilledWithSliced: 0
   anim:
     isDisabled: 1
+  clickActions:
+    actions: []
+    isClickSoundOverride: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &8951673518395110600
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +611,10 @@ PrefabInstance:
     - target: {fileID: 6914612635960749987, guid: c7c8a13e8cab3a84bbbd76b1c0051705, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -290
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399495153006688179, guid: c7c8a13e8cab3a84bbbd76b1c0051705, type: 3}
+      propertyPath: m_GlobalFontAsset
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8640474442633770412, guid: c7c8a13e8cab3a84bbbd76b1c0051705, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1080,6 +1090,10 @@ PrefabInstance:
     - target: {fileID: 2822594710405459960, guid: cdbf1ec52dd544844b6813a301ada87c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946459044854555624, guid: cdbf1ec52dd544844b6813a301ada87c, type: 3}
+      propertyPath: m_GlobalFontAsset
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3056399001752657277, guid: cdbf1ec52dd544844b6813a301ada87c, type: 3}
       propertyPath: m_AnchorMax.y
