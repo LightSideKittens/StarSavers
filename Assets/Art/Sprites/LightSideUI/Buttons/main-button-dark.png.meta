@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,16 +126,16 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main-button-dark_0
+      name: main-button-dark
       rect:
         serializedVersion: 2
-        x: 25
-        y: 8
-        width: 460
-        height: 496
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 300, y: 300, z: 300, w: 300}
       customData: 
       outline: []
       physicsShape: []
@@ -143,6 +143,94 @@ TextureImporter:
       bones: []
       spriteID: 65a626925f0b9f450800000000000000
       internalID: 6123119735394691670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-dark_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 300, y: 300, z: 0, w: 300}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9529338c0cf74e848bda343a2a84a5bc
+      internalID: 21572039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-dark_right
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 300, z: 300, w: 300}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b379491d80c43cc4e9eb602e68c8ffe1
+      internalID: -1981671401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-dark_top
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 1024
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 300, y: 0, z: 300, w: 300}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2490f1f5d3e1aa4ea0960ef9da19dc3
+      internalID: -2140257736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-dark_bottom
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 300, y: 300, z: 300, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db0182be339009645beaa068c491ece7
+      internalID: -1451382681
       vertices: []
       indices: 
       edges: []
@@ -161,7 +249,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      main-button-dark_0: 6123119735394691670
+      main-button-dark: 6123119735394691670
+      main-button-dark_bottom: -1451382681
+      main-button-dark_left: 21572039
+      main-button-dark_right: -1981671401
+      main-button-dark_top: -2140257736
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

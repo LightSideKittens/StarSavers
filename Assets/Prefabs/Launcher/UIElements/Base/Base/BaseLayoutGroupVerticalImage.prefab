@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6127628794151172427
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3065308908712472861, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+      propertyPath: m_Name
+      value: BaseLayoutGroupVerticalImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201329613965812654, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201329613965812654, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201329613965812654, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3065308908712472861, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1900992166618162582}
+    - targetCorrespondingSourceObject: {fileID: 3065308908712472861, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4258200898577991312}
+  m_SourcePrefab: {fileID: 100100000, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+--- !u!1 &9188363423424989270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3065308908712472861, guid: b6a96a45d882cbb4a8ff1861018645c3, type: 3}
+  m_PrefabInstance: {fileID: 6127628794151172427}
+  m_PrefabAsset: {fileID: 0}
+--- !u!222 &1900992166618162582
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9188363423424989270}
+  m_CullTransparentMesh: 1
+--- !u!114 &-4258200898577991312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9188363423424989270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed241b6043c849b0a807a08b0de04447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+  rotateId: 0
+  flip: {x: 0, y: 0}
+  combineFilledWithSliced: 0
