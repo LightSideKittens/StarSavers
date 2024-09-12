@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,16 +126,16 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main-button-grey2_0
+      name: main-button-grey2
       rect:
         serializedVersion: 2
-        x: 25
-        y: 8
-        width: 460
-        height: 496
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 300, y: 300, z: 300, w: 300}
       customData: 
       outline: []
       physicsShape: []
@@ -143,6 +143,94 @@ TextureImporter:
       bones: []
       spriteID: 19566ce5624f41f50800000000000000
       internalID: 6851369378773362065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-grey2_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 300, y: 300, z: 0, w: 300}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea6096d69ec6494196b62d33d202f50
+      internalID: -1648789854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-grey2_right
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 300, z: 300, w: 300}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cff7ba5be79e1d048ba71dd5f864e86d
+      internalID: -1319183227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-grey2_top
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 1024
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 300, y: 0, z: 300, w: 300}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4257aa671263e4744afaefc4e26920e4
+      internalID: -1924509697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-button-grey2_bottom
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 300, y: 300, z: 300, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9be5e37714d943749bde55092fda2a5f
+      internalID: 1770113147
       vertices: []
       indices: 
       edges: []
@@ -161,7 +249,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      main-button-grey2_0: 6851369378773362065
+      main-button-grey2: 6851369378773362065
+      main-button-grey2_bottom: 1770113147
+      main-button-grey2_left: -1648789854
+      main-button-grey2_right: -1319183227
+      main-button-grey2_top: -1924509697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
