@@ -19,6 +19,7 @@ namespace Battle.Data.UnitComponents
         
         protected override void Init()
         {
+            findTargetComp.Init(transform);
             for (int i = 0; i < attacks.Count; i++)
             {
                 attacks[i].Init(transform, findTargetComp);
