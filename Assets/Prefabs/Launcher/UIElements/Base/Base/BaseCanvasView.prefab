@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2704468266148934692}
-  - component: {fileID: 3935575803433580251}
-  - component: {fileID: 1312702361639227169}
-  - component: {fileID: 1214986863025348083}
   - component: {fileID: 2248442549442859054}
+  - component: {fileID: 1312702361639227169}
+  - component: {fileID: 3935575803433580251}
+  - component: {fileID: 1214986863025348083}
   m_Layer: 0
   m_Name: BaseCanvasView
   m_TagString: Untagged
@@ -39,18 +39,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &3935575803433580251
-CanvasGroup:
+--- !u!114 &2248442549442859054
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6668005220611847116}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab57127942f4b879639f31fade8ef9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showHideAnim:
+    rid: 4216535028436041740
+  clickActions: []
+  <HomeButton>k__BackingField: {fileID: 0}
+  <BackButton>k__BackingField: {fileID: 0}
+  onShowing: []
+  onHiding: []
+  onShowed: []
+  onHidden: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 4216535028436041740
+      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.UIModule}
+      data:
+        canvasGroup: {fileID: 3935575803433580251}
+        duration: 0.2
 --- !u!223 &1312702361639227169
 Canvas:
   m_ObjectHideFlags: 0
@@ -74,6 +91,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!225 &3935575803433580251
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668005220611847116}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &1214986863025348083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,32 +120,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
---- !u!114 &2248442549442859054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6668005220611847116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab57127942f4b879639f31fade8ef9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showHideAnim:
-    rid: 4216535011450945727
-  clickActions: []
-  <HomeButton>k__BackingField: {fileID: 0}
-  <BackButton>k__BackingField: {fileID: 0}
-  onShowing: []
-  onHiding: []
-  onShowed: []
-  onHidden: []
-  references:
-    version: 2
-    RefIds:
-    - rid: 4216535011450945727
-      type: {class: DefaultUIViewAnimation, ns: LSCore, asm: LSCore.WindowModule}
-      data:
-        canvasGroup: {fileID: 3935575803433580251}
-        duration: 0.2
