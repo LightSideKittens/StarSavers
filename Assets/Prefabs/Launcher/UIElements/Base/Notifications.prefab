@@ -28,14 +28,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2639182267830519817}
-  - {fileID: 2630393295548048553}
-  - {fileID: 4291065040795592995}
-  - {fileID: 5328217774188157534}
-  - {fileID: 3887366794745050204}
-  - {fileID: 4141964210207850474}
-  - {fileID: 2320067870732589073}
-  - {fileID: 4923092557065884135}
+  - {fileID: 3652613358964265321}
+  - {fileID: 3295883205330820323}
+  - {fileID: 6899542591888748446}
+  - {fileID: 2576915762001330588}
+  - {fileID: 3407692449958414890}
+  - {fileID: 3892009293264498129}
+  - {fileID: 5936850570682082343}
+  - {fileID: 3643969487886155209}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -51,6 +51,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 63854506173c20447bfa546b4f358376, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -71,6 +75,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 23.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: BlueNotification
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: GreenNotification
@@ -80,9 +92,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &2630393295548048553 stripped
+--- !u!224 &3652613358964265321 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 235916105286372003}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &245286735865112067
@@ -93,6 +105,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5d1ec6d38b54f54a86fc7945d34bb16, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -113,6 +129,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_text
+      value: new
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 17.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: YellowNotificationFlag
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: BlueNotification
@@ -122,9 +150,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &2639182267830519817 stripped
+--- !u!224 &3643969487886155209 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 245286735865112067}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &573546879473071643
@@ -135,6 +163,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a84b04fed42e94f4db4566a341a83af5, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -167,6 +199,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_text
+      value: new
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 17.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: GreenNotificationFlag
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: RedNotification_1
@@ -176,9 +220,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &2320067870732589073 stripped
+--- !u!224 &3892009293264498129 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 573546879473071643}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1312129921878579798
@@ -189,6 +233,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 27ba13238123fdd4db88dbf268c80385, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -221,6 +269,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 23.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: YellowNotification
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: BlueNotification_1
@@ -230,9 +286,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &3887366794745050204 stripped
+--- !u!224 &2576915762001330588 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 1312129921878579798}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2038934765677135657
@@ -243,6 +299,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8c53d455a51739049ab9442239b58cf6, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -263,6 +323,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 23.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: GreenNotification
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: RedNotification
@@ -272,9 +340,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &4291065040795592995 stripped
+--- !u!224 &3295883205330820323 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 2038934765677135657}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2214673943389229536
@@ -285,6 +353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea98a46612efe2847809adebcf0b51cd, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -317,6 +389,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_text
+      value: new
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 17.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: BlueNotificationFlag
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: GreenNotification_1
@@ -326,9 +410,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &4141964210207850474 stripped
+--- !u!224 &3407692449958414890 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 2214673943389229536}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7175775920892854253
@@ -339,6 +423,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2a81305a8c0bfb48a98b4f68c1baab3, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -371,6 +459,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_text
+      value: new
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 17.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462095643557078423, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -28.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: RedNotificationFlag
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: YellowNotification_1
@@ -380,9 +484,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &4923092557065884135 stripped
+--- !u!224 &5936850570682082343 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 7175775920892854253}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7941690450610418772
@@ -393,6 +497,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8891333176175723184}
     m_Modifications:
+    - target: {fileID: 519521450383272994, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f04d6d11e0e65d049981f4f90b631a0d, type: 3}
     - target: {fileID: 1226121194287585762, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -413,6 +521,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869820108354595784, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_fontSize
+      value: 23.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995221355158609343, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+      propertyPath: m_Name
+      value: RedNotification
+      objectReference: {fileID: 0}
     - target: {fileID: 8585475496507615359, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
       propertyPath: m_Name
       value: YellowNotification
@@ -422,8 +538,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
---- !u!224 &5328217774188157534 stripped
+--- !u!224 &6899542591888748446 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2866308851074248202, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3600227739015715786, guid: c80adccb8f93dfd439f6382c09134e73, type: 3}
   m_PrefabInstance: {fileID: 7941690450610418772}
   m_PrefabAsset: {fileID: 0}
