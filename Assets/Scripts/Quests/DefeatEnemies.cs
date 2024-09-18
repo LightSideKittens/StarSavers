@@ -2,6 +2,7 @@
 using LSCore.AnimationsModule.Animations;
 using LSCore.QuestModule;
 using StarSavers;
+using UnityEngine;
 
 namespace LGCore.UIModule.Quests
 {
@@ -15,7 +16,7 @@ namespace LGCore.UIModule.Quests
         
         private int CurrentCount => PlayerStats.Config.defeatedEnemies;
         private int TargetCount => targetQuestData[defeatedEnemies]!.ToObject<int>();
-        private int LastCount => lastQuestData[defeatedEnemies]?.ToObject<int>() ?? 0;
+        private int LastCount => lastQuestData[defeatedEnemies]?.ToObject<int>() ?? CurrentCount;
 
         protected override bool Check() => CurrentCount >= TargetCount;
 

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aebffecf4864e8aa847090be771a735, type: 3}
+  m_Name: QuestManager
+  m_EditorClassIdentifier: 
+  id: c8e17b60645d47229cebe4ae7fa820c8
+  quests:
+  - {fileID: 4252347251384819898, guid: 59d3139a92c2e444689934bd3654e93a, type: 3}
+  create:
+    rid: 2329009022345675053
+  start:
+    rid: 2329009022345675058
+  finish:
+    rid: 2329009022345675059
+  delete:
+    rid: 2329009022345675060
+  references:
+    version: 2
+    RefIds:
+    - rid: 2329009022345675053
+      type: {class: QuestsManager/CreateImmediate, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+      data:
+        selector:
+          rid: 2329009022345675057
+    - rid: 2329009022345675057
+      type: {class: All, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+      data: 
+    - rid: 2329009022345675058
+      type: {class: QuestsManager/StartAfterCreate, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+      data:
+        time: 3000000000
+    - rid: 2329009022345675059
+      type: {class: QuestsManager/FinishAfterStart, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+      data:
+        time: 864000000000
+    - rid: 2329009022345675060
+      type: {class: QuestsManager/DeleteAfterFinish, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+      data:
+        timeMarkKey: finishedAt
+        time: 25920000000000
