@@ -1,11 +1,25 @@
 ﻿using StarSavers.Interfaces;
 using StarSavers.Windows;
 using LSCore;
+using LSCore.Attributes;
+using UnityEngine;
 
 namespace StarSavers.Launcher
 {
     public class LauncherWorld : ServiceManager<LauncherWorld>
     {
+        [DateTime]
+        [SerializeField] public long dateTime4;
+        
+        [TimeSpan(1, 1, 1)]
+        [SerializeField] public long timeSpan4 = 1;
+        
+        [CronEx] public string cron;
+        
+        [SelectEx] public string selectEx;
+        
+        [GenerateGuid] public string id;
+        
         protected override void Awake()
         {
             base.Awake();

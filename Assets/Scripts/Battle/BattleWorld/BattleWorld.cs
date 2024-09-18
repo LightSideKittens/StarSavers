@@ -5,6 +5,7 @@ using StarSavers.Interfaces;
 using DG.Tweening;
 using Battle.Data;
 using LSCore.Extensions.Unity;
+using StarSavers;
 using UnityEngine;
 
 namespace LSCore.BattleModule
@@ -62,9 +63,9 @@ namespace LSCore.BattleModule
             raids.Setup().OnComplete(() =>
             {
                 BattleWindow.Show();
-                Unit.Releasedd += OnUnitReleasedd;
                 PlayerWorld.Begin();
                 OpponentWorld.Begin();
+                OpponentWorld.Killed += OnUnitKilled;
                 currentWave = 0;
                 StartNextWave();
             });
@@ -75,7 +76,7 @@ namespace LSCore.BattleModule
             base.OnDestroy();
             Raid.Dispose();
             DOTween.KillAll();
-            Unit.Releasedd -= OnUnitReleasedd;
+            OpponentWorld.Killed -= OnUnitKilled;
         }
 
         private static void StartNextWave()
@@ -110,10 +111,10 @@ namespace LSCore.BattleModule
         {
             MatchResultWindow.Show(true);
         }
-        
-        private static void OnUnitReleasedd(Unit unit)
+
+        private static void OnUnitKilled(Unit unit)
         {
-            
+            PlayerStats.Config.defeatedEnemies++;
         }
     }
 }
