@@ -30,6 +30,7 @@ namespace Battle
             set => Instance.enemies = value;
         }
 
+        public static event Action<Unit> Killed; 
         private Dictionary<Id, OnOffPool<Unit>> pools = new();
         
         public override string UserId => "Opponent";
@@ -76,6 +77,7 @@ namespace Battle
 
         private void OnGot(Unit unit)
         {
+            unit.GetComp<HealthComp>().Killed += () => {Killed?.Invoke(unit);};
             UpdateUnitPosition(unit);
             cameraTrigger.Register(unit.GetComponent<Collider2D>());
         }
