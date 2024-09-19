@@ -77,7 +77,7 @@ namespace Battle
 
         private void OnGot(Unit unit)
         {
-            unit.GetComp<HealthComp>().Killed += () => {Killed?.Invoke(unit);};
+            unit.GetComp<BaseHealthComp>().Killed += () => {Killed?.Invoke(unit);};
             UpdateUnitPosition(unit);
             cameraTrigger.Register(unit.GetComponent<Collider2D>());
         }
