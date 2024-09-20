@@ -1,8 +1,8 @@
 ﻿using LSCore;
 using LSCore.AnimationsModule.Animations;
+using LSCore.Extensions;
 using LSCore.QuestModule;
 using StarSavers;
-using UnityEngine;
 
 namespace LGCore.UIModule.Quests
 {
@@ -25,7 +25,7 @@ namespace LGCore.UIModule.Quests
             questToken[defeatedEnemies] = CurrentCount + count;
         }
 
-        public override void OnSetupView()
+        protected override void OnSetupView()
         {
             var lastCount = LastCount;
             var targetCount = TargetCount;
@@ -36,11 +36,11 @@ namespace LGCore.UIModule.Quests
             slider.OnlyDiff = true;
         }
 
-        public override void OnShowed()
+        protected override void OnShowed()
         {
             var currentCount = CurrentCount;
             
-            if (CheckDiffAndSync<int>(defeatedEnemies, currentCount))
+            if (lastQuestData.CheckDiffAndSync<int>(defeatedEnemies, currentCount))
             {
                 anim.endValue = currentCount;
                 anim.Animate();
