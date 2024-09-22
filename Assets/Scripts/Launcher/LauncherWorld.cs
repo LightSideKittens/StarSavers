@@ -17,6 +17,9 @@ namespace StarSavers.Launcher
         [CronEx] public string cron;
         
         [SelectEx] public string selectEx;
+        [SelectEx("count")] public string selectEx2;
+
+        public int count;
         
         [GenerateGuid] public string id;
         
