@@ -174,11 +174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5638884723535574841, guid: 0bf868b33a5777e42886c0846c6ad4d6, type: 3}
       propertyPath: m_text
-      value: <mspace=0.6em> 2/10
+      value: <mspace=0.6em>9910/10
       objectReference: {fileID: 0}
     - target: {fileID: 5638884723535574841, guid: 0bf868b33a5777e42886c0846c6ad4d6, type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 33.55
       objectReference: {fileID: 0}
     - target: {fileID: 6346354981471689327, guid: 0bf868b33a5777e42886c0846c6ad4d6, type: 3}
       propertyPath: m_Sprite
@@ -376,6 +376,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6750239444755058063, guid: c2910d89c02ba1e43b526456cb599a52, type: 3}
     - target: {fileID: 6261081114330575899, guid: 05d2407a2641cfe4fa8087abb70f6bae, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261081114330575899, guid: 05d2407a2641cfe4fa8087abb70f6bae, type: 3}
       propertyPath: <Number>k__BackingField
       value: 2000
       objectReference: {fileID: 0}
@@ -396,17 +400,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5538581396905441860, guid: 05d2407a2641cfe4fa8087abb70f6bae, type: 3}
   m_PrefabInstance: {fileID: 5609661650064675324}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1961970290139866599 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6261081114330575899, guid: 05d2407a2641cfe4fa8087abb70f6bae, type: 3}
-  m_PrefabInstance: {fileID: 5609661650064675324}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af009385ee1445888056767afbdc1d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6265135556001005924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,6 +419,10 @@ PrefabInstance:
     - target: {fileID: 400417130813264742, guid: 623be12bd4367314b9e8311433882948, type: 3}
       propertyPath: m_fontSizeMax
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 400417130813264742, guid: 623be12bd4367314b9e8311433882948, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405438111595204419, guid: 623be12bd4367314b9e8311433882948, type: 3}
       propertyPath: m_Name
@@ -545,12 +542,14 @@ MonoBehaviour:
   handlers:
     rid: 2329009022345674867
   onComplete:
-  - rid: 2329009022345674887
+  - rid: -2
   useId: 0
   id: cd416e032f0e4baa848ffb8b483f7729
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 2329009022345674867
       type: {class: Quest/Handlers, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
       data:
@@ -580,29 +579,6 @@ MonoBehaviour:
           targetPath: 
           targetsPaths: []
           timeOffsetPerTarget: 0.1
-    - rid: 2329009022345674887
-      type: {class: Quest/Wrapper, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
-      data:
-        action:
-          rid: 2329009022345674889
-    - rid: 2329009022345674889
-      type: {class: LSButtonAction, ns: , asm: LSCore.UIModule}
-      data:
-        action:
-          rid: 2329009022345674892
-        button: {fileID: 5709453102083419118}
-    - rid: 2329009022345674892
-      type: {class: Earn, ns: LSCore, asm: LSCore.CurrencyModule}
-      data:
-        fund:
-          rid: 2329009022345674893
-    - rid: 2329009022345674893
-      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencyModule}
-      data:
-        fundText: {fileID: 1961970290139866599}
-        changeTextColorIfNotEnough: 0
-        notEnoughColorId: {fileID: 0}
-        enoughColorId: {fileID: 0}
 --- !u!1001 &6680509208311365345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6261081114330575899, guid: 69d6d4041670e97428283fc2670534f1, type: 3}
       propertyPath: m_fontSize
-      value: 29.45
+      value: 29.1
       objectReference: {fileID: 0}
     - target: {fileID: 6261081114330575899, guid: 69d6d4041670e97428283fc2670534f1, type: 3}
       propertyPath: m_VerticalAlignment
@@ -946,6 +922,10 @@ PrefabInstance:
     - target: {fileID: 6261081114330575899, guid: 69d6d4041670e97428283fc2670534f1, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261081114330575899, guid: 69d6d4041670e97428283fc2670534f1, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8869142001010808229, guid: 69d6d4041670e97428283fc2670534f1, type: 3}
       propertyPath: m_Name
