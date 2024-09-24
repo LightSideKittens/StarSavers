@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 851411494679360578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,11 +78,21 @@ MonoBehaviour:
   rotateId: 0
   flip: {x: 0, y: 0}
   combineFilledWithSliced: 0
+  ignoreSLAAAAYout: 0
   anim:
     isDisabled: 0
   clickActions:
-    actions: []
-    isClickSoundOverride: 0
+    actions:
+    - rid: 4216535269369970710
+    isClickSoundOverride: 1
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4216535269369970710
+      type: {class: PlayOneShotSound, ns: , asm: LSCore.AudioModule}
+      data:
+        settings:
+          volume: 1
+          loop: 0
+          clip: {fileID: 8300000, guid: d2dc2b00d006a4844989e8946ae0fcd6, type: 3}
+          group: {fileID: 4589851771290346213, guid: 72496f9913afa6746a6f16a28a67d8b3, type: 2}
