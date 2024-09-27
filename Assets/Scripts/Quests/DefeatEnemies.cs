@@ -36,7 +36,7 @@ namespace LGCore.UIModule.Quests
             slider.OnlyDiff = true;
         }
 
-        protected override void OnShowed()
+        public override void OnShowed()
         {
             var currentCount = CurrentCount;
             

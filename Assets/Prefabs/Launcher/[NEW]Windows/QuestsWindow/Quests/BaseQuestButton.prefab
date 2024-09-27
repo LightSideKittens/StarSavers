@@ -400,6 +400,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5538581396905441860, guid: 05d2407a2641cfe4fa8087abb70f6bae, type: 3}
   m_PrefabInstance: {fileID: 5609661650064675324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1961970290139866599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6261081114330575899, guid: 05d2407a2641cfe4fa8087abb70f6bae, type: 3}
+  m_PrefabInstance: {fileID: 5609661650064675324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af009385ee1445888056767afbdc1d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6265135556001005924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -427,6 +438,10 @@ PrefabInstance:
     - target: {fileID: 405438111595204419, guid: 623be12bd4367314b9e8311433882948, type: 3}
       propertyPath: m_Name
       value: BaseQuestButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 405438111595204419, guid: 623be12bd4367314b9e8311433882948, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1859483897607432842, guid: 623be12bd4367314b9e8311433882948, type: 3}
       propertyPath: m_Sprite
@@ -538,18 +553,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f10601b84c4625b81607dc9cb3231e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markPrefab: {fileID: 7702499546282829416, guid: 38b5041eedfee1141b68832b22ea94b7, type: 3}
   cullEvent: {fileID: 5709453102083419118}
   handlers:
     rid: 2329009022345674867
   onComplete:
-  - rid: -2
+  - rid: 2329009177809387600
   useId: 0
   id: cd416e032f0e4baa848ffb8b483f7729
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 2329009022345674867
       type: {class: Quest/Handlers, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
       data:
@@ -579,6 +593,23 @@ MonoBehaviour:
           targetPath: 
           targetsPaths: []
           timeOffsetPerTarget: 0.1
+    - rid: 2329009177809387600
+      type: {class: Quest/ActionWrapper, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+      data:
+        action:
+          rid: 2329009177809387601
+    - rid: 2329009177809387601
+      type: {class: Earn, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        fund:
+          rid: 2329009177809387602
+    - rid: 2329009177809387602
+      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        fundText: {fileID: 1961970290139866599}
+        changeTextColorIfNotEnough: 0
+        notEnoughColorId: {fileID: 0}
+        enoughColorId: {fileID: 0}
 --- !u!1001 &6680509208311365345
 PrefabInstance:
   m_ObjectHideFlags: 0

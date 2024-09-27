@@ -22,7 +22,7 @@ MonoBehaviour:
   finish:
     rid: 2329009022345675059
   delete:
-    rid: 2329009022345675060
+    rid: 2329009177809387608
   references:
     version: 2
     RefIds:
@@ -31,6 +31,7 @@ MonoBehaviour:
       data:
         selector:
           rid: 2329009022345675057
+        count: 3
     - rid: 2329009022345675057
       type: {class: All, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
       data: 
@@ -42,8 +43,8 @@ MonoBehaviour:
       type: {class: QuestsManager/FinishAfterStart, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
       data:
         time: 864000000000
-    - rid: 2329009022345675060
-      type: {class: QuestsManager/DeleteAfterFinish, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+    - rid: 2329009177809387608
+      type: {class: QuestsManager/DeleteAfterTimeMark, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
       data:
         timeMarkKey: finishedAt
-        time: 25920000000000
+        time: 25923000000000
