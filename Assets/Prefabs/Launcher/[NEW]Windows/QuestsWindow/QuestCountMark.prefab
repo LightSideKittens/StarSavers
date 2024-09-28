@@ -132,7 +132,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4195bac1254ae994efb1777cdca804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: {fileID: -6750239444755058063, guid: 84987348bfc23244ba92ee6a59664b14, type: 3}
-  group: {fileID: 0}
-  markTypeId: {fileID: -6750239444755058063, guid: c9e567c0f08471d4b8bf5a31f6c659de, type: 3}
+  provider:
+    rid: 1000
   text: {fileID: 2821623885713430487}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1000
+      type: {class: MarkKeys/AsId, ns: LSCore, asm: LSCore.UIModule.MarkSystem}
+      data:
+        id: {fileID: -6750239444755058063, guid: 84987348bfc23244ba92ee6a59664b14, type: 3}
+        group: {fileID: 0}
+        markTypeId: {fileID: -6750239444755058063, guid: c9e567c0f08471d4b8bf5a31f6c659de, type: 3}
