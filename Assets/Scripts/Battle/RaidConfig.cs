@@ -112,7 +112,7 @@ namespace Battle.Data
         {
             levelsManager.Init();
             OpponentWorld.Enemies = levelsManager;
-            levelsManager.SetLevel(enemiesLevel);
+            levelsManager.SetLevelForAll(enemiesLevel);
             InstantiateLocation();
             currentWave = 0;
         }

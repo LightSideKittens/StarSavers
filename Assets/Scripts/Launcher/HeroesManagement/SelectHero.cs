@@ -1,5 +1,6 @@
 ﻿using System;
 using Battle.Data;
+using LSCore.LevelSystem;
 
 namespace Launcher.HeroesManagement
 {
@@ -11,6 +12,18 @@ namespace Launcher.HeroesManagement
         public override void Invoke()
         {
             PlayerData.Config.SelectedHero.Value = id.id;
+        }
+    }
+    
+    [Serializable]
+    public class UpgradeHeroLevel : LSAction
+    {
+        public HeroId id;
+        public LevelsManager heroesLevelsManager;
+        
+        public override void Invoke()
+        {
+            heroesLevelsManager.UpgradeLevel(id.id);
         }
     }
 }
