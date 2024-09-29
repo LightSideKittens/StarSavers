@@ -5,7 +5,7 @@ namespace Battle.Data
 {
     public class PlayerData : GameSingleConfig<PlayerData>
     {
-        public ReactProp<string> SelectedHero { get; set; } = (ReactProp<string>)"Foxy";
+        public ReactProp<string> SelectedHero { get; set; } = (ReactProp<string>)"";
         
         public int Rank { get; set; }
         public Dictionary<string, int> RankByHero { get; } = new();
