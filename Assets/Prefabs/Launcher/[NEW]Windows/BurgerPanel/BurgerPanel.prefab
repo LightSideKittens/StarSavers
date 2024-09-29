@@ -109,8 +109,6 @@ MonoBehaviour:
   showHideAnim:
     rid: 3882657626990837763
   clickActions: []
-  <HomeButton>k__BackingField: {fileID: 7034522284106031532}
-  <BackButton>k__BackingField: {fileID: 0}
   onShowing:
   - rid: 6272343463963656596
   onHiding: []
@@ -584,12 +582,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1710949144462791051, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710949144462791051, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
       propertyPath: clickActions.actions.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1710949144462791051, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
       propertyPath: clickActions.isClickSoundOverride
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710949144462791051, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
+      propertyPath: 'clickActions.actions.Array.data[0]'
+      value: 2329009264499884181
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710949144462791051, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
+      propertyPath: 'managedReferences[2329009264499884181]'
+      value: LSCore.WindowModule LSCore.GoBack
       objectReference: {fileID: 0}
     - target: {fileID: 1710949144462791051, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
       propertyPath: 'managedReferences[4216534958489993586]'
@@ -665,14 +675,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9184512295842074944, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
   m_PrefabInstance: {fileID: 8512128277194944551}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7034522284106031532 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1710949144462791051, guid: bd2613e153f00c5408c598d78d28b811, type: 3}
-  m_PrefabInstance: {fileID: 8512128277194944551}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a6708c6231b4c7fbe083ad45b3a9862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

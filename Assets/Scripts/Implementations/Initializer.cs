@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Battle.Data;
 using StarSavers.Data;
 using StarSavers.Interfaces;
@@ -16,12 +17,12 @@ namespace StarSavers
     [ShowOdinSerializedPropertiesInInspector]
     public class Initializer : BaseInitializer
     {
+        [Id("Heroes")] [SerializeField] private List<Id> firstUnlockedHeroes;
+        
         [SerializeField] private LevelsManager heroesLevelsManager;
         [SerializeField] private ExchangeTable exchangeTable;
         [SerializeField] private HeroRankIconsConfigs heroRankIconsConfigs;
-        
-        [Id("Heroes")] [SerializeField] private Id[] ids;
-        [Id("Enemies")] [SerializeField] private Id[] enemyIds;
+
         [SerializeField] private Funds funds;
 
         static Initializer()
@@ -52,26 +53,32 @@ namespace StarSavers
             heroesLevelsManager.Init();
             exchangeTable.Init();
             heroRankIconsConfigs.Init();
+
+            if (string.IsNullOrEmpty(PlayerData.Config.SelectedHero.Value))
+            {
+                PlayerData.Config.SelectedHero.Value = firstUnlockedHeroes[0];
+            }
             
-            Id selectedHeroId = PlayerData.Config.SelectedHero;
+            Id selectedHeroId = PlayerData.Config.SelectedHero.Value;
+            
             if (!heroesLevelsManager.AddedIds.Contains(selectedHeroId))
             {
                 selectedHeroId = heroesLevelsManager.AddedIds.First();
-                PlayerData.Config.SelectedHero = selectedHeroId;
+                PlayerData.Config.SelectedHero.Value = selectedHeroId;
             }
             
             const string ftKey = "Give funds and hero";
             if (FirstTime.IsNot(ftKey, out var pass))
             {
                 funds.Earn();
-                for (int i = 0; i < ids.Length; i++)
+                for (int i = 0; i < firstUnlockedHeroes.Count; i++)
                 {
-                    heroesLevelsManager.UpgradeLevel(ids[i]);
+                    heroesLevelsManager.UpgradeLevel(firstUnlockedHeroes[i]);
                 }
             
                 pass();
             }
-            else if (!UnlockedLevels.TryGetLevel(selectedHeroId, out var level))
+            else if (!UnlockedLevels.TryGetLevel(selectedHeroId, out _))
             {
                 heroesLevelsManager.SetLevel(selectedHeroId, 1);
             }

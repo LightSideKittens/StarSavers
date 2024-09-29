@@ -7,7 +7,7 @@ namespace Common.Data
     [Serializable]
     public class DataByHeroRank<T> : DataByInterval<T>
     {
-        public bool TryGetSelectedHeroData(out (T data, int rank, Intervals.Data intervalData) data) => TryGet(PlayerData.Config.SelectedHero, out data);
+        public bool TryGetSelectedHeroData(out (T data, int rank, Intervals.Data intervalData) data) => TryGet(PlayerData.Config.SelectedHero.Value, out data);
         
         public bool TryGet(string heroId, out (T data, int rank, Intervals.Data intervalData) value)
         {
