@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140e014a08894444bab2ac6e1555e5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstHero: {fileID: -6750239444755058063, guid: 6914d376a7dd0484aa5ffcf2b8e9f935, type: 3}
   firstUnlockedHeroes:
   - {fileID: -6750239444755058063, guid: 6914d376a7dd0484aa5ffcf2b8e9f935, type: 3}
   heroesLevelsManager: {fileID: 11400000, guid: 5e66bb9bfd8051542b5b643eec359e2d, type: 2}
@@ -54,9 +53,15 @@ MonoBehaviour:
     funds:
     - rid: 8885881579968397312
     - rid: 8885881579968397313
+    - rid: 4216535409062314077
   references:
     version: 2
     RefIds:
+    - rid: 4216535409062314077
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 3632a8f602be9f842acf43c33bac24d8, type: 3}
+        <Value>k__BackingField: 200
     - rid: 8885881579968397312
       type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
       data:
