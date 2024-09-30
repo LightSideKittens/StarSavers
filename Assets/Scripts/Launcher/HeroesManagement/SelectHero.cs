@@ -18,7 +18,7 @@ namespace Launcher.HeroesManagement
     [Serializable]
     public class UpgradeHeroLevel : LSAction
     {
-        public HeroId id;
+        public static HeroId id;
         public LevelsManager heroesLevelsManager;
         
         public override void Invoke()
