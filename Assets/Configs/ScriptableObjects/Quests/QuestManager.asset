@@ -9,42 +9,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aebffecf4864e8aa847090be771a735, type: 3}
+  m_Script: {fileID: 11500000, guid: 3754a83b10054049a43246c3d7604152, type: 3}
   m_Name: QuestManager
   m_EditorClassIdentifier: 
-  id: c8e17b60645d47229cebe4ae7fa820c8
-  quests:
+  id: 87b51d8d8d814b38b35575946984f47b
+  objs:
   - {fileID: 4252347251384819898, guid: 59d3139a92c2e444689934bd3654e93a, type: 3}
   create:
-    rid: 2329009022345675053
+    rid: 2329009316760649728
   start:
-    rid: 2329009022345675058
+    rid: 2329009316760649730
   finish:
-    rid: 2329009022345675059
+    rid: 2329009316760649731
   delete:
-    rid: 2329009177809387608
+    rid: 2329009316760649732
   references:
     version: 2
     RefIds:
-    - rid: 2329009022345675053
-      type: {class: QuestsManager/CreateImmediate, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+    - rid: 2329009316760649728
+      type: {class: 'LifecycleManager`1/CreateImmediate[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
       data:
         selector:
-          rid: 2329009022345675057
+          rid: 2329009316760649729
         count: 3
-    - rid: 2329009022345675057
-      type: {class: All, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+    - rid: 2329009316760649729
+      type: {class: 'LifecycleManager`1/All[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
       data: 
-    - rid: 2329009022345675058
-      type: {class: QuestsManager/StartAfterCreate, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+    - rid: 2329009316760649730
+      type: {class: 'LifecycleManager`1/StartAfterCreate[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
       data:
         time: 3000000000
-    - rid: 2329009022345675059
-      type: {class: QuestsManager/FinishAfterStart, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+    - rid: 2329009316760649731
+      type: {class: 'LifecycleManager`1/FinishAfterStart[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
       data:
-        time: 864000000000
-    - rid: 2329009177809387608
-      type: {class: QuestsManager/DeleteAfterTimeMark, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+        time: 6000000000
+    - rid: 2329009316760649732
+      type: {class: 'LifecycleManager`1/DeleteAfterTimeMark[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
       data:
-        timeMarkKey: finishedAt
+        timeMarkKey: createdAt
         time: 25923000000000
