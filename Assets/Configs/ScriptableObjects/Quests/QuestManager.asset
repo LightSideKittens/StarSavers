@@ -27,24 +27,24 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 2329009316760649728
-      type: {class: 'LifecycleManager`1/CreateImmediate[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
+      type: {class: 'LifecycleManager`1/CreateImmediate[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.LifecycleModule}
       data:
         selector:
           rid: 2329009316760649729
         count: 3
     - rid: 2329009316760649729
-      type: {class: 'LifecycleManager`1/All[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
+      type: {class: 'LifecycleManager`1/All[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.LifecycleModule}
       data: 
     - rid: 2329009316760649730
-      type: {class: 'LifecycleManager`1/StartAfterCreate[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
+      type: {class: 'LifecycleManager`1/StartAfterCreate[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.LifecycleModule}
       data:
         time: 3000000000
     - rid: 2329009316760649731
-      type: {class: 'LifecycleManager`1/FinishAfterStart[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
+      type: {class: 'LifecycleManager`1/FinishAfterStart[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.LifecycleModule}
       data:
         time: 6000000000
     - rid: 2329009316760649732
-      type: {class: 'LifecycleManager`1/DeleteAfterTimeMark[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.GuidLifecycleModule}
+      type: {class: 'LifecycleManager`1/DeleteAfterTimeMark[[LSCore.QuestModule.Quest, LSCore.QuestsModule]]', ns: LSCore.ObjectModule, asm: LSCore.LifecycleModule}
       data:
         timeMarkKey: createdAt
         time: 25923000000000
