@@ -449,15 +449,8 @@ MonoBehaviour:
     - rid: 2329009177809387601
       type: {class: Earn, ns: LSCore, asm: LSCore.CurrencyModule}
       data:
-        fund:
-          rid: 2329009177809387602
-    - rid: 2329009177809387602
-      type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencyModule}
-      data:
-        fundText: {fileID: 2436184729722164063}
-        changeTextColorIfNotEnough: 0
-        notEnoughColorId: {fileID: 0}
-        enoughColorId: {fileID: 0}
+        funds:
+          funds: []
 --- !u!1001 &6680509208311365345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -689,17 +682,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71148fe5894a275448faacf4902eeeb0, type: 3}
---- !u!114 &2436184729722164063 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4619624241055375339, guid: 71148fe5894a275448faacf4902eeeb0, type: 3}
-  m_PrefabInstance: {fileID: 7049016186523192500}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af009385ee1445888056767afbdc1d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3359288096259571168 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5714421854497567060, guid: 71148fe5894a275448faacf4902eeeb0, type: 3}
