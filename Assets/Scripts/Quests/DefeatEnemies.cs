@@ -1,12 +1,14 @@
-﻿using LSCore;
+﻿using System;
+using LSCore;
 using LSCore.AnimationsModule.Animations;
 using LSCore.Extensions;
-using LSCore.QuestModule;
+using LSCore.LifecycleSystem;
 using StarSavers;
 
 namespace LGCore.UIModule.Quests
 {
-    public class DefeatEnemies : Quest.Handler
+    [Serializable]
+    public class DefeatEnemies : LifecycleObject.Handler
     {
         public const string defeatedEnemies = nameof(defeatedEnemies);
         
@@ -15,8 +17,8 @@ namespace LGCore.UIModule.Quests
         public SliderAnim anim;
         
         private int CurrentCount => PlayerStats.Config.defeatedEnemies;
-        private int TargetCount => targetQuestData[defeatedEnemies]!.ToObject<int>();
-        private int LastCount => lastQuestData[defeatedEnemies]?.ToObject<int>() ?? CurrentCount;
+        private int TargetCount => targetObjData[defeatedEnemies]!.ToObject<int>();
+        private int LastCount => lastObjData[defeatedEnemies]?.ToObject<int>() ?? CurrentCount;
 
         protected override bool Check() => CurrentCount >= TargetCount;
 
@@ -40,7 +42,7 @@ namespace LGCore.UIModule.Quests
         {
             var currentCount = CurrentCount;
             
-            if (lastQuestData.CheckDiffAndSync<int>(defeatedEnemies, currentCount))
+            if (lastObjData.CheckDiffAndSync<int>(defeatedEnemies, currentCount))
             {
                 anim.endValue = currentCount;
                 anim.Animate();

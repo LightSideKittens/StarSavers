@@ -404,22 +404,22 @@ MonoBehaviour:
   markPrefab: {fileID: 7702499546282829416, guid: 38b5041eedfee1141b68832b22ea94b7, type: 3}
   cullEvent: {fileID: 5709453102083419118}
   handlers:
-    rid: 2329009022345674867
+    rid: 8269774452763132044
   onComplete:
-  - rid: 2329009177809387600
-  useId: 0
+  - rid: 8269774452763132046
+  useId: 1
   id: cd416e032f0e4baa848ffb8b483f7729
   references:
     version: 2
     RefIds:
-    - rid: 2329009022345674867
-      type: {class: Quest/Handlers, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+    - rid: 8269774452763132044
+      type: {class: LifecycleObject/Handlers, ns: LSCore.LifecycleSystem, asm: LSCore.LifecycleSystem}
       data:
         not: 0
         type: 0
         conditions:
-        - rid: 2329009022345674872
-    - rid: 2329009022345674872
+        - rid: 8269774452763132045
+    - rid: 8269774452763132045
       type: {class: DefeatEnemies, ns: LGCore.UIModule.Quests, asm: Quests}
       data:
         not: 0
@@ -441,23 +441,21 @@ MonoBehaviour:
           targetPath: 
           targetsPaths: []
           timeOffsetPerTarget: 0.1
-    - rid: 2329009177809387600
-      type: {class: Quest/ActionWrapper, ns: LSCore.QuestModule, asm: LSCore.QuestsModule}
+    - rid: 8269774452763132046
+      type: {class: LifecycleObject/ActionWrapper, ns: LSCore.LifecycleSystem, asm: LSCore.LifecycleSystem}
       data:
         action:
-          rid: 2329009177809387601
-    - rid: 2329009177809387601
+          rid: 8269774452763132047
+    - rid: 8269774452763132047
       type: {class: Earn, ns: LSCore, asm: LSCore.CurrencyModule}
       data:
-        fund:
-          rid: 2329009177809387602
-    - rid: 2329009177809387602
+        funds:
+          funds:
+          - rid: 8269774452763132048
+    - rid: 8269774452763132048
       type: {class: FundByText, ns: LSCore, asm: LSCore.CurrencyModule}
       data:
         fundText: {fileID: 2436184729722164063}
-        changeTextColorIfNotEnough: 0
-        notEnoughColorId: {fileID: 0}
-        enoughColorId: {fileID: 0}
 --- !u!1001 &6680509208311365345
 PrefabInstance:
   m_ObjectHideFlags: 0
