@@ -25,8 +25,6 @@ namespace Battle.Windows
             set => BossHealth.gameObject.SetActive(value);
         }
 
-        protected override void OnBackButton() => MatchResultWindow.Show(false);
-
         public static void SplashText(string text)
         {
             Instance.splashText.text = text;

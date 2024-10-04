@@ -44,25 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140e014a08894444bab2ac6e1555e5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstUnlockedHeroes:
+  - {fileID: -6750239444755058063, guid: 6914d376a7dd0484aa5ffcf2b8e9f935, type: 3}
   heroesLevelsManager: {fileID: 11400000, guid: 5e66bb9bfd8051542b5b643eec359e2d, type: 2}
-  enemiesLevelsManager: {fileID: 11400000, guid: a63ed3ff636fbb44fbaf166610abf8b8, type: 2}
   exchangeTable: {fileID: 11400000, guid: 33899c6957dae6a4e849fa7526fded90, type: 2}
   heroRankIconsConfigs: {fileID: 11400000, guid: 3c212258bd3fa6045a4680c7352a05e1, type: 2}
-  palette: {fileID: 11400000, guid: 9ffd4b9025bb1994caa1385c598b8776, type: 2}
-  ids:
-  - {fileID: -6750239444755058063, guid: 6914d376a7dd0484aa5ffcf2b8e9f935, type: 3}
-  enemyIds:
-  - {fileID: -6750239444755058063, guid: 2edf4044e5a849b459b7317da8f64735, type: 3}
-  - {fileID: -6750239444755058063, guid: e429d027efeee7e45a196942be6db092, type: 3}
-  - {fileID: -6750239444755058063, guid: f5eae45c23b172e48a59d044e34bdad3, type: 3}
-  - {fileID: -6750239444755058063, guid: 618f3e2831b93dc4ebb134adaeed59a6, type: 3}
   funds:
     funds:
     - rid: 8885881579968397312
     - rid: 8885881579968397313
+    - rid: 4216535409062314077
   references:
     version: 2
     RefIds:
+    - rid: 4216535409062314077
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 3632a8f602be9f842acf43c33bac24d8, type: 3}
+        <Value>k__BackingField: 5000
     - rid: 8885881579968397312
       type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
       data:

@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: black-logo-additive
   m_Shader: {fileID: 4800000, guid: 7d9a2605d9d69ee48a382ee8cf96a0ee, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 0
@@ -17,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -50,7 +53,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 7.97, y: 5.23}
+        m_Scale: {x: 6, y: 6}
         m_Offset: {x: 0, y: 0}
     - _MainTex2:
         m_Texture: {fileID: 0}
@@ -89,6 +92,8 @@ Material:
     - _EmissionEnabled: 0
     - _EnableExternalAlpha: 0
     - _FlipbookMode: 0
+    - _GapX: 0.5
+    - _GapY: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -97,6 +102,10 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _OffsetX: 0
+    - _OffsetY: 0
+    - _PaddingX: 0
+    - _PaddingY: 0.1
     - _Parallax: 0.02
     - _Shininess: 0.7
     - _SmoothnessTextureChannel: 0
@@ -104,7 +113,7 @@ Material:
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
-    - _SpeedX: 0
+    - _SpeedX: 0.3
     - _SpeedY: 1
     - _SrcBlend: 1
     - _Stencil: 0
@@ -130,3 +139,4 @@ Material:
     - _TexOffset: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 0.08627451}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

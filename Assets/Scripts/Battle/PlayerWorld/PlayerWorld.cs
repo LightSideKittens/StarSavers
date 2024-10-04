@@ -18,7 +18,7 @@ namespace Battle
 
         protected override void OnBegin()
         {
-            var prefab = heroes.GetCurrentLevel<Unit>(PlayerData.Config.SelectedHero);
+            var prefab = heroes.GetCurrentLevel<Unit>(PlayerData.Config.SelectedHero.Value);
             var pool = CreatePool(prefab);
             pool.Released += OnHeroDied;
             hero = pool.Get();

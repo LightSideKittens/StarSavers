@@ -13,12 +13,15 @@ namespace Battle.Data.UnitComponents
     [Serializable]
     public class BossAttackComponent : BaseComp
     {
-        [SerializeField] protected FindTargetComp findTargetComp;
+        [SerializeField] protected FindTargetFactory findTargetFactory;
         [SerializeReference] protected List<BaseAttack> attacks;
+        
+        protected FindTargetComp findTargetComp;
         public float cooldown = 0.5f;
         
         protected override void Init()
         {
+            findTargetComp = findTargetFactory.Create();
             findTargetComp.Init(transform);
             for (int i = 0; i < attacks.Count; i++)
             {

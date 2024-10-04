@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aba14ded5894e9d808c1f98789f070e, type: 3}
+  m_Name: FindTargetForEnemies
+  m_EditorClassIdentifier: 
+  comp:
+    checker:
+      rid: 2329009172616052909
+    contactFilter:
+      useTriggers: 0
+      useLayerMask: 1
+      useDepth: 0
+      useOutsideDepth: 0
+      useNormalAngle: 0
+      useOutsideNormalAngle: 0
+      layerMask:
+        serializedVersion: 2
+        m_Bits: 1024
+      minDepth: 0
+      maxDepth: 0
+      minNormalAngle: 0
+      maxNormalAngle: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2329009172616052909
+      type: {class: IsEnemy, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        not: 0
+        type: 0

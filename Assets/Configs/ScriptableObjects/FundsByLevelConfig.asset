@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8730be52310b4e0ca7a035d7df1531b9, type: 3}
+  m_Name: FundsByLevelConfig
+  m_EditorClassIdentifier: 
+  fundsByLevel:
+    intervals: {fileID: 11400000, guid: 2fb179f61dd822349a84516110b9cda4, type: 2}
+    data:
+    - funds:
+      - rid: 2329009295453061208
+      - rid: 2329009295453061209
+    - funds:
+      - rid: 2329009295453061210
+      - rid: 2329009295453061211
+    - funds:
+      - rid: 2329009295453061212
+      - rid: 2329009295453061213
+    - funds:
+      - rid: 2329009295453061214
+      - rid: 2329009295453061215
+  references:
+    version: 2
+    RefIds:
+    - rid: 2329009295453061208
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 3632a8f602be9f842acf43c33bac24d8, type: 3}
+        <Value>k__BackingField: 25
+    - rid: 2329009295453061209
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
+        <Value>k__BackingField: 50
+    - rid: 2329009295453061210
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 3632a8f602be9f842acf43c33bac24d8, type: 3}
+        <Value>k__BackingField: 200
+    - rid: 2329009295453061211
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
+        <Value>k__BackingField: 200
+    - rid: 2329009295453061212
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 3632a8f602be9f842acf43c33bac24d8, type: 3}
+        <Value>k__BackingField: 500
+    - rid: 2329009295453061213
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
+        <Value>k__BackingField: 500
+    - rid: 2329009295453061214
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 3632a8f602be9f842acf43c33bac24d8, type: 3}
+        <Value>k__BackingField: 1000
+    - rid: 2329009295453061215
+      type: {class: Fund, ns: LSCore, asm: LSCore.CurrencyModule}
+      data:
+        id: {fileID: -6750239444755058063, guid: 635c0f22cd793754fba7cca16f9585ef, type: 3}
+        <Value>k__BackingField: 1000
