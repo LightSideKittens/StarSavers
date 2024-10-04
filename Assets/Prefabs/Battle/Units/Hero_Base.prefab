@@ -51,31 +51,47 @@ MonoBehaviour:
   id: {fileID: 0}
   manager: {fileID: 11400000, guid: 5e66bb9bfd8051542b5b643eec359e2d, type: 2}
   comps:
-  - rid: 8885881579968397431
-  - rid: 8885881723286454386
-  - rid: 8885881579968397435
+  - rid: 8269774490798129267
+  - rid: 8269774490798129268
+  - rid: 8269774490798129269
+  - rid: 8269774490798129270
+  - rid: 8269774490798129271
   references:
     version: 2
     RefIds:
-    - rid: 8885881579968397431
+    - rid: 8269774490798129267
       type: {class: HealthComp, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
       data:
-        health: 279
+        health: 2790
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 1}
         visualRoot: {fileID: 4144509317128272308}
-    - rid: 8885881579968397435
-      type: {class: AutoAttackComponent, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
-      data:
-        impactObjectPrefab: {fileID: 8014395754375300796, guid: 41fa8ce48a611884d8a94d08fc20c041, type: 3}
-        findTargetFactory: {fileID: 11400000, guid: 4370c68b112378f44bf5dc731f15b521, type: 2}
-        attackSpeed: 1
-        manualMoveCompControl: 1
-        radius: 10
-    - rid: 8885881723286454386
+    - rid: 8269774490798129268
       type: {class: HeroMoveComp, ns: Battle.Data.Components, asm: Battle}
       data:
-        speed: 3
+        speed: 5
+    - rid: 8269774490798129269
+      type: {class: AutoAttackComponent, ns: LSCore.BattleModule, asm: LSCore.BattleModule}
+      data:
+        impactObjectPrefab: {fileID: 8014395754375300796, guid: ea6f8e0fcbb0b764fbb6594120ebff6d, type: 3}
+        findTargetFactory: {fileID: 11400000, guid: 4370c68b112378f44bf5dc731f15b521, type: 2}
+        attackSpeed: 0.55
+        manualMoveCompControl: 1
+        radius: 8
+    - rid: 8269774490798129270
+      type: {class: HeroSkillAttackComp, ns: LSCore.BattleModule, asm: Battle}
+      data:
+        impactObjectPrefab: {fileID: 8014395754375300796, guid: 118b17dc4f8f8f0448999782573c9d4c, type: 3}
+        findTargetFactory: {fileID: 11400000, guid: 4370c68b112378f44bf5dc731f15b521, type: 2}
+        attackSpeed: 1
+        joystickMagnitudeThreshold: 0.15
+    - rid: 8269774490798129271
+      type: {class: HeroUltimateAttackComp, ns: Battle.Data.UnitComponents, asm: Battle}
+      data:
+        impactObjectPrefab: {fileID: 4911827717840409006, guid: 128b887cc65dca241aa2bf8bc622d0a3, type: 3}
+        findTargetFactory: {fileID: 11400000, guid: 4370c68b112378f44bf5dc731f15b521, type: 2}
+        attackSpeed: 5
+        joystickMagnitudeThreshold: 0.15
 --- !u!50 &754386383632478202
 Rigidbody2D:
   serializedVersion: 5
