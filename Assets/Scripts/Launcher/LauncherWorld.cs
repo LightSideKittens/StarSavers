@@ -1,10 +1,16 @@
-﻿using Animatable;
+﻿using System.Diagnostics;
+using Animatable;
 using Battle.Data;
 using StarSavers.Interfaces;
 using StarSavers.Windows;
 using LSCore;
 using LSCore.Attributes;
+using Sirenix.OdinInspector;
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 namespace StarSavers.Launcher
 {
@@ -33,7 +39,52 @@ namespace StarSavers.Launcher
             base.Awake();
             BaseInitializer.Initialize(Init);
         }
+
+        public Image spriteRenderer;
+        public float x;
         
+        public MoveItCurve moveItCurve;
+        public AnimationCurve animationCurve;
+        
+        [Button]
+        public void Test()
+        {
+            var go = gameObject;
+            var tr = transform;
+            var type = typeof(LauncherWorld);
+            
+            var sw = new Stopwatch();
+            
+            sw.Start();
+            for (int i = 0; i < 100_000; i++)
+            {
+                transform.localPosition = new Vector3(0, 0, 0);
+            }
+            sw.Stop();
+            Debug.Log(sw.ElapsedMilliseconds);
+            sw.Reset();
+
+            var clip = CreateClip();
+
+            
+            sw.Start();
+            for (int i = 0; i < 100_000; i++)
+            {
+                
+            }
+            
+            sw.Stop();
+            Debug.Log(sw.ElapsedMilliseconds);
+
+        }
+        
+        private static AnimationClip CreateClip()
+        {
+            var clip = new AnimationClip { legacy = true };
+            clip.hideFlags = HideFlags.HideAndDontSave;
+            return clip;
+        }
+
         private void Init()
         {
             MainWindow.AsHome();

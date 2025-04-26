@@ -4,7 +4,6 @@ using Battle.Data;
 using Battle.Windows;
 using DG.Tweening;
 using LSCore.Async;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace LSCore.BattleModule
