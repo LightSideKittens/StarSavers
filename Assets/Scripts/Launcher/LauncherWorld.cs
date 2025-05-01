@@ -6,9 +6,7 @@ using StarSavers.Windows;
 using LSCore;
 using LSCore.Attributes;
 using Sirenix.OdinInspector;
-using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 

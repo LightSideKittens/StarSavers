@@ -57,7 +57,7 @@ namespace LSCore.BattleModule
         private void Setup()
         {
             Physics2DExt.SetHitCollidersSize(100);
-            AnimatableCanvas.SortingOrder = WindowsData.DefaultSortingOrder - 1;
+            AnimatableCanvas.SortingOrder = UIViewBoss.DefaultSortingOrder - 1;
             BattleWindow.AsHome();
             
             raids.Setup().OnComplete(() =>
